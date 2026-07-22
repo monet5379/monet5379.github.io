@@ -13,7 +13,7 @@
 - `career.md` — 경력
 - `projects/` — 포트폴리오
 - `notes/` — 개인 공개 기술 글
-- `docs/` — 내부 규칙 (Jekyll exclude, 미게시)
+- `docs/` — 내부 규칙·참고 목록 (Jekyll exclude, 미게시). 예: `project-rules.md`, `writing-guide.md`, `reference-sites.md`
 
 ## 규칙
 
