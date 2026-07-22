@@ -87,6 +87,11 @@ excerpt: "팀써니트에서 프로그래머 1~2명 규모로 개발 리드하�
 - Steam Stats 준비 전 업적/리더보드 호출 가드
 - Deck·언어·설정 분기, 콘솔 빌드에서 Steam 제외
 
+### 성능
+
+- 플레이어 빌드에서 개발 로그 호출·인자 평가를 컴파일 단계에서 제거 ([Conditional 로그와 빌드 비용]({{ "/notes/conditional-log-build-cost/" | relative_url }}))
+- 카메라 이동에 따른 스테이지 렌더 비용을 Global Light 구조와 Switch Ambient 토글로 분리 ([스테이지 비주얼 최적화]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }}))
+
 ## 스택
 
 Unity, C#, Cinemachine, Timeline, Steamworks, Unity Gaming Services Analytics
