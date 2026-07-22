@@ -1,8 +1,10 @@
 {% comment %}
   section_dir: 경로 접두 (예: 'projects/', 'notes/')
   section_sort: 'order' (기본) 또는 'date' (최신순)
-  show_tag_filter: true면 태그 필터 UI (notes)
-  filter_tags: 필터에 노출할 태그 배열 (예: "DragonIsDead|BladeAssault" | split: "|")
+  show_tag_filter: true면 프로젝트·주제 필터 UI (notes)
+  show_sort_filter: true면 날짜 정렬 UI (notes)
+  filter_projects: 프로젝트 필터 칩 (예: "DragonIsDead|BladeAssault" | split: "|")
+  filter_topics: 주제 필터 칩 (예: "Performance|TMP" | split: "|")
 {% endcomment %}
 {% assign section_articles = site.pages | where_exp: "p", "p.path contains section_dir" | where_exp: "p", "p.name != 'index.md'" %}
 {% if section_sort == "date" %}
@@ -16,18 +18,52 @@
   {% assign show_thumbs = true %}
 {% endif %}
 
-{% if show_tag_filter and filter_tags.size > 0 %}
-<nav class="tag-filter" data-tag-filter aria-label="태그 필터">
-  <span class="tag-filter__label">Tag:</span>
-  <button type="button" class="tag-filter__btn is-active" data-tag="" aria-pressed="true">All</button>
-  {% for tag in filter_tags %}
-  <button type="button" class="tag-filter__btn" data-tag="{{ tag | escape }}" aria-pressed="false">{{ tag | escape }}</button>
-  {% endfor %}
-</nav>
+{% assign show_project_filter = false %}
+{% if show_tag_filter and filter_projects.size > 0 %}
+  {% assign show_project_filter = true %}
+{% endif %}
+{% assign show_topic_filter = false %}
+{% if show_tag_filter and filter_topics.size > 0 %}
+  {% assign show_topic_filter = true %}
+{% endif %}
+
+{% assign show_list_controls = false %}
+{% if show_project_filter or show_topic_filter or show_sort_filter %}
+  {% assign show_list_controls = true %}
+{% endif %}
+
+{% if show_list_controls %}
+<div class="list-filters">
+  {% if show_project_filter %}
+  <nav class="tag-filter" data-tag-filter aria-label="프로젝트 필터">
+    <span class="tag-filter__label">Project:</span>
+    <button type="button" class="tag-filter__btn is-active" data-tag="" aria-pressed="true">All</button>
+    {% for tag in filter_projects %}
+    <button type="button" class="tag-filter__btn" data-tag="{{ tag | escape }}" aria-pressed="false">{{ tag | escape }}</button>
+    {% endfor %}
+  </nav>
+  {% endif %}
+  {% if show_topic_filter %}
+  <nav class="tag-filter" data-tag-filter aria-label="주제 필터">
+    <span class="tag-filter__label">Topic:</span>
+    <button type="button" class="tag-filter__btn is-active" data-tag="" aria-pressed="true">All</button>
+    {% for tag in filter_topics %}
+    <button type="button" class="tag-filter__btn" data-tag="{{ tag | escape }}" aria-pressed="false">{{ tag | escape }}</button>
+    {% endfor %}
+  </nav>
+  {% endif %}
+  {% if show_sort_filter %}
+  <nav class="tag-filter" data-sort-filter aria-label="정렬">
+    <span class="tag-filter__label">Sort:</span>
+    <button type="button" class="tag-filter__btn is-active" data-sort="newest" aria-pressed="true">최신순</button>
+    <button type="button" class="tag-filter__btn" data-sort="oldest" aria-pressed="false">오래된 순</button>
+  </nav>
+  {% endif %}
+</div>
 {% endif %}
 
 {% if section_articles.size > 0 %}
-<ul class="post-list{% if show_thumbs %} post-list--thumbs{% endif %}"{% if show_tag_filter %} data-tag-filter-list{% endif %}>
+<ul class="post-list{% if show_thumbs %} post-list--thumbs{% endif %}"{% if show_list_controls %} data-tag-filter-list{% endif %}>
   {% for item in section_articles %}
   {% assign thumb = false %}
   {% if show_thumbs %}
@@ -49,7 +85,7 @@
       {% endif %}
     {% endif %}
   {% endif %}
-  <li{% if thumb %} class="post-list__item--has-thumb"{% endif %}{% if item.tags %} data-tags='{{ item.tags | jsonify | escape }}'{% endif %}>
+  <li{% if thumb %} class="post-list__item--has-thumb"{% endif %}{% if item.date %} data-date="{{ item.date | date: '%Y-%m-%d' }}"{% endif %}{% if item.tags %} data-tags='{{ item.tags | jsonify | escape }}'{% endif %}>
     {% if thumb %}
     <a class="post-list__thumb" href="{{ item.url | relative_url }}" tabindex="-1" aria-hidden="true">
       <img
@@ -92,8 +128,8 @@
   </li>
   {% endfor %}
 </ul>
-{% if show_tag_filter %}
-<p class="tag-filter__empty" data-tag-filter-empty hidden>해당 태그의 글이 없습니다.</p>
+{% if show_list_controls %}
+<p class="tag-filter__empty" data-tag-filter-empty hidden>선택한 태그에 맞는 글이 없습니다.</p>
 {% endif %}
 {% else %}
 <p><em>아직 게시된 항목이 없습니다.</em></p>

@@ -13,5 +13,7 @@ excerpt: "개인 공개 기술 노트. 회고·짧은 팁·포트폴리오를 �
 {% assign section_dir = "notes/" %}
 {% assign section_sort = "date" %}
 {% assign show_tag_filter = true %}
-{% assign filter_tags = "DragonIsDead|BladeAssault" | split: "|" %}
+{% assign show_sort_filter = true %}
+{% assign filter_projects = "DragonIsDead|BladeAssault" | split: "|" %}
+{% assign filter_topics = "Architecture|Build|Lighting|Loading|Localization|Logging|Performance|Rendering|TMP" | split: "|" %}
 {% include section-index-list.html %}
