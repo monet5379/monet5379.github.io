@@ -21,7 +21,7 @@
 - 사이트 콘텐츠와 docs/설정은 커밋 분리
 - `career` · `projects` · `notes` 페이지: `date`, `excerpt` 필수. `title` 짧게, 부제(`—`) 금지. `excerpt` = 본문 lead
 - `projects/` · `notes/` 목록은 `_includes/section-index-list.html`로 자동 생성 (`index.md` 제외)
-- notes 목록 태그 필터: front matter `tags` + `notes/index.md`의 `filter_tags` (`docs/writing-guide.md`)
+- notes 목록 태그·정렬 필터: front matter `tags` + `notes/index.md`의 `filter_projects` / `filter_topics` / `show_sort_filter` (`docs/writing-guide.md`)
 
 - `projects` 상세: 목록용 `order`(작을수록 앞), `role` 권장
 - 프로젝트 이미지: `assets/images/projects/<슬러그>/` — `cover.jpg`, `ss-01.jpg`… (`docs/project-rules.md`)
