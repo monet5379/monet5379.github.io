@@ -4,12 +4,31 @@ title: TMP 폰트 워밍업
 permalink: /notes/tmp-font-warmup/
 date: 2026-07-23
 excerpt: "부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다."
-tags: [DragonIsDead]
+tags: [DragonIsDead, TMP, Localization, Performance]
 ---
+
 
 부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다.
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다. Static 문자셋(Dynamic atlas 회피)은 [TMP Static 폰트 아틀라스]({{ "/notes/tmp-static-font-atlas/" | relative_url }})를 따릅니다. 워밍업은 glyph 전량 보장의 대체재가 아닙니다.
+
+## 맥락
+
+Static은 «어떤 글자가 아틀라스에 있는가», Warmup은 «언제 처음 그리는가»를 담당합니다. FontWarmup 매니저로 **cancel/supersede·input block**을 한곳에서 묶어, 자연 첫 UI warmup이 플레이·입력과 겹치지 않게 합니다.
+
+타임라인:
+
+1. 콜드 부팅 → Splash에서 font type별 1프레임 warmup → Title
+2. 옵션에서 언어 변경 → input block → warmup → UI refresh → unblock
+3. 연속 변경 시 진행 중 작업 supersede → block이 풀림
+
+| 타입 | 쓰임 |
+|------|------|
+| Title | 타이틀·큰 제목 |
+| Content 계열 | 본문·일반 UI |
+| Number | 숫자·수치 표시 등 |
+
+실제로 쓰는 타입만 워밍업합니다. 미사용 타입까지 일괄 넣지 않습니다. 키보드(PC)·조이스틱·커런시 등 Sprite Asset도 언어 UI와 같이 처음 그릴 때 스파이크가 나므로, 같은 대기 구간으로 옮깁니다.
 
 ## 문제
 
@@ -60,6 +79,7 @@ Static atlas만으로는 «첫 사용 시 머티리얼·메쉬·스프라이트 
 - 옵션 언어 변경 → warmup 중 input block → 완료 후 UI refresh·조작 가능
 - 언어를 빠르게 연속 변경해도 superseded로 block이 풀림
 - Profiler상 warmup 비용이 스플래시·언어 변경 구간에만 유의미
+- 워밍업 미완료·실패 시: 첫 UI hitch 또는 언어 변경 후 입력이 풀리지 않음으로 드러남
 
 ## 정리
 

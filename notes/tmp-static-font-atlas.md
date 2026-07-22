@@ -4,12 +4,23 @@ title: TMP Static 폰트 아틀라스
 permalink: /notes/tmp-static-font-atlas/
 date: 2026-07-23
 excerpt: "TMP Dynamic 폰트의 런타임 아틀라스 성장·프레임 히치를 피하기 위해, 문자열 JSON에서 언어별 고유 글자를 뽑아 Static 아틀라스에 넣는 파이프라인을 정리합니다."
-tags: [DragonIsDead]
+tags: [DragonIsDead, TMP, Localization, Performance]
 ---
+
 
 TMP Dynamic 폰트의 런타임 아틀라스 성장·프레임 히치를 피하기 위해, 문자열 JSON에서 언어별 고유 글자를 뽑아 Static 아틀라스에 넣는 파이프라인을 정리합니다.
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다.
+
+## 맥락
+
+이 문서의 책임은 **어떤 글자가 아틀라스에 있는가**입니다. **언제 처음 그리는가**는 [TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})이 담당합니다.
+
+CJK·다국어 출시에서 Dynamic atlas 성장이 첫 표시·언어 전환 hitch와 메모리 상한 불가를 만들어, 배포 기본을 Static으로 고정했습니다.
+
+파이프라인은 한 줄로 다음과 같습니다.
+
+`String*.json`(로컬라이즈 문자열) → sanitize · 언어 버킷별 unique codepoint → 생성 텍스트/테이블 → TMP Font Asset Character Table(Static) → 런타임은 언어에 맞는 Font Asset 선택
 
 ## 문제
 
@@ -19,7 +30,7 @@ TextMesh Pro의 Dynamic Font Asset은 처음 보는 glyph가 요청될 때 런�
 |------|------|
 | 첫 표시·언어 전환 시 프레임 스파이크 | 미등록 glyph 요청 시 아틀라스 확장·텍스처 재할당 |
 | 메모리·텍스처 크기 예측 불가 | 플레이 중 본 문자열에 따라 atlas가 계속 커짐 |
-| 누락·깨짐(tofu) | sample 워밍업만으로는 전 glyph를 보장할 수 없음 |
+| 누락·깨짐(tofu, □) | sample 워밍업만으로는 전 glyph를 보장할 수 없음 |
 
 배포 기본은 Static으로 두고, 필요한 글자 집합은 에디터에서 문자열 데이터로부터 결정적으로 뽑는 쪽으로 바꿨습니다.
 
@@ -33,11 +44,11 @@ TextMesh Pro의 Dynamic Font Asset은 처음 보는 glyph가 요청될 때 런�
 
 | 버킷 | 구성 |
 |------|------|
-| Korean / Simplified Chinese / Traditional Chinese / Japanese | 언어별 개별 셋 |
-| European | English · French · German · Italian · Spanish 합집합 |
-| Dialogue 전용 | 대화 문자열만 별도 버킷 |
+| Korean / Simplified Chinese / Traditional Chinese / Japanese | 언어별 개별 셋 → UI용 Font Asset |
+| European | English · French · German · Italian · Spanish 합집합 → UI용 Font Asset |
+| Dialogue 전용 | 대화 문자열만 별도 버킷 → Dialogue용 Font Asset |
 
-UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK가 UI 폰트 아틀라스를 불필요하게 키우기 때문입니다. 유럽 계열은 글리프 겹침이 커서 하나로 합쳤습니다.
+UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK가 UI 폰트 아틀라스를 불필요하게 키우기 때문입니다. 유럽 계열은 글리프 겹침이 커서 하나로 합쳤습니다. 유지보수 단위는 **언어/버킷별 Static Font Asset**입니다.
 
 ### Sanitize
 
@@ -48,6 +59,8 @@ UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK�
 - `{0}` 등 format placeholder
 - `[token]` 데이터 토큰
 - 개행·탭·BOM·soft hyphen 등 제어·레이아웃 전용 코드포인트
+
+예: `"<color=red>HP {0}</color> [ITEM]"` → 추출 대상은 실제 노출 글자(`H`, `P` 등). 태그·placeholder·토큰은 제외합니다.
 
 기본(다이얼로그 제외) 셋에는 UI에 쓰는 필수 글리프(예: `▶`)를 포함합니다.
 

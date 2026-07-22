@@ -4,13 +4,23 @@ title: 스테이지 비주얼 최적화
 permalink: /notes/stage-visual-gpu-optimize/
 date: 2026-07-23
 excerpt: "이동만 할 때 카메라에 따라 커지는 렌더 비용을, Global Light 구조와 Switch Ambient 토글 두 레버로 나눈 설계를 정리합니다."
-tags: [DragonIsDead]
+tags: [DragonIsDead, Rendering, Performance, Lighting]
 ---
 
 
 이동만 할 때 카메라에 따라 커지는 렌더 비용을, Global Light 구조와 Switch Ambient 토글 두 레버로 나눈 설계를 정리합니다.
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 스테이지 비주얼 최적화에서 적용한 내용입니다. TMP 최초 사용 스파이크는 [TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 따릅니다.
+
+## 맥락
+
+출시 축은 Steam(PC)이고, 이 트랙은 **Switch(저사양 콘솔)에서 이동 중 Render 2D Lighting·장식 비용**을 줄이기 위함입니다. Global Light **구조**는 전 플랫폼 공용이고, Ambient **옵션 토글**은 Switch만 적용합니다(PC·에디터는 항상 ON).
+
+**Ambient** = 전투·판독에 필수 아닌 장식 비주얼(배경 파티클, 장식 Light2D, 배경 스프라이트). Global Light·타일맵·캐릭터·전투 VFX는 Ambient가 아닙니다.
+
+**`StageLight`** = 스테이지 조명 프리셋/채널(가독성용). Ambient OFF로 Global까지 끄면 이 채널이 깨져 플레이 가독성이 무너지므로, Global은 옵션 축에서 제외합니다.
+
+Profiler 기준은 전투·이벤트 없이 이동·점프·대시만 하고, 카메라가 배경·장식을 많이 담는 구간입니다.
 
 ## 문제
 
@@ -37,7 +47,7 @@ tags: [DragonIsDead]
 
 ### A. Global Light
 
-스테이지 프리팹에 Character / Ladder / Background 등 Global Light2D가 여러 개일 수 있습니다. 개수를 1로 병합해 실측했을 때 GPU 이득이 미미해, **다중 Global을 유지**했습니다. Ladder처럼 `StageLight` enum 밖 라이트도 구조 실험 대상이지 Ambient 토글 대상이 아닙니다.
+스테이지 프리팹에 Character / Ladder / Background 등 Global Light2D가 여러 개일 수 있습니다. 역할이 달라 한 개로 합치면 밝기·레이어 의도가 깨질 수 있어, 개수를 1로 병합해 실측했을 때 GPU 이득이 미미하면 **다중 Global을 유지**했습니다. Ladder처럼 `StageLight` enum 밖 라이트도 구조 실험 대상이지 Ambient 토글 대상이 아닙니다.
 
 ### B. Ambient Visual Toggle
 

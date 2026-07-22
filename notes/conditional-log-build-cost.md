@@ -4,13 +4,24 @@ title: Conditional 로그와 빌드 비용
 permalink: /notes/conditional-log-build-cost/
 date: 2026-07-23
 excerpt: "에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 [Conditional]은 다른 문제라는 점을, Dragon is Dead Log API 기준으로 정리합니다."
-tags: [DragonIsDead]
+tags: [DragonIsDead, Logging, Build, Performance]
 ---
 
 
 에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 [Conditional]은 다른 문제라는 점을, Dragon is Dead Log API 기준으로 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 적용한 내용입니다.
+[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 적용한 내용입니다. 계기는 Player 빌드 Profiler에 로그 경로(문자열·할당)가 남아, «필터 off = 비용 없음» 가정이 깨진 것이었습니다.
+
+## 맥락
+
+프로젝트 `Log` API의 역할을 나눕니다.
+
+| API | 용도 | 플레이어 빌드 |
+|-----|------|----------------|
+| `Log.Progress` / `Info` / `Warning` / `Error` 등 | 개발 가시성(레벨·태그 필터) | `[Conditional("UNITY_EDITOR")]`로 **호출문·인자 평가 제거** |
+| `Debug.Log*` / 리포팅 | 릴리스에 남길 메시지 | `Log` 밖 **별도 경로** |
+
+에디터 필터는 콘솔 가시성만 바꿉니다. 바이너리 비용은 Conditional이 담당합니다.
 
 ## 문제
 
@@ -23,6 +34,15 @@ tags: [DragonIsDead]
 | 한 클래스에 에디터 UX + 릴리스 경로를 섞음 | “이 호출이 빌드에 남는가”를 호출부마다 짐작해야 함 |
 
 **핵심:** 컴파일 제거(`[Conditional]`)와 에디터 필터(레벨·태그)는 다른 문제입니다. 전자는 바이너리 비용, 후자는 개발 중 가시성입니다.
+
+잘못된 패턴 예:
+
+```csharp
+// 필터 off여도 CalcDamage·보간 문자열이 매 프레임 평가됨
+Log.Info($"dmg={CalcDamage()}");
+```
+
+`[Conditional("UNITY_EDITOR")]`가 붙은 API는 플레이어 빌드에서 위 호출문 자체가 사라집니다.
 
 ## 해결
 
