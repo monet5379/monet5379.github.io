@@ -34,6 +34,33 @@
     return item.getAttribute("data-date") || "";
   }
 
+  function itemSeries(item) {
+    return item.getAttribute("data-series") || "";
+  }
+
+  function itemSeriesOrder(item) {
+    var n = parseInt(item.getAttribute("data-series-order") || "", 10);
+    return isNaN(n) ? null : n;
+  }
+
+  /** Same date: group by series, then series_order (1→N). Non-series after series ties. */
+  function compareSeriesTie(a, b) {
+    var sa = itemSeries(a);
+    var sb = itemSeries(b);
+    if (sa && sb) {
+      if (sa !== sb) return sa < sb ? -1 : 1;
+      var oa = itemSeriesOrder(a);
+      var ob = itemSeriesOrder(b);
+      if (oa == null && ob == null) return 0;
+      if (oa == null) return 1;
+      if (ob == null) return -1;
+      return oa - ob;
+    }
+    if (sa && !sb) return -1;
+    if (!sa && sb) return 1;
+    return 0;
+  }
+
   function selectedTags() {
     return tagRoots
       .map(function (_root, i) {
@@ -55,11 +82,13 @@
     var sorted = items.slice().sort(function (a, b) {
       var da = itemDate(a);
       var db = itemDate(b);
-      if (da === db) return 0;
-      if (activeSort === "oldest") {
-        return da < db ? -1 : 1;
+      if (da !== db) {
+        if (activeSort === "oldest") {
+          return da < db ? -1 : 1;
+        }
+        return da > db ? -1 : 1;
       }
-      return da > db ? -1 : 1;
+      return compareSeriesTie(a, b);
     });
 
     sorted.forEach(function (item) {
