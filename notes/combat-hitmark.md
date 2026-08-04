@@ -16,14 +16,9 @@ Hitmark 정의와 Target·Area·Projectile 공격 런타임 갈래, 피해 계�
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Hitmark(타격) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})를, «왜 Skill 밖에 두었는지»는 [시리즈 3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})을 보면 됩니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
 
-**권장 읽기:** 구조 1→4 후 [경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }}) 1→5
+**권장 읽기:** 구조(How) 1→4 후 [경계]({{ "/notes/combat-four-layers/" | relative_url }})(Why) 1→5
 
-**구조 노트: 전투 구조 (1/4)**
-
-1. Hitmark 타격 정의 ← 현재
-2. [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }})
-3. [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})
-4. [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})
+**구조:** **1** · [2 Skill]({{ "/notes/combat-skill/" | relative_url }}) · [3 Passive]({{ "/notes/combat-passive/" | relative_url }}) · [4 Buff]({{ "/notes/combat-buff/" | relative_url }})
 
 ## 맥락
 
@@ -58,7 +53,7 @@ Hitmark 층이 답하는 질문은 «무엇이 맞는가»와, 그와 붙는 «�
   → 대상 Vital 확정  ← Target | Area | Projectile
   → Hitmark 정의 로드
   → 피해 계산 (정의 + Stat)
-  → Vital.TakeDamage
+  → Vital에 피해 적용
   → (이후) 공격 성공/실패 이벤트 → Passive 등
 ```
 

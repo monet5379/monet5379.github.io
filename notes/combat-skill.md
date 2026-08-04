@@ -16,14 +16,9 @@ series_total: 4
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Skill(시전) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})를, 직선 해피 패스는 [시리즈 2편]({{ "/notes/combat-skill-happy-path/" | relative_url }})을 보면 됩니다. 타격 이후 수치는 [Hitmark]({{ "/notes/combat-hitmark/" | relative_url }})로 넘깁니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
 
-**권장 읽기:** 구조 1→4 후 [경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }}) 1→5
+**권장 읽기:** 구조(How) 1→4 후 [경계]({{ "/notes/combat-four-layers/" | relative_url }})(Why) 1→5
 
-**구조 노트: 전투 구조 (2/4)**
-
-1. [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})
-2. Skill 시전 구조 ← 현재
-3. [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})
-4. [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})
+**구조:** [1 Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · **2** · [3 Passive]({{ "/notes/combat-passive/" | relative_url }}) · [4 Buff]({{ "/notes/combat-buff/" | relative_url }})
 
 ## 맥락
 
@@ -89,7 +84,7 @@ Ability Rest와 Cast Rest를 한 플래그로 합치면, «입력 전체가 쉬�
 
 ## SkillAnimation과 애니 이벤트
 
-시전 연출의 정본은 **SkillAnimationAsset**(Scriptable)입니다. 스킬 ID로 조회해 캐릭터 애니메이터에 붙이고, TryCast 성공 시 해당 클립을 재생합니다.
+시전 연출의 정본은 **SkillAnimation**(Scriptable)입니다. 스킬 ID로 조회해 캐릭터 애니메이터에 붙이고, TryCast 성공 시 해당 클립을 재생합니다.
 
 | 단계 | 하는 일 |
 |------|---------|
@@ -120,7 +115,7 @@ Ability Rest와 Cast Rest를 한 플래그로 합치면, «입력 전체가 쉬�
 | 구분 | 요지 |
 |------|------|
 | 스킬 로직·테이블 | Json 행(clone). 슬롯·레벨은 프로필 |
-| SkillAnimation | Scriptable(`SkillAnimationAsset`). 시전 연출·이벤트 타이밍의 뼈대 |
+| SkillAnimation | Scriptable. 시전 연출·이벤트 타이밍의 뼈대 |
 | Hitmark / Buff / Passive | ID·이름으로 연결. 본체 정의는 각 층. 적용 시점은 주로 애니 이벤트 |
 | 과도기 | 스킬 로직의 Scriptable 이관은 목표로 남겨 둔 상태가 있음 ([시리즈 5편]({{ "/notes/combat-boundaries-shipped/" | relative_url }})) |
 

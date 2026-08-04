@@ -16,13 +16,7 @@ series_total: 5
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 2편입니다. Rest·버퍼·애니 연동 등 Skill How는 [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }})에, 타격 파이프라인은 [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})에 둡니다. 이 글은 [1편]({{ "/notes/combat-four-layers/" | relative_url }}) 지도 위에서 **직선 경로 한 줄기**만 고정합니다.
 
-**시리즈: 전투 경계 (2/5)**
-
-1. [네 층으로 나눈 이유]({{ "/notes/combat-four-layers/" | relative_url }})
-2. 스킬 한 번의 해피 패스 ← 현재
-3. [Hitmark를 스킬 밖에 둔 이유]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})
-4. [Buff와 Passive를 나눈 이유]({{ "/notes/combat-buff-vs-passive/" | relative_url }})
-5. [출시까지 지킨 경계와 남은 갭]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
+**시리즈:** [1]({{ "/notes/combat-four-layers/" | relative_url }}) · **2** · [3]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [4]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
 
 ## 맥락
 

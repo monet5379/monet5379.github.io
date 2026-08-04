@@ -16,25 +16,11 @@ Dragon is Dead 전투를 Skill·Hitmark·Buff·Passive 네 층으로 나눈 경�
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투·성장 담당에서 설계·유지한 내용입니다. 클래스 목록이 아니라 **소유 경계**와 **왜 그렇게 나눴는지**에 초점을 둡니다. 층별 How는 구조 노트에, 이 시리즈는 지도·Why·출시에 둡니다.
 
-**권장 읽기**
+**권장 읽기** — 구조(How·개요) 1→4 후, 경계(Why·출시) 1→5.
 
-1. 구조: [Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) → [Skill]({{ "/notes/combat-skill/" | relative_url }}) → [Passive]({{ "/notes/combat-passive/" | relative_url }}) → [Buff]({{ "/notes/combat-buff/" | relative_url }})
-2. 경계: 아래 시리즈 1→5
+**시리즈: 전투 경계 (1/5)** — **1** · [2]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [3]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [4]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
 
-**시리즈: 전투 경계 (1/5)**
-
-1. 네 층으로 나눈 이유 ← 현재
-2. [스킬 한 번의 해피 패스]({{ "/notes/combat-skill-happy-path/" | relative_url }})
-3. [Hitmark를 스킬 밖에 둔 이유]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})
-4. [Buff와 Passive를 나눈 이유]({{ "/notes/combat-buff-vs-passive/" | relative_url }})
-5. [출시까지 지킨 경계와 남은 갭]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
-
-**구조 노트: 전투 구조**
-
-1. [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})
-2. [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }})
-3. [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})
-4. [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})
+**구조 노트:** [1 Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · [2 Skill]({{ "/notes/combat-skill/" | relative_url }}) · [3 Passive]({{ "/notes/combat-passive/" | relative_url }}) · [4 Buff]({{ "/notes/combat-buff/" | relative_url }})
 
 ## 맥락
 

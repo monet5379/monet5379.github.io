@@ -16,13 +16,7 @@ series_total: 5
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 3편입니다. Apply·데이터·예시 등 Hitmark How는 [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})에 두고, 이 글은 [2편]({{ "/notes/combat-skill-happy-path/" | relative_url }})의 ID 참조가 **왜 필요한지**만 풉니다.
 
-**시리즈: 전투 경계 (3/5)**
-
-1. [네 층으로 나눈 이유]({{ "/notes/combat-four-layers/" | relative_url }})
-2. [스킬 한 번의 해피 패스]({{ "/notes/combat-skill-happy-path/" | relative_url }})
-3. Hitmark를 스킬 밖에 둔 이유 ← 현재
-4. [Buff와 Passive를 나눈 이유]({{ "/notes/combat-buff-vs-passive/" | relative_url }})
-5. [출시까지 지킨 경계와 남은 갭]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
+**시리즈:** [1]({{ "/notes/combat-four-layers/" | relative_url }}) · [2]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · **3** · [4]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
 
 ## 맥락
 

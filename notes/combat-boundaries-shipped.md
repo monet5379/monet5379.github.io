@@ -16,13 +16,7 @@ Skill·Hitmark·Buff·Passive 경계가 얼리 액세스부터 정식까지 준 
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 5편(마지막)입니다. 층별 How는 [전투 구조]({{ "/notes/combat-hitmark/" | relative_url }}) 노트에, [1편]({{ "/notes/combat-four-layers/" | relative_url }})~[4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) 지도가 출시 안에서 **무엇을 지키게 했는지**를 이 글에서 봅니다.
 
-**시리즈: 전투 경계 (5/5)**
-
-1. [네 층으로 나눈 이유]({{ "/notes/combat-four-layers/" | relative_url }})
-2. [스킬 한 번의 해피 패스]({{ "/notes/combat-skill-happy-path/" | relative_url }})
-3. [Hitmark를 스킬 밖에 둔 이유]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})
-4. [Buff와 Passive를 나눈 이유]({{ "/notes/combat-buff-vs-passive/" | relative_url }})
-5. 출시까지 지킨 경계와 남은 갭 ← 현재
+**시리즈:** [1]({{ "/notes/combat-four-layers/" | relative_url }}) · [2]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [3]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [4]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · **5**
 
 ## 맥락
 
@@ -56,7 +50,7 @@ Dragon은 2024.06 얼리 액세스, 2025.06 정식 출시까지 같은 전투 �
 
 경계를 나눴다고 계약과 구현이 항상 일치한 것은 아닙니다.
 
-**물리/마법 공격력 계약.** 설계상 Physical은 힘 기반 물리 공격력, Magical은 지능 기반 마법 공격력을 쓰는 쪽이 맞습니다. 감사 시점의 구현에는 타입 분기가 배율·감소 경로 중심이고, 기본 공격력은 공통 helper를 쓰는 갭이 있었습니다. «레이어가 있으니 수치 계약도 자동으로 맞다»와는 다릅니다. 계약은 문서에 남기고, 구현 추적은 별 작업으로 둡니다.
+**물리/마법 공격력 계약.** 타입별 공격력(물리·마법) 계약은 문서와 코드를 따로 맞춰 볼 지점입니다. 레이어를 나눴다고 수치 계약이 자동으로 맞는 것은 아니며, 감사 때 어긋남을 발견하면 구현 추적은 별 작업으로 둡니다.
 
 **순서 민감도.** Passive·Buff·Damage 이벤트 순서는 규율로 묶어두지만, 콘텐츠가 늘수록 «한 타격의 반응 순서» QA가 필요합니다. 층 분리의 대가입니다.
 
@@ -68,18 +62,14 @@ Dragon은 2024.06 얼리 액세스, 2025.06 정식 출시까지 같은 전투 �
 
 | 독자 | 권장 읽기 |
 |------|-----------|
-| 처음 읽을 때 | [전투 구조 1→4]({{ "/notes/combat-hitmark/" | relative_url }}) 후 경계 1→5 ([1편 권장 읽기]({{ "/notes/combat-four-layers/" | relative_url }})) |
-| 시간 짧을 때 | [1편]({{ "/notes/combat-four-layers/" | relative_url }}) + 이 글의 «경계가 준 이득» |
-| 층 How | [Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · [Skill]({{ "/notes/combat-skill/" | relative_url }}) · [Passive]({{ "/notes/combat-passive/" | relative_url }}) · [Buff]({{ "/notes/combat-buff/" | relative_url }}) |
-| 해피 패스 | [2편]({{ "/notes/combat-skill-happy-path/" | relative_url }}) |
-| Hitmark Why | [3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) |
-| 상태 vs 규칙 | [4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
-| 한계·출시 | 이 글 |
+| 처음 | [구조 1→4]({{ "/notes/combat-hitmark/" | relative_url }}) 후 [경계 1]({{ "/notes/combat-four-layers/" | relative_url }})→5 |
+| 짧게 | [1편]({{ "/notes/combat-four-layers/" | relative_url }}) + 위 «경계가 준 이득» |
+| How / Why / 출시 | 구조 노트 · 경계 2~4 · 이 글 |
 
 면접용 구어체 대본은 사이트 notes와 별도로 두는 편이 낫습니다. 여기서는 **합니다체로 설계 의도**만 고정합니다.
 
 ## 정리
 
-네 층 경계의 메리트는 추상적인 우아함이 아니라, 얼리 액세스부터 정식까지 **콘텐츠를 같은 질문에 넣어 출시한 것**입니다. 그 과정에서 불변조건과 이벤트 순서가 단련되었고, 물리/마법 계약 갭·순서 QA·성능·Skill 매체 과도기는 남는 일로 열어 둡니다.
+네 층 경계의 메리트는 추상적인 우아함이 아니라, 얼리 액세스부터 정식까지 **콘텐츠를 같은 질문에 넣어 출시한 것**입니다. 그 과정에서 불변조건과 이벤트 순서가 단련되었고, 타입별 공격력 계약 감사·순서 QA·성능·Skill 매체 과도기는 남는 일로 열어 둡니다.
 
 시리즈 전체의 한 줄은 처음과 같습니다. Skill은 의도, Hitmark는 한 방, Buff는 상태, Passive는 규칙입니다.

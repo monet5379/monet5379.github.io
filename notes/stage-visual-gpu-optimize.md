@@ -18,7 +18,7 @@ tags: [DragonIsDead, Rendering, Performance, Lighting]
 
 **Ambient** = 전투·판독에 필수 아닌 장식 비주얼(배경 파티클, 장식 Light2D, 배경 스프라이트). Global Light·타일맵·캐릭터·전투 VFX는 Ambient가 아닙니다.
 
-**`StageLight`** = 스테이지 조명 프리셋/채널(가독성용). Ambient OFF로 Global까지 끄면 이 채널이 깨져 플레이 가독성이 무너지므로, Global은 옵션 축에서 제외합니다.
+**스테이지 조명 채널** = 가독성용 프리셋/채널. Ambient OFF로 Global까지 끄면 이 채널이 깨져 플레이 가독성이 무너지므로, Global은 옵션 축에서 제외합니다.
 
 Profiler 기준은 전투·이벤트 없이 이동·점프·대시만 하고, 카메라가 배경·장식을 많이 담는 구간입니다.
 
@@ -47,7 +47,7 @@ Profiler 기준은 전투·이벤트 없이 이동·점프·대시만 하고, �
 
 ### A. Global Light
 
-스테이지 프리팹에 Character / Ladder / Background 등 Global Light2D가 여러 개일 수 있습니다. 역할이 달라 한 개로 합치면 밝기·레이어 의도가 깨질 수 있어, 개수를 1로 병합해 실측했을 때 GPU 이득이 미미하면 **다중 Global을 유지**했습니다. Ladder처럼 `StageLight` enum 밖 라이트도 구조 실험 대상이지 Ambient 토글 대상이 아닙니다.
+스테이지 프리팹에 Character / Ladder / Background 등 Global Light2D가 여러 개일 수 있습니다. 역할이 달라 한 개로 합치면 밝기·레이어 의도가 깨질 수 있어, 개수를 1로 병합해 실측했을 때 GPU 이득이 미미하면 **다중 Global을 유지**했습니다. Ladder처럼 스테이지 조명 채널 밖 라이트도 구조 실험 대상이지 Ambient 토글 대상이 아닙니다.
 
 ### B. Ambient Visual Toggle
 
@@ -59,13 +59,13 @@ Profiler 기준은 전투·이벤트 없이 이동·점프·대시만 하고, �
 | Ambient Light | 비-Global 장식 Light2D |
 | Ambient Sprite | 수동 태깅한 배경 SpriteRenderer |
 
-흐름은 비디오 설정 → 변경 이벤트 → 마커·매니저 Apply입니다. Switch 기본값은 파티클 OFF, 라이트·스프라이트 ON입니다.
+흐름은 비디오 설정 → 변경 이벤트 → 마커·매니저 Apply입니다. 저사양(Switch) 기본은 장식 일부(예: 배경 파티클)를 끄는 쪽으로 둡니다.
 
 ### 원칙
 
 1. **마커가 붙은 오브젝트만** 제어합니다.
 2. **Switch가 아니면** 설정을 무시하고 항상 켭니다.
-3. **`Global Light2D`는 태깅하지 않습니다** — 가독성·`StageLight` 유지, §A와 분리합니다.
+3. **`Global Light2D`는 태깅하지 않습니다** — 가독성·스테이지 조명 채널 유지, §A와 분리합니다.
 4. 스프라이트 OFF 시 `SpriteRenderer`·`ParallaxEffect`·`Animator`(있을 때)의 `enabled`만 토글합니다. `SetActive`는 쓰지 않습니다.
 5. 피격·전투·드롭 VFX, 타일맵·캐릭터·맵 오브젝트 등 게임플레이 스프라이트에는 마커를 붙이지 않습니다.
 
@@ -76,7 +76,7 @@ Profiler 기준은 전투·이벤트 없이 이동·점프·대시만 하고, �
 | 결정 | 사유 |
 |------|------|
 | Global Light 3→1 병합으로 GPU 절감 | 실측 ΔGPU 미미 — **3 lights 유지** |
-| Ambient Light로 Global까지 OFF | 플레이 가독성·StageLight 깨짐 — 기각 |
+| Ambient Light로 Global까지 OFF | 플레이 가독성·스테이지 조명 채널 깨짐 — 기각 |
 | Ambient를 PC에도 적용 | Switch 전용 부하 완화 — PC는 항상 ON |
 | 스프라이트 OFF에 `SetActive` | 계층·컴포넌트 부작용 — `enabled` 토글 |
 | 전투·타일맵·캐릭터에 Ambient 마커 | 게임플레이 시각과 옵션이 충돌 — 미부착 |
@@ -87,7 +87,7 @@ Profiler 기준은 전투·이벤트 없이 이동·점프·대시만 하고, �
 
 - Switch(또는 Switch 런타임 proxy): Ambient Particle / Light / Sprite 토글이 마커 대상만 반영
 - 비-Switch: 옵션을 바꿔도 화면이 변하지 않음
-- `UseAmbientLight=false`여도 Global Light2D는 항상 ON
+- Ambient Light 옵션 OFF여도 Global Light2D는 항상 ON
 - Global·전투 VFX·타일맵·캐릭터에 Ambient 마커 없음
 - 스프라이트 OFF 시 Parallax·Animator가 있으면 함께 disable
 

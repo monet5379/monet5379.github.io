@@ -16,14 +16,9 @@ series_total: 4
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Buff(지속 상태) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})·[시리즈 4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }})을, Passive How는 [Passive]({{ "/notes/combat-passive/" | relative_url }})를, 도트 피해는 [Hitmark]({{ "/notes/combat-hitmark/" | relative_url }})로 넘깁니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
 
-**권장 읽기:** 구조 1→4 후 [경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }}) 1→5
+**권장 읽기:** 구조(How) 1→4 후 [경계]({{ "/notes/combat-four-layers/" | relative_url }})(Why) 1→5
 
-**구조 노트: 전투 구조 (4/4)**
-
-1. [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})
-2. [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }})
-3. [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})
-4. Buff 지속 상태 ← 현재
+**구조:** [1 Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · [2 Skill]({{ "/notes/combat-skill/" | relative_url }}) · [3 Passive]({{ "/notes/combat-passive/" | relative_url }}) · **4**
 
 ## 맥락
 
@@ -45,7 +40,7 @@ Buff는 **지금 어떤 상태인가**에 답합니다. Skill·Passive·아이�
 | 소유 | Add/Overlap/Remove, 스택·duration, StateEffect·호환, Stat Modifier, Buff 측 Trigger |
 | 소유하지 않음 | 피해 공식 본체, Passive 조건식·실행 큐, 스킬 쿨·입력 버퍼 |
 | 데이터 | Scriptable 정의. 런타임은 clone으로 Setup |
-| 호출자 | Skill, Passive Effect, Hitmark, Item 등 → `BuffSystem.Add` |
+| 호출자 | Skill, Passive Effect, Hitmark, Item 등 → Buff Add |
 
 캐릭터 아래 Buff 시스템이 엔티티·스택·활성 StateEffect·호환 맵을 둡니다. 엔티티는 Owner/Caster와 정의를 들고, 제거 시 Stat 소스를 같이 걷어 냅니다.
 
@@ -92,7 +87,7 @@ Passive 예시의 «공격 시 화염»은 Passive가 Buff를 걸고, **틱 피�
 
 | 구분 | 요지 |
 |------|------|
-| Buff 정의 | Scriptable. clone Setup, 런타임 SO 변조 지양 |
+| Buff 정의 | Scriptable. 정의 복사 후 Setup, 런타임 SO 변조 지양 |
 | Stat | Modifier는 Buff가 넣고, 제거 시 반드시 회수 |
 | DoT 피해 | Hitmark ID 호출. 식은 Hitmark·Stat 층 |
 | 호환·CC | StateEffect·Incompatible 맵과 활성 상태 일치 |

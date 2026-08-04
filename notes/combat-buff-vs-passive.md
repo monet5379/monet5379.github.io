@@ -3,7 +3,7 @@ layout: page
 title: 전투 경계 4/5 Buff와 Passive를 나눈 이유
 permalink: /notes/combat-buff-vs-passive/
 date: 2026-08-04
-excerpt: "지속 상태(Buff)와 사건 규칙(Passive)을 나눈 이유, 위임 방식, 연쇄 폭주를 막는 장치를 정리합니다."
+excerpt: "지속 상태(Buff)와 사건 규칙(Passive)을 나눈 이유와, 반응 루프에서의 역할 분리를 정리합니다."
 tags: [DragonIsDead, Architecture, Combat]
 series: combat-boundaries
 series_title: 전투 경계
@@ -12,17 +12,11 @@ series_total: 5
 ---
 
 
-지속 상태(Buff)와 사건 규칙(Passive)을 나눈 이유, 위임 방식, 연쇄 폭주를 막는 장치를 정리합니다.
+지속 상태(Buff)와 사건 규칙(Passive)을 나눈 이유와, 반응 루프에서의 역할 분리를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 4편입니다. Buff·Passive **구조**는 [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})·[Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})에 두고, 이 글은 [2편]({{ "/notes/combat-skill-happy-path/" | relative_url }}) 이후 **반응 루프**와 둘을 나눈 이유를 봅니다.
+[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 4편입니다. Buff·Passive **구조**는 [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})·[Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})에 두고, 이 글은 [2편]({{ "/notes/combat-skill-happy-path/" | relative_url }}) 이후 **반응 루프**와 둘을 나눈 이유를 봅니다. 실행 큐·프레임 상한 등 폭주 제어 How는 [Passive 구조]({{ "/notes/combat-passive/" | relative_url }})가 정본입니다.
 
-**시리즈: 전투 경계 (4/5)**
-
-1. [네 층으로 나눈 이유]({{ "/notes/combat-four-layers/" | relative_url }})
-2. [스킬 한 번의 해피 패스]({{ "/notes/combat-skill-happy-path/" | relative_url }})
-3. [Hitmark를 스킬 밖에 둔 이유]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})
-4. Buff와 Passive를 나눈 이유 ← 현재
-5. [출시까지 지킨 경계와 남은 갭]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
+**시리즈:** [1]({{ "/notes/combat-four-layers/" | relative_url }}) · [2]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [3]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · **4** · [5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
 
 ## 맥락
 
@@ -69,20 +63,12 @@ Buff 쪽 이벤트 반응은 종류가 늘어날수록 거대 분기보다 **트
 
 **디버그 질문이 달라진다.** Buff는 «지금 뭐가 붙어 있나 / 스택·남은 시간»이고, Passive는 «어느 트리거가 조건을 통과했고 큐에 들어갔나»입니다. 한 시스템에 합치면 로그와 재현 절차가 섞입니다.
 
-## 폭주를 막는 장치
+## 폭주 제어 (요지)
 
-Passive는 공격·스킬·아이템 이벤트에 연쇄되기 쉽습니다. 그래서 실행을 캐릭터 로컬에서 즉시 Effect로 끝내지 않고, **전역 실행 큐**를 거치게 두었습니다.
-
-- 지연 시간을 둔 실행을 같은 큐에서 처리합니다.
-- 프레임당 실행 횟수 상한으로, 한 프레임 반응 폭주를 줄입니다.
-- RestTime으로 같은 패시브의 재발동을 제한합니다.
-
-대가로는 «발동이 다음 프레임·지연 이후로 밀릴 수 있다», «상한에 걸리면 그 프레임에 못 돈다»가 있습니다. 실시간 액션에서는 **한 프레임에 규칙을 다 끝내는 것**보다, 프레임 예산을 지키는 쪽을 택한 셈입니다.
-
-이벤트 순서도 민감합니다. 공격 성공 계열은 Combat 이벤트와 Passive·Buff·Damage 쪽 순서를 전제로 맞추어 두었고, «같은 타격인데 버프가 먼저인지» 같은 이슈는 경계 문서에 함정으로 남기는 편입니다. 출시 과정에서 생긴 규율이지, 추상적으로만 예쁜 레이어는 아닙니다.
+Passive는 전투 이벤트에 연쇄되기 쉽습니다. 실행은 전역 큐·프레임당 상한·Rest를 전제로 두고, 한 프레임에 규칙을 다 끝내는 것보다 프레임 예산을 지키는 쪽을 택했습니다. 장치·대가·이벤트 순서의 상세는 [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})에 둡니다.
 
 ## 정리
 
-Buff는 캐릭터에 붙는 지속 상태이고, Passive는 사건에 반응하는 규칙입니다. Passive는 효과를 Buff·Hitmark·Skill에 위임하고, 실행 큐와 프레임 상한으로 연쇄 폭주를 막습니다.
+Buff는 캐릭터에 붙는 지속 상태이고, Passive는 사건에 반응하는 규칙입니다. Passive는 효과를 Buff·Hitmark·Skill에 위임합니다. 연쇄 폭주 제어 How는 구조 노트에 맡깁니다.
 
 다음 편: [출시까지 지킨 경계와 남은 갭]({{ "/notes/combat-boundaries-shipped/" | relative_url }})

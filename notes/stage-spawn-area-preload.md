@@ -23,7 +23,7 @@ tags: [DragonIsDead, Loading, Architecture, Performance]
 | inactive root | 비활성 Stage를 모아 두는 부모. 계층은 유지하되 업데이트·연출을 끔 |
 | Spread | 일괄 preload의 **프레임 분산**. preload 정책 자체를 바꾸지 않음 |
 | Resident 메모리 | preload로 상주하는 Stage 인스턴스 메모리 |
-| Soft Ship | 콘솔·저사양 빌드 마일스톤. Addressables 등은 그 이후 후보 |
+| 저사양 마일스톤 | 콘솔·저사양 빌드 이후 후보(Addressables 스트리밍 등) |
 
 ## 문제
 
@@ -82,7 +82,7 @@ Before는 스테이지가 사실상 1개라 «Awake/Start = 현재 Stage»로 �
 | 전 월드 일괄 preload | 메모리·부팅 비용 — 기각 (지역 단위만) |
 | 동일 지역도 매번 씬 리로드 | 불필요 hitch — 기각 |
 | 가드 없이 preload만 | 비활성 사이드이펙트·재활성 깨짐 — 기각 |
-| Addressables 스트리밍·거리 기반 로드 | Soft Ship 이후 후보 — 보류 |
+| Addressables 스트리밍·거리 기반 로드 | 콘솔·저사양 마일스톤 이후 후보 — 보류 |
 
 ## 트레이드오프
 

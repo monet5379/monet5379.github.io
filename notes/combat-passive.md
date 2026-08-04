@@ -16,14 +16,9 @@ series_total: 4
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Passive(사건 규칙) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})·[시리즈 4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }})을, 시전·타격은 [Skill]({{ "/notes/combat-skill/" | relative_url }})·[Hitmark]({{ "/notes/combat-hitmark/" | relative_url }})로 넘깁니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
 
-**권장 읽기:** 구조 1→4 후 [경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }}) 1→5
+**권장 읽기:** 구조(How) 1→4 후 [경계]({{ "/notes/combat-four-layers/" | relative_url }})(Why) 1→5
 
-**구조 노트: 전투 구조 (3/4)**
-
-1. [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})
-2. [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }})
-3. Passive 사건 규칙 ← 현재
-4. [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})
+**구조:** [1 Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · [2 Skill]({{ "/notes/combat-skill/" | relative_url }}) · **3** · [4 Buff]({{ "/notes/combat-buff/" | relative_url }})
 
 ## 맥락
 
@@ -44,7 +39,7 @@ Passive는 **무슨 일이면 무엇을 하는가**에만 답합니다. 피해 �
 |--|------|
 | 소유 | Trigger→Condition→Execute, Rest, 실행 큐 등록, Effect 위임 |
 | 소유하지 않음 | 피해 공식, Vital 적용, Buff 스택·CC 정책, 스킬 쿨 본체 |
-| 데이터 | Scriptable (Trigger / Condition / Effect Settings 조합) |
+| 데이터 | Scriptable (트리거·조건·효과 설정 조합) |
 | 부여 | Skill·아이템·유물 등이 Passive를 **장착**. 장착 후 사건이 규칙을 깨움 |
 
 캐릭터마다 Passive 런타임이 있고, 실행은 전역 매니저 큐를 거칩니다. «이번만 Effect를 직접 호출»을 늘리면 폭주·순서 규율이 깨지기 쉬워, Execute는 큐 경유를 전제로 둡니다.
@@ -77,6 +72,8 @@ Skill / Item / Relic → Passive 부여 (장착)
 
 ### 폭주를 막는 장치
 
+이 절이 폭주 제어 How의 **정본**입니다. 역할 분리 Why는 [시리즈 4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }})에 둡니다.
+
 Passive는 전투 이벤트에 연쇄되기 쉽습니다.
 
 - **전역 큐** — 캐릭터 로컬에서 Effect를 즉시 끝내지 않음
@@ -85,7 +82,7 @@ Passive는 전투 이벤트에 연쇄되기 쉽습니다.
 
 대가는 발동이 다음 프레임·지연 뒤로 밀리거나, 상한에 걸려 그 프레임에 못 돌 수 있다는 점입니다. 실시간 액션에서는 한 프레임에 규칙을 다 끝내는 것보다 프레임 예산을 지키는 쪽을 택했습니다.
 
-이벤트 순서(공격 성공 계열과 Passive·Buff·Damage)는 민감합니다. 상세한 역할 분리 Why는 [시리즈 4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }})에 모아 두었습니다.
+이벤트 순서(공격 성공 계열과 Passive·Buff·Damage)도 민감합니다. «같은 타격인데 버프가 먼저인지» 같은 이슈는 경계 문서에 함정으로 남기는 편입니다.
 
 ## 예시
 
@@ -103,8 +100,8 @@ Passive는 전투 이벤트에 연쇄되기 쉽습니다.
 
 | 구분 | 요지 |
 |------|------|
-| Passive 정의 | Scriptable. Trigger / Condition / Effect Settings |
-| 소비 | Facade로 clone·Settings 조회. 런타임 SO 직접 변조 지양 |
+| Passive 정의 | Scriptable. 트리거·조건·효과 설정 |
+| 소비 | 데이터 Facade로 정의 복사·조회. 런타임 SO 직접 변조 지양 |
 | 효과 대상 | Buff·Hitmark·Skill 등 각 층 API. Passive 안에 피해 식 복제 없음 |
 
 트리거 종류 전체 목록·Inspector 필드 나열은 이 글 범위 밖입니다. 새 규칙을 넣을 때의 질문은 «어느 Trigger인가 / 조건은 무엇인가 / Effect는 어디에 위임하는가»입니다.
