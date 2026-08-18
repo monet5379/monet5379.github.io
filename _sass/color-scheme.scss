@@ -1,37 +1,94 @@
-// Light / dark color tokens. Resolved theme is always set on <html data-theme="...">.
+// Light / dark tokens from Obsidian default --color-base-* and --color-blue.
+// https://docs.obsidian.md/Reference/CSS+variables/Foundations/Colors
 :root,
 html[data-theme="light"] {
   color-scheme: light;
-  --text-color: #111;
-  --background-color: #fdfdfd;
-  --brand-color: #2a7ae2;
-  --brand-color-visited: #1756a9;
-  --grey-color: #828282;
-  --grey-color-light: #e8e8e8;
-  --grey-color-dark: #424242;
-  --code-background: #eef;
-  --table-text-color: #3f3f3f;
-  --table-stripe: #f7f7f7;
-  --table-header: #f0f0f0;
-  --table-header-border: #dedede;
-  --table-header-border-bottom: #c9c9c9;
+  --color-base-00: #ffffff;
+  --color-base-05: #fcfcfc;
+  --color-base-10: #fafafa;
+  --color-base-20: #f6f6f6;
+  --color-base-25: #efefef;
+  --color-base-30: #e4e4e4;
+  --color-base-35: #dadada;
+  --color-base-40: #bdbdbd;
+  --color-base-50: #ababab;
+  --color-base-60: #707070;
+  --color-base-70: #5c5c5c;
+  --color-base-100: #222222;
+  --color-blue: #086ddd;
+  --color-red: #e93147;
+  --color-orange: #ec7500;
+  --color-yellow: #e0ac00;
+  --color-green: #08b94e;
+  --color-cyan: #00bfbc;
+  --color-purple: #7852ee;
+  --color-pink: #d53984;
+
+  --text-color: var(--color-base-100);
+  --background-color: var(--color-base-00);
+  --brand-color: var(--color-blue);
+  --brand-color-visited: color-mix(in srgb, var(--color-blue) 72%, var(--color-base-100));
+  --grey-color: var(--color-base-60);
+  --grey-color-light: var(--color-base-30);
+  --grey-color-dark: var(--color-base-70);
+  --code-background: var(--color-base-20);
+  --table-text-color: var(--color-base-70);
+  --table-stripe: var(--color-base-10);
+  --table-header: var(--color-base-20);
+  --table-header-border: var(--color-base-30);
+  --table-header-border-bottom: var(--color-base-35);
 }
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --text-color: #e6e6e6;
-  --background-color: #1a1a1a;
-  --brand-color: #6db3f2;
-  --brand-color-visited: #9cc9f5;
-  --grey-color: #9a9a9a;
-  --grey-color-light: #333;
-  --grey-color-dark: #c8c8c8;
-  --code-background: #2a2a2a;
-  --table-text-color: #d0d0d0;
-  --table-stripe: #222;
-  --table-header: #2a2a2a;
-  --table-header-border: #3a3a3a;
-  --table-header-border-bottom: #4a4a4a;
+  --color-base-00: #1c1c1c;
+  --color-base-05: #212121;
+  --color-base-10: #232323;
+  --color-base-20: #282828;
+  --color-base-25: #2e2e2e;
+  --color-base-30: #333333;
+  --color-base-35: #3f3f3f;
+  --color-base-40: #555555;
+  --color-base-50: #666666;
+  --color-base-60: #999999;
+  --color-base-70: #b3b3b3;
+  --color-base-100: #dadada;
+  --color-blue: #027aff;
+  --color-red: #fb464c;
+  --color-orange: #e9973f;
+  --color-yellow: #e0de71;
+  --color-green: #44cf6e;
+  --color-cyan: #53dfdd;
+  --color-purple: #a882ff;
+  --color-pink: #fa99cd;
+
+  --text-color: var(--color-base-100);
+  --background-color: var(--color-base-00);
+  --brand-color: var(--color-blue);
+  --brand-color-visited: color-mix(in srgb, var(--color-blue) 72%, var(--color-base-100));
+  --grey-color: var(--color-base-60);
+  --grey-color-light: var(--color-base-30);
+  --grey-color-dark: var(--color-base-70);
+  --code-background: var(--color-base-20);
+  --table-text-color: var(--color-base-100);
+  --table-stripe: var(--color-base-05);
+  --table-header: var(--color-base-20);
+  --table-header-border: var(--color-base-30);
+  --table-header-border-bottom: var(--color-base-35);
+}
+
+html {
+  --code-normal: var(--color-base-70);
+  --code-comment: var(--color-base-50);
+  --code-function: var(--color-yellow);
+  --code-important: var(--color-orange);
+  --code-keyword: var(--color-pink);
+  --code-operator: var(--color-base-60);
+  --code-property: var(--color-cyan);
+  --code-punctuation: var(--color-base-60);
+  --code-string: var(--color-green);
+  --code-tag: var(--color-red);
+  --code-value: var(--color-purple);
 }
 
 body {
@@ -58,8 +115,41 @@ blockquote {
 
 pre,
 code {
+  font-family: "Cascadia Code", "Cascadia Mono", "JetBrains Mono", Consolas, Menlo, Monaco, "Courier New", monospace;
   border-color: var(--grey-color-light);
   background-color: var(--code-background);
+  color: var(--code-normal);
+}
+
+.highlight,
+.highlighter-rouge .highlight {
+  background: var(--code-background);
+  color: var(--code-normal);
+
+  .c, .cm, .c1, .cs, .cp { color: var(--code-comment); font-style: italic; font-weight: normal; }
+  .k, .kc, .kd, .kn, .kp, .kr, .kt { color: var(--code-keyword); font-weight: normal; }
+  .o, .ow { color: var(--code-operator); font-weight: normal; }
+  .p { color: var(--code-punctuation); }
+  .nf, .fm, .nc, .nn { color: var(--code-function); font-weight: normal; }
+  .na, .nb, .nv, .vc, .vg, .vi, .nl { color: var(--code-property); }
+  .nt, .no, .ni, .ss, .bp { color: var(--code-tag); }
+  .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .s1 { color: var(--code-string); }
+  .sr { color: var(--code-important); }
+  .m, .mf, .mh, .mi, .mo, .il { color: var(--code-value); }
+  .ne, .gr, .gt { color: var(--code-important); font-weight: normal; }
+  .err {
+    color: var(--code-important);
+    background-color: color-mix(in srgb, var(--color-red) 18%, transparent);
+  }
+  .gd, .gd .x {
+    color: var(--text-color);
+    background-color: color-mix(in srgb, var(--color-red) 22%, transparent);
+  }
+  .gi, .gi .x {
+    color: var(--text-color);
+    background-color: color-mix(in srgb, var(--color-green) 22%, transparent);
+  }
+  .gh, .gu, .go, .gp, .w { color: var(--code-comment); }
 }
 
 .svg-icon {
@@ -176,9 +266,3 @@ html[data-theme="dark"] .theme-toggle {
   }
 }
 
-html[data-theme="dark"] {
-  .highlight,
-  .highlighter-rouge .highlight {
-    background: #1e1e1e;
-  }
-}
