@@ -21,7 +21,7 @@
 - 사이트 콘텐츠와 docs/설정은 커밋 분리
 - `career` · `projects` · `notes` 페이지: `date`, `excerpt` 필수. `title` 짧게, 부제(`—`) 금지. `excerpt` = 본문 lead. 상단 nav·본문 h1용 카테고리 `title`은 **한글(English)** (예: `경력(Career)`)
 - `projects/` · `notes/` 목록은 `_includes/section-index-list.html`로 자동 생성 (`index.md` 제외)
-- notes · projects 글쓰기: 유형·목차·톤 — `docs/writing-guide.md` (토스 테크니컬 라이팅 축약)
+- notes · projects 글쓰기: 유형·목차·톤 — `docs/writing-guide.md` (토스 테크니컬 라이팅 축약). humanize 윤문과 충돌 시 **토스·writing-guide 우선** (`writing-guide.md` §humanize와 충돌할 때)
 - notes 목록 분류·정렬 필터: front matter `tags`(분류 1개) + `notes/index.md`의 `filter_categories` / `show_sort_filter` (`docs/writing-guide.md`)
 - notes 목록: 공개 분류는 `_config.yml` `notes_production_visible_tags`. production은 그 태그만 빌드. 로컬은 비공개 토글(기본 숨김). 개별 URL은 항상 빌드
 - projects 비공개: front matter `private: true`. production 목록에서 제외. 로컬은 notes와 같은 **비공개** 토글(기본 숨김, `localStorage`). 개별 URL은 항상 빌드

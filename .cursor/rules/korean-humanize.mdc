@@ -21,6 +21,16 @@ alwaysApply: false
 
 이 사이트의 notes와 docs는 **합니다체**를 기본으로 한다. 원문이 구어체라면 구어체를 유지한다.
 
+## 우선순위 (충돌 시)
+
+본 규칙과 [토스 테크니컬 라이팅](https://technical-writing.dev/sentence/introduction.html) · [`docs/writing-guide.md`](../../docs/writing-guide.md)가 겹치면 **토스·writing-guide가 우선**한다. humanize는 토스와 모순되지 않는 범위에서만 적용한다.
+
+- **유지·손대지 않음:** 표, 불릿 목록, `**권장 읽기** —` 등 시리즈 내비, writing-guide 섹션 제목·목차, 스캔용 볼드(핵심 용어·경계)
+- **토스 우선:** lead·가치 문장, 용어 일관성(시리즈·프로젝트 단위), 주어(설계자·독자 > 시스템 주어 남발), 구체성(의도적 `기각·보류`는 유지, 빈 hedging만 제거)
+- **humanize 담당:** 번역투, 상투·결산 표현, AI 리듬, 의미를 바꾸지 않는 문장 다듬기
+
+적용 순서: writing-guide → 토스 정보 구조·문장 → humanize.
+
 ## 철칙
 
 다음 원칙을 위반하는 수정은 적용하지 않는다.
