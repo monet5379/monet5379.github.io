@@ -4,6 +4,7 @@ title: Conditional Log
 permalink: /projects/conditional-log/
 date: 2026-08-21
 order: 40
+project_kind: personal
 role: 개발 로그
 excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다른 문제입니다. Conditional 로그를 타이틀에서 분리해 정리한 케이스 스터디입니다."
 ---
@@ -18,7 +19,7 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 - 형태: 개인 Unity 케이스 스터디 (에디터 전용 로그)
 - 역할: 설계·구현·문서
 - 초점: `[Conditional("UNITY_EDITOR")]`, 레벨·태그 필터, Settings·F1, 폴더 복사 배포
-- 연관: [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) · [노트 — Conditional 로그와 빌드 비용]({{ "/notes/conditional-log-build-cost/" | relative_url }})
+- 연관: [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) · [노트 — Conditional로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})
 
 ## 문제
 
@@ -57,7 +58,7 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 |----------|---------------------------|
 | [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) | Player Profiler에 남은 로그 경로 → Conditional·필터 분리의 계기 |
 
-개념·실무 체크는 [Conditional 로그와 빌드 비용]({{ "/notes/conditional-log-build-cost/" | relative_url }})에 두고, 여기서는 복사 단위와 에디터 UX를 담습니다.
+개념·실무 체크는 [Conditional로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})에 두고, 여기서는 복사 단위와 에디터 UX를 담습니다.
 
 ## 스택
 
@@ -67,5 +68,5 @@ Unity, C#
 
 - [경력]({{ "/career/" | relative_url }})
 - [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
-- [노트 — Conditional 로그와 빌드 비용]({{ "/notes/conditional-log-build-cost/" | relative_url }})
+- [노트 — Conditional로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})
 - [GitHub — unity-conditional-log](https://github.com/monet5379/unity-conditional-log)

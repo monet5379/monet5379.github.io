@@ -4,6 +4,7 @@ title: TMP Font Pipeline
 permalink: /projects/tmp-font-pipeline/
 date: 2026-08-25
 order: 50
+project_kind: personal
 role: 설계·구현
 excerpt: "Dragon 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 게임 밖으로 분리한 Unity Editor·Runtime 패키지입니다."
 ---
@@ -19,7 +20,7 @@ Dragon 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 게임 밖�
 - 역할: 설계·구현·문서
 - 배포: `Assets/TmpFontPipeline` 폴더 복사 (UPM 아님)
 - Demo: `Assets/Demo` — SampleScene, Extract/Apply 샘플 (놀이터, 출시 템플릿 아님)
-- 연관: [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) · [TMP Static 폰트 아틀라스]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) · [TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
+- 연관: [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) · [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) · [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
 
 ## 문제
 
@@ -76,7 +77,7 @@ Unity, TextMesh Pro, C#
 ## 링크
 
 - [GitHub — unity-tmp-font](https://github.com/monet5379/unity-tmp-font)
-- [TMP Static 폰트 아틀라스]({{ "/notes/tmp-static-font-atlas/" | relative_url }})
-- [TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
+- [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})
+- [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
 - [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
 - [경력]({{ "/career/" | relative_url }})

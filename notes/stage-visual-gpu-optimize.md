@@ -1,16 +1,18 @@
 ---
 layout: page
-title: 스테이지 비주얼 최적화
+title: 이동 중 GPU를 Global·Ambient 두 레버로
 permalink: /notes/stage-visual-gpu-optimize/
 date: 2026-07-23
 excerpt: "이동만 할 때 카메라에 따라 커지는 렌더 비용을, Global Light 구조와 Switch Ambient 토글 두 레버로 나눈 설계를 정리합니다."
-tags: [DragonIsDead, Rendering, Performance, Lighting]
+tags: [최적화]
 ---
 
 
 이동만 할 때 카메라에 따라 커지는 렌더 비용을, Global Light 구조와 Switch Ambient 토글 두 레버로 나눈 설계를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 스테이지 비주얼 최적화에서 적용한 내용입니다. TMP 최초 사용 스파이크는 [TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 따릅니다.
+[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 스테이지 비주얼 최적화에서 적용한 내용입니다.
+
+**권장 읽기** — [StageSpawn preload로 지역 내 이동 hitch 제거]({{ "/notes/stage-spawn-area-preload/" | relative_url }}) · 이동 중 GPU(이 글). TMP 최초 사용 스파이크는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 따릅니다.
 
 ## 맥락
 

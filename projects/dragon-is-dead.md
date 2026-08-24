@@ -4,6 +4,7 @@ title: Dragon is Dead
 permalink: /projects/dragon-is-dead/
 date: 2025-06-06
 order: 10
+project_kind: company
 role: 개발 리드
 excerpt: "팀써니트에서 프로그래머 1~2명 규모로 개발 리드하며 Steam 얼리 액세스·정식 출시까지 이끈 액션 게임입니다."
 ---
@@ -61,8 +62,8 @@ excerpt: "팀써니트에서 프로그래머 1~2명 규모로 개발 리드하�
 ### 로컬라이즈
 
 - 다국어 문자열(JSON)·StringGetter·언어 전환 시 폰트 워밍업·UI 일괄 갱신
-- TMP Dynamic atlas 히치를 피하기 위해 String 데이터 기반 Static 문자셋 추출·배포 ([TMP Static 폰트 아틀라스]({{ "/notes/tmp-static-font-atlas/" | relative_url }}))
-- 부팅·언어 전환 시 TMP 최초 사용 스파이크를 스플래시·옵션 대기로 이전 ([TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }}))
+- TMP Dynamic atlas 히치를 피하기 위해 String 데이터 기반 Static 문자셋 추출·배포 ([TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}))
+- 부팅·언어 전환 시 TMP 최초 사용 스파이크를 스플래시·옵션 대기로 이전 ([스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }}))
 - 동일 설계를 게임 밖 패키지로 정리한 [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) (Dragon European 합집합 · Title/Content 타입 — OSS Demo와 차이는 projects 참고)
 
 ### Steamworks / 플랫폼
@@ -93,8 +94,8 @@ excerpt: "팀써니트에서 프로그래머 1~2명 규모로 개발 리드하�
 
 ### 성능
 
-- 플레이어 빌드에서 개발 로그 호출·인자 평가를 컴파일 단계에서 제거 ([Conditional 로그와 빌드 비용]({{ "/notes/conditional-log-build-cost/" | relative_url }}))
-- 카메라 이동에 따른 스테이지 렌더 비용을 Global Light 구조와 Switch Ambient 토글로 분리 ([스테이지 비주얼 최적화]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }}))
+- 플레이어 빌드에서 개발 로그 호출·인자 평가를 컴파일 단계에서 제거 ([Conditional로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }}))
+- 카메라 이동에 따른 스테이지 렌더 비용을 Global Light 구조와 Switch Ambient 토글로 분리 ([이동 중 GPU를 Global·Ambient 두 레버로]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }}))
 
 ## 스택
 

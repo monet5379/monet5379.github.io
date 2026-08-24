@@ -1,10 +1,10 @@
 ---
 layout: page
-title: TMP Static 폰트 아틀라스
+title: TMP Static 아틀라스로 Dynamic hitch 피하기
 permalink: /notes/tmp-static-font-atlas/
 date: 2026-07-23
 excerpt: "TMP Dynamic 폰트의 런타임 아틀라스 성장·프레임 히치를 피하기 위해, 문자열 JSON에서 언어별 고유 글자를 뽑아 Static 아틀라스에 넣는 파이프라인을 정리합니다."
-tags: [엔진]
+tags: [폰트]
 ---
 
 
@@ -12,9 +12,11 @@ TMP Dynamic 폰트의 런타임 아틀라스 성장·프레임 히치를 피하�
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다.
 
+**권장 읽기** — Static(이 글) → [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }}). glyph SSOT는 Static, 첫 draw·input block은 Warmup.
+
 ## 맥락
 
-이 문서의 책임은 **어떤 글자가 아틀라스에 있는가**입니다. **언제 처음 그리는가**는 [TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})이 담당합니다.
+이 문서의 책임은 **어떤 글자가 아틀라스에 있는가**입니다. **언제 처음 그리는가**는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})이 담당합니다.
 
 CJK·다국어 출시에서 Dynamic atlas 성장이 첫 표시·언어 전환 hitch와 메모리 상한 불가를 만들어, 배포 기본을 Static으로 고정했습니다.
 
@@ -74,7 +76,7 @@ UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK�
 | [Font warmup]({{ "/notes/tmp-font-warmup/" | relative_url }}) | 언어별 font·sprite preload — Dynamic atlas 대체재가 아님 |
 | Localized text UI | 현재 언어에 맞는 Font Asset 선택·표시 |
 
-워밍업은 전환 시 입력 블록·프리로드 경로를 안정화하는 역할이고, “이 sample이면 CJK 전 glyph가 보장된다”는 계약으로 쓰지 않습니다. glyph SSOT는 Static 추출입니다. 최초 사용 스파이크를 스플래시·옵션으로 옮기는 설계는 [TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 참고합니다.
+워밍업은 전환 시 입력 블록·프리로드 경로를 안정화하는 역할이고, “이 sample이면 CJK 전 glyph가 보장된다”는 계약으로 쓰지 않습니다. glyph SSOT는 Static 추출입니다. 최초 사용 스파이크를 스플래시·옵션으로 옮기는 설계는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 참고합니다.
 
 ## 기각·보류
 
@@ -91,8 +93,7 @@ String workbook / JSON이 바뀌면 Static 폰트도 같이 갱신합니다.
 1. 고유 문자 추출 재실행
 2. 생성 파일 diff로 의도치 않은 대량 증가·누락 확인
 3. 해당 언어 TMP Font Asset Character Table에 반영
-4. 주요 언어 UI·다이얼로그 스모크 — tofu·첫 표시 스파이크 없음
-5. 언어 전환 시 warmup 경로에서 입력이 정상 해제되는지 확인
+4. 아래 **확인 포인트**로 스모크
 
 ## 공개 구현
 
@@ -104,6 +105,14 @@ Dragon에서 정리한 «추출 → Static bake → 런타임 font 선택»을 �
 | Apply | **Apply** + `FontAtlasApplyProfile` — Generated txt → Static SDF (2048 bake) |
 | Role | `FontRoleCatalog` — `LanguageId` + **Ui** / **Dialogue** → `TMP_FontAsset` |
 | Demo | `Assets/Demo` — SampleScene, Extract/Apply 샘플 데이터 (놀이터 전용) |
+
+## 확인 포인트
+
+- 주요 언어 UI·Dialogue: tofu·□ 없음, 런타임 Dynamic atlas 성장 없음
+- 첫 표시·언어 전환: glyph 누락으로 인한 hitch 없음 (머티리얼·mesh warmup은 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }}))
+- Extract → Apply 후 Character Table이 생성 txt와 일치
+- UI·Dialogue 버킷 분리 유지 — 대화 전용 CJK가 UI atlas를 불필요하게 키우지 않음
+- 문자열 갱신 후 charset diff에 의도치 않은 폭증·누락 없음
 
 ## 정리
 

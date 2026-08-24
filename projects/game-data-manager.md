@@ -4,6 +4,8 @@ title: GameDataManager
 permalink: /projects/game-data-manager/
 date: 2026-08-06
 order: 30
+project_kind: personal
+private: true
 role: 세이브 시스템
 excerpt: "출시·라이브에서 반복되던 세이브 손상·복구·스키마 변경 문제를 타이틀에서 분리해 정리한 시스템 케이스 스터디입니다."
 ---

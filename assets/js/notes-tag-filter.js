@@ -1,4 +1,52 @@
 (function () {
+  var privateRoot = document.querySelector("[data-private-filter]");
+  var privateButtons = privateRoot
+    ? Array.prototype.slice.call(privateRoot.querySelectorAll(".tag-filter__btn"))
+    : [];
+  var storageKey = "notes-show-private";
+  var showPrivate = false;
+  var applyFn = null;
+
+  function syncPrivateButtons() {
+    privateButtons.forEach(function (btn) {
+      var selected =
+        (btn.getAttribute("data-private-show") || "off") ===
+        (showPrivate ? "on" : "off");
+      btn.classList.toggle("is-active", selected);
+      btn.setAttribute("aria-pressed", selected ? "true" : "false");
+    });
+  }
+
+  function setShowPrivate(next) {
+    showPrivate = next;
+    document.documentElement.setAttribute(
+      "data-notes-private",
+      showPrivate ? "on" : "off"
+    );
+    try {
+      localStorage.setItem(storageKey, showPrivate ? "on" : "off");
+    } catch (e) {}
+    syncPrivateButtons();
+    if (applyFn) applyFn();
+  }
+
+  if (privateRoot) {
+    try {
+      showPrivate = localStorage.getItem(storageKey) === "on";
+    } catch (e) {}
+    document.documentElement.setAttribute(
+      "data-notes-private",
+      showPrivate ? "on" : "off"
+    );
+    syncPrivateButtons();
+
+    privateRoot.addEventListener("click", function (event) {
+      var btn = event.target.closest(".tag-filter__btn");
+      if (!btn || !privateRoot.contains(btn)) return;
+      setShowPrivate(btn.getAttribute("data-private-show") === "on");
+    });
+  }
+
   var list = document.querySelector("[data-tag-filter-list]");
   if (!list) return;
 
@@ -11,7 +59,9 @@
   var sortButtons = sortRoot
     ? Array.prototype.slice.call(sortRoot.querySelectorAll(".tag-filter__btn"))
     : [];
-  /** @type {Record<string, string>} root index → selected tag ("" = All) */
+  var privateTagButtons = Array.prototype.slice.call(
+    document.querySelectorAll("[data-private-tag]")
+  );
   var activeByGroup = {};
   var activeSort = "newest";
 
@@ -103,6 +153,7 @@
     items.forEach(function (item) {
       var tags = itemTags(item);
       var show = required.length === 0 || hasAllTags(tags, required);
+      if (!showPrivate && item.hasAttribute("data-private")) show = false;
       item.hidden = !show;
       if (show) visible += 1;
     });
@@ -134,6 +185,30 @@
       btn.classList.toggle("is-active", selected);
       btn.setAttribute("aria-pressed", selected ? "true" : "false");
     });
+
+    syncPrivateButtons();
+
+    privateTagButtons.forEach(function (btn) {
+      btn.hidden = !showPrivate;
+    });
+  }
+
+  function clearPrivateCategorySelection() {
+    if (showPrivate) return;
+    tagRoots.forEach(function (root, i) {
+      var active = activeByGroup[i] || "";
+      if (!active) return;
+      var buttons = root.querySelectorAll(".tag-filter__btn");
+      for (var j = 0; j < buttons.length; j += 1) {
+        if (
+          (buttons[j].getAttribute("data-tag") || "") === active &&
+          buttons[j].hasAttribute("data-private-tag")
+        ) {
+          activeByGroup[i] = "";
+          break;
+        }
+      }
+    });
   }
 
   function apply() {
@@ -141,6 +216,11 @@
     applyFilter();
     syncButtons();
   }
+
+  applyFn = function () {
+    clearPrivateCategorySelection();
+    apply();
+  };
 
   tagRoots.forEach(function (root, i) {
     root.addEventListener("click", function (event) {

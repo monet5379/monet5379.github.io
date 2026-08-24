@@ -1,16 +1,18 @@
 ---
 layout: page
-title: TMP 폰트 워밍업
+title: 스플래시·옵션으로 옮긴 TMP 폰트 워밍업
 permalink: /notes/tmp-font-warmup/
 date: 2026-07-23
 excerpt: "부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다."
-tags: [엔진]
+tags: [폰트]
 ---
 
 
 부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다. Static 문자셋(Dynamic atlas 회피)은 [TMP Static 폰트 아틀라스]({{ "/notes/tmp-static-font-atlas/" | relative_url }})를 따릅니다. 워밍업은 glyph 전량 보장의 대체재가 아닙니다.
+[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다. Static 문자셋(Dynamic atlas 회피)은 [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})를 따릅니다. 워밍업은 glyph 전량 보장의 대체재가 아닙니다.
+
+**권장 읽기** — [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) → Warmup(이 글).
 
 ## 맥락
 

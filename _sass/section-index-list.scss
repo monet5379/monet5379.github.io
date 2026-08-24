@@ -1,3 +1,25 @@
+.post-list--projects,
+.post-list--notes {
+  > li {
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--grey-color-light);
+    border-radius: 4px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .post-list__body h3 {
+    margin-top: 0;
+  }
+
+  .post-list__body p {
+    margin-bottom: 0;
+  }
+}
+
 .post-list--thumbs {
   > li.post-list__item--has-thumb {
     display: grid;
@@ -162,6 +184,20 @@
   margin: 0.5rem 0 0;
   color: var(--grey-color);
   font-style: italic;
+}
+
+html:not([data-notes-private="on"]) {
+  .post-list > li[data-private],
+  .tag-filter [data-private-tag] {
+    display: none;
+  }
+}
+
+.post-list__private {
+  margin-left: 0.45rem;
+  color: var(--grey-color);
+  font-size: 0.75rem;
+  font-weight: 400;
 }
 
 .post-list__tags {

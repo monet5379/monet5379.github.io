@@ -1,12 +1,36 @@
 {% comment %}
   section_dir: 경로 접두 (예: 'projects/', 'notes/')
   section_sort: 'order' (기본) 또는 'date' (최신순)
-  show_tag_filter: true면 프로젝트·주제 필터 UI (notes)
+  section_filter_kind: projects 전용 — project_kind front matter로 목록 분할 (company | personal)
+  show_tag_filter: true면 분류 필터 UI (notes)
   show_sort_filter: true면 날짜 정렬 UI (notes)
-  filter_projects: 프로젝트 필터 칩 (예: "DragonIsDead|BladeAssault" | split: "|")
-  filter_topics: 주제 필터 (사이드바, 예: "Performance|TMP" | split: "|")
+  filter_categories: 분류 필터 (사이드바, 예: "전투|액션|성장|엔진|출시" | split: "|")
+  notes_production_visible_tags: 공개 분류 (_config.yml). production 목록은 이 태그만.
+  로컬(development)은 전 글을 넣고 비공개 표시 토글로 가린다.
 {% endcomment %}
+{% assign show_private_toggle = "" %}
+{% if jekyll.environment != "production" %}
+  {% if section_dir == "notes/" and site.notes_production_visible_tags.size > 0 %}
+    {% assign show_private_toggle = "yes" %}
+  {% elsif section_dir == "projects/" and render_private_toggle %}
+    {% assign show_private_toggle = "yes" %}
+  {% endif %}
+{% endif %}
 {% assign section_articles = site.pages | where_exp: "p", "p.path contains section_dir" | where_exp: "p", "p.name != 'index.md'" %}
+{% if jekyll.environment == "production" and section_dir == "notes/" and site.notes_production_visible_tags.size > 0 %}
+  {% assign vis_tag = site.notes_production_visible_tags | first %}
+  {% assign section_articles = section_articles | where_exp: "p", "p.tags contains vis_tag" %}
+  {% for vis_tag in site.notes_production_visible_tags offset: 1 %}
+    {% assign matched = site.pages | where_exp: "p", "p.path contains section_dir" | where_exp: "p", "p.name != 'index.md'" | where_exp: "p", "p.tags contains vis_tag" %}
+    {% assign section_articles = section_articles | concat: matched %}
+  {% endfor %}
+{% endif %}
+{% if jekyll.environment == "production" and section_dir == "projects/" %}
+  {% assign section_articles = section_articles | where_exp: "p", "p.private != true" %}
+{% endif %}
+{% if section_filter_kind and section_filter_kind != "" %}
+  {% assign section_articles = section_articles | where: "project_kind", section_filter_kind %}
+{% endif %}
 {% if section_sort == "date" %}
   {% assign section_articles = section_articles | sort: "date" | reverse %}
 {% else %}
@@ -18,63 +42,74 @@
   {% assign show_thumbs = true %}
 {% endif %}
 
-{% assign show_project_filter = false %}
-{% if show_tag_filter and filter_projects.size > 0 %}
-  {% assign show_project_filter = true %}
-{% endif %}
-{% assign show_topic_filter = false %}
-{% if show_tag_filter and filter_topics.size > 0 %}
-  {% assign show_topic_filter = true %}
+{% assign show_category_filter = false %}
+{% assign active_filter_categories = filter_categories %}
+{% if show_tag_filter %}
+  {% if section_dir == "notes/" and jekyll.environment == "production" and site.notes_production_visible_tags.size > 0 %}
+    {% assign show_category_filter = true %}
+    {% assign active_filter_categories = site.notes_production_visible_tags %}
+  {% elsif filter_categories.size > 0 %}
+    {% assign show_category_filter = true %}
+  {% endif %}
 {% endif %}
 
 {% assign show_list_controls = false %}
-{% if show_project_filter or show_topic_filter or show_sort_filter %}
+{% if show_category_filter or show_sort_filter or show_private_toggle == "yes" %}
   {% assign show_list_controls = true %}
 {% endif %}
 
-{% assign show_top_filters = false %}
-{% if show_project_filter or show_sort_filter %}
-  {% assign show_top_filters = true %}
-{% endif %}
-
-{% if show_topic_filter %}
+{% if show_category_filter %}
 <div class="notes-browse">
   <aside class="notes-browse__sidebar">
-    <nav class="tag-filter tag-filter--stack" data-tag-filter aria-label="주제 필터">
-      <span class="tag-filter__label">Topic</span>
-      <button type="button" class="tag-filter__btn is-active" data-tag="" aria-pressed="true">All</button>
-      {% for tag in filter_topics %}
-      <button type="button" class="tag-filter__btn" data-tag="{{ tag | escape }}" aria-pressed="false">{{ tag | escape }}</button>
+    <nav class="tag-filter tag-filter--stack" data-tag-filter aria-label="분류 필터">
+      <span class="tag-filter__label">분류</span>
+      <button type="button" class="tag-filter__btn is-active" data-tag="" aria-pressed="true">전체</button>
+      {% for tag in active_filter_categories %}
+      {% assign cat_private = "yes" %}
+      {% if site.notes_production_visible_tags.size == 0 or site.notes_production_visible_tags contains tag %}
+        {% assign cat_private = "no" %}
+      {% endif %}
+      <button type="button" class="tag-filter__btn" data-tag="{{ tag | escape }}" aria-pressed="false"{% if cat_private == "yes" %} data-private-tag{% endif %}>{{ tag | escape }}</button>
       {% endfor %}
     </nav>
   </aside>
   <div class="notes-browse__main">
 {% endif %}
 
-{% if show_top_filters %}
+{% if show_sort_filter or show_private_toggle == "yes" %}
 <div class="list-filters">
-  {% if show_project_filter %}
-  <nav class="tag-filter" data-tag-filter aria-label="프로젝트 필터">
-    <span class="tag-filter__label">Project:</span>
-    <button type="button" class="tag-filter__btn is-active" data-tag="" aria-pressed="true">All</button>
-    {% for tag in filter_projects %}
-    <button type="button" class="tag-filter__btn" data-tag="{{ tag | escape }}" aria-pressed="false">{{ tag | escape }}</button>
-    {% endfor %}
-  </nav>
-  {% endif %}
   {% if show_sort_filter %}
   <nav class="tag-filter" data-sort-filter aria-label="정렬">
-    <span class="tag-filter__label">Sort:</span>
+    <span class="tag-filter__label">정렬:</span>
     <button type="button" class="tag-filter__btn is-active" data-sort="newest" aria-pressed="true">최신순</button>
     <button type="button" class="tag-filter__btn" data-sort="oldest" aria-pressed="false">오래된 순</button>
+  </nav>
+  {% endif %}
+  {% if show_private_toggle == "yes" %}
+  <nav class="tag-filter" data-private-filter aria-label="{% if section_dir == 'projects/' %}비공개 프로젝트{% else %}비공개 노트{% endif %}">
+    <span class="tag-filter__label">비공개:</span>
+    <button type="button" class="tag-filter__btn is-active" data-private-show="off" aria-pressed="true">숨김</button>
+    <button type="button" class="tag-filter__btn" data-private-show="on" aria-pressed="false">표시</button>
   </nav>
   {% endif %}
 </div>
 {% endif %}
 
+{% unless render_section_list == false %}
 {% if section_articles.size > 0 %}
-<ul class="post-list{% if show_thumbs %} post-list--thumbs{% endif %}"{% if show_list_controls %} data-tag-filter-list{% endif %}>
+<ul class="post-list{% if section_dir == "projects/" %} post-list--projects{% endif %}{% if section_dir == "notes/" %} post-list--notes{% endif %}{% if show_thumbs %} post-list--thumbs{% endif %}"{% if show_list_controls %} data-tag-filter-list{% endif %}>
   {% for item in section_articles %}
+  {% assign item_vis = "public" %}
+  {% if section_dir == "notes/" and site.notes_production_visible_tags.size > 0 %}
+    {% assign item_vis = "private" %}
+    {% for t in item.tags %}
+      {% if site.notes_production_visible_tags contains t %}
+        {% assign item_vis = "public" %}
+      {% endif %}
+    {% endfor %}
+  {% elsif section_dir == "projects/" and item.private == true %}
+    {% assign item_vis = "private" %}
+  {% endif %}
   {% assign thumb = false %}
   {% if show_thumbs %}
     {% assign item_slug = item.path | split: "/" | last | remove: ".md" %}
@@ -95,7 +130,7 @@
       {% endif %}
     {% endif %}
   {% endif %}
-  <li{% if thumb %} class="post-list__item--has-thumb"{% endif %}{% if item.date %} data-date="{{ item.date | date: '%Y-%m-%d' }}"{% endif %}{% if item.series %} data-series="{{ item.series | escape }}"{% endif %}{% if item.series_order %} data-series-order="{{ item.series_order }}"{% endif %}{% if item.tags %} data-tags='{{ item.tags | jsonify | escape }}'{% endif %}>
+  <li{% if thumb %} class="post-list__item--has-thumb"{% endif %}{% if item_vis == "private" %} data-private{% endif %}{% if item.date %} data-date="{{ item.date | date: '%Y-%m-%d' }}"{% endif %}{% if item.series %} data-series="{{ item.series | escape }}"{% endif %}{% if item.series_order %} data-series-order="{{ item.series_order }}"{% endif %}{% if item.tags %} data-tags='{{ item.tags | jsonify | escape }}'{% endif %}>
     {% if thumb %}
     <a class="post-list__thumb" href="{{ item.url | relative_url }}" tabindex="-1" aria-hidden="true">
       <img
@@ -120,14 +155,15 @@
       {% endif %}
       <h3>
         <a class="post-link" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+        {% if item_vis == "private" %}<span class="post-list__private">비공개</span>{% endif %}
       </h3>
       {% if item.excerpt %}
       <p>{{ item.excerpt | strip_html | strip }}</p>
       {% endif %}
       {% if item.tags and item.tags.size > 0 %}
       <div class="post-list__tags">
-        <span class="post-list__tags-label">Tag:</span>
-        <ul aria-label="태그">
+        <span class="post-list__tags-label">분류:</span>
+        <ul aria-label="분류">
           {% for tag in item.tags %}
           <li>{{ tag | escape }}</li>
           {% endfor %}
@@ -139,13 +175,14 @@
   {% endfor %}
 </ul>
 {% if show_list_controls %}
-<p class="tag-filter__empty" data-tag-filter-empty hidden>선택한 태그에 맞는 글이 없습니다.</p>
+<p class="tag-filter__empty" data-tag-filter-empty hidden>선택한 분류에 맞는 글이 없습니다.</p>
 {% endif %}
 {% else %}
 <p><em>아직 게시된 항목이 없습니다.</em></p>
 {% endif %}
+{% endunless %}
 
-{% if show_topic_filter %}
+{% if show_category_filter %}
   </div>
 </div>
 {% endif %}

@@ -1,16 +1,18 @@
 ---
 layout: page
-title: StageSpawn 지역 preload
+title: StageSpawn preload로 지역 내 이동 hitch 제거
 permalink: /notes/stage-spawn-area-preload/
 date: 2026-07-23
 excerpt: "지역 소속 스테이지를 미리 일괄 스폰하고, 동일 지역 내 이동은 활성/비활성만 하도록 바꾼 이유를 정리합니다."
-tags: [DragonIsDead, Loading, Architecture, Performance]
+tags: [최적화]
 ---
 
 
 지역 소속 스테이지를 미리 일괄 스폰하고, 동일 지역 내 이동은 활성/비활성만 하도록 바꾼 이유를 정리합니다.
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 스테이지 이동 최적화에서 적용한 내용입니다.
+
+**권장 읽기** — StageSpawn preload(이 글) · [이동 중 GPU를 Global·Ambient 두 레버로]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }}). 스폰·활성 정책과 이동 중 렌더는 같은 스테이지 트랙의 별 축입니다.
 
 ## 맥락
 

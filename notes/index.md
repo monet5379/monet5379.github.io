@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Notes
+title: 노트(Notes)
 permalink: /notes/
 date: 2026-07-22
 excerpt: "개인 공개 기술 노트. 회고·짧은 팁·포트폴리오를 보완하는 글을 모읍니다."
@@ -14,6 +14,5 @@ excerpt: "개인 공개 기술 노트. 회고·짧은 팁·포트폴리오를 �
 {% assign section_sort = "date" %}
 {% assign show_tag_filter = true %}
 {% assign show_sort_filter = true %}
-{% assign filter_projects = "DragonIsDead|BladeAssault" | split: "|" %}
-{% assign filter_topics = "Architecture|Build|Combat|Lighting|Loading|Localization|Logging|Performance|Rendering|TMP" | split: "|" %}
+{% assign filter_categories = "전투|액션|성장|엔진|폰트|최적화|출시" | split: "|" %}
 {% include section-index-list.html %}

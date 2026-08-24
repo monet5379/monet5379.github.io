@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Career
+title: 경력(Career)
 permalink: /career/
 date: 2026-07-29
 excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니다. 총 경력 9년 4개월."
@@ -17,6 +17,8 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 
 ## 경력
 
+<div class="career-entry" markdown="1">
+
 ### 팀써니트 — 프로그래밍 / 사원
 2022.05.06 – 2026.06.13 (4년 1개월)
 
@@ -31,6 +33,10 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 - 링크: [Steam](https://store.steampowered.com/app/2803280/Dragon_Is_Dead/)
     [YouTube](https://youtu.be/0f0ZXseDMUM?si=VXCv4QvJkLEn-ji9)
 
+</div>
+
+<div class="career-entry" markdown="1">
+
 ### 팀써니트 — 프로그래밍 / 사원
 2020.02.10 – 2022.01.22 (1년 11개월)
 
@@ -43,6 +49,10 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 - 링크: [Steam](https://store.steampowered.com/app/1367300/Blade_Assault/)
     [YouTube](https://youtu.be/uV-fWC5zbfw?si=6V-LhUHCYGCOzR3C)
 
+</div>
+
+<div class="career-entry" markdown="1">
+
 ### 누라임게임즈 — 프로그래밍 / 사원
 2019.08.01 – 2020.02.10 (0년 6개월)
 
@@ -51,6 +61,10 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 - 역할: Android / iOS 개발, 인앱 결제·광고 연동
 - 링크: [YouTube Shorts](https://youtube.com/shorts/fy1c9veBKYk?si=K9mrrq6NTSQzYtII)
 - 스택: Unity, C#
+
+</div>
+
+<div class="career-entry" markdown="1">
 
 ### PMStudio — 프로그래밍 / 사원
 2017.10.26 – 2019.03.12 (1년 4개월)
@@ -62,6 +76,10 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 - 팀: 프로그래머 2~3명
 - 링크: [YouTube](https://youtu.be/niIEEj2T-hg)
 - 스택: Unity, C#
+
+</div>
+
+<div class="career-entry" markdown="1">
 
 ### zoniworks — 프로그래밍 / 사원
 2016.05.02 – 2017.11.01 (1년 5개월)
@@ -83,6 +101,8 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 - 성과: 2017.10 한국 런칭
 - 링크: [Youtube](https://www.youtube.com/watch?v=9I43e2RJJQ8&t=267s)
 - 스택: Unity, C#
+
+</div>
 
 ## 스킬
 
