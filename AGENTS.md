@@ -19,11 +19,14 @@
 
 - 커밋 제목·본문: 한글 (`docs/project-rules.md`)
 - 사이트 콘텐츠와 docs/설정은 커밋 분리
-- `career` · `projects` · `notes` 페이지: `date`, `excerpt` 필수. `title` 짧게, 부제(`—`) 금지. `excerpt` = 본문 lead
+- `career` · `projects` · `notes` 페이지: `date`, `excerpt` 필수. `title` 짧게, 부제(`—`) 금지. `excerpt` = 본문 lead. 상단 nav·본문 h1용 카테고리 `title`은 **한글(English)** (예: `경력(Career)`)
 - `projects/` · `notes/` 목록은 `_includes/section-index-list.html`로 자동 생성 (`index.md` 제외)
-- notes 목록 태그·정렬 필터: front matter `tags` + `notes/index.md`의 `filter_projects` / `filter_topics` / `show_sort_filter` (`docs/writing-guide.md`)
+- notes · projects 글쓰기: 유형·목차·톤 — `docs/writing-guide.md` (토스 테크니컬 라이팅 축약)
+- notes 목록 분류·정렬 필터: front matter `tags`(분류 1개) + `notes/index.md`의 `filter_categories` / `show_sort_filter` (`docs/writing-guide.md`)
+- notes 목록: 공개 분류는 `_config.yml` `notes_production_visible_tags`. production은 그 태그만 빌드. 로컬은 비공개 토글(기본 숨김). 개별 URL은 항상 빌드
+- projects 비공개: front matter `private: true`. production 목록에서 제외. 로컬은 notes와 같은 **비공개** 토글(기본 숨김, `localStorage`). 개별 URL은 항상 빌드
 
-- `projects` 상세: 목록용 `order`(작을수록 앞), `role` 권장
+- `projects` 상세: 목록용 `order`(작을수록 앞), `project_kind`(`company` | `personal`), `private`(선택), `role` 권장
 - 프로젝트 이미지: `assets/images/projects/<슬러그>/` — `cover.jpg`, `ss-01.jpg`… (`docs/project-rules.md`)
 - projects 목록 썸네일: `cover.*` 우선, 없으면 첫 `ss-*`
 - 스크린샷 캐러셀: `{% include screenshot-carousel.html slug="<슬러그>" %}`
@@ -35,4 +38,5 @@
 ```bash
 bundle exec jekyll build
 bundle exec jekyll serve
+# 비공개 글을 HTML에서 빼려면(배포와 동일): JEKYLL_ENV=production bundle exec jekyll serve
 ```
