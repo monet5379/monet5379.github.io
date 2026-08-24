@@ -4,7 +4,7 @@ title: TMP 폰트 워밍업
 permalink: /notes/tmp-font-warmup/
 date: 2026-07-23
 excerpt: "부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다."
-tags: [DragonIsDead, TMP, Localization, Performance]
+tags: [엔진]
 ---
 
 
@@ -29,6 +29,8 @@ Static은 «어떤 글자가 아틀라스에 있는가», Warmup은 «언제 처
 | Number | 숫자·수치 표시 등 |
 
 실제로 쓰는 타입만 워밍업합니다. 미사용 타입까지 일괄 넣지 않습니다. 키보드(PC)·조이스틱·커런시 등 Sprite Asset도 언어 UI와 같이 처음 그릴 때 스파이크가 나므로, 같은 대기 구간으로 옮깁니다.
+
+**공개 Demo 매핑.** [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }})은 Title / Content / Number 대신 **Ui · Dialogue** `FontUsageRole`로 나눕니다. weight enum이 아니라 Static extract 버킷·Font Asset 역할입니다. Warmup sample도 역할별입니다 — Ui는 UI JSON(`Confirm` 등), Dialogue는 dialogue JSON(`dlg_intro` 등). glyph SSOT는 여전히 [Static 추출]({{ "/notes/tmp-static-font-atlas/" | relative_url }})입니다.
 
 ## 문제
 
@@ -62,6 +64,19 @@ Static atlas만으로는 «첫 사용 시 머티리얼·메쉬·스프라이트 
 |--------|------|
 | CJK | `字体预热테스트漢字` |
 | European | `Font Warmup AaBbCc012` |
+
+Dragon은 언어군별 **공통** sample을 씁니다. 공개 Demo는 Ui·Dialogue atlas가 다르므로 **역할별** 짧은 문장(예: KO Ui `확인`, Dialogue `어서 오세요, 모험가.`)을 씁니다 — 전 glyph 보장이 아니라 해당 Static atlas 안의 글자만 참조합니다.
+
+## 공개 구현
+
+| 항목 | 내용 |
+|------|------|
+| 서비스 | `FontWarmupService` — 숨김 canvas, **font 1개당 1프레임**, supersede |
+| 계약 | `IFontWarmupTarget` — `GetFontForWarmup`, **역할별** `GetSampleText` |
+| 호출 | 부팅·언어 변경 시 `RequestWarmup`; input block은 게임/Demo 책임 |
+| Demo | `DemoLanguageSwitcher` — block → warmup → label refresh → unblock |
+
+상세는 [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) · [GitHub README](https://github.com/monet5379/unity-tmp-font)를 따릅니다.
 
 ## 기각·보류
 

@@ -4,7 +4,7 @@ title: TMP Static 폰트 아틀라스
 permalink: /notes/tmp-static-font-atlas/
 date: 2026-07-23
 excerpt: "TMP Dynamic 폰트의 런타임 아틀라스 성장·프레임 히치를 피하기 위해, 문자열 JSON에서 언어별 고유 글자를 뽑아 Static 아틀라스에 넣는 파이프라인을 정리합니다."
-tags: [DragonIsDead, TMP, Localization, Performance]
+tags: [엔진]
 ---
 
 
@@ -50,6 +50,8 @@ TextMesh Pro의 Dynamic Font Asset은 처음 보는 glyph가 요청될 때 런�
 
 UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK가 UI 폰트 아틀라스를 불필요하게 키우기 때문입니다. 유럽 계열은 글리프 겹침이 커서 하나로 합쳤습니다. 유지보수 단위는 **언어/버킷별 Static Font Asset**입니다.
 
+**Dragon 배포 vs 공개 Demo.** 위 European **합집합**은 Dragon 출시 기준입니다. 오픈소스 [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) Demo는 EN · FR · DE · IT · ES를 **언어별 버킷·Static asset**으로 분리합니다. UI·Dialogue 분리 원칙은 같고, 유럽어 쪼개기만 다릅니다.
+
 ### Sanitize
 
 아틀라스에 넣지 않는 것:
@@ -91,6 +93,17 @@ String workbook / JSON이 바뀌면 Static 폰트도 같이 갱신합니다.
 3. 해당 언어 TMP Font Asset Character Table에 반영
 4. 주요 언어 UI·다이얼로그 스모크 — tofu·첫 표시 스파이크 없음
 5. 언어 전환 시 warmup 경로에서 입력이 정상 해제되는지 확인
+
+## 공개 구현
+
+Dragon에서 정리한 «추출 → Static bake → 런타임 font 선택»을 게임 없이 복사해 쓸 수 있게 [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) (`unity-tmp-font`)로 뺐습니다. Install·API·Demo 절차는 [GitHub README](https://github.com/monet5379/unity-tmp-font)가 정본입니다.
+
+| 항목 | 내용 |
+|------|------|
+| Extract | Editor Window **Extract** — `String*.json` → `unique_chars_*.txt`, sanitize |
+| Apply | **Apply** + `FontAtlasApplyProfile` — Generated txt → Static SDF (2048 bake) |
+| Role | `FontRoleCatalog` — `LanguageId` + **Ui** / **Dialogue** → `TMP_FontAsset` |
+| Demo | `Assets/Demo` — SampleScene, Extract/Apply 샘플 데이터 (놀이터 전용) |
 
 ## 정리
 

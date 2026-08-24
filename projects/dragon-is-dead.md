@@ -63,6 +63,7 @@ excerpt: "팀써니트에서 프로그래머 1~2명 규모로 개발 리드하�
 - 다국어 문자열(JSON)·StringGetter·언어 전환 시 폰트 워밍업·UI 일괄 갱신
 - TMP Dynamic atlas 히치를 피하기 위해 String 데이터 기반 Static 문자셋 추출·배포 ([TMP Static 폰트 아틀라스]({{ "/notes/tmp-static-font-atlas/" | relative_url }}))
 - 부팅·언어 전환 시 TMP 최초 사용 스파이크를 스플래시·옵션 대기로 이전 ([TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }}))
+- 동일 설계를 게임 밖 패키지로 정리한 [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) (Dragon European 합집합 · Title/Content 타입 — OSS Demo와 차이는 projects 참고)
 
 ### Steamworks / 플랫폼
 
