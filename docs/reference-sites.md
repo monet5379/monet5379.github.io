@@ -26,6 +26,13 @@
 | Adrian Courrèges | http://www.adriancourreges.com/blog/ | 문제→접근→측정→결과 구조 |
 | 할락 (결정론) | https://halak.github.io/deterministic-gameplay/closed-world/ | 짧은 개념 노트의 “왜” 설명 |
 
+## 문서 작성 (구조·문장)
+
+| 사이트 | URL | 참고 포인트 |
+|--------|-----|-------------|
+| 토스 테크니컬 라이팅 | https://technical-writing.dev/overview.html | 문서 유형·정보 구조·문장 — `docs/writing-guide.md`에서 사이트용으로 축약 |
+
+
 ## 가져올 패턴 / 안 가져올 패턴
 
 - 가져올 것: 문제→해결→결과(수치), 홈 한 줄 포지션, Projects↔Notes 상호 링크

@@ -18,9 +18,9 @@
 
 ## projects front matter
 
-- `project_kind`: `company`(회사 소속 출시) | `personal`(개인 OSS·케이스 스터디). `/projects/` 목록을 두 섹션으로 나눕니다.
-- `private`: `true`면 production `/projects/` 목록에서 제외. 로컬 serve는 notes와 같은 **비공개** 토글(기본 숨김). permalink는 항상 빌드.
-- `order`: 섹션 안 정렬 (작을수록 앞)
+- `project_kind`: `company`(회사 소속 출시) | `personal`(개인 OSS·케이스 스터디). `/projects/` 목록을 두 섹션으로 나눕니다. 본문 골격: [`templates/project-company.md`](templates/project-company.md) · [`templates/project-personal.md`](templates/project-personal.md)
+- `private`: `true`면 production `/projects/` 목록에서 제외. 로컬 serve는 footer **비공개** 토글(기본 숨김, `localStorage`). permalink는 항상 빌드.
+- `order`: 목록을 `order`로 정렬할 때 사용 (작을수록 앞). `/projects/` 회사·개인 섹션은 `date` 최신순
 - `role`: 목록 메타 (권장)
 
 ## 프로젝트 이미지

@@ -17,7 +17,7 @@ notes · projects 공통. Jekyll front matter·분류 규칙과, 글 한 편의 
 
 | 경로 | 한 페이지의 목적 | API·설치 정본 |
 |------|------------------|---------------|
-| **projects/** | 무엇을 만들었는지, 내 기여, 타 프로젝트와 차이 | GitHub README (있을 때) |
+| **projects/** | 무엇을 만들었는지, 내 기여, 타 프로젝트와 차이. `company`=출시·역할, `personal`=케이스 스터디 | GitHub README (있을 때) |
 | **notes/** | 왜 그렇게 설계했는지, 경계·기각·출시에서 지킨 것 | 본문 + projects·README 링크 |
 
 한 주제를 projects와 notes에 나눌 때: **케이스 스터디(projects)** 와 **설계 회고(notes)** 로 역할을 겹치지 않게 둔다.
@@ -85,15 +85,35 @@ humanize(im-not-ai)는 **AI 티·번역투 제거**용이다. **겹치면 토스
 
 시리즈 1편은 **지도** 역할 — 전체 구조·읽기 순서를 먼저 준다.
 
-### projects — 케이스 스터디
+### projects — 종류별 골격
+
+`project_kind`에 따라 골격이 다르다. **채우기용 정본(미게시)** 은 아래 템플릿. 이 절은 언제 무엇을 쓰는지 인덱스만 둔다.
+
+| `project_kind` | 독자가 얻는 것 | 템플릿 |
+|----------------|----------------|--------|
+| **company** | 출시·역할·담당 범위 (깊이는 notes) | [`templates/project-company.md`](templates/project-company.md) |
+| **personal** | 문제·설계·비범위·계보 (설치는 README) | [`templates/project-personal.md`](templates/project-personal.md) |
+
+공통: lead(= `excerpt`) → 개요 → … → 스택 · 링크.
+
+**personal** (케이스 스터디) 요약 목차:
 
 1. lead
 2. 개요 (형태·역할·연관 링크)
 3. 문제
 4. 설계 (한 줄 요약 + 표)
-5. 타 프로젝트·Dragon과의 차이 (해당 시)
+5. 타 프로젝트·원천과의 차이 (해당 시)
 6. 이 프로젝트가 아닌 것
 7. 계보 · 스택 · 링크
+
+**company** (출시 포트폴리오) 요약 목차:
+
+1. lead
+2. 개요 (기간·플랫폼·팀·역할·성과)
+3. 기여
+4. 담당 시스템 (시스템 요약 **또는** 노트 허브)
+5. 출시 후 / 운영 (선택)
+6. 스택 · 링크
 
 ## Front matter (notes)
 
@@ -126,8 +146,8 @@ series_order: 1
 series_total: 4
 ```
 
-- `notes/<슬러그>.md`를 추가하면 `notes/index.md` 목록에 자동으로 포함됩니다 (기본 `date` 최신순, 목록에서 오래된 순 전환 가능).
-- **공개·비공개:** `_config.yml` `notes_production_visible_tags`에 있는 분류만 공개입니다. GitHub Pages 목록에는 공개 글만 들어갑니다. 로컬(`jekyll serve`)은 비공개 글도 HTML에 넣고, 목록 위 **비공개: 숨김/표시** 토글로 가립니다(기본 숨김, `localStorage`에 유지). 개별 permalink는 환경과 무관하게 빌드됩니다.
+- `notes/<슬러그>.md`를 추가하면 `notes/index.md` 목록에 자동으로 포함됩니다 (`date` 최신순. 같은 날짜는 `series`·`series_order` tie-break).
+- **공개·비공개:** `_config.yml` `notes_production_visible_tags`에 있는 분류만 공개입니다. GitHub Pages 목록에는 공개 글만 들어갑니다. 로컬(`jekyll serve`)은 비공개 글도 HTML에 넣고, footer **비공개: 숨김/표시** 토글로 가립니다(기본 숨김, `localStorage`에 유지). 개별 permalink는 환경과 무관하게 빌드됩니다. 프로젝트 본문의 비공개 노트 링크도 같은 토글을 씁니다 (`data-private-notes`).
 - `tags`는 목록 **분류** 필터용입니다. 글당 **정확히 1개**만 둡니다.
 
 | 분류 | 질문 | 예 |
@@ -142,6 +162,5 @@ series_total: 4
 
 - 프로젝트(Dragon is Dead, Blade Assault)는 태그가 아니라 본문·프로젝트 링크로만 표시합니다.
 - 애매하면 **시리즈 소속**을 따릅니다. 시리즈를 분류 축으로 쪼개지 않습니다.
-- 필터 목록은 `notes/index.md`의 `filter_categories`에서 관리합니다. 목록 UI는 **왼쪽 분류 사이드바**, 위쪽 **정렬**입니다.
-- 날짜 정렬 UI는 `notes/index.md`의 `show_sort_filter`로 켭니다.
+- 필터 목록은 `notes/index.md`의 `filter_categories`에서 관리합니다. 목록 UI는 **왼쪽 분류 사이드바**입니다. 페이지당 글 수는 `notes_page_size`(기본 5)이며 `<< < 1 2 … > >>` 페이지네이션을 씁니다.
 - **시리즈/구조 세트:** `series`(슬러그)·`series_title`·`series_order`·`series_total`을 넣습니다. `title` 앞에 `{series_title} {n}/{total}`을 붙여 목록·페이지 제목에서 세트임을 보이게 합니다. 날짜가 같으면 목록 정렬 tie-break로 같은 `series`끼리 `series_order` 오름차순(1→N)입니다. How 세트와 Why 시리즈는 `series` 슬러그를 다르게 둡니다 (예: `combat-structure` / `combat-boundaries`).
