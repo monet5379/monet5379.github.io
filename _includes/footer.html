@@ -2,6 +2,7 @@
   <data class="u-url" href="{{ "/" | relative_url }}"></data>
 
   <div class="wrapper">
+    {% include private-notes-toggle.html %}
     <ul class="contact-list">
       {%- if site.email -%}
       <li>

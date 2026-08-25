@@ -1,0 +1,11 @@
+{% comment %}
+  로컬 전용 전역 토글. notes·projects 목록·본문 data-private-notes 공통.
+  localStorage: notes-show-private. production에서는 출력하지 않는다.
+{% endcomment %}
+{% if jekyll.environment != "production" %}
+<nav class="tag-filter private-notes-toggle" data-private-filter aria-label="비공개">
+  <span class="tag-filter__label">비공개:</span>
+  <button type="button" class="tag-filter__btn is-active" data-private-show="off" aria-pressed="true">숨김</button>
+  <button type="button" class="tag-filter__btn" data-private-show="on" aria-pressed="false">표시</button>
+</nav>
+{% endif %}

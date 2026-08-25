@@ -3,19 +3,11 @@
   section_sort: 'order' (기본) 또는 'date' (최신순)
   section_filter_kind: projects 전용 — project_kind front matter로 목록 분할 (company | personal)
   show_tag_filter: true면 분류 필터 UI (notes)
-  show_sort_filter: true면 날짜 정렬 UI (notes)
+  notes_page_size: notes 목록 페이지당 글 수 (있으면 페이지네이션)
   filter_categories: 분류 필터 (사이드바, 예: "전투|액션|성장|엔진|출시" | split: "|")
   notes_production_visible_tags: 공개 분류 (_config.yml). production 목록은 이 태그만.
-  로컬(development)은 전 글을 넣고 비공개 표시 토글로 가린다.
+  로컬(development)은 전 글을 넣고, 비공개는 footer 전역 토글(localStorage)로 가린다.
 {% endcomment %}
-{% assign show_private_toggle = "" %}
-{% if jekyll.environment != "production" %}
-  {% if section_dir == "notes/" and site.notes_production_visible_tags.size > 0 %}
-    {% assign show_private_toggle = "yes" %}
-  {% elsif section_dir == "projects/" and render_private_toggle %}
-    {% assign show_private_toggle = "yes" %}
-  {% endif %}
-{% endif %}
 {% assign section_articles = site.pages | where_exp: "p", "p.path contains section_dir" | where_exp: "p", "p.name != 'index.md'" %}
 {% if jekyll.environment == "production" and section_dir == "notes/" and site.notes_production_visible_tags.size > 0 %}
   {% assign vis_tag = site.notes_production_visible_tags | first %}
@@ -54,7 +46,7 @@
 {% endif %}
 
 {% assign show_list_controls = false %}
-{% if show_category_filter or show_sort_filter or show_private_toggle == "yes" %}
+{% if show_category_filter %}
   {% assign show_list_controls = true %}
 {% endif %}
 
@@ -76,28 +68,9 @@
   <div class="notes-browse__main">
 {% endif %}
 
-{% if show_sort_filter or show_private_toggle == "yes" %}
-<div class="list-filters">
-  {% if show_sort_filter %}
-  <nav class="tag-filter" data-sort-filter aria-label="정렬">
-    <span class="tag-filter__label">정렬:</span>
-    <button type="button" class="tag-filter__btn is-active" data-sort="newest" aria-pressed="true">최신순</button>
-    <button type="button" class="tag-filter__btn" data-sort="oldest" aria-pressed="false">오래된 순</button>
-  </nav>
-  {% endif %}
-  {% if show_private_toggle == "yes" %}
-  <nav class="tag-filter" data-private-filter aria-label="{% if section_dir == 'projects/' %}비공개 프로젝트{% else %}비공개 노트{% endif %}">
-    <span class="tag-filter__label">비공개:</span>
-    <button type="button" class="tag-filter__btn is-active" data-private-show="off" aria-pressed="true">숨김</button>
-    <button type="button" class="tag-filter__btn" data-private-show="on" aria-pressed="false">표시</button>
-  </nav>
-  {% endif %}
-</div>
-{% endif %}
-
 {% unless render_section_list == false %}
 {% if section_articles.size > 0 %}
-<ul class="post-list{% if section_dir == "projects/" %} post-list--projects{% endif %}{% if section_dir == "notes/" %} post-list--notes{% endif %}{% if show_thumbs %} post-list--thumbs{% endif %}"{% if show_list_controls %} data-tag-filter-list{% endif %}>
+<ul class="post-list{% if section_dir == "projects/" %} post-list--projects{% endif %}{% if section_dir == "notes/" %} post-list--notes{% endif %}{% if show_thumbs %} post-list--thumbs{% endif %}"{% if show_list_controls %} data-tag-filter-list{% endif %}{% if notes_page_size and notes_page_size > 0 %} data-page-size="{{ notes_page_size }}"{% endif %}>
   {% for item in section_articles %}
   {% assign item_vis = "public" %}
   {% if section_dir == "notes/" and site.notes_production_visible_tags.size > 0 %}
@@ -176,6 +149,9 @@
 </ul>
 {% if show_list_controls %}
 <p class="tag-filter__empty" data-tag-filter-empty hidden>선택한 분류에 맞는 글이 없습니다.</p>
+{% if notes_page_size and notes_page_size > 0 %}
+<nav class="notes-pagination" data-notes-pager hidden aria-label="노트 목록 페이지"></nav>
+{% endif %}
 {% endif %}
 {% else %}
 <p><em>아직 게시된 항목이 없습니다.</em></p>

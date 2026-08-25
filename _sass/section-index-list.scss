@@ -186,11 +186,60 @@
   font-style: italic;
 }
 
+.notes-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.5rem;
+  margin: 1.25rem 0 0;
+}
+
+.notes-pagination__btn {
+  min-width: 2rem;
+  margin: 0;
+  padding: 0.25rem 0.4rem;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  color: var(--text-color);
+  font: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  cursor: pointer;
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    border-bottom-color: var(--grey-color);
+    outline: none;
+  }
+
+  &.is-active {
+    border-bottom-color: var(--text-color);
+    font-weight: 600;
+  }
+
+  &:disabled {
+    color: var(--grey-color);
+    cursor: default;
+    opacity: 0.55;
+  }
+}
+
 html:not([data-notes-private="on"]) {
   .post-list > li[data-private],
-  .tag-filter [data-private-tag] {
+  .tag-filter [data-private-tag],
+  [data-private-notes] {
     display: none;
   }
+}
+
+.private-notes-toggle {
+  margin: 0 0 1rem;
+}
+
+.site-footer .private-notes-toggle {
+  margin-bottom: 1.25rem;
 }
 
 .post-list__private {

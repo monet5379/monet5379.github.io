@@ -30,14 +30,15 @@
     if (applyFn) applyFn();
   }
 
+  try {
+    showPrivate = localStorage.getItem(storageKey) === "on";
+  } catch (e) {}
+  document.documentElement.setAttribute(
+    "data-notes-private",
+    showPrivate ? "on" : "off"
+  );
+
   if (privateRoot) {
-    try {
-      showPrivate = localStorage.getItem(storageKey) === "on";
-    } catch (e) {}
-    document.documentElement.setAttribute(
-      "data-notes-private",
-      showPrivate ? "on" : "off"
-    );
     syncPrivateButtons();
 
     privateRoot.addEventListener("click", function (event) {
@@ -52,18 +53,16 @@
 
   var items = Array.prototype.slice.call(list.children);
   var emptyEl = document.querySelector("[data-tag-filter-empty]");
+  var pagerEl = document.querySelector("[data-notes-pager]");
+  var pageSize = parseInt(list.getAttribute("data-page-size") || "0", 10) || 0;
+  var currentPage = 1;
   var tagRoots = Array.prototype.slice.call(
     document.querySelectorAll("[data-tag-filter]")
   );
-  var sortRoot = document.querySelector("[data-sort-filter]");
-  var sortButtons = sortRoot
-    ? Array.prototype.slice.call(sortRoot.querySelectorAll(".tag-filter__btn"))
-    : [];
   var privateTagButtons = Array.prototype.slice.call(
     document.querySelectorAll("[data-private-tag]")
   );
   var activeByGroup = {};
-  var activeSort = "newest";
 
   tagRoots.forEach(function (_root, i) {
     activeByGroup[i] = "";
@@ -126,16 +125,12 @@
     return true;
   }
 
+  /** Newest first; same date → series_order. */
   function applySort() {
-    if (!sortRoot) return;
-
     var sorted = items.slice().sort(function (a, b) {
       var da = itemDate(a);
       var db = itemDate(b);
       if (da !== db) {
-        if (activeSort === "oldest") {
-          return da < db ? -1 : 1;
-        }
         return da > db ? -1 : 1;
       }
       return compareSeriesTie(a, b);
@@ -144,27 +139,142 @@
     sorted.forEach(function (item) {
       list.appendChild(item);
     });
+    items = sorted;
   }
 
-  function applyFilter() {
+  function matchingItems() {
     var required = selectedTags();
-    var visible = 0;
-
-    items.forEach(function (item) {
+    return items.filter(function (item) {
       var tags = itemTags(item);
       var show = required.length === 0 || hasAllTags(tags, required);
       if (!showPrivate && item.hasAttribute("data-private")) show = false;
-      item.hidden = !show;
-      if (show) visible += 1;
+      return show;
+    });
+  }
+
+  function pageWindow(current, total, maxButtons) {
+    maxButtons = maxButtons || 5;
+    var pages = [];
+    if (total <= maxButtons) {
+      for (var i = 1; i <= total; i += 1) pages.push(i);
+      return pages;
+    }
+    var half = Math.floor(maxButtons / 2);
+    var start = Math.max(1, current - half);
+    var end = start + maxButtons - 1;
+    if (end > total) {
+      end = total;
+      start = end - maxButtons + 1;
+    }
+    for (var p = start; p <= end; p += 1) pages.push(p);
+    return pages;
+  }
+
+  function makePagerBtn(label, opts) {
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "notes-pagination__btn";
+    btn.textContent = label;
+    if (opts.ariaLabel) btn.setAttribute("aria-label", opts.ariaLabel);
+    if (opts.disabled) {
+      btn.disabled = true;
+      btn.setAttribute("aria-disabled", "true");
+    }
+    if (opts.current) {
+      btn.classList.add("is-active");
+      btn.setAttribute("aria-current", "page");
+    }
+    if (opts.page != null) btn.setAttribute("data-page", String(opts.page));
+    if (opts.action) btn.setAttribute("data-page-action", opts.action);
+    return btn;
+  }
+
+  function renderPager(matchedCount, totalPages) {
+    if (!pagerEl || pageSize <= 0) return;
+
+    if (matchedCount === 0 || totalPages <= 1) {
+      pagerEl.hidden = true;
+      pagerEl.innerHTML = "";
+      return;
+    }
+
+    pagerEl.hidden = false;
+    pagerEl.innerHTML = "";
+
+    pagerEl.appendChild(
+      makePagerBtn("<<", {
+        action: "first",
+        ariaLabel: "첫 페이지",
+        disabled: currentPage <= 1
+      })
+    );
+    pagerEl.appendChild(
+      makePagerBtn("<", {
+        action: "prev",
+        ariaLabel: "이전 페이지",
+        disabled: currentPage <= 1
+      })
+    );
+
+    pageWindow(currentPage, totalPages, 5).forEach(function (page) {
+      pagerEl.appendChild(
+        makePagerBtn(String(page), {
+          page: page,
+          ariaLabel: page + "페이지",
+          current: page === currentPage
+        })
+      );
     });
 
-    if (emptyEl) {
-      if (visible === 0) {
-        emptyEl.removeAttribute("hidden");
-      } else {
-        emptyEl.setAttribute("hidden", "");
-      }
+    pagerEl.appendChild(
+      makePagerBtn(">", {
+        action: "next",
+        ariaLabel: "다음 페이지",
+        disabled: currentPage >= totalPages
+      })
+    );
+    pagerEl.appendChild(
+      makePagerBtn(">>", {
+        action: "last",
+        ariaLabel: "마지막 페이지",
+        disabled: currentPage >= totalPages
+      })
+    );
+  }
+
+  function applyFilter(resetPage) {
+    if (resetPage) currentPage = 1;
+
+    var matched = matchingItems();
+    var totalPages =
+      pageSize > 0 ? Math.max(1, Math.ceil(matched.length / pageSize)) : 1;
+    if (currentPage > totalPages) currentPage = totalPages;
+    if (matched.length === 0) currentPage = 1;
+
+    items.forEach(function (item) {
+      item.hidden = true;
+    });
+
+    if (matched.length === 0) {
+      if (emptyEl) emptyEl.removeAttribute("hidden");
+      renderPager(0, 1);
+      return;
     }
+
+    if (emptyEl) emptyEl.setAttribute("hidden", "");
+
+    if (pageSize > 0) {
+      var start = (currentPage - 1) * pageSize;
+      matched.slice(start, start + pageSize).forEach(function (item) {
+        item.hidden = false;
+      });
+    } else {
+      matched.forEach(function (item) {
+        item.hidden = false;
+      });
+    }
+
+    renderPager(matched.length, totalPages);
   }
 
   function syncButtons() {
@@ -178,12 +288,6 @@
           btn.classList.toggle("is-active", selected);
           btn.setAttribute("aria-pressed", selected ? "true" : "false");
         });
-    });
-
-    sortButtons.forEach(function (btn) {
-      var selected = (btn.getAttribute("data-sort") || "") === activeSort;
-      btn.classList.toggle("is-active", selected);
-      btn.setAttribute("aria-pressed", selected ? "true" : "false");
     });
 
     syncPrivateButtons();
@@ -211,15 +315,15 @@
     });
   }
 
-  function apply() {
+  function apply(resetPage) {
     applySort();
-    applyFilter();
+    applyFilter(resetPage !== false);
     syncButtons();
   }
 
   applyFn = function () {
     clearPrivateCategorySelection();
-    apply();
+    apply(true);
   };
 
   tagRoots.forEach(function (root, i) {
@@ -227,18 +331,34 @@
       var btn = event.target.closest(".tag-filter__btn");
       if (!btn || !root.contains(btn)) return;
       activeByGroup[i] = btn.getAttribute("data-tag") || "";
-      apply();
+      apply(true);
     });
   });
 
-  if (sortRoot) {
-    sortRoot.addEventListener("click", function (event) {
-      var btn = event.target.closest(".tag-filter__btn");
-      if (!btn || !sortRoot.contains(btn)) return;
-      activeSort = btn.getAttribute("data-sort") || "newest";
-      apply();
+  if (pagerEl) {
+    pagerEl.addEventListener("click", function (event) {
+      var btn = event.target.closest(".notes-pagination__btn");
+      if (!btn || btn.disabled || !pagerEl.contains(btn)) return;
+
+      var matched = matchingItems();
+      var totalPages =
+        pageSize > 0 ? Math.max(1, Math.ceil(matched.length / pageSize)) : 1;
+      var action = btn.getAttribute("data-page-action");
+      var pageAttr = btn.getAttribute("data-page");
+      var next = currentPage;
+
+      if (action === "first") next = 1;
+      else if (action === "prev") next = Math.max(1, currentPage - 1);
+      else if (action === "next") next = Math.min(totalPages, currentPage + 1);
+      else if (action === "last") next = totalPages;
+      else if (pageAttr) next = parseInt(pageAttr, 10) || 1;
+
+      if (next === currentPage) return;
+      currentPage = next;
+      applyFilter(false);
+      syncButtons();
     });
   }
 
-  apply();
+  apply(true);
 })();

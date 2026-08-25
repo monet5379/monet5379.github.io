@@ -17,6 +17,14 @@
       } catch (e) {
         document.documentElement.setAttribute("data-theme", "light");
       }
+      try {
+        document.documentElement.setAttribute(
+          "data-notes-private",
+          localStorage.getItem("notes-show-private") === "on" ? "on" : "off"
+        );
+      } catch (e) {
+        document.documentElement.setAttribute("data-notes-private", "off");
+      }
     })();
   </script>
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
