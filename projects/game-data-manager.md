@@ -79,7 +79,12 @@ Unity, C#, Newtonsoft.Json
 
 ## 링크
 
-- [경력]({{ "/career/" | relative_url }})
+### 외부
+
+- [GitHub — GameDataManager](https://github.com/monet5379/GameDataManager)
+
+### 내부
+
 - [Blade Assault]({{ "/projects/blade-assault/" | relative_url }})
 - [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
-- [GitHub — GameDataManager](https://github.com/monet5379/GameDataManager)
+- [경력]({{ "/career/" | relative_url }})

@@ -76,7 +76,12 @@ Unity, TextMesh Pro, C#
 
 ## 링크
 
+### 외부
+
 - [GitHub — unity-tmp-font](https://github.com/monet5379/unity-tmp-font)
+
+### 내부
+
 - [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})
 - [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
 - [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})

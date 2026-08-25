@@ -35,9 +35,13 @@ excerpt: "팀써니트에서 프로그래머 1~2명 규모로 개발 리드하�
 - 실시간 전투 파이프라인: 히트마크 → 피해 계산 → Vital(HP/가드) → 사망, Stat Modifier 연동
 - 스킬(시전·쿨다운·입력 버퍼), 버프/패시브, 투사체, 피드백(VFX/카메라/오디오)
 - 캐릭터 런타임: 스폰·BattleReady 게이트, 이동/점프/대시 등 Ability, 플레이어·몬스터·보스 분기
-- 전투 노트 권장 읽기: 구조 [1 Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) → [2 Skill]({{ "/notes/combat-skill/" | relative_url }}) → [3 Passive]({{ "/notes/combat-passive/" | relative_url }}) → [4 Buff]({{ "/notes/combat-buff/" | relative_url }}) 후, 경계 [1]({{ "/notes/combat-four-layers/" | relative_url }}) → [2]({{ "/notes/combat-skill-happy-path/" | relative_url }}) → [3]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) → [4]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) → [5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
-- 구조 노트 [전투 구조]({{ "/notes/combat-hitmark/" | relative_url }}): [1/4]({{ "/notes/combat-hitmark/" | relative_url }}) · [2/4]({{ "/notes/combat-skill/" | relative_url }}) · [3/4]({{ "/notes/combat-passive/" | relative_url }}) · [4/4]({{ "/notes/combat-buff/" | relative_url }})
-- 경계 시리즈 [전투 경계]({{ "/notes/combat-four-layers/" | relative_url }}): [1/5]({{ "/notes/combat-four-layers/" | relative_url }}) · [2/5]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [3/5]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [4/5]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [5/5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
+{% if jekyll.environment != "production" %}
+<div data-private-notes markdown="1">
+
+- 관련 notes (구조 후 경계): 구조 [1/4 Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · [2/4 Skill]({{ "/notes/combat-skill/" | relative_url }}) · [3/4 Passive]({{ "/notes/combat-passive/" | relative_url }}) · [4/4 Buff]({{ "/notes/combat-buff/" | relative_url }}) · 경계 [1/5]({{ "/notes/combat-four-layers/" | relative_url }}) · [2/5]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [3/5]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [4/5]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [5/5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
+
+</div>
+{% endif %}
 
 ### 적 AI·스테이지
 
@@ -103,6 +107,7 @@ Unity, C#, Cinemachine, Timeline, Steamworks, Unity Gaming Services Analytics
 
 ## 링크
 
+### 외부
+
 - [Steam](https://store.steampowered.com/app/2803280/Dragon_Is_Dead/)
 - [YouTube](https://youtu.be/0f0ZXseDMUM?si=VXCv4QvJkLEn-ji9)
-- [경력]({{ "/career/" | relative_url }})

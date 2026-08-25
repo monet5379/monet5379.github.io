@@ -66,7 +66,12 @@ Unity, C#
 
 ## 링크
 
-- [경력]({{ "/career/" | relative_url }})
+### 외부
+
+- [GitHub — unity-conditional-log](https://github.com/monet5379/unity-conditional-log)
+
+### 내부
+
 - [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
 - [노트 — Conditional로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})
-- [GitHub — unity-conditional-log](https://github.com/monet5379/unity-conditional-log)
+- [경력]({{ "/career/" | relative_url }})
