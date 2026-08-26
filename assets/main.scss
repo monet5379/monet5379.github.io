@@ -2,8 +2,14 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
+// Article readability (Toss-like measure) — override minima defaults before import
+$base-font-size: 17px;
+$base-line-height: 1.65;
+$content-width: 720px;
+
 @import "minima";
 @import "color-scheme";
+@import "typography";
 @import "screenshot-carousel";
 @import "section-index-list";
 @import "career-entry";
