@@ -5,7 +5,6 @@ permalink: /projects/save-layout/
 date: 2026-08-25
 order: 30
 project_kind: personal
-private: true
 role: 세이브 레이아웃
 excerpt: "슬롯당 Main 하나와 공유 Meta로, 세이브 손상·복구·스키마 변경을 타이틀에서 분리한 Unity 케이스 스터디입니다."
 ---
