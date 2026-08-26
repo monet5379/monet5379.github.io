@@ -12,7 +12,7 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 
 - 이름: 유승현
 - 포지션: Unity 클라이언트 / 게임플레이 엔지니어
-- 핵심 역량: Unity, C#, Steam 출시, 소규모 팀 개발 리드, 모바일·PC
+- 핵심 역량: Unity, C#, Steam 출시, 소규모 팀 개발 리드, PC
 - 관심: 채용·협업
 
 ## 경력
@@ -24,14 +24,16 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 
 **드래곤 이즈 데드 (Dragon is Dead)** — Steam
 
+{% include career-media.html slug="dragon-is-dead" youtube="0f0ZXseDMUM" title="Dragon is Dead" %}
+
 - 역할: 프로그래머 1~2명 규모 팀에서 개발 리드
 - 담당: 전투·성장, 적 AI·스테이지, 카메라·연출, UI·설정, 세이브·데이터, 로컬라이즈, Steamworks(업적·리더보드·Deck), UGS Analytics
 - 운영: 세이브/초기화 레이스, 밸런스 데이터 분리, 성능 측정 플레이북, Steam·Deck 연동 가드로 라이브 이슈 축 완화
-- 성과: 2024.06.07 얼리 액세스 발매, 2025.06.06 정식 출시
+- 성과: 2024.06.07 얼리 액세스 발매, 2025.06.06 정식 출시 · Steam 누적 판매 추정 약 2만~2.5만 장
 - 스택: Unity, C#, Cinemachine, Timeline, Steamworks, UGS Analytics
 - 상세: [Projects — Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
 - 링크: [Steam](https://store.steampowered.com/app/2803280/Dragon_Is_Dead/)
-    [YouTube](https://youtu.be/0f0ZXseDMUM?si=VXCv4QvJkLEn-ji9)
+    [YouTube](https://youtu.be/0f0ZXseDMUM)
 
 </div>
 
@@ -42,12 +44,14 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 
 **블레이드 어썰트 (Blade Assault)** — Steam
 
+{% include career-media.html slug="blade-assault" youtube="uV-fWC5zbfw" title="Blade Assault" %}
+
 - 역할: 기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍 담당
-- 성과: 2021.06.06 얼리 액세스 발매, 2022.01.18 정식 출시
+- 성과: 2021.06.06 얼리 액세스 발매, 2022.01.18 정식 출시 · Steam 누적 판매 추정 약 6만~10만 장
 - 스택: Unity, C#
 - 상세: [Projects — Blade Assault]({{ "/projects/blade-assault/" | relative_url }})
 - 링크: [Steam](https://store.steampowered.com/app/1367300/Blade_Assault/)
-    [YouTube](https://youtu.be/uV-fWC5zbfw?si=6V-LhUHCYGCOzR3C)
+    [YouTube](https://youtu.be/uV-fWC5zbfw)
 
 </div>
 
@@ -58,8 +62,10 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 
 **아스트로 펭귄** — 유니티 3D 런게임 (모바일)
 
+{% include career-media.html youtube="fy1c9veBKYk" title="아스트로 펭귄" %}
+
 - 역할: Android / iOS 개발, 인앱 결제·광고 연동
-- 링크: [YouTube Shorts](https://youtube.com/shorts/fy1c9veBKYk?si=K9mrrq6NTSQzYtII)
+- 링크: [YouTube Shorts](https://youtube.com/shorts/fy1c9veBKYk)
 - 스택: Unity, C#
 
 </div>
@@ -70,6 +76,8 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 2017.10.26 – 2019.03.12 (1년 4개월)
 
 **프로젝트 X (가제)** — 스마일게이트 크로스파이어 IP, 브로포스 방식 2D 플랫폼 실시간 액션
+
+{% include career-media.html youtube="niIEEj2T-hg" title="프로젝트 X" %}
 
 - 역할: UI, 캐릭터·무기 시스템, 맵 오브젝트, 적 AI(등장·이동·피격·사망·근거리/원거리), 데이터 I/O(xlsx, JSON), 인게임 데디케이티드 서버·아웃게임 유저 데이터 서버 대응
 - 플랫폼: PC 개발 중 모바일로 변경 · 런칭하지 않음
@@ -86,6 +94,8 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 
 **라인퍼즐프랜즈** — UI 프로그래머 (2016.05 – 2017.05)
 
+{% include career-media.html youtube="FsdUjmx_CLs" title="라인퍼즐프랜즈" %}
+
 - 역할: 아웃게임·인게임 UI
 - 장르: 2D 퍼즐 RPG (모바일)
 - 팀: 클라이언트 6명, 서버 2명
@@ -95,11 +105,13 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 
 **디그랜드** — 클라이언트 프로그래머 (2017.05 – 2017.11)
 
+{% include career-media.html youtube="9I43e2RJJQ8" start="267" title="디그랜드" %}
+
 - 역할: 아웃게임·인게임 UI, 튜토리얼
 - 장르: 2D 클리커 성장 게임 & 비트코인 연동 (모바일)
 - 팀: 프로그래머 2명
 - 성과: 2017.10 한국 런칭
-- 링크: [Youtube](https://www.youtube.com/watch?v=9I43e2RJJQ8&t=267s)
+- 링크: [YouTube](https://www.youtube.com/watch?v=9I43e2RJJQ8&t=267s)
 - 스택: Unity, C#
 
 </div>

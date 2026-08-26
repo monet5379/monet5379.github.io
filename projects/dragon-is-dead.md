@@ -20,7 +20,7 @@ excerpt: "팀써니트에서 프로그래머 1~2명 규모로 개발 리드하�
 - 플랫폼: Steam (PC)
 - 팀 규모: 프로그래머 1~2명
 - 내 역할: 개발 리드 / 프로그래밍
-- 성과: 2024.06.07 얼리 액세스 발매, 2025.06.06 정식 출시
+- 성과: 2024.06.07 얼리 액세스 발매, 2025.06.06 정식 출시 · Steam 누적 판매 추정 약 2만~2.5만 장
 
 ## 기여
 
@@ -62,6 +62,7 @@ excerpt: "팀써니트에서 프로그래머 1~2명 규모로 개발 리드하�
 
 - 프로필 세이브(슬롯·쿨다운·필수 세이브·백업), Json/Scriptable 데이터 파이프라인(부트 로드 순서 고정)
 - 밸런스·콘텐츠는 Excel/표 → Json·SO, 런타임은 Facade로만 조회하는 계약
+- 레이아웃 계약(Main·Side·Meta)을 게임 밖으로 정리한 [Save Layout]({{ "/projects/save-layout/" | relative_url }}) · [나눈 이유]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [Side 레인]({{ "/notes/save-layout-side-lane/" | relative_url }})
 
 ### 로컬라이즈
 
