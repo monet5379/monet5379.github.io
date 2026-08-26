@@ -12,6 +12,8 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 
 에디터 가시성 필터와 플레이어 빌드 호출 제거는 다른 문제입니다. Conditional 로그를 타이틀에서 분리해 정리한 케이스 스터디입니다.
 
+{% include screenshot-carousel.html slug="conditional-log" %}
+
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 «필터 off = 비용 없음»이 깨졌습니다. 그 경험을 반영해, 게임이 없어도 복사해 쓸 수 있는 최소 로그 레이어를 목표로 합니다.
 
 ## 개요

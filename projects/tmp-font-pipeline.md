@@ -12,6 +12,8 @@ excerpt: "Dragon 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 �
 
 Dragon 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 게임 밖으로 분리한 Unity Editor·Runtime 패키지입니다.
 
+{% include screenshot-carousel.html slug="tmp-font-pipeline" %}
+
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 다국어 TMP 작업에서 «어떤 글자가 아틀라스에 있는가»와 «언제 처음 그리는가»를 나눈 경험을, `Assets/TmpFontPipeline` 통째 복사로 재현·검증할 수 있게 정리했습니다.
 
 ## 개요
