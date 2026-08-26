@@ -5,14 +5,13 @@ permalink: /notes/stage-visual-gpu-optimize/
 date: 2026-07-23
 excerpt: "이동만 할 때 카메라에 따라 커지는 렌더 비용을, Global Light 구조와 Switch Ambient 토글 두 레버로 나눈 설계를 정리합니다."
 tags: [최적화]
+mermaid: true
 ---
 
 
 이동만 할 때 카메라에 따라 커지는 렌더 비용을, Global Light 구조와 Switch Ambient 토글 두 레버로 나눈 설계를 정리합니다.
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 스테이지 비주얼 최적화에서 적용한 내용입니다.
-
-**권장 읽기** — [StageSpawn preload로 지역 내 이동 hitch 제거]({{ "/notes/stage-spawn-area-preload/" | relative_url }}) · 이동 중 GPU(이 글). TMP 최초 사용 스파이크는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 따릅니다.
 
 ## 맥락
 
@@ -46,6 +45,33 @@ Profiler 기준은 전투·이벤트 없이 이동·점프·대시만 하고, �
 | **수단** | 프리팹 구조 (개수 병합 등) | 비디오 옵션·런타임 enable |
 | **플랫폼** | 전 플랫폼 (구조) | Switch만 적용 (그 외 항상 ON) |
 | **Global** | 실험·유지 대상 | **태깅하지 않음** — 옵션으로 끄지 않음 |
+
+**Global 구조 ≠ Ambient 토글**
+
+```mermaid
+flowchart TD
+  M["이동 중 렌더 비용"] --> G
+  M --> A
+
+  subgraph GLOBAL["A. Global Light"]
+    G["구조 · 개수 실험"] --> L["전 플랫폼"]
+  end
+
+  subgraph AMBIENT["B. Ambient 토글"]
+    A["장식 마커만"] --> S["Switch만 OFF 가능"]
+  end
+
+  NOTE["Global ≠ Ambient 옵션<br/>가독성 채널 ≠ 장식<br/>전투 VFX ≠ 토글 대상"]
+  L ~~~ NOTE
+  S ~~~ NOTE
+```
+
+<div class="callout" markdown="1">
+
+- **Global Light**: 구조·개수 실험 — 전 플랫폼. Ambient 토글에 태깅하지 않음
+- **Ambient 토글**: 장식 마커만 — Switch만 OFF. Global·전투 VFX·가독성 채널 제외
+
+</div>
 
 ### A. Global Light
 
@@ -96,3 +122,5 @@ Profiler 기준은 전투·이벤트 없이 이동·점프·대시만 하고, �
 ## 정리
 
 Global은 **프리팹 구조**로, Ambient는 **Switch 전용 런타임 토글**로 다룹니다. 장식만 끄고 글로벌 조명·게임플레이 비주얼은 건드리지 않는 경계를 마커 정책으로 고정합니다.
+
+**권장 읽기** — [StageSpawn preload로 지역 내 이동 hitch 제거]({{ "/notes/stage-spawn-area-preload/" | relative_url }}) · 이동 중 GPU(이 글). TMP 최초 사용 스파이크는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 따릅니다.

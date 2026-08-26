@@ -5,14 +5,13 @@ permalink: /notes/stage-spawn-area-preload/
 date: 2026-07-23
 excerpt: "지역 소속 스테이지를 미리 일괄 스폰하고, 동일 지역 내 이동은 활성/비활성만 하도록 바꾼 이유를 정리합니다."
 tags: [최적화]
+mermaid: true
 ---
 
 
 지역 소속 스테이지를 미리 일괄 스폰하고, 동일 지역 내 이동은 활성/비활성만 하도록 바꾼 이유를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 스테이지 이동 최적화에서 적용한 내용입니다.
-
-**권장 읽기** — StageSpawn preload(이 글) · [이동 중 GPU를 Global·Ambient 두 레버로]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }}). 스폰·활성 정책과 이동 중 렌더는 같은 스테이지 트랙의 별 축입니다.
+[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 스테이지 이동 최적화에서 적용한 내용입니다. 스폰·활성 정책과 이동 중 렌더는 같은 스테이지 트랙의 별 축입니다.
 
 ## 맥락
 
@@ -53,6 +52,30 @@ tags: [최적화]
 2. 현재 Stage만 활성, 나머지는 inactive root 하위
 3. 동일 Area 게이트 → 페이드 후 활성·비활성 전환만 (재생성 없음)
 4. Area 변경 → 이전 정리 후 새 Area 일괄 스폰
+
+**Area preload → 게이트는 활성만**
+
+```mermaid
+flowchart TD
+  E["Area 진입"] --> P
+
+  subgraph PRELOAD["PRELOAD — 지역 단위"]
+    P["소속 Stage 일괄 스폰"] --> A["현재만 활성"]
+    A --> I["나머지 inactive root"]
+  end
+
+  subgraph MOVE["동일 Area 게이트"]
+    G["페이드"] --> S["활성 ↔ 비활성만"]
+  end
+
+  I --> G
+
+  NOTE["이동마다 Instantiate ≠ After<br/>스폰 단위 = 지역 진입 한 번<br/>preload ≠ 가드 생략"]
+  I ~~~ NOTE
+  S ~~~ NOTE
+```
+
+지역 진입 때 소속 Stage를 일괄 스폰하고, 같은 Area 안 이동은 활성·비활성만 바꿉니다. preload만 넣고 공존 가드를 빼면 안 됩니다.
 
 예산 감각은 Area당 Stage 수 수준을 전제로 두고, 전 월드 preload는 하지 않습니다.
 
@@ -107,3 +130,5 @@ Before는 스테이지가 사실상 1개라 «Awake/Start = 현재 Stage»로 �
 ## 정리
 
 동일 지역 탐험의 체감은 **이동 비용 제거**로 맞추고, 그 대가는 **지역 진입 한 번**과 **공존 가드 유지보수**에 모읍니다. 전 월드 preload는 하지 않고, 지역 단위 예산 안에서만 스테이지 수를 늘립니다.
+
+**권장 읽기** — StageSpawn preload(이 글) · [이동 중 GPU를 Global·Ambient 두 레버로]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }}).

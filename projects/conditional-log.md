@@ -46,6 +46,10 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 | 배포 | `Assets/ConditionalLog` 통째 복사 (UPM 아님) |
 | UX | Conditional Log → Settings, Play 중 F1 오버레이 |
 
+## 한계
+
+`[Conditional]`은 `UNITY_EDITOR`에만 걸려 있습니다. 에디터(Play 포함)에서 레벨·태그를 꺼도 호출부 인자 평가는 남습니다. 필터는 가시성만 바꿉니다. 에디터 핫 패스 비용을 필터로 없애지 않는 것이 이 패키지의 현재 한계입니다 — 상세는 [노트]({{ "/notes/conditional-log-build-cost/" | relative_url }})·[README](https://github.com/monet5379/unity-conditional-log).
+
 ## 이 프로젝트가 아닌 것
 
 - 게임플레이·전투·스테이지 본편이 아닙니다.

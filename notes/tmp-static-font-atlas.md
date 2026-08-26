@@ -5,14 +5,13 @@ permalink: /notes/tmp-static-font-atlas/
 date: 2026-07-23
 excerpt: "TMP Dynamic 폰트의 런타임 아틀라스 성장·프레임 히치를 피하기 위해, 문자열 JSON에서 언어별 고유 글자를 뽑아 Static 아틀라스에 넣는 파이프라인을 정리합니다."
 tags: [폰트]
+mermaid: true
 ---
 
 
 TMP Dynamic 폰트의 런타임 아틀라스 성장·프레임 히치를 피하기 위해, 문자열 JSON에서 언어별 고유 글자를 뽑아 Static 아틀라스에 넣는 파이프라인을 정리합니다.
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다.
-
-**권장 읽기** — Static(이 글) → [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }}). glyph SSOT는 Static, 첫 draw·input block은 Warmup.
 
 ## 맥락
 
@@ -37,6 +36,32 @@ TextMesh Pro의 Dynamic Font Asset은 처음 보는 glyph가 요청될 때 런�
 배포 기본은 Static으로 두고, 필요한 글자 집합은 에디터에서 문자열 데이터로부터 결정적으로 뽑는 쪽으로 바꿨습니다.
 
 ## 해결
+
+**Extract → Static SSOT**
+
+```mermaid
+flowchart TD
+  subgraph EDITOR["EDITOR — 빌드 타임"]
+    A["String*.json"] --> B["Sanitize"]
+    B --> C["Extract"]
+    C --> D["UI 버킷"]
+    C --> E["Dialogue 버킷"]
+    D --> F["Static Apply"]
+    E --> F
+  end
+
+  subgraph RUNTIME["RUNTIME"]
+    G["언어별 Font Asset 선택"] --> H["표시"]
+  end
+
+  F --> G
+
+  NOTE["Charset SSOT ≠ warmup sample<br/>Extract → Static 테이블이 SSOT<br/>Dynamic atlas ≠ 배포 기본"]
+  F ~~~ NOTE
+  H ~~~ NOTE
+```
+
+문자열 JSON에서 버킷별 글자를 뽑아 Static Character Table에 넣는 경로입니다. Warmup sample이나 Dynamic atlas가 glyph SSOT가 아닙니다.
 
 ### 에디터 추출
 
@@ -117,3 +142,5 @@ Dragon에서 정리한 «추출 → Static bake → 런타임 font 선택»을 �
 ## 정리
 
 다국어 TMP에서 Dynamic은 “일단 돌아가게”는 쉽지만, 출시·라이브 기준으로는 히치와 메모리 상한이 문제입니다. 문자열 데이터를 문자셋의 SSOT로 두고 Static으로 고정하면, 폰트·로컬라이즈·워밍업 각각의 책임이 명확해집니다.
+
+**권장 읽기** — Static(이 글) → [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }}). glyph SSOT는 Static, 첫 draw·input block은 Warmup.

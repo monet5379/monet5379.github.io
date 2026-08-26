@@ -5,10 +5,11 @@ permalink: /notes/conditional-log-build-cost/
 date: 2026-07-23
 excerpt: "에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 [Conditional]은 다른 문제라는 점을, Dragon is Dead Log API 기준으로 정리합니다."
 tags: [엔진]
+mermaid: true
 ---
 
 
-에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 [Conditional]은 다른 문제라는 점을, Dragon is Dead Log API 기준으로 정리합니다.
+에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 `[Conditional]`은 다른 문제라는 점을, Dragon is Dead Log API 기준으로 정리합니다.
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 적용한 내용입니다. 계기는 Player 빌드 Profiler에 로그 경로(문자열·할당)가 남아, «필터 off = 비용 없음» 가정이 깨진 것이었습니다. 같은 불변조건을 타이틀 밖으로 빼 둔 구현은 [Conditional Log]({{ "/projects/conditional-log/" | relative_url }})입니다.
 
@@ -41,6 +42,37 @@ Log.Info("Combat", $"dmg={CalcDamage()}");
 `[Conditional("UNITY_EDITOR")]`가 붙은 API는 플레이어 빌드에서 위 호출문 자체가 사라집니다.
 
 ## 해결
+
+**필터 ≠ Conditional**
+
+```mermaid
+flowchart TD
+  G["게임 코드"] --> L["Log.Info(tag, message)"]
+
+  subgraph EDITOR["UNITY_EDITOR"]
+    F["레벨 · 태그 필터"] --> A{"허용?"}
+    A -->|yes| DL["Debug.Log"]
+    A -->|no| H["숨김"]
+  end
+
+  subgraph PLAYER["Player 빌드"]
+    S["호출 · 인자 평가 제거"] --> NL["로깅 없음"]
+  end
+
+  L --> F
+  L --> S
+
+  NOTE["필터 ≠ 컴파일 스트리핑<br/>필터 OFF → 호출 남음<br/>Conditional → 호출 제거"]
+  DL ~~~ NOTE
+  NL ~~~ NOTE
+```
+
+<div class="callout" markdown="1">
+
+- **에디터 필터**: 레벨·태그로 콘솔 가시성만 바꿈. 꺼도 호출·인자 평가는 남음
+- **Conditional**: 플레이어 빌드에서 호출문·인자 평가 제거
+
+</div>
 
 출력 API에 `[Conditional("UNITY_EDITOR")]`를 두고, 레벨·태그 필터는 `Write` 안의 early return에만 둡니다. 속성은 호출부가 보는 메서드에 붙습니다.
 
@@ -101,6 +133,12 @@ public static class GameLog
 3. **프레임마다 도는 로그** → 기본 off, 필요할 때만 켬
 4. **무거운 문자열·계산** → 핫 패스에는 호출 자체를 두지 않기
 
+## 한계
+
+`[Conditional]`은 `UNITY_EDITOR`에만 걸려 있습니다. 에디터(Play 포함)에서는 레벨·태그를 꺼도 호출문은 남고, 호출부 인자(`$""`·계산)는 `Write` early return 전에 평가됩니다. 필터는 콘솔 출력만 막습니다.
+
+에디터 핫 패스 비용을 필터로 없애지 않는 것이 [Conditional Log]({{ "/projects/conditional-log/" | relative_url }})의 **현재 한계**입니다. 두 번째 컴파일 심볼·지연 메시지 API는 이 패키지 범위 밖입니다.
+
 ## 기각·보류
 
 런타임 early return / `#if`만으로 플레이어 비용을 제어하는 방식은 기각합니다. 호출부 인자 평가가 남습니다.
@@ -109,10 +147,12 @@ public static class GameLog
 
 Unity Logging 패키지·API 대폭 축소는 빌드 비용 합격선과 무관해 보류합니다.
 
+에디터 Play 프로파일 등으로 `Log.*`를 **통째로** 끄는 두 번째 컴파일 심볼(`[Conditional("…")]` 추가)은 후보로 보류합니다. 심볼은 컴파일 단위라 레벨·태그 필터별 인자 스킵은 되지 않습니다. 필터 off마다 `$""`를 막으려면 `Func<string>` 등 API 변경이 필요하고, 지금 최소 복사 단위와는 결이 달라 함께 보류합니다.
+
 ## 확인 포인트
 
 - Player(비에디터) 빌드: 빈번한 `Log.Info` / `Progress` 경로가 Profiler Scripts·GC Alloc에 유의미하게 나타나지 않음
-- 에디터: 레벨·태그 off 시 해당 메시지가 콘솔에 안 찍힘
+- 에디터: 레벨·태그 off 시 해당 메시지가 콘솔에 안 찍힘 (**인자 평가는 남을 수 있음** — [한계](#한계))
 - 릴리스에 남길 메시지: `Debug.Log*` 등 `Log` 래퍼 밖
 - `Update` / `FixedUpdate`에 `$""` 또는 무거운 인자 + `Log.*`를 상시 두지 않음
 

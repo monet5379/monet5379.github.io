@@ -5,14 +5,13 @@ permalink: /notes/tmp-font-warmup/
 date: 2026-07-23
 excerpt: "부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다."
 tags: [폰트]
+mermaid: true
 ---
 
 
 부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다.
 
 [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다. Static 문자셋(Dynamic atlas 회피)은 [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})를 따릅니다. 워밍업은 glyph 전량 보장의 대체재가 아닙니다.
-
-**권장 읽기** — [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) → Warmup(이 글).
 
 ## 맥락
 
@@ -47,6 +46,29 @@ Static atlas만으로는 «첫 사용 시 머티리얼·메쉬·스프라이트 
 그 비용을 **의도된 대기 구간**(스플래시·언어 변경 input block)으로 옮기기 위해 전용 매니저를 둡니다.
 
 ## 해결
+
+**Warmup = when**
+
+```mermaid
+flowchart TD
+  T["콜드 부팅 / 언어 변경"] --> B
+  T -.-> N
+
+  subgraph WAIT["의도된 대기"]
+    B["input block"] --> S["font당 1프레임 sample"]
+    S --> U["unblock · UI refresh"]
+  end
+
+  subgraph AVOID["피한 경로"]
+    N["첫 UI에서 자연 warmup"]
+  end
+
+  NOTE["Warmup ≠ glyph 전량 보장<br/>대기 구간 ≠ 플레이 중 스파이크<br/>SSOT는 Static 추출 노트"]
+  U ~~~ NOTE
+  N ~~~ NOTE
+```
+
+첫 그리기 비용을 스플래시·언어 변경 대기 구간으로 옮깁니다. sample은 경로를 깨울 뿐이고, glyph 전량 보장은 Static 추출이 담당합니다.
 
 | 항목 | 내용 |
 |------|------|
@@ -101,3 +123,5 @@ Dragon은 언어군별 **공통** sample을 씁니다. 공개 Demo는 Ui·Dialog
 ## 정리
 
 Static은 «어떤 글자가 아틀라스에 있는가», Warmup은 «언제 처음 그리는가»를 담당합니다. 둘을 한 메커니즘으로 합치지 않고, 스파이크는 대기 구간으로·glyph 완결성은 데이터 추출로 나눕니다.
+
+**권장 읽기** — [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) → Warmup(이 글).
