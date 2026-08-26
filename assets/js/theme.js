@@ -22,6 +22,11 @@
         theme === "dark" ? "라이트 모드" : "다크 모드"
       );
     }
+    try {
+      window.dispatchEvent(
+        new CustomEvent("themechange", { detail: { theme: theme } })
+      );
+    } catch (e) {}
   }
 
   if (toggle) {

@@ -1,0 +1,24 @@
+{% comment %}
+  경력 항목 미디어: youtube가 있으면 임베드, 없으면 slug의 ss-* 캐러셀.
+  slug: assets/images/projects/<slug>/ (선택)
+  youtube: video id (선택)
+  start: YouTube 시작 초 (선택)
+  title: alt / iframe title
+{% endcomment %}
+{% assign media_title = include.title | default: page.title | default: "미디어" %}
+{% assign media_shots_size = 0 %}
+{% if include.slug and include.slug != "" %}
+  {% assign media_shot_dir = "assets/images/projects/" | append: include.slug | append: "/" %}
+  {% assign media_shots = site.static_files
+    | where_exp: "f", "f.path contains media_shot_dir"
+    | where_exp: "f", "f.name contains 'ss-'" %}
+  {% assign media_shots_size = media_shots.size %}
+{% endif %}
+
+<div class="career-entry__media">
+{% if include.youtube and include.youtube != "" %}
+  {% include youtube-embed.html id=include.youtube title=media_title start=include.start %}
+{% elsif media_shots_size > 0 %}
+  {% include screenshot-carousel.html slug=include.slug title=media_title %}
+{% endif %}
+</div>

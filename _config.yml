@@ -1,4 +1,4 @@
-title: monet5379
+title: 유승현
 description: 채용 · 포트폴리오 · 공개 기술
 url: "https://monet5379.github.io"
 baseurl: ""
@@ -31,5 +31,6 @@ header_pages:
 # production 목록에는 공개만 빌드. 로컬 serve는 전 글 + 비공개 토글(기본 숨김).
 notes_production_visible_tags:
   - 엔진
+  - 세이브
   - 폰트
   - 최적화

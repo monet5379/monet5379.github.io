@@ -1,0 +1,22 @@
+.youtube-embed {
+  margin: 0.75rem 0 1rem;
+  padding: 0;
+  border: 0;
+
+  &__frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--grey-color-light, #e8e8e8);
+
+    iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  }
+}

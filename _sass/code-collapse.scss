@@ -1,0 +1,69 @@
+// Long fenced blocks on notes — collapse by default (code-collapse.js)
+.code-collapse {
+  margin: 1.25em 0;
+
+  &__summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35em 0.75em;
+    cursor: pointer;
+    user-select: none;
+    color: var(--grey-color-dark);
+    font-size: 0.875rem;
+    line-height: 1.4;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 0.4em;
+      height: 0.4em;
+      margin-right: 0.15em;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(-45deg);
+      transition: transform 0.15s ease;
+      flex-shrink: 0;
+      align-self: center;
+    }
+
+    &:hover {
+      color: var(--text-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--brand-color);
+      outline-offset: 2px;
+    }
+  }
+
+  &[open] > .code-collapse__summary::before {
+    transform: rotate(45deg);
+  }
+
+  &__when-open {
+    display: none;
+  }
+
+  &[open] > .code-collapse__summary .code-collapse__when-closed {
+    display: none;
+  }
+
+  &[open] > .code-collapse__summary .code-collapse__when-open {
+    display: inline;
+  }
+
+  &__meta {
+    color: var(--grey-color);
+  }
+
+  > .highlighter-rouge {
+    margin-top: 0.65em;
+    margin-bottom: 0;
+  }
+}

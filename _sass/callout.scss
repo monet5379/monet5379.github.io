@@ -1,0 +1,23 @@
+// Notes · projects — summary callout (Toss/Notion-like panel)
+.callout {
+  margin: 1.5em 0;
+  padding: 1rem 1.15rem;
+  border-radius: 8px;
+  background-color: var(--color-base-10);
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  li + li {
+    margin-top: 0.5em;
+  }
+}

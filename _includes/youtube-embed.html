@@ -1,0 +1,23 @@
+{% comment %}
+  id: YouTube video id (필수)
+  title: iframe title / 접근성 (기본: YouTube)
+  start: 시작 초 (선택)
+{% endcomment %}
+{% if include.id and include.id != "" %}
+{% assign yt_title = include.title | default: "YouTube" %}
+{% assign yt_src = "https://www.youtube-nocookie.com/embed/" | append: include.id %}
+{% if include.start and include.start != "" %}
+  {% assign yt_src = yt_src | append: "?start=" | append: include.start %}
+{% endif %}
+<figure class="youtube-embed">
+  <div class="youtube-embed__frame">
+    <iframe
+      src="{{ yt_src }}"
+      title="{{ yt_title | escape }}"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</figure>
+{% endif %}

@@ -21,4 +21,14 @@
     color: var(--grey-color);
     font-size: 0.9375rem;
   }
+
+  &__media {
+    margin: 0.75rem 0 0.25rem;
+
+    .shot-carousel,
+    .youtube-embed {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
 }
