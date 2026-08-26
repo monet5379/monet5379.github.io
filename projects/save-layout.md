@@ -12,7 +12,9 @@ excerpt: "슬롯당 Main·선택적 Side와 공유 Meta로, 세이브 손상·�
 
 슬롯당 Main·선택적 Side와 공유 Meta로, 세이브 손상·복구·스키마 경계를 타이틀에서 분리한 Unity 케이스 스터디입니다.
 
-Blade Assault·Dragon is Dead·Treasure의 프로필·슬롯·백업 경험을 반영해, 게임이 없어도 Meta + Profile 레이아웃만으로 검증할 수 있는 최소 런타임을 목표로 합니다. 선행 스케치 [GameDataManager](https://github.com/monet5379/GameDataManager)의 후계입니다.
+{% include screenshot-carousel.html slug="save-layout" %}
+
+Blade Assault·Dragon is Dead의 프로필·슬롯·백업 경험을 반영해, 게임이 없어도 Meta + Profile 레이아웃만으로 검증할 수 있는 최소 런타임을 목표로 합니다.
 
 ## 개요
 
@@ -20,7 +22,7 @@ Blade Assault·Dragon is Dead·Treasure의 프로필·슬롯·백업 경험을 �
 - 역할: 설계·구현·문서
 - 초점: 슬롯당 Main 1, 선택적 Side, Meta, AtomicWrite, 슬롯 단위 백업·진단
 - 배포: `Assets/SaveLayout` 폴더 복사 (UPM 아님) — Runtime / Editor 분리
-- 연관: [Blade Assault]({{ "/projects/blade-assault/" | relative_url }}) · [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
+- 연관: [Blade Assault]({{ "/projects/blade-assault/" | relative_url }}) · [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) · [노트 — Main·Side·Meta]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [Side 레인]({{ "/notes/save-layout-side-lane/" | relative_url }})
 
 ## 문제
 
@@ -55,7 +57,7 @@ Blade Assault·Dragon is Dead·Treasure의 프로필·슬롯·백업 경험을 �
 - **`runs/` 트리**나 Side를 넘는 런 전용 제품 API가 아닙니다 — 세션·오토세이브는 Side 레시피 또는 타이틀 필드로 확장합니다.
 - 레거시·타 포맷 세이브 **이관**이 아닙니다.
 - Excel→Json·SO **고정 정의 Facade**가 아닙니다 (별도 OSS).
-- Treasure Rot·AES·Steam Cloud merge 전체 패리티가 아닙니다.
+- Profile Rot·AES·Steam Cloud merge 전체 패리티가 아닙니다.
 
 증명하려는 것은 동적 진행을 **슬롯 레이아웃**(Main·Side·Meta)으로 어떻게 안전하게 유지·복구·진화시키는가입니다.
 
@@ -65,10 +67,8 @@ Blade Assault·Dragon is Dead·Treasure의 프로필·슬롯·백업 경험을 �
 |----------|------------------|
 | [Blade Assault]({{ "/projects/blade-assault/" | relative_url }}) | 실서비스 이중 파일·암호화 경험 → 복구·시퀀스·레이아웃으로 재정리 |
 | [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) | 타이틀 결합 프로필·슬롯·백업 → 계약 추출 |
-| Treasure | 프로필별 파일 + Meta — 레이아웃 축소 이식 원본 |
-| GameDataManager | 동일 계약 선행 케이스 → 이 저장소로 이관 |
 
-Dragon 프로젝트 페이지의 [세이브·데이터]({{ "/projects/dragon-is-dead/" | relative_url }}) 절과 같은 문제 의식을, 여기서는 레이아웃 단위로만 펼칩니다.
+Dragon 프로젝트 페이지의 [세이브·데이터]({{ "/projects/dragon-is-dead/" | relative_url }}) 절과 같은 문제 의식을, 여기서는 레이아웃 단위로만 펼칩니다. Why는 [Main·Side·Meta]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [Side 레인]({{ "/notes/save-layout-side-lane/" | relative_url }})에 둡니다.
 
 ## 스택
 
@@ -82,6 +82,8 @@ Unity, C#, Newtonsoft.Json
 
 ### 내부
 
+- [노트 — Main·Side·Meta로 나눈 이유]({{ "/notes/save-layout-boundaries/" | relative_url }})
+- [노트 — 슬롯 백업 대신 Side 레인을 둔 이유]({{ "/notes/save-layout-side-lane/" | relative_url }})
 - [Blade Assault]({{ "/projects/blade-assault/" | relative_url }})
 - [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
 - [경력]({{ "/career/" | relative_url }})
