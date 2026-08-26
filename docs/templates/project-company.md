@@ -6,7 +6,7 @@
 **상세 설계·경계:** notes에 두고 여기서는 입구·범위만.  
 **채우기 예:** `projects/dragon-is-dead.md` · `projects/blade-assault.md`
 
-공통 front matter·이미지 규칙은 [`../project-rules.md`](../project-rules.md). 톤·역할 분리는 [`../writing-guide.md`](../writing-guide.md).  
+공통 front matter·이미지 규칙은 [`../site-content-rules.md`](../site-content-rules.md). 톤·역할 분리는 [`../writing-guide.md`](../writing-guide.md).  
 개인 케이스 스터디 템플릿: [`project-personal.md`](project-personal.md).
 
 ---

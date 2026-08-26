@@ -4,9 +4,9 @@
 
 **독자가 얻는 것:** 어떤 문제를 타이틀에서 분리해 어떻게 잘랐는지.  
 **설치·API 정본:** GitHub README (있을 때). 개념·기각은 notes.  
-**채우기 예:** `projects/conditional-log.md` · `projects/tmp-font-pipeline.md` · `projects/game-data-manager.md`
+**채우기 예:** `projects/conditional-log.md` · `projects/tmp-font-pipeline.md` · `projects/save-layout.md`
 
-공통 front matter·이미지 규칙은 [`../project-rules.md`](../project-rules.md). 톤·역할 분리는 [`../writing-guide.md`](../writing-guide.md).  
+공통 front matter·이미지 규칙은 [`../site-content-rules.md`](../site-content-rules.md). 톤·역할 분리는 [`../writing-guide.md`](../writing-guide.md).  
 회사 출시 템플릿: [`project-company.md`](project-company.md).
 
 ---

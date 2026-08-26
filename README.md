@@ -10,7 +10,7 @@ Personal site: [https://monet5379.github.io](https://monet5379.github.io)
 | `career.md` | Career |
 | `projects/` | Projects |
 | `notes/` | Notes / writing |
-| `docs/` | Project & writing rules (not published) |
+| `docs/` | Internal rules & templates (not published) — see [`docs/README.md`](docs/README.md) |
 | `AGENTS.md` | Guidance for AI agents |
 
 ## Local preview
