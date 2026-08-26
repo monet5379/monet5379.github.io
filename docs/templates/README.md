@@ -16,5 +16,11 @@
 | [note-problem.md](note-problem.md) | 문제 해결 |
 | [note-series.md](note-series.md) | 깊은 이해 / 시리즈 |
 
+## 시각 자료
+
+| 파일 | 용도 |
+|------|------|
+| [diagram-prompt-request.md](diagram-prompt-request.md) | 프로젝트 관계도·개념도용 AI 영어 프롬프트 요청 |
+
 - 톤·유형 인덱스: [`../writing-guide.md`](../writing-guide.md)
 - front matter·공개·이미지: [`../site-content-rules.md`](../site-content-rules.md)
