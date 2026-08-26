@@ -27,6 +27,14 @@
 - `excerpt` = 본문 lead
 - 상단 nav·본문 h1용 카테고리 `title`은 **한글(English)** (예: `경력(Career)`)
 
+### career 미디어
+
+항목마다 `{% include career-media.html ... %}`:
+
+- `youtube`(video id)가 있으면 임베드 재생 (`start` 초 선택)
+- 없으면 `slug`의 `ss-*` 스크린샷 캐러셀
+- 둘 다 있으면면 YouTube 우선
+
 `projects/` · `notes/` 목록은 `_includes/section-index-list.html`로 자동 생성 (`index.md` 제외).
 
 ## notes
@@ -75,6 +83,7 @@ series_total: 4
 | **액션** | 이 프레임의 의도는 누가 실행하는가 | Command·게이트·Room·Wave·보스 |
 | **성장** | 이번 세션이 무엇을 들고 전투에 붙는가 | Core·Gear·Risk·Trait |
 | **엔진** | 비용을 언제·어디서 치르는가 | Conditional 로그 등 |
+| **세이브** | 진행을 디스크에 어떻게 나누·복구하는가 | Main·Side·Meta, Side vs Backup |
 | **폰트** | TMP·로컬라이즈 글리프·워밍업 | Static atlas, warmup |
 | **최적화** | 로드·렌더·GPU 비용 | Stage preload, 비주얼 |
 | **출시** | 팀·스코프로 어디까지 지켰는가 | 소유 경계 회고 |
@@ -89,6 +98,7 @@ series_total: 4
 - `title` 앞에 `{series_title} {n}/{total}`을 붙여 목록·페이지 제목에서 세트임을 보이게 합니다.
 - 날짜가 같으면 목록 정렬 tie-break로 같은 `series`끼리 `series_order` 오름차순(1→N)입니다.
 - How 세트와 Why 시리즈는 `series` 슬러그를 다르게 둡니다 (예: `combat-structure` / `combat-boundaries`).
+- **본문 내비 위치:** `**권장 읽기** —` · `**시리즈: …**` · `**구조 노트:**` 는 lead·맥락·다이어그램 **위가 아니라** 본문 **하단**(보통 `## 정리` 다음)에 둡니다. 첫 화면은 주제·도식에 쓰고, 형제 링크는 읽은 뒤에 둡니다.
 
 본문 골격: [`templates/note-problem.md`](templates/note-problem.md) · [`templates/note-series.md`](templates/note-series.md).
 
@@ -108,11 +118,25 @@ series_total: 4
 - 소문자 · kebab-case · ASCII만
 - Steam 해시·해상도 접미사(`.1920x1080` 등) 금지
 - 대표: `cover.jpg` (또는 `cover.webp`) — projects 목록 썸네일
-- 스크린샷: `ss-01.jpg`, `ss-02.jpg`, … (두 자리 번호, 표시 순서)
+- 스크린샷(실기 UI): `ss-01.jpg`, `ss-02.jpg`, … (두 자리 번호, 표시 순서)
+- 개념도(Mermaid → PNG): `ss-01-dark.png` — 개인 케이스 스터디 히어로. 작성·렌더는 sibling [`private/mermaid-kit`](../../private/mermaid-kit/), 사이트 쪽 안내는 [`templates/project-diagram.md`](templates/project-diagram.md)
+- 개념도 + 실기 캡처를 같이 두면 개념도를 `ss-01-dark.png`, 캡처를 `ss-02.jpg`… (캐러셀은 `ss-*` 이름순)
 - 설명형 이름이 필요하면 `combat-01.jpg`처럼 역할 + 번호
 - 폴더에 실제 이미지가 있으면 `.gitkeep` 제거
 - 목록 썸네일: `cover.*` 우선, 없으면 첫 `ss-*` (`section-index-list`, projects만)
 - 캐러셀: `{% include screenshot-carousel.html slug="<슬러그>" %}` — `ss-*`를 이름순으로 Steam식 미리보기
+- projects 히어로 개념도는 PNG(`ss-*-dark.png`). README도 PNG.
+- **notes 예외:** front matter `mermaid: true`인 페이지만 브라우저 Mermaid(`assets/js/mermaid-notes.js`). 본문에 ` ```mermaid ` 블록. 테마 토글과 `themechange`로 재렌더.
+- **notes 도식 캡션:** 블록 **위**에 짧은 제목(`**한 이야기**` — 보통 `≠`·경계 한 줄), **아래**에 도식이 말하는 내용 1–2문장 또는 역할 요약 콜아웃(`<div class="callout" markdown="1">` + 불릿). lead·인접 문단과 제목을 중복하지 않는다.
+- **notes 도식 위치:** lead 직후 **고정이 아니다.** 도식이 설명하는 주장·경계가 나오는 절 옆에 둔다 (표는 아래). 골격: [`templates/note-problem.md`](templates/note-problem.md) · [`templates/note-series.md`](templates/note-series.md).
+- **긴 코드 접기:** 노트 개별 글에서 8줄 이상 fenced 블록은 `assets/js/code-collapse.js`가 기본 접힘(펼치기/접기). Mermaid·짧은 스니펫은 제외.
+
+| notes 도식 둘 곳 | 맞는 경우 |
+|------------------|-----------|
+| `## 해결` 초입 | 문제 해결 노트에서 목표 경계·`≠` 구조를 그릴 때 (증상 상태가 아님) |
+| `## 맥락` / 축·용어 표 직후 | 용어를 소개한 뒤 한 장으로 고정할 때 |
+| lead 직후 | 시리즈 1편처럼 **지도가 입구**이고 라벨이 lead만으로 읽힐 때 |
+| 피함 | `## 문제`에 해결 구조도를 두기 (현재 증상으로 오해), `## 정리`·권장 읽기·시리즈 내비 옆 |
 
 ## 규칙 추가
 

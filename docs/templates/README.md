@@ -20,7 +20,7 @@
 
 | 파일 | 용도 |
 |------|------|
-| [diagram-prompt-request.md](diagram-prompt-request.md) | 프로젝트 관계도·개념도용 AI 영어 프롬프트 요청 |
+| [project-diagram.md](project-diagram.md) | 개인 프로젝트 관계도·개념도 — 사이트 게시·캐러셀 (작성 정본은 sibling mermaid-kit) |
 
 - 톤·유형 인덱스: [`../writing-guide.md`](../writing-guide.md)
 - front matter·공개·이미지: [`../site-content-rules.md`](../site-content-rules.md)

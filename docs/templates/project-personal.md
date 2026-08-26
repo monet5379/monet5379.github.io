@@ -29,7 +29,7 @@ excerpt: "본문 lead와 동일 — 문제와 분리 단위가 한 눈에"
 
 - `order`: 목록을 `order`로 정렬할 때 (작을수록 앞). `/projects/` 기본 목록은 `date` 최신순
 - `private: true`: production 목록 제외 (선택)
-- 스크린샷이 있으면 `{% include screenshot-carousel.html slug="슬러그" %}` (없으면 생략)
+- 스크린샷·개념도가 있으면 `{% include screenshot-carousel.html slug="슬러그" %}` (없으면 생략). 개념도: [`project-diagram.md`](project-diagram.md)
 
 ---
 
