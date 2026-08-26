@@ -20,4 +20,4 @@ bundle install
 bundle exec jekyll serve
 ```
 
-Open [http://localhost:4000](http://localhost:4000).
+Or run `serve.bat` — missing gems are installed, the console stays open, and [http://127.0.0.1:4000/](http://127.0.0.1:4000/) opens after a few seconds. Stop with Ctrl+C in that window.
