@@ -130,6 +130,9 @@
         <a class="post-link" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
         {% if item_vis == "private" %}<span class="post-list__private">비공개</span>{% endif %}
       </h3>
+      {% if item.subtitle %}
+      <p class="post-list__subtitle">{{ item.subtitle | escape }}</p>
+      {% endif %}
       {% if item.excerpt %}
       <p>{{ item.excerpt | strip_html | strip }}</p>
       {% endif %}

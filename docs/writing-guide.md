@@ -1,6 +1,6 @@
 # 글쓰기 가이드
 
-notes · projects **본문**의 유형·목차·톤. Jekyll front matter·공개·이미지는 [`site-content-rules.md`](site-content-rules.md). 채우기 골격은 [`templates/`](templates/).
+notes · projects · reviews **본문**의 유형·목차·톤. Jekyll front matter·공개·이미지는 [`site-content-rules.md`](site-content-rules.md). 채우기 골격은 [`templates/`](templates/).
 
 토스 [테크니컬 라이팅](https://technical-writing.dev/overview.html)의 유형·정보 구조·문장을 개인 포트폴리오에 맞게 축약했다. 토스 가이드는 **권장**이지 전부 따를 필요는 없다.
 
@@ -11,7 +11,7 @@ notes · projects **본문**의 유형·목차·톤. Jekyll front matter·공개
 | 독자 | 채용 검토자·외부 개발자 | 본인·Unity 붙이기 |
 | 톤 | 합니다체 | 해요체 |
 | 유형 | 문제 해결 / 깊은 이해 / 참조 / 시리즈 · projects | 시작하기 / 개념 / 참조 / How-to / 프로세스 |
-| 두지 않음 | DocsLite·Architecture·Locale·profile | notes·Jekyll·projects 템플릿 |
+| 두지 않음 | DocsLite·Architecture·Locale·profile | notes·reviews·Jekyll·projects 템플릿 |
 
 공유(토스 축약): 가치 먼저(lead)·한 페이지 한 주제·예측 목차·제목 부제(`—`) 금지·주어 분명·의도적 기각 유지.
 
@@ -28,8 +28,9 @@ notes · projects **본문**의 유형·목차·톤. Jekyll front matter·공개
 |------|------------------|---------------|
 | **projects/** | 무엇을 만들었는지, 내 기여, 타 프로젝트와 차이. `company`=출시·역할, `personal`=케이스 스터디 | GitHub README (있을 때) |
 | **notes/** | 왜 그렇게 설계했는지, 경계·기각·출시에서 지킨 것 | 본문 + projects·README 링크 |
+| **reviews/** | 플레이·설계 관점의 게임 감상. notes의 출시 회고와 겹치지 않게 | 본문 (출처·스크린샷) |
 
-한 주제를 projects와 notes에 나눌 때: **케이스 스터디(projects)** 와 **설계 회고(notes)** 로 역할을 겹치지 않게 둔다.
+한 주제를 projects와 notes에 나눌 때: **케이스 스터디(projects)** 와 **설계 회고(notes)** 로 역할을 겹치지 않게 둔다. 게임 감상·비평은 **reviews**에 둔다.
 
 ## 정보 구조
 

@@ -9,7 +9,7 @@ Intem Studio(`intemstudio.github.io`)와 **별개**. 스튜디오 글 전문 복
 |------|------|
 | 글쓰기(유형·목차·톤) | [`docs/writing-guide.md`](docs/writing-guide.md) |
 | FM·공개·이미지·커밋 | [`docs/site-content-rules.md`](docs/site-content-rules.md) |
-| projects · notes 채우기 | [`docs/templates/`](docs/templates/) |
+| projects · notes · reviews 채우기 | [`docs/templates/`](docs/templates/) |
 | docs 목차 | [`docs/README.md`](docs/README.md) |
 | 윤문 | [`.cursor/rules/korean-humanize.mdc`](.cursor/rules/korean-humanize.mdc) — 충돌 시 writing-guide 우선 |
 
@@ -18,13 +18,13 @@ unity-studio-kit `WritingGuide`(해요체·Unity docs)는 이 사이트에 적�
 ## Must
 
 - `date` · `excerpt` 필수 · `title` 부제(`—`) 금지 · `excerpt` = lead
-- notes `tags` 정확히 1개 · projects에 `project_kind` (`company` \| `personal`)
+- notes `tags` 정확히 1개 · projects에 `project_kind` (`company` \| `personal`) · reviews `subtitle` 선택(부제는 FM 필드)
 - 커밋 제목·본문: 한글 · 사이트 콘텐츠와 docs/설정은 커밋 분리
 - 요청 없이 커밋·push 하지 않음
 
 ## Must not
 
-- Kit 해요체·DocsLite·Locale·Architecture 정책을 notes/projects에 강제
+- Kit 해요체·DocsLite·Locale·Architecture 정책을 notes/projects/reviews에 강제
 - Intem Studio 글 전문 복제
 
 ## 구조
@@ -33,6 +33,7 @@ unity-studio-kit `WritingGuide`(해요체·Unity docs)는 이 사이트에 적�
 - `career.md` — 경력
 - `projects/` — 포트폴리오
 - `notes/` — 개인 공개 기술 글
+- `reviews/` — 게임 리뷰
 - `docs/` — 내부 규칙·참고 (Jekyll exclude, 미게시)
 
 ## 빌드

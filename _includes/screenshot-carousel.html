@@ -1,11 +1,18 @@
 {% comment %}
-  slug: assets/images/projects/<slug>/ 폴더명 (필수)
+  slug: assets/images/projects/<slug>/ 폴더명 (dir 없을 때)
+  dir: 이미지 폴더 상대 경로 (예: assets/images/reviews/hollowknight/) — 있으면 slug보다 우선
   title: alt용 제목 (기본: page.title)
   ss-*.jpg|jpeg|png|webp 를 이름순으로 표시
 {% endcomment %}
-{% assign shot_slug = include.slug %}
-{% if shot_slug and shot_slug != "" %}
-{% assign shot_dir = "assets/images/projects/" | append: shot_slug | append: "/" %}
+{% assign shot_dir = include.dir | default: "" | strip %}
+{% if shot_dir == "" and include.slug and include.slug != "" %}
+  {% assign shot_dir = "assets/images/projects/" | append: include.slug | append: "/" %}
+{% endif %}
+{% if shot_dir != "" %}
+{% assign shot_dir_last = shot_dir | slice: -1, 1 %}
+{% if shot_dir_last != "/" %}
+  {% assign shot_dir = shot_dir | append: "/" %}
+{% endif %}
 {% assign shot_title = include.title | default: page.title | default: "스크린샷" %}
 {% assign shots = site.static_files
   | where_exp: "f", "f.path contains shot_dir"

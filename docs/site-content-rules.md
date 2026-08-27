@@ -20,7 +20,7 @@
 
 ## 공통 front matter
 
-`career` · `projects` · `notes` 페이지:
+`career` · `projects` · `notes` · `reviews` 페이지:
 
 - `date`, `excerpt` 필수
 - `title` 짧게 · 부제(`—`) 금지
@@ -35,7 +35,7 @@
 - 없으면 `slug`의 `ss-*` 스크린샷 캐러셀
 - 둘 다 있으면면 YouTube 우선
 
-`projects/` · `notes/` 목록은 `_includes/section-index-list.html`로 자동 생성 (`index.md` 제외).
+`projects/` · `notes/` · `reviews/` 목록은 `_includes/section-index-list.html`로 자동 생성 (`index.md` 제외).
 
 ## notes
 
@@ -101,6 +101,26 @@ series_total: 4
 - **본문 내비 위치:** `**권장 읽기** —` · `**시리즈: …**` · `**구조 노트:**` 는 lead·맥락·다이어그램 **위가 아니라** 본문 **하단**(보통 `## 정리` 다음)에 둡니다. 첫 화면은 주제·도식에 쓰고, 형제 링크는 읽은 뒤에 둡니다.
 
 본문 골격: [`templates/note-problem.md`](templates/note-problem.md) · [`templates/note-series.md`](templates/note-series.md).
+
+## reviews
+
+### Front matter
+
+```yaml
+---
+layout: page
+title: 짧은 훅·제목
+subtitle: 할로우 나이트 리뷰
+permalink: /reviews/슬러그/
+date: YYYY-MM-DD
+excerpt: "본문 lead와 동일"
+---
+```
+
+- `reviews/<슬러그>.md`를 추가하면 `reviews/index.md` 목록에 자동으로 포함됩니다 (`date` 최신순).
+- `subtitle`(선택): 본문 h1 아래·목록 제목 아래에 표시. `title`에 `—` 부제를 붙이지 말고 이 필드를 씁니다.
+- notes `tags`·projects `project_kind`와 별개. 분류 필터는 두지 않습니다.
+- 이미지(선택): `assets/images/reviews/<슬러그>/` — `cover.*` · `ss-*` 규칙은 projects와 동일 취지. 본문 캐러셀: `{% include screenshot-carousel.html dir="assets/images/reviews/<슬러그>/" title="…" %}`
 
 ## projects
 
