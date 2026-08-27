@@ -7,6 +7,7 @@ Intem Studio(`intemstudio.github.io`)와 **별개**. 스튜디오 글 전문 복
 
 | 주제 | 문서 |
 |------|------|
+| UI/UX (SCSS·layout) | [`.cursor/skills/monet5379-site-ui/SKILL.md`](.cursor/skills/monet5379-site-ui/SKILL.md) — 글/FM과 분리 |
 | 글쓰기(유형·목차·톤) | [`docs/writing-guide.md`](docs/writing-guide.md) |
 | FM·공개·이미지·커밋 | [`docs/site-content-rules.md`](docs/site-content-rules.md) |
 | projects · notes · reviews 채우기 | [`docs/templates/`](docs/templates/) |

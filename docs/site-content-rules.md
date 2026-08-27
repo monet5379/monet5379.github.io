@@ -143,7 +143,7 @@ excerpt: "본문 lead와 동일"
 - 개념도 + 실기 캡처를 같이 두면 개념도를 `ss-01-dark.png`, 캡처를 `ss-02.jpg`… (캐러셀은 `ss-*` 이름순)
 - 설명형 이름이 필요하면 `combat-01.jpg`처럼 역할 + 번호
 - 폴더에 실제 이미지가 있으면 `.gitkeep` 제거
-- 목록 썸네일: `cover.*` 우선, 없으면 첫 `ss-*` (`section-index-list`, projects만)
+- 목록 썸네일: `cover.*` 우선, 없으면 첫 `ss-*` (`section-index-list`, projects · reviews)
 - 캐러셀: `{% include screenshot-carousel.html slug="<슬러그>" %}` — `ss-*`를 이름순으로 Steam식 미리보기
 - projects 히어로 개념도는 PNG(`ss-*-dark.png`). README도 PNG.
 - **notes 예외:** front matter `mermaid: true`인 페이지만 브라우저 Mermaid(`assets/js/mermaid-notes.js`). 본문에 ` ```mermaid ` 블록. 테마 토글과 `themechange`로 재렌더.
