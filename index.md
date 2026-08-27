@@ -11,7 +11,7 @@ title: 홈(Home)
 
 소규모 팀에서는 기능을 끝까지 닫는 일과, 출시 후에도 세이브·성능·플랫폼 이슈가 다시 안 돌아오게 가드를 두는 일에 신경을 씁니다. 같은 이유로 세이브 레이아웃, Conditional 로그, TMP 폰트 파이프라인처럼 출시에서 겪은 문제를 패키지로 정리해 두고, 설계 회고는 노트로 남깁니다.
 
-이 사이트에는 채용·협업을 위한 [경력]({{ "/career/" | relative_url }}), 참여·개인 [포트폴리오]({{ "/projects/" | relative_url }}), [노트]({{ "/notes/" | relative_url }})를 모아 두었습니다. 궁금한 점이 있으면 [메일](mailto:{{ site.email }})로 편하게 연락해 주세요.
+이 사이트에는 채용·협업을 위한 [경력]({{ "/career/" | relative_url }}), 참여·개인 [포트폴리오]({{ "/projects/" | relative_url }}), [노트]({{ "/notes/" | relative_url }}), [리뷰]({{ "/reviews/" | relative_url }})를 모아 두었습니다. 궁금한 점이 있으면 [메일](mailto:{{ site.email }})로 편하게 연락해 주세요.
 
 ---
 ## 바로가기
@@ -19,3 +19,4 @@ title: 홈(Home)
 - [경력]({{ "/career/" | relative_url }}) — 역할·기간·성과를 채용 검토용으로 짧게 정리해 둡니다.
 - [포트폴리오]({{ "/projects/" | relative_url }}) — 참여 프로젝트와 내 기여를 모아 둡니다.
 - [노트]({{ "/notes/" | relative_url }}) — 회고·짧은 팁 등 공개 기술 글을 모아 둡니다.
+- [리뷰]({{ "/reviews/" | relative_url }}) — 플레이·설계 관점의 게임 리뷰를 모아 둡니다.
