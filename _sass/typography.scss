@@ -46,6 +46,30 @@
     margin-top: 0;
   }
 
+  // Block images (kramdown wraps lone img in <p>)
+  > p:has(> img:only-child) {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  // Lead image under page title
+  > p:first-child:has(> img:only-child) {
+    margin-bottom: 1.5em;
+  }
+
+  // Section heading → image: keep tight to h2, space before following copy
+  > h2 + p:has(> img:only-child),
+  > h3 + p:has(> img:only-child) {
+    margin-top: 0.25em;
+    margin-bottom: 1.25em;
+  }
+
   // Quote callouts (minima size kept; rhythm + weight)
   blockquote {
     margin: 1.5em 0;

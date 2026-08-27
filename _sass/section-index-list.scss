@@ -1,5 +1,6 @@
 .post-list--projects,
-.post-list--notes {
+.post-list--notes,
+.post-list--reviews {
   > li {
     margin-bottom: 1.25rem;
     padding: 1rem 1.15rem;
@@ -11,8 +12,39 @@
     }
   }
 
+  .post-list__body .post-meta {
+    display: block;
+    margin: 0 0 0.35em;
+  }
+
   .post-list__body h3 {
     margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .post-list__body .post-link {
+    color: var(--text-color);
+    text-decoration: none;
+
+    &:visited {
+      color: var(--text-color);
+    }
+
+    &:hover {
+      color: var(--text-color);
+      text-decoration: underline;
+    }
+  }
+
+  .post-list__subtitle {
+    margin-top: 0.35em;
+    margin-bottom: 0.85em;
+    color: var(--grey-color-dark);
+  }
+
+  // title → excerpt (no subtitle)
+  .post-list__body h3 + p {
+    margin-top: 0.85em;
   }
 
   .post-list__body p {
@@ -71,12 +103,25 @@
   }
 }
 
+// Sidebar width + gap pulled into the left page margin so `__main`
+// keeps full measure; needs ~ (sidebar+gap) outside the wrapper.
+$notes-sidebar-width: 9.5rem;
+$notes-sidebar-gap: 1.75rem;
+$notes-browse-outside: 1100px;
+
 .notes-browse {
   display: grid;
-  grid-template-columns: 9.5rem minmax(0, 1fr);
-  gap: 1.25rem 1.75rem;
+  grid-template-columns: $notes-sidebar-width minmax(0, 1fr);
+  gap: 1.25rem $notes-sidebar-gap;
   align-items: start;
   margin: 0 0 0.5rem;
+
+  // Wide: classification sits in the left gutter; list uses full content width
+  @media screen and (min-width: $notes-browse-outside) {
+    width: calc(100% + #{$notes-sidebar-width} + #{$notes-sidebar-gap});
+    max-width: none;
+    margin-left: calc(-1 * (#{$notes-sidebar-width} + #{$notes-sidebar-gap}));
+  }
 
   @include media-query($on-palm) {
     grid-template-columns: 1fr;
@@ -95,6 +140,10 @@
 
 .notes-browse__main {
   min-width: 0;
+
+  > h2:first-child {
+    margin-top: 0;
+  }
 }
 
 .list-filters {

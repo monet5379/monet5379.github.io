@@ -27,7 +27,6 @@ html[data-theme="light"] {
   --text-color: var(--color-base-100);
   --background-color: var(--color-base-00);
   --brand-color: var(--color-blue);
-  --brand-color-visited: color-mix(in srgb, var(--color-blue) 72%, var(--color-base-100));
   --grey-color: var(--color-base-60);
   --grey-color-light: var(--color-base-30);
   --grey-color-dark: var(--color-base-70);
@@ -65,7 +64,6 @@ html[data-theme="dark"] {
   --text-color: var(--color-base-100);
   --background-color: var(--color-base-00);
   --brand-color: var(--color-blue);
-  --brand-color-visited: color-mix(in srgb, var(--color-blue) 72%, var(--color-base-100));
   --grey-color: var(--color-base-60);
   --grey-color-light: var(--color-base-30);
   --grey-color-dark: var(--color-base-70);
@@ -102,7 +100,7 @@ a {
   color: var(--brand-color);
 
   &:visited {
-    color: var(--brand-color-visited);
+    color: var(--brand-color);
   }
 
   &:hover {
@@ -194,6 +192,16 @@ table {
 .site-title,
 .site-title:visited {
   color: var(--grey-color-dark);
+}
+
+.site-header {
+  .site-title:focus-visible,
+  .site-nav .page-link:focus-visible,
+  .site-nav label[for="nav-trigger"]:focus-visible,
+  .theme-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--brand-color);
+  }
 }
 
 .site-nav {

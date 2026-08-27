@@ -139,3 +139,14 @@
     width: 4.5rem;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .shot-carousel__thumbs {
+    scroll-behavior: auto;
+  }
+
+  .shot-carousel__thumb,
+  .shot-carousel__nav {
+    transition: none;
+  }
+}

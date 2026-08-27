@@ -30,7 +30,7 @@
 {% endif %}
 
 {% assign show_thumbs = false %}
-{% if section_dir == "projects/" %}
+{% if section_dir == "projects/" or section_dir == "reviews/" %}
   {% assign show_thumbs = true %}
 {% endif %}
 
@@ -66,11 +66,13 @@
     </nav>
   </aside>
   <div class="notes-browse__main">
+    <h2>글 목록</h2>
 {% endif %}
+
 
 {% unless render_section_list == false %}
 {% if section_articles.size > 0 %}
-<ul class="post-list{% if section_dir == "projects/" %} post-list--projects{% endif %}{% if section_dir == "notes/" %} post-list--notes{% endif %}{% if show_thumbs %} post-list--thumbs{% endif %}"{% if show_list_controls %} data-tag-filter-list{% endif %}{% if notes_page_size and notes_page_size > 0 %} data-page-size="{{ notes_page_size }}"{% endif %}>
+<ul class="post-list{% if section_dir == "projects/" %} post-list--projects{% endif %}{% if section_dir == "notes/" %} post-list--notes{% endif %}{% if section_dir == "reviews/" %} post-list--reviews{% endif %}{% if show_thumbs %} post-list--thumbs{% endif %}"{% if show_list_controls %} data-tag-filter-list{% endif %}{% if notes_page_size and notes_page_size > 0 %} data-page-size="{{ notes_page_size }}"{% endif %}>
   {% for item in section_articles %}
   {% assign item_vis = "public" %}
   {% if section_dir == "notes/" and site.notes_production_visible_tags.size > 0 %}
@@ -86,7 +88,7 @@
   {% assign thumb = false %}
   {% if show_thumbs %}
     {% assign item_slug = item.path | split: "/" | last | remove: ".md" %}
-    {% assign thumb_dir = "assets/images/projects/" | append: item_slug | append: "/" %}
+    {% assign thumb_dir = "assets/images/" | append: section_dir | append: item_slug | append: "/" %}
     {% assign covers = site.static_files
       | where_exp: "f", "f.path contains thumb_dir"
       | where_exp: "f", "f.name contains 'cover.'"

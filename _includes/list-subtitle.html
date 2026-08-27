@@ -1,0 +1,28 @@
+{% comment %}
+  목록 카드용 subtitle. 괄호 안에 라틴 문자가 있으면 그 블록만 제거한다.
+  글 상세(page.subtitle)는 FM 그대로 쓴다.
+  Param: text (required)
+{% endcomment %}
+{% assign out = include.text %}
+{% for _pass in (1..8) %}
+  {% unless out contains "(" and out contains ")" %}{% break %}{% endunless %}
+  {% assign head = out | split: "(" | first | strip %}
+  {% assign after_open = out | split: "(" | last %}
+  {% assign inner = after_open | split: ")" | first %}
+  {% assign after_close = after_open | split: ")" | last | strip %}
+  {% assign stripped = inner %}
+  {% assign latin_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" | split: "" %}
+  {% for letter in latin_letters %}
+    {% assign stripped = stripped | replace: letter, "" %}
+  {% endfor %}
+  {% if stripped != inner %}
+    {% if after_close != "" %}
+      {% assign out = head | append: " " | append: after_close %}
+    {% else %}
+      {% assign out = head %}
+    {% endif %}
+  {% else %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+{{ out | escape }}
