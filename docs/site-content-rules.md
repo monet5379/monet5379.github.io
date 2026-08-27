@@ -12,6 +12,7 @@
 
 - NDA·비공개 수치·내부명 금지
 - 회사·프로젝트 실명은 본인이 허용한 범위만 사용합니다
+- Steam **판매·매출 추정**은 공개 페이지에 두지 않음. 정본은 sibling `career-private/steam-sales-estimates.md`. 공개 성과는 발매 마일스톤·플랫폼·수상·역할·스토어 링크로
 
 ## Studio
 
@@ -34,6 +35,8 @@
 - `youtube`(video id)가 있으면 임베드 재생 (`start` 초 선택)
 - 없으면 `slug`의 `ss-*` 스크린샷 캐러셀
 - 둘 다 있으면면 YouTube 우선
+
+재직 기간 표시는 **월까지** (`YYYY.MM – YYYY.MM`). 일자 정본은 sibling `career-private/employment-dates.md`. 출시·발매일은 제품 일정이라 일자 유지 가능.
 
 `projects/` · `notes/` · `reviews/` 목록은 `_includes/section-index-list.html`로 자동 생성 (`index.md` 제외).
 

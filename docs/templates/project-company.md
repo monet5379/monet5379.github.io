@@ -41,7 +41,7 @@ lead (excerpt와 동일)
 
 ## 개요
 
-- 기간: YYYY.MM.DD – YYYY.MM.DD (소속)
+- 기간: YYYY.MM – YYYY.MM (소속). 공개 사이트는 월까지. 일자 정본은 sibling `career-private/employment-dates.md`
 - 플랫폼:
 - 팀 규모:
 - 내 역할:
