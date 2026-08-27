@@ -20,7 +20,7 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 <div class="career-entry" markdown="1">
 
 ### 팀써니트 — 프로그래밍 / 사원
-2022.05.06 – 2026.06.13 (4년 1개월)
+2022.05 – 2026.06 (4년 1개월)
 
 **드래곤 이즈 데드 (Dragon is Dead)** — Steam
 
@@ -29,7 +29,7 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 - 역할: 프로그래머 1~2명 규모 팀에서 개발 리드
 - 담당: 전투·성장, 적 AI·스테이지, 카메라·연출, UI·설정, 세이브·데이터, 로컬라이즈, Steamworks(업적·리더보드·Deck), UGS Analytics
 - 운영: 세이브/초기화 레이스, 밸런스 데이터 분리, 성능 측정 플레이북, Steam·Deck 연동 가드로 라이브 이슈 축 완화
-- 성과: 2024.06.07 얼리 액세스 발매, 2025.06.06 정식 출시 · Steam 누적 판매 추정 약 2만~2.5만 장
+- 성과: 2024.06.07 얼리 액세스 발매, 2025.06.06 정식 출시 · Steam · Deck 대응
 - 스택: Unity, C#, Cinemachine, Timeline, Steamworks, UGS Analytics
 - 상세: [Projects — Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
 - 링크: [Steam](https://store.steampowered.com/app/2803280/Dragon_Is_Dead/)
@@ -40,14 +40,14 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 <div class="career-entry" markdown="1">
 
 ### 팀써니트 — 프로그래밍 / 사원
-2020.02.10 – 2022.01.22 (1년 11개월)
+2020.02 – 2022.01 (1년 11개월)
 
 **블레이드 어썰트 (Blade Assault)** — Steam
 
 {% include career-media.html slug="blade-assault" youtube="uV-fWC5zbfw" title="Blade Assault" %}
 
 - 역할: 기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍 담당
-- 성과: 2021.06.06 얼리 액세스 발매, 2022.01.18 정식 출시 · Steam 누적 판매 추정 약 6만~10만 장
+- 성과: 경기게임오디션 3위, BIC 참가, 2021.06.06 얼리 액세스 발매, 2022.01.18 정식 출시
 - 스택: Unity, C#
 - 상세: [Projects — Blade Assault]({{ "/projects/blade-assault/" | relative_url }})
 - 링크: [Steam](https://store.steampowered.com/app/1367300/Blade_Assault/)
@@ -58,7 +58,7 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 <div class="career-entry" markdown="1">
 
 ### 누라임게임즈 — 프로그래밍 / 사원
-2019.08.01 – 2020.02.10 (0년 6개월)
+2019.08 – 2020.02 (0년 6개월)
 
 **아스트로 펭귄** — 유니티 3D 런게임 (모바일)
 
@@ -73,7 +73,7 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 <div class="career-entry" markdown="1">
 
 ### PMStudio — 프로그래밍 / 사원
-2017.10.26 – 2019.03.12 (1년 4개월)
+2017.10 – 2019.03 (1년 4개월)
 
 **프로젝트 X (가제)** — 스마일게이트 크로스파이어 IP, 브로포스 방식 2D 플랫폼 실시간 액션
 
@@ -90,7 +90,7 @@ excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니�
 <div class="career-entry" markdown="1">
 
 ### zoniworks — 프로그래밍 / 사원
-2016.05.02 – 2017.11.01 (1년 5개월)
+2016.05 – 2017.11 (1년 5개월)
 
 **라인퍼즐프랜즈** — UI 프로그래머 (2016.05 – 2017.05)
 
