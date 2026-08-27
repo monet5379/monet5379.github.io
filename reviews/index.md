@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 리뷰(Reviews)
+title: 리뷰
 permalink: /reviews/
 date: 2026-08-27
 excerpt: "플레이·설계 관점에서 남긴 게임 리뷰를 모읍니다."

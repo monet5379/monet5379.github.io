@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Save Layout
+title: 세이브 레이아웃(Save Layout)
 permalink: /projects/save-layout/
 date: 2026-08-26
 order: 30

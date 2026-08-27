@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 홈(Home)
+title: 홈
 ---
 
 ## 나에 대하여(About Me)

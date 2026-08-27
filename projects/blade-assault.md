@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Blade Assault
+title: 블레이드 어썰트(Blade Assault)
 permalink: /projects/blade-assault/
 date: 2022-01-18
 order: 20

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Conditional Log
+title: 조건부 로그(Conditional Log)
 permalink: /projects/conditional-log/
 date: 2026-08-21
 order: 40

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Studio Kit
+title: 스튜디오 키트(Studio Kit)
 permalink: /projects/studio-kit/
 date: 2026-08-26
 order: 20

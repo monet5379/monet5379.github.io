@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 경력(Career)
+title: 경력
 permalink: /career/
 date: 2026-07-29
 excerpt: "역할·기간·성과를 채용 검토용으로 짧게 정리합니다. 총 경력 9년 4개월."

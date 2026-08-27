@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Dragon is Dead
+title: 드래곤 이즈 데드(Dragon is Dead)
 permalink: /projects/dragon-is-dead/
 date: 2025-06-06
 order: 10

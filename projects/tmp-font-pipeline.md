@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TMP Font Pipeline
+title: TMP 폰트 파이프라인(TMP Font Pipeline)
 permalink: /projects/tmp-font-pipeline/
 date: 2026-08-25
 order: 50
