@@ -19,8 +19,8 @@ unity-studio-kit `WritingGuide`(해요체·Unity docs)는 이 사이트에 적�
 
 ## Must
 
-- `date` · `excerpt` 필수 · `title` 부제(`—`) 금지 · `excerpt` = lead
-- notes `tags` 정확히 1개 · `project`는 `projects/` 슬러그 0개 또는 1개 · projects에 `project_kind` (`company` \| `personal`) · reviews `subtitle` 선택(부제는 FM 필드)
+- `date` · `excerpt` 필수 · `title` 부제(`—`) 금지 · notes 시리즈는 `title`에 `{series_title} n/total` 접두 금지 · `excerpt` = lead
+- notes `tags` 정확히 1개 · `project`는 `projects/` 슬러그 0개 또는 1개(`있으면` h1 아래 `프로젝트 : {한글 제목}` 링크·underline) · 시리즈는 킥커·h1 아래 `시리즈 : {제목} n/total` (`site-content-rules` 「시리즈」) · projects에 `project_kind` (`company` \| `personal`) · reviews `subtitle` 선택(부제는 FM 필드)
 - 커밋 제목·본문: 한글 · 사이트 콘텐츠와 docs/설정은 커밋 분리
 - 요청 없이 커밋·push 하지 않음
 

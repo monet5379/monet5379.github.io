@@ -24,7 +24,7 @@
 `projects` · `notes` · `reviews` 페이지(및 홈의 경력 블록):
 
 - `date`, `excerpt` 필수 (`projects` · `notes` · `reviews`)
-- `title` 짧게 · 부제(`—`) 금지
+- `title` 짧게 · 부제(`—`) 금지 · notes 시리즈 접두(`{series_title} n/total`) 금지
 - `excerpt` = 본문 lead
 - 상단 nav·본문 h1용 카테고리 `title`은 **한글** (예: `프로젝트`). 경력 본문은 홈(`index.md`)에 두고, `/career/`는 홈 `#경력` 리다이렉트만 유지(nav 미포함)
 
@@ -59,7 +59,7 @@ project: dragon-is-dead
 시리즈·구조 세트일 때 (선택):
 
 ```yaml
-title: 전투 경계 1/5 네 층으로 나눈 이유
+title: 네 층으로 나눈 이유
 project: dragon-is-dead
 series: combat-boundaries
 series_title: 전투 경계
@@ -68,7 +68,7 @@ series_total: 5
 ```
 
 ```yaml
-title: 전투 구조 1/4 Hitmark 타격 정의
+title: Hitmark 타격 정의
 project: dragon-is-dead
 series: combat-structure
 series_title: 전투 구조
@@ -97,7 +97,7 @@ series_total: 4
 
 - 애매하면 **시리즈 소속**을 따릅니다. 시리즈를 분류 축으로 쪼개지 않습니다.
 - 필터 목록은 `notes/index.md`의 `filter_categories`에서 관리합니다. 목록 UI는 **왼쪽 사이드바**(분류 · 프로젝트). 분류는 허용 목록 순서이되 **그 태그를 단 노트가 있을 때만** 버튼을 냅니다. 프로젝트 필터는 그룹 제목 없이, **노트에 `project:`가 있는** `projects/` 페이지만 회사 `order` → 개인 `order`로 나열합니다. 분류와 프로젝트는 **AND**입니다. 페이지당 글 수는 `notes_page_size`(기본 5)이며 `<< < 1 2 … > >>` 페이지네이션을 씁니다.
-- 노트 본문 하단 **이전 글 / 다음 글**은 같은 `tags` 안에서, 목록과 같은 정렬(date 최신순 · `series`·`series_order` tie-break)입니다. 이전 = 목록에서 위, 다음 = 아래. 시리즈 본문 내비(`**시리즈: …**`)와 별개입니다. `project`와 무관합니다.
+- 노트 본문 하단 **이전 글 / 다음 글**은 **공개 노트 전체**에서 `/notes/` 기본 목록과 같은 정렬(date 최신순 · `series`·`series_order` tie-break)입니다. 이전 = 목록에서 위, 다음 = 아래. 라벨 분류는 **상대 글**의 `tags`. 시리즈 형제는 `series_nav`(`note-series-nav`)와 별개입니다. `/notes/` 분류·프로젝트 필터와 무관합니다.
 
 ### 주 프로젝트 (`project`)
 
@@ -105,8 +105,8 @@ series_total: 4
 
 고르는 질문: **이 글이 증명하는 페이지가 어디인가.** 본문에서 다른 타이틀·OSS를 링크하는 것은 그대로입니다.
 
-- **있으면:** 그 프로젝트 페이지 **관련 노트**와 `/notes/` 프로젝트 필터에 포함합니다. 필터에서 해당 버튼을 고르면 이 글이 남습니다.
-- **없으면:** 분류만 있는 글입니다. 여러 타이틀을 동등하게 다루는 회고 등. 프로젝트 필터·프로젝트 페이지 자동 목록에는 넣지 않습니다. 타이틀 페이지에서는 본문 링크로 안내합니다.
+- **있으면:** 그 프로젝트 페이지 **관련 노트**와 `/notes/` 프로젝트 필터에 포함합니다. 필터에서 해당 버튼을 고르면 이 글이 남습니다. 노트 **h1 아래** 표시는 아래 「제목 아래 프로젝트 링크」.
+- **없으면:** 분류만 있는 글입니다. 여러 타이틀을 동등하게 다루는 회고 등. 프로젝트 필터·프로젝트 페이지 자동 목록에는 넣지 않습니다. 제목 아래 프로젝트 줄도 두지 않습니다. 타이틀 페이지에서는 본문 링크로 안내합니다.
 
 시리즈는 가능하면 같은 `project`를 씁니다. **세이브 레이아웃**은 예외입니다. 1편은 출시 세이브(`dragon-is-dead`), 2·3편은 레이아웃 계약(`save-layout`).
 
@@ -121,13 +121,41 @@ series_total: 4
 
 공개·비공개는 `tags`만 봅니다. `project`는 공개 축이 아닙니다.
 
+#### 제목 아래 프로젝트 링크
+
+`project`가 있으면 노트 h1 아래에 `프로젝트 : 드래곤 이즈 데드`처럼 표시합니다. `프로젝트 :` 는 라벨, 제목만 링크입니다.
+
+- 라벨 `프로젝트 :` 는 텍스트, 제목만 `projects/<슬러그>/` 링크
+- 제목은 `projects/<슬러그>.md`의 `title`(한글). `_includes/list-subtitle.html`로 라틴 병기 `(English)`가 남아 있으면 제거
+- 링크는 본문 인라인과 같이 **항상 underline** (`.post-project a`)
+- `/notes/` 목록 킥커는 제목만 링크하고 `프로젝트 :` 접두는 두지 않음
+- 구현: `_layouts/page.html` · `_includes/note-project-link.html` · `_includes/section-index-list.html`(프로젝트 목록 h3)
+
 ### 시리즈
 
 - `series`(슬러그)·`series_title`·`series_order`·`series_total`을 넣습니다.
-- `title` 앞에 `{series_title} {n}/{total}`을 붙여 목록·페이지 제목에서 세트임을 보이게 합니다.
+- `title`은 이 편의 **무엇을/왜**만. `{series_title} {n}/{total}` 접두를 붙이지 않습니다. reviews `subtitle`도 쓰지 않습니다.
+- 세트임은 FM으로 두고, 목록·페이지에 킥커로 표시합니다.
 - 날짜가 같으면 목록 정렬 tie-break로 같은 `series`끼리 `series_order` 오름차순(1→N)입니다.
 - How 세트와 Why 시리즈는 `series` 슬러그를 다르게 둡니다 (예: `combat-structure` / `combat-boundaries`).
-- **본문 내비 위치:** `**권장 읽기** —` · `**시리즈: …**` · `**구조 노트:**` 는 lead·맥락·다이어그램 **위가 아니라** 본문 **하단**(보통 `## 정리` 다음)에 둡니다. 첫 화면은 주제·도식에 쓰고, 형제 링크는 읽은 뒤에 둡니다.
+- 시리즈 노트는 `series_nav: true`를 둡니다.
+- **본문 내비 위치:** `**구조 노트:**`(해당 시, 시리즈 밖 How 세트) · 수동 `**시리즈:**`·`**구조:**` 줄은 `series_nav`로 대체. lead·맥락·다이어그램 **위가 아니라** 본문 **하단**(보통 `## 정리` 다음)에 두던 **권장 읽기**는 `series_nav`·이전/다음에 맡기고 **두지 않습니다**. 첫 화면은 주제·도식에 쓰고, 형제·발행 순은 하단 UI에 둡니다.
+
+#### 시리즈 킥커
+
+`series`가 있으면 `{series_title} {n}/{total}`을 표시합니다 (예: `세이브 레이아웃 1/3`).
+
+- **노트 h1 아래:** `시리즈 : 세이브 레이아웃 1/3`. `시리즈 :` 는 라벨, 나머지 텍스트. 링크 없음(형제 목록은 `series_nav`). `project`가 있으면 **시리즈 다음**에 `프로젝트 : …`.
+- **`/notes/` 목록 킥커:** `세이브 레이아웃 1/3`만. `시리즈 :` 접두는 두지 않음. 순서: 분류 → 시리즈 → 프로젝트 → 날짜.
+- 구현: `_layouts/page.html` · `_includes/section-index-list.html` (프로젝트 킥커와 같은 자리)
+
+#### 시리즈 목록 (자동)
+
+`series_nav: true`이면 본문 **아래**·이전/다음 **위**에 같은 `series` 형제 목록을 냅니다 (`_includes/note-series-nav.html`). 각 항목: `series_order` · `title` · `excerpt` · 현재 편 강조. **권장 읽기**·수동 `**시리즈:**` 줄은 두지 않습니다.
+
+#### `## 이 글에서 다루지 않는 것` (시리즈)
+
+`series_nav: true`이면 **같은 `series` 형제**를 표에 넣지 않습니다. 편 분할은 lead·`series_nav`가 담당합니다. 표에는 **시리즈 밖**만 — 다른 분류·전투 층·UI·Architecture·NDA·후속 과제·아직 없는 노트 등.
 
 본문 골격: [`templates/note-problem.md`](templates/note-problem.md) · [`templates/note-series.md`](templates/note-series.md).
 
@@ -171,6 +199,7 @@ excerpt: "본문 lead와 동일"
 
 ### Front matter
 
+- `title`: **한글** 짧은 이름. 영문 공식명 `(English)` 병기는 쓰지 않는다. Steam 등 외부 링크·본문 첫 언급에서 확인 가능
 - `project_kind`: `company`(회사 소속 출시) | `personal`(개인 OSS·케이스 스터디). `/projects/` 목록을 두 섹션으로 나눕니다. 본문 골격: [`templates/project-company.md`](templates/project-company.md) · [`templates/project-personal.md`](templates/project-personal.md)
 - `private`: `true`면 production `/projects/` 목록에서 제외. 로컬 serve는 footer **비공개** 토글(기본 숨김, `localStorage`). permalink는 항상 빌드.
 - `order`: 목록을 `order`로 정렬할 때 사용 (작을수록 앞). `/projects/` 회사·개인 섹션은 `date` 최신순

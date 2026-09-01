@@ -41,7 +41,7 @@ notes · projects · reviews **본문**의 유형·목차·톤. Jekyll front mat
 - **한 페이지 한 주제** — notes는 `tags` 1개, `project`는 0개 또는 1개([`site-content-rules.md`](site-content-rules.md)). 시리즈는 Why(경계) / How(구조)처럼 **목적이 다른** 세트로만 묶는다.
 - **예측 가능한 목차** — 아래 [유형별 채우기 템플릿](#유형별-채우기-템플릿)을 기본으로, 필요한 섹션만 추가·생략.
 
-제목: [효과적인 제목](https://technical-writing.dev/information-architecture/effective-titles.html) — **무엇을 / 왜**가 드러나게. `title`에 부제(`—`)는 쓰지 않는다.
+제목: [효과적인 제목](https://technical-writing.dev/information-architecture/effective-titles.html) — **무엇을 / 왜**가 드러나게. `title`에 부제(`—`)와 시리즈 접두(`세이브 레이아웃 1/3`)는 쓰지 않는다. 세트 표시는 [`site-content-rules.md`](site-content-rules.md) 「시리즈」.
 
 ## 문서 유형
 
@@ -84,7 +84,10 @@ humanize(im-not-ai)는 **AI 티·번역투 제거**용이다. **겹치면 토스
 
 시리즈 1편은 **지도** 역할. Why / How는 `series` 슬러그를 다르게 둔다.
 
-**권장 읽기 · 시리즈 내비**는 lead·맥락 위가 아니라 본문 **하단**(`## 정리` 다음).  
+`project`가 있으면 제목 아래에 `프로젝트 : {한글 짧은 제목}` 링크가 붙습니다. 표시·underline은 [`site-content-rules.md`](site-content-rules.md) 「주 프로젝트」.  
+`series`가 있으면 제목 아래에 `시리즈 : {series_title} {n}/{total}`이 붙습니다. 표시는 [`site-content-rules.md`](site-content-rules.md) 「시리즈」.
+
+`series_nav: true`이면 `## 정리` 다음 **권장 읽기·수동 시리즈·구조 줄 없이** — 시리즈 목록(`note-series-nav`) · 발행 순 이전/다음(`notes-adjacent`)이 layout에서 이어집니다. **`## 이 글에서 다루지 않는 것`**에 같은 `series` 형제 링크는 두지 않습니다 (시리즈 밖 경계만).  
 **Mermaid**는 lead 직후 고정이 아니라, 설명하는 절 옆 ([`site-content-rules.md`](site-content-rules.md) 「notes 도식 둘 곳」 · [`templates/mermaid-diagram.md`](templates/mermaid-diagram.md)).
 
 ### projects

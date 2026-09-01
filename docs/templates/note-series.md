@@ -26,14 +26,15 @@ project: dragon-is-dead
 ---
 ```
 
-`project`는 선택. 여러 타이틀을 동등하게 다루면 생략 ([`site-content-rules.md`](../site-content-rules.md)).
+`project`는 선택. 있으면 제목 아래에 `프로젝트 : {한글 짧은 제목}` 링크가 자동으로 붙습니다. 여러 타이틀을 동등하게 다루면 생략 ([`site-content-rules.md`](../site-content-rules.md) 「주 프로젝트」).  
+`series`가 있으면 제목 아래에 `시리즈 : {series_title} {n}/{total}`이 붙습니다 ([`site-content-rules.md`](../site-content-rules.md) 「시리즈」).
 
 시리즈·구조 세트:
 
 ```yaml
 ---
 layout: page
-title: 전투 경계 1/5 네 층으로 나눈 이유
+title: 네 층으로 나눈 이유
 permalink: /notes/슬러그/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일"
@@ -43,10 +44,11 @@ series: combat-boundaries
 series_title: 전투 경계
 series_order: 1
 series_total: 5
+series_nav: true
 ---
 ```
 
-- `title` 앞에 `{series_title} {n}/{total}`
+- `title`은 이 편만. `{series_title} {n}/{total}`은 FM·킥커 · `series_nav: true`로 하단 목록
 - Why / How는 `series` 슬러그를 다르게 (예: `combat-boundaries` / `combat-structure`)
 
 ---
@@ -73,11 +75,17 @@ lead (excerpt와 동일)
 
 (해당 시)
 
+## 이 글에서 다루지 않는 것
+
+(선택) `series_nav: true`이면 **같은 series 형제 링크 없음** — 시리즈 밖·범위 밖·후속만.
+
+| 주제 | 위치 |
+|------|------|
+| … | 전투 층 / Architecture / 범위 밖 / 후속 과제 |
+
 ## 정리
 
 한 줄.
 
-**권장 읽기** — … → … (형제·트랙 순서. lead·맥락 위에 두지 않음)
-
-**시리즈: {제목} (N/M)** — [1](…) · … · **N**   ← `series`가 있을 때. 정리·권장 읽기 **아래**
+<!-- series_nav: true — 권장 읽기·수동 시리즈 줄 없음. note-series-nav · notes-adjacent -->
 ```

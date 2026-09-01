@@ -24,7 +24,7 @@ project: dragon-is-dead
 ---
 ```
 
-`tags`는 분류 1개, `project`는 `projects/` 슬러그 0개 또는 1개 ([`site-content-rules.md`](../site-content-rules.md)).
+`tags`는 분류 1개, `project`는 `projects/` 슬러그 0개 또는 1개. `project`가 있으면 제목 아래에 `프로젝트 : {한글 짧은 제목}` 링크가 자동으로 붙습니다 ([`site-content-rules.md`](../site-content-rules.md) 「주 프로젝트」).
 
 ---
 
