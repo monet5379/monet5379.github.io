@@ -47,7 +47,7 @@
 - [ ] `tags` **정확히 1개** · [`site-content-rules §분류`](site-content-rules.md#분류-tags) 허용 목록
 - [ ] `project` 0 또는 1개 · 있으면 `projects/<슬러그>.md` 존재
 - [ ] `series` 있으면 `series_title`, `series_order`, `series_total` · 시리즈 편은 `series_nav: true` ([§시리즈](site-content-rules.md#시리즈))
-- [ ] `series_nav: true`이면 본문에 수동 `**권장 읽기**`·`**시리즈:**` 줄 없음 · `## 이 글에서 다루지 않는 것`에 **같은 series 형제** 링크 없음
+- [ ] `series_nav: true`이면 본문에 수동 `**권장 읽기**`·`**시리즈:**` 줄 없음 · **범위 밖 prose**(보통 `## 정리` 마지막)에 **같은 series 형제** 링크 없음
 - [ ] Mermaid: `mermaid: true` ↔ 본문 ` ```mermaid ` 블록 일치 · `%%{init:…}%%` 없음 ([§Mermaid](site-content-rules.md#mermaid))
 - [ ] 공개 `tags`는 `notes_production_visible_tags`에 포함 (배포 목록 의도)
 
@@ -85,6 +85,7 @@
 - [ ] **How/Why** 글에 억지 `## 문제`/`## 해결` 없음 — 증상→해결이 **중심**일 때만 ([writing-guide §혼합](writing-guide.md#유형별-최소-골격))
 - [ ] 설계·출시 회고면 **기각·범위·출시에서 지킨 것** 중 해당 슬롯 고려
 - [ ] 문제 해결 힌트면 **확인 포인트** 또는 동등한 검증 절 검토
+- [ ] [**표와 prose**](writing-guide.md#notes--표와-prose): Why·회고·문제 해결 — lead·`## 맥락`까지 표 없이 읽히는지 · 기각 ~4항목이 표가 아닌 prose인지 · 범위 밖이 `## 정리` prose(별도 h2·표 없음)인지
 
 ### projects
 

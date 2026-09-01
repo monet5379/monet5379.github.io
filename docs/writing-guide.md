@@ -40,7 +40,7 @@ Kit Architecture·Canvas·partial·SSOT처럼 **레포를 봐야만** 의미가 
 
 **전제:** 「~를 읽었다고 가정」「Canvas와 같음」 대신, **앞에서 본 것 한 줄** 또는 **형제 노트 링크**.
 
-**유지:** 기각·보류·출시 갭·표·Mermaid·시리즈 내비 — 포트폴리오 notes의 차별점.
+**유지:** 기각·보류·출시 갭·Mermaid·시리즈 내비 — 포트폴리오 notes의 차별점. **표**는 지도·용어·비교에 쓰고, Why·회고·기각·범위 밖은 **prose 우선** ([§표와 prose](#notes--표와-prose)).
 
 적용 순서는 humanize 절과 동일: **writing-guide(유형·목차·외부 독자) → 토스 → humanize**.
 
@@ -85,7 +85,7 @@ Kit Architecture·Canvas·partial·SSOT처럼 **레포를 봐야만** 의미가 
 | 힌트 | 독자 질문 | lead | 본론 h2 | 정본 예 |
 |------|-----------|------|---------|---------|
 | **How** | 이 기능은 어떻게 동작? | 무엇을 설명·범위 | 흐름·경로 (`획득·교체`, `시전 경로`) | [`dragon-relic-acquire`](../notes/dragon-relic-acquire.md) |
-| **Why** | 왜 이렇게 잘랐나? | 경계·기각 가치 | 대안 표·`왜 ~` (`기각한 대안`) | [`save-layout-side-lane`](../notes/save-layout-side-lane.md) |
+| **Why** | 왜 이렇게 잘랐나? | 경계·기각 가치 | `왜 ~` · `기각한 대안`(prose) | [`save-layout-side-lane`](../notes/save-layout-side-lane.md) |
 | **지도·복습** | 어디부터 읽나 / 한 장 복습 | 읽기 순서·시리즈 입구 | `권장 읽기`, `end-to-end`, `QA · 회귀` | [`dragon-combat-cluster-read`](../notes/dragon-combat-cluster-read.md) · [`dragon-combat-one-hit`](../notes/dragon-combat-one-hit.md) |
 
 How에 **`## 문제`/`## 해결`을 억지로 넣지 않습니다.** 증상→해결 글만 [문제 해결 최소 골격](#유형별-최소-골격)을 씁니다. 프로세스·역할 회고(`narrative-ownership-shipped` 등)는 위 표 밖 **희귀 예외** — 맥락·흐름·기각만 맞추면 됩니다.
@@ -119,6 +119,23 @@ notes 규칙은 **배선 → 역할 → 유형 힌트** 순입니다. 아래로 
 
 세부 유형 표·템플릿 파일을 늘리지 않습니다. published notes가 이미 How·Why·문제 해결·지도를 섞어 쓰므로, **역할만 맞으면** h2·절 순서는 주제에 맡깁니다.
 
+## notes — 표와 prose
+
+토스형 **읽히는 글**(lead·맥락·판단 서사)과 notes **스캔 자산**(용어·경계·지도 표·Mermaid)을 한 페이지에 섞지 않도록, **유형별로 표 밀도**를 나눕니다. 표를 기본값으로 두지 않습니다.
+
+| 힌트 | 본문 표 | prose 우선 |
+|------|---------|------------|
+| **Why · 회고 · 프로세스** | 0~1 — 2~4축 **비교**만 (예: Backup/ vs Side) | lead·`## 맥락`·기각·범위 |
+| **How · 지도 · 참조** | 2~3 — 용어·경계·흐름·QA 축 | 절 사이 **연결 문단** (표만 연속 금지) |
+| **문제 해결** | 증상·대조 표는 **선택** | 기각·범위·해결 서사 |
+
+**Should (Craft · Quality):**
+
+- **lead → `## 맥락`:** Why·회고·문제 해결은 **표 없이** 전제·갈등·범위가 prose로 이어지게. (`**독자:**` 별도 줄 대신 intro·맥락에 흡수.)
+- **기각·보류 / 기각한 대안:** 항목 ~4개 이하면 **표 대신** `**대안명** — 이유` 한 문장씩. 불릿도 됨 ([`save-layout-side-lane`](../notes/save-layout-side-lane.md) · [`conditional-log-build-cost`](../notes/conditional-log-build-cost.md)).
+- **범위 밖:** 별도 `## 이 글에서 다루지 않는 것` h2·**표 금지**. `## 정리` **마지막 1~2문장** prose + 링크 ([`dragon-combat-passive-bridge`](../notes/dragon-combat-passive-bridge.md)). `series_nav: true`이면 **같은 series 형제**는 정리·범위 문장에 넣지 않음 — [`site-content-rules.md`](site-content-rules.md) 「범위 밖 · 시리즈」.
+- **humanize:** 용어표·경계표·시리즈 내비·스캔용 볼드는 prose로 풀지 않음 ([§humanize와 충돌](#humanize와-충돌할-때)).
+
 ## notes 목차 — 역할과 섹션명
 
 토스 [예측 가능하게 하기](https://technical-writing.dev/information-architecture/predictability.html)는 **같은 정보 슬롯**을 말하지, 매 글 `## 문제` 같은 **고정 제목**을 요구하지는 않습니다. published notes도 이미 주제별 제목(`Trigger → Effect`, `왜 별도 레인인가` 등)을 씁니다. 규칙은 **역할**을 기준으로 두고, `##` 이름은 **예시**로만 둡니다.
@@ -139,7 +156,7 @@ notes 규칙은 **배선 → 역할 → 유형 힌트** 순입니다. 아래로 
 | **전제·배경** | ○ | `맥락`, `이 글에서 쓰는 말` |
 | **본론** | ● | 유형별 ([아래 최소 골격](#유형별-최소-골격)) |
 | **판단·범위 제한** | ○ (설계·출시 회고) | `기각·보류`, `기각한 대안`, `출시에서 지킨 것` |
-| **다루지 않음** | ○ | `이 글에서 다루지 않는 것` |
+| **다루지 않음** | ○ | `## 정리` 마지막 prose + 링크 (별도 h2·표 없음) |
 | **검증** | ○ (문제 해결) | `확인 포인트` |
 | **마무리** | ○ | `정리` |
 
@@ -158,7 +175,7 @@ lead → (맥락) → 증상·원인 → 해결·동작 → (실무·한계·트
 **깊은 이해** — How / Why / 지도·복습 [힌트](#깊은-이해--작성-힌트-하위-구분) 중 하나를 주로 따릅니다. 공통 골격:
 
 ```text
-lead → (맥락·용어) → 본론 (h2 주제별) → (기각·출시에서 지킨 것) → (이 글에서 다루지 않는 것) → (정리)
+lead → (맥락·용어) → 본론 (h2 주제별) → (기각·출시에서 지킨 것) → (정리 + 범위 밖 prose)
 ```
 
 | 힌트 | 정본 예 |
@@ -185,7 +202,7 @@ lead → (맥락·용어) → 본론 (h2 주제별) → (기각·출시에서 �
 `project`가 있으면 제목 아래에 `프로젝트 : {한글 짧은 제목}` 링크가 붙습니다. 표시·underline은 [`site-content-rules.md`](site-content-rules.md) 「주 프로젝트」.  
 `series`가 있으면 제목 아래에 `시리즈 : {series_title} {n}/{total}`이 붙습니다. 표시는 [`site-content-rules.md`](site-content-rules.md) 「시리즈」.
 
-`series_nav: true`이면 `## 정리` 다음 **권장 읽기·수동 시리즈·구조 줄 없이** — 시리즈 목록(`note-series-nav`) · 발행 순 이전/다음(`notes-adjacent`)이 layout에서 이어집니다. **`## 이 글에서 다루지 않는 것`**에 같은 `series` 형제 링크는 두지 않습니다 (시리즈 밖 경계만).  
+`series_nav: true`이면 `## 정리` 다음 **권장 읽기·수동 시리즈·구조 줄 없이** — 시리즈 목록(`note-series-nav`) · 발행 순 이전/다음(`notes-adjacent`)이 layout에서 이어집니다. **범위 밖 prose**에 같은 `series` 형제 링크는 두지 않습니다 ([§표와 prose](#notes--표와-prose) · [`site-content-rules.md`](site-content-rules.md) 「범위 밖 · 시리즈」).
 **Mermaid**는 lead 직후 고정이 아니라, 설명하는 절 옆 ([`site-content-rules.md`](site-content-rules.md) 「notes 도식 둘 곳」 · [`templates/mermaid-diagram.md`](templates/mermaid-diagram.md)).
 
 ### projects

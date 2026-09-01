@@ -155,9 +155,9 @@ series_total: 4
 
 `series_nav: true`이면 본문 **아래**·이전/다음 **위**에 같은 `series` 형제 목록을 냅니다 (`_includes/note-series-nav.html`). 각 항목: `series_order` · `title` · `excerpt` · 현재 편 강조. **권장 읽기**·수동 `**시리즈:**` 줄은 두지 않습니다.
 
-#### `## 이 글에서 다루지 않는 것` (시리즈)
+#### 범위 밖 · 시리즈
 
-`series_nav: true`이면 **같은 `series` 형제**를 표에 넣지 않습니다. 편 분할은 lead·`series_nav`가 담당합니다. 표에는 **시리즈 밖**만 — 다른 분류·전투 층·UI·Architecture·NDA·후속 과제·아직 없는 노트 등.
+`series_nav: true`이면 **같은 `series` 형제**를 본문·`## 정리` 범위 문장에 넣지 않습니다. 편 분할은 lead·`series_nav`가 담당합니다. 범위 밖(다른 분류·전투 층·UI·Architecture·NDA·후속 과제·README 등)은 **`## 정리` 마지막 1~2문장** prose + 링크로 둡니다. 별도 `## 이 글에서 다루지 않는 것` h2·표는 두지 않습니다 ([`writing-guide.md`](writing-guide.md) §표와 prose).
 
 본문 목차: [`writing-guide.md`](writing-guide.md) §notes 작성 — 규칙 3층. **검토:** [`content-review.md`](content-review.md). 샘플 [`templates/note-problem.md`](templates/note-problem.md) · [`templates/note-series.md`](templates/note-series.md).
 

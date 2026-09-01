@@ -36,6 +36,7 @@ alwaysApply: false
 
 - lead 가치 먼저 · 외부 독자 · 본론 역할 슬롯
 - How/Why에 억지 `## 문제`/`## 해결` 없음
+- notes [**표와 prose**](../../docs/writing-guide.md#notes--표와-prose): lead·맥락 prose · 기각 prose · 범위 밖은 `## 정리`에
 - **How vs Why 분류 일치는 검사하지 않음**
 
 ## Must not (검토 시)
