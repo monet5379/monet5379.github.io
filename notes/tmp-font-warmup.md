@@ -5,13 +5,29 @@ permalink: /notes/tmp-font-warmup/
 date: 2026-07-23
 excerpt: "부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다."
 tags: [폰트]
+series: tmp-font
+series_title: TMP 폰트
+series_order: 2
+series_total: 2
+series_nav: true
 mermaid: true
 ---
 
 
 부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다.
 
-[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다. Static 문자셋(Dynamic atlas 회피)은 [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})를 따릅니다. 워밍업은 glyph 전량 보장의 대체재가 아닙니다.
+TMP 폰트 시리즈 2편입니다. [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다. Static 문자셋(Dynamic atlas 회피)은 [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})를 따릅니다.
+
+## 이 글에서 쓰는 말
+
+| 말 | 역할 |
+|----|------|
+| **Static** | 어떤 글자가 아틀라스에 있는가 — [1편]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) |
+| **워밍업** | 언제 처음 그리는가 — 이 글 |
+| **input block** | 워밍업 중 입력·UI 갱신을 막아 플레이와 겹치지 않게 함 |
+| **supersede** | 연속 언어 변경 시 이전 워밍업을 취소하고 새 작업으로 교체 |
+
+워밍업은 glyph 전량 보장의 대체재가 아닙니다.
 
 ## 맥락
 
@@ -123,5 +139,3 @@ flowchart TD
 ## 정리
 
 Static은 어떤 글자가 아틀라스에 있는가, Warmup은 언제 처음 그리는가를 담당합니다. 둘을 한 메커니즘으로 합치지 않고, 스파이크는 대기 구간으로·glyph 완결성은 데이터 추출로 나눕니다.
-
-**권장 읽기** — [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) → Warmup(이 글).

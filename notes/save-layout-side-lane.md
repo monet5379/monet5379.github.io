@@ -16,6 +16,8 @@ mermaid: true
 
 손상 복구용 Backup/과 세션·오토용 Side 레인을 섞지 않은 이유와, 슬롯 백업으로 Continue를 흉내 내지 않기로 한 경계를 정리합니다.
 
+**독자:** [1편]({{ "/notes/save-layout-boundaries/" | relative_url }})에서 Main·Side·Meta 지도를 본 뒤, **왜 Backup/과 Side를 나눴는지**만 보려는 개발자.
+
 [Main·Side·Meta로 나눈 이유 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }})에서 출시 타이틀의 한계와 Main·Side·Meta 지도를 둔 뒤, 이 글은 **Side를 왜 `Backup/`으로 대체하지 않았는지**만 봅니다. 구현은 [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }})입니다.
 
 ## 맥락

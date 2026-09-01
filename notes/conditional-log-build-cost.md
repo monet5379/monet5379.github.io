@@ -11,7 +11,7 @@ mermaid: true
 
 에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 `[Conditional]`은 다른 문제라는 점을, 드래곤 이즈 데드 Log API 기준으로 정리합니다.
 
-[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 적용한 내용입니다. 계기는 Player 빌드 Profiler에 로그 경로(문자열·할당)가 남아, 필터 off = 비용 없음 가정이 깨진 것이었습니다. 같은 불변조건을 타이틀 밖으로 빼 둔 구현은 [조건부 로그]({{ "/projects/conditional-log/" | relative_url }})입니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 적용한 내용입니다. **QA·프로파일링 증상:** 에디터에서 로그를 꺼도 Player 빌드 Profiler에 문자열·할당 비용이 남는 경우 — “콘솔에 안 찍힌다” ≠ “비용이 없다”. 같은 불변조건을 타이틀 밖으로 빼 둔 구현은 [조건부 로그]({{ "/projects/conditional-log/" | relative_url }})입니다.
 
 ## 맥락
 

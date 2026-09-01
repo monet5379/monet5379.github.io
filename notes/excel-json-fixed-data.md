@@ -11,15 +11,31 @@ mermaid: true
 
 기획자가 Unity를 켜지 않고 밸런스를 고칠 수 있게 Excel로 두고, 빌드에는 에디터에서 JSON으로 굳혀 타입드 조회로만 읽는 고정 데이터 경계를 정리합니다.
 
-[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})에서 캐릭터·스킬·아이템·문자열 같은 **표로 고치는 고정값**에 쓴 방식입니다. 시트 읽기·JSON 변환은 [Excel4Unity](https://github.com/joexi/Excel4Unity)를 기반으로 두고, 메뉴·시트 규약·런타임 로드는 타이틀에 맞게 얹었습니다. 트리거·타임라인이 섞인 전투 정의(Buff / Passive / Hitmark)는 ScriptableObject로 두고, 이 경로와 섞지 않았습니다. [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에도 같은 Excel→JSON 로드 패턴이 있습니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})에서 캐릭터·스킬·아이템·문자열 같은 **표로 고치는 고정값**에 쓴 방식입니다. 코드·저장소 없이 읽을 때는 **기획 시트 → 빌드 JSON → 게임 조회** 세 단계만 보면 됩니다. 변환 기반은 [Excel4Unity](https://github.com/joexi/Excel4Unity)이고, [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에도 같은 Excel→JSON 패턴이 있습니다.
 
 ## 맥락
 
-밸런스·카탈로그·다국어 문자열은 비개발자가 자주 고칩니다. 그때마다 Unity를 열고 Scriptable·Inspector를 만지게 하면, 편집 도구가 클라이언트 전제에 묶입니다. 시트(`.xlsx`)로 두면 Excel만으로 수치를 맞출 수 있고, 프로그래머는 변환 메뉴로 JSON을 갱신해 빌드에 넣습니다.
+밸런스·카탈로그·다국어 문자열은 비개발자가 자주 고칩니다. QA·플레이에서 자주 보이는 증상:
+
+- **패치 후 수치가 안 맞음** — 시트는 고쳤는데 변환·빌드 갱신을 안 한 경우
+- **런타임 크래시·빈 이름** — 시트 열 추가·빈 칸·배열 표기가 JSON 파싱까지 전달된 경우
+- **전투 연출이 표에 없음** — Buff·Passive·Hitmark는 ScriptableObject 경로 (이 글 밖)
+
+그때마다 Unity를 열고 Scriptable·Inspector를 만지게 하면, 편집 도구가 클라이언트 전제에 묶입니다. 시트(`.xlsx`)로 두면 Excel만으로 수치를 맞출 수 있고, 프로그래머는 변환 메뉴로 JSON을 갱신해 빌드에 넣습니다.
 
 출시 클라이언트에서 고정 데이터는 엑셀 파일이 있으면 그만이 아닙니다. 기획 워크플로는 시트로 두고, 플레이어 경로에는 파싱 비용·의존성·스키마를 예측 가능하게 넣어야 합니다. 런타임에 `.xlsx`를 열면 Office 스택·시트 규약이 빌드에 붙고, 열 추가·빈 칸·배열 표기가 그대로 크래시 면이 됩니다.
 
 그래서 변환은 **에디터 메뉴**에만 두고, 플레이어 빌드는 `Resources`의 JSON만 읽게 했습니다. 프로젝트 페이지 [세이브·데이터]({{ "/projects/dragon-is-dead/" | relative_url }}#세이브데이터) 절의 Excel→Json / Scriptable 한 줄이 그 경계입니다.
+
+## 이 글에서 쓰는 말
+
+| 말 | 역할 | 코드에서는 (참고) |
+|----|------|-------------------|
+| **고정 데이터** | 패치마다 갱신되는 표 기반 카탈로그 | Character / Skill / Item / String 등 |
+| **변환** | 시트 → JSON (에디터만) | Excel4Unity + 타이틀 메뉴 |
+| **로드** | 빌드에서 JSON 한 번 읽기 | `JsonDataManager` |
+| **조회** | 게임플레이가 바꾸지 않는 복제본 | `Find*Clone` |
+| **Scriptable 경로** | 트리거·연출·참조 묶음 | Buff / Passive / Hitmark |
 
 ## 두 경로
 

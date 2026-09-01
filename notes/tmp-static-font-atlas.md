@@ -5,13 +5,27 @@ permalink: /notes/tmp-static-font-atlas/
 date: 2026-07-23
 excerpt: "TMP Dynamic 폰트의 런타임 아틀라스 성장·프레임 히치를 피하기 위해, 문자열 JSON에서 언어별 고유 글자를 뽑아 Static 아틀라스에 넣는 파이프라인을 정리합니다."
 tags: [폰트]
+series: tmp-font
+series_title: TMP 폰트
+series_order: 1
+series_total: 2
+series_nav: true
 mermaid: true
 ---
 
 
 TMP Dynamic 폰트의 런타임 아틀라스 성장·프레임 히치를 피하기 위해, 문자열 JSON에서 언어별 고유 글자를 뽑아 Static 아틀라스에 넣는 파이프라인을 정리합니다.
 
-[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다.
+TMP 폰트 시리즈 1편입니다. [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다. **플레이어·QA 증상:** 첫 UI 표시·언어 전환 시 글자가 늦게 뜨거나 한 프레임 끊김.
+
+## 이 글에서 쓰는 말
+
+| 말 | 역할 |
+|----|------|
+| **Dynamic atlas** | 런타임에 글자를 추가하며 아틀라스가 커짐 (hitch·상한 불명) |
+| **Static atlas** | 빌드 전에 글자 집합을 확정해 아틀라스에 넣음 |
+| **String JSON** | [Excel→Json]({{ "/notes/excel-json-fixed-data/" | relative_url }}) 문자열 파이프라인 산출물 |
+| **워밍업** | 언제 처음 그리는지 — [2편]({{ "/notes/tmp-font-warmup/" | relative_url }}) |
 
 ## 맥락
 
@@ -140,5 +154,3 @@ String workbook / JSON이 바뀌면 Static 폰트도 같이 갱신합니다.
 ## 정리
 
 다국어 TMP에서 Dynamic은 “일단 돌아가게”는 쉽지만, 출시·라이브 기준으로는 히치와 메모리 상한이 문제입니다. 문자열 데이터를 문자셋의 SSOT로 두고 Static으로 고정하면, 폰트·로컬라이즈·워밍업 각각의 책임이 명확해집니다.
-
-**권장 읽기** — Static(이 글) → [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }}). glyph SSOT는 Static, 첫 draw·input block은 Warmup.
