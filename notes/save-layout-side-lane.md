@@ -1,25 +1,26 @@
 ---
 layout: page
-title: 세이브 레이아웃 2/2 슬롯 백업 대신 Side 레인을 둔 이유
+title: 슬롯 백업 대신 Side 레인을 둔 이유
 permalink: /notes/save-layout-side-lane/
 date: 2026-08-26
 excerpt: "손상 복구용 Backup/과 세션·오토용 Side 레인을 섞지 않은 이유와, 슬롯 백업으로 Continue를 흉내 내지 않기로 한 경계를 정리합니다."
 tags: [세이브]
 series: save-layout-why
 series_title: 세이브 레이아웃
-series_order: 2
-series_total: 2
+series_order: 3
+series_total: 3
+series_nav: true
 mermaid: true
 ---
 
 
 손상 복구용 Backup/과 세션·오토용 Side 레인을 섞지 않은 이유와, 슬롯 백업으로 Continue를 흉내 내지 않기로 한 경계를 정리합니다.
 
-[1편 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }})에서 출시 타이틀의 한계와 Main·Side·Meta 지도를 둔 뒤, 이 글은 **Side를 왜 `Backup/`으로 대체하지 않았는지**만 봅니다. 구현은 [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }})입니다.
+[Main·Side·Meta로 나눈 이유 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }})에서 출시 타이틀의 한계와 Main·Side·Meta 지도를 둔 뒤, 이 글은 **Side를 왜 `Backup/`으로 대체하지 않았는지**만 봅니다. 구현은 [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }})입니다.
 
 ## 맥락
 
-슬롯마다 Main을 두면, 손상·빈 파일을 만났을 때 그 슬롯만 타임스탬프 백업 후 null로 격리할 수 있습니다. Save Layout도 그렇게 합니다. 로컬 `Backup/`은 **실패 산출물**입니다.
+슬롯마다 Main을 두면, 손상·빈 파일을 만났을 때 그 슬롯만 타임스탬프 백업 후 null로 격리할 수 있습니다. 세이브 레이아웃도 그렇게 합니다. 로컬 `Backup/`은 **실패 산출물**입니다.
 
 여기서 유혹이 생깁니다. 런을 시작하기 전 Main을 슬롯 백업으로 복사해 두고, 포기·크래시 뒤에 그 백업을 Continue처럼 되돌리면 되지 않을까. 오토세이브도 주기적으로 Backup에 덮어쓰기로 퉁칠 수 있지 않을까.
 
@@ -84,14 +85,9 @@ flowchart TD
 
 | 주제 | 위치 |
 |------|------|
-| Main·Side·Meta 지도·출시 한계·Meta/`PlayerPrefs` | [1편 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }}) |
 | API·실패 시나리오·Demo F1 | [GitHub README](https://github.com/monet5379/unity-save-layout) |
-| 케이스 스터디 요약 | [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) |
+| 케이스 스터디 요약 | [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) |
 
 ## 정리
 
 `Backup/`은 **깨진 파일을 치우는 로컬 흔적**이고, Side는 **슬롯에 붙인 의도적 옆 진행**입니다. Continue·오토·세션을 슬롯 백업으로 흉내 내지 않은 덕분에, 복구와 장르 규칙이 같은 폴더를 두고 싸우지 않습니다.
-
-**권장 읽기** — [Main·Side·Meta로 나눈 이유 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }}) → Side 레인(이 글).
-
-**시리즈: 세이브 레이아웃 (2/2)** — [1 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }}) · **2**

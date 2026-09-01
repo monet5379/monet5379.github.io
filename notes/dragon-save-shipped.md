@@ -1,26 +1,27 @@
 ---
 layout: page
-title: 세이브 레이아웃 1/3 Dragon 출시 세이브 슬롯·복구·마이그레이션
+title: 드래곤 이즈 데드 출시 세이브 슬롯·복구·마이그레이션
 permalink: /notes/dragon-save-shipped/
 date: 2026-09-01
-excerpt: "슬롯 로테이션·필수 세이브·복구 체인·스키마 마이그레이션으로 얼리 액세스부터 정식까지 진행을 지킨 Dragon 출시 세이브의 경계와 역할을 정리합니다."
+excerpt: "슬롯 로테이션·필수 세이브·복구 체인·스키마 마이그레이션으로 얼리 액세스부터 정식까지 진행을 지킨 드래곤 이즈 데드 출시 세이브의 경계와 역할을 정리합니다."
 tags: [세이브]
 project: dragon-is-dead
 series: save-layout-why
 series_title: 세이브 레이아웃
 series_order: 1
 series_total: 3
+series_nav: true
 mermaid: true
 ---
 
 
 슬롯 로테이션·필수 세이브·복구 체인·스키마 마이그레이션으로 얼리 액세스부터 정식까지 유지했던 세이브의 경계와 역할을 정리합니다.
 
-세이브 레이아웃 시리즈 1편입니다. [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})는 소규모 팀으로 Steam 얼리 액세스·정식 출시까지 클라이언트를 유지했고, 세이브 손상·복구·스키마 변경은 라이브에서 진행 유실로 바로 이어질 수 있는 축이었습니다. 이 글은 완벽한 세이브 프레임워크를 목표로 한 글이 아니라, **출시본 게임 세이브 안에서 무엇을 어떻게 지켰는지**를 공개 가능한 수준으로 적습니다.
+세이브 레이아웃 시리즈 1편입니다. [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})는 소규모 팀으로 Steam 얼리 액세스·정식 출시까지 클라이언트를 유지했고, 세이브 손상·복구·스키마 변경은 라이브에서 진행 유실로 바로 이어질 수 있는 축이었습니다. 이 글은 완벽한 세이브 프레임워크를 목표로 한 글이 아니라, **출시본 게임 세이브 안에서 무엇을 어떻게 지켰는지**를 공개 가능한 수준으로 적습니다.
 
 ## 맥락
 
-[Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 출시본의 프로필 세이브를 다룹니다. 프로필 세이브는 타이틀 **세이브 관리**와 **슬롯별 진행 묶음**이 담당합니다. 밸런스 Json·설정과 **경로·역할·로드 순서가 분리**되어 있고, 이 글의 세이브는 그 프로필 층만 가리킵니다.
+[드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 출시본의 프로필 세이브를 다룹니다. 프로필 세이브는 타이틀 **세이브 관리**와 **슬롯별 진행 묶음**이 담당합니다. 밸런스 Json·설정과 **경로·역할·로드 순서가 분리**되어 있고, 이 글의 세이브는 그 프로필 층만 가리킵니다.
 
 출시 과정에서 세이브는 다음을 동시에 맞춰야 했습니다.
 
@@ -129,21 +130,11 @@ flowchart TD
 
 | 주제 | 위치 |
 |------|------|
-| Main·Side·Meta 레이아웃 계약·Save Layout Why | [2편 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [3편 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }}) · [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) |
 | Excel→Json 고정 데이터 | [Excel을 JSON으로 바꿔 고정 데이터를 읽은 이유 (노트)]({{ "/notes/excel-json-fixed-data/" | relative_url }}) |
+| 세이브 레이아웃 레이아웃 계약·Why | [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) |
 | 세이브 코드 모듈·프로필 필드 표 | 내부 Architecture / Canvas |
 | NDA·내부 수치 | 공개하지 않음 |
 
 ## 정리
 
-Dragon 출시 세이브는 **슬롯 로테이션·Essential·복구 체인·이중 마이그레이션**으로 라이브에서 진행을 지킨 기록입니다. 완벽한 레이아웃 분리가 아니라, 소규모 팀이 게임 세이브 한곳에 저장·복구·스키마를 모아 출시까지 버틴 형태입니다. 디스크 레인만 따로 뽑는 설계는 이후 과제로 남습니다.
-
-**권장 읽기**
-
-1. [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})
-2. Dragon 출시 세이브(이 글)
-3. [Main·Side·Meta로 나눈 이유 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }})
-4. [슬롯 백업 대신 Side 레인을 둔 이유 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }})
-5. [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }})
-
-**시리즈: 세이브 레이아웃 (1/3)** — **1** · [2 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [3 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }})
+드래곤 이즈 데드 출시 세이브는 **슬롯 로테이션·Essential·복구 체인·이중 마이그레이션**으로 라이브에서 진행을 지킨 기록입니다. 완벽한 레이아웃 분리가 아니라, 소규모 팀이 게임 세이브 한곳에 저장·복구·스키마를 모아 출시까지 버틴 형태입니다. 디스크 레인만 따로 뽑는 설계는 이후 과제로 남습니다.

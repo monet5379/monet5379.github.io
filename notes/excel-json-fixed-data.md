@@ -11,7 +11,7 @@ mermaid: true
 
 기획자가 Unity를 켜지 않고 밸런스를 고칠 수 있게 Excel로 두고, 빌드에는 에디터에서 JSON으로 굳혀 타입드 조회로만 읽는 고정 데이터 경계를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})에서 캐릭터·스킬·아이템·문자열 같은 **표로 고치는 고정값**에 쓴 방식입니다. 시트 읽기·JSON 변환은 [Excel4Unity](https://github.com/joexi/Excel4Unity)를 기반으로 두고, 메뉴·시트 규약·런타임 로드는 타이틀에 맞게 얹었습니다. 트리거·타임라인이 섞인 전투 정의(Buff / Passive / Hitmark)는 ScriptableObject로 두고, 이 경로와 섞지 않았습니다. [Blade Assault]({{ "/projects/blade-assault/" | relative_url }})에도 같은 Excel→JSON 로드 패턴이 있습니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})에서 캐릭터·스킬·아이템·문자열 같은 **표로 고치는 고정값**에 쓴 방식입니다. 시트 읽기·JSON 변환은 [Excel4Unity](https://github.com/joexi/Excel4Unity)를 기반으로 두고, 메뉴·시트 규약·런타임 로드는 타이틀에 맞게 얹었습니다. 트리거·타임라인이 섞인 전투 정의(Buff / Passive / Hitmark)는 ScriptableObject로 두고, 이 경로와 섞지 않았습니다. [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에도 같은 Excel→JSON 로드 패턴이 있습니다.
 
 ## 맥락
 
@@ -92,4 +92,4 @@ flowchart LR
 
 upstream은 시트→JSON까지이고, 타이틀 규약·`JsonDataManager`·Scriptable 분리는 그 위에 얹은 경계입니다.
 
-**권장 읽기** — [Excel4Unity](https://github.com/joexi/Excel4Unity) (변환 기반) → [Dragon is Dead · 세이브·데이터]({{ "/projects/dragon-is-dead/" | relative_url }}#세이브데이터) → [TMP Static 아틀라스]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) (String JSON 소비) → [Conditional 로그]({{ "/notes/conditional-log-build-cost/" | relative_url }}) (에디터 vs 플레이어 빌드 비용 경계)
+**권장 읽기** — [Excel4Unity](https://github.com/joexi/Excel4Unity) (변환 기반) → [드래곤 이즈 데드 · 세이브·데이터]({{ "/projects/dragon-is-dead/" | relative_url }}#세이브데이터) → [TMP Static 아틀라스]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) (String JSON 소비) → [Conditional 로그]({{ "/notes/conditional-log-build-cost/" | relative_url }}) (에디터 vs 플레이어 빌드 비용 경계)

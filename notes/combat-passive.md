@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 전투 구조 3/4 Passive 사건 규칙
+title: Passive 사건 규칙
 permalink: /notes/combat-passive/
 date: 2026-08-04
 excerpt: "트리거·조건·효과와 실행 큐로 동작하는 Passive 층의 구조를 정리합니다."
@@ -9,16 +9,13 @@ series: combat-structure
 series_title: 전투 구조
 series_order: 3
 series_total: 4
+series_nav: true
 ---
 
 
 트리거·조건·효과와 실행 큐로 동작하는 Passive 층의 구조를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Passive(사건 규칙) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})·[시리즈 4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }})을, 시전·타격은 [Skill]({{ "/notes/combat-skill/" | relative_url }})·[Hitmark]({{ "/notes/combat-hitmark/" | relative_url }})로 넘깁니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
-
-**권장 읽기:** 구조(How) 1→4 후 [경계]({{ "/notes/combat-four-layers/" | relative_url }})(Why) 1→5
-
-**구조:** [1 Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · [2 Skill]({{ "/notes/combat-skill/" | relative_url }}) · **3** · [4 Buff]({{ "/notes/combat-buff/" | relative_url }})
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Passive(사건 규칙) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})·[Buff와 Passive를 나눈 이유 (노트)]({{ "/notes/combat-buff-vs-passive/" | relative_url }})를, 시전·타격 How는 구조 노트 Skill·Hitmark에 둡니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
 
 ## 맥락
 
@@ -110,13 +107,9 @@ Passive는 전투 이벤트에 연쇄되기 쉽습니다.
 
 | 주제 | 위치 |
 |------|------|
-| Buff 스택·CC·DoT | [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }}) · [시리즈 4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
-| Hitmark 피해 파이프라인 | [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }}) |
-| 스킬 시전·쿨·버퍼 | [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }}) |
-| 출시·순서 갭·GC | [시리즈 5편]({{ "/notes/combat-boundaries-shipped/" | relative_url }}) · 성능 노트 |
+| Buff 스택·CC·DoT (Why) | [Buff와 Passive를 나눈 이유 (노트)]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
+| 출시·순서 갭·GC | [출시까지 지킨 경계와 남은 갭 (노트)]({{ "/notes/combat-boundaries-shipped/" | relative_url }}) · 성능 노트 |
 
 ## 정리
 
 Passive는 캐릭터에 붙는 **사건 규칙**입니다. Trigger와 Condition으로 발동을 걸러 실행 큐에 올리고, Effect는 Buff·Hitmark·Skill에 위임합니다. 피해 식과 지속 상태 정책은 다른 층에 두고, 무슨 일이면 무엇을 할지만 여기서 고정합니다.
-
-다음: [전투 구조 4/4 Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})

@@ -3,15 +3,15 @@ layout: page
 title: Conditional로 플레이어 빌드 로그 비용 제거
 permalink: /notes/conditional-log-build-cost/
 date: 2026-07-23
-excerpt: "에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 [Conditional]은 다른 문제라는 점을, Dragon is Dead Log API 기준으로 정리합니다."
+excerpt: "에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 [Conditional]은 다른 문제라는 점을, 드래곤 이즈 데드 Log API 기준으로 정리합니다."
 tags: [엔진]
 mermaid: true
 ---
 
 
-에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 `[Conditional]`은 다른 문제라는 점을, Dragon is Dead Log API 기준으로 정리합니다.
+에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 `[Conditional]`은 다른 문제라는 점을, 드래곤 이즈 데드 Log API 기준으로 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 적용한 내용입니다. 계기는 Player 빌드 Profiler에 로그 경로(문자열·할당)가 남아, 필터 off = 비용 없음 가정이 깨진 것이었습니다. 같은 불변조건을 타이틀 밖으로 빼 둔 구현은 [Conditional Log]({{ "/projects/conditional-log/" | relative_url }})입니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 적용한 내용입니다. 계기는 Player 빌드 Profiler에 로그 경로(문자열·할당)가 남아, 필터 off = 비용 없음 가정이 깨진 것이었습니다. 같은 불변조건을 타이틀 밖으로 빼 둔 구현은 [조건부 로그]({{ "/projects/conditional-log/" | relative_url }})입니다.
 
 ## 맥락
 
@@ -137,7 +137,7 @@ public static class GameLog
 
 `[Conditional]`은 `UNITY_EDITOR`에만 걸려 있습니다. 에디터(Play 포함)에서는 레벨·태그를 꺼도 호출문은 남고, 호출부 인자(`$""`·계산)는 `Write` early return 전에 평가됩니다. 필터는 콘솔 출력만 막습니다.
 
-에디터 핫 패스 비용을 필터로 없애지 않는 것이 [Conditional Log]({{ "/projects/conditional-log/" | relative_url }})의 **현재 한계**입니다. 두 번째 컴파일 심볼·지연 메시지 API는 이 패키지 범위 밖입니다.
+에디터 핫 패스 비용을 필터로 없애지 않는 것이 [조건부 로그]({{ "/projects/conditional-log/" | relative_url }})의 **현재 한계**입니다. 두 번째 컴파일 심볼·지연 메시지 API는 이 패키지 범위 밖입니다.
 
 ## 기각·보류
 

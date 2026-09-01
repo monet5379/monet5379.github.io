@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 전투 경계 2/5 스킬 한 번의 해피 패스
+title: 스킬 한 번의 해피 패스
 permalink: /notes/combat-skill-happy-path/
 date: 2026-08-04
 excerpt: "스킬 입력부터 Hitmark·피해 계산·Vital까지, 반응 루프를 빼 둔 해피 패스만 따라갑니다."
@@ -10,14 +10,13 @@ series: combat-boundaries
 series_title: 전투 경계
 series_order: 2
 series_total: 5
+series_nav: true
 ---
 
 
 스킬 입력부터 Hitmark·피해 계산·Vital까지, 반응 루프를 빼 둔 해피 패스만 따라갑니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 2편입니다. Rest·버퍼·애니 연동 등 Skill How는 [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }})에, 타격 파이프라인은 [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})에 둡니다. 이 글은 [1편]({{ "/notes/combat-four-layers/" | relative_url }}) 지도 위에서 **직선 경로 한 줄기**만 고정합니다.
-
-**시리즈:** [1]({{ "/notes/combat-four-layers/" | relative_url }}) · **2** · [3]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [4]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 2편입니다. Rest·버퍼·애니 연동 등 Skill How는 [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }})에, 타격 파이프라인은 [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})에 둡니다. 이 글은 [네 층으로 나눈 이유 (노트)]({{ "/notes/combat-four-layers/" | relative_url }}) 지도 위에서 **직선 경로 한 줄기**만 고정합니다.
 
 ## 맥락
 
@@ -58,12 +57,8 @@ Vital 적용까지입니다.
 | 이후 | 위치 |
 |------|------|
 | Rest·버퍼·애니 연동 상세 | [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }}) |
-| Hitmark 데이터·공유 | [Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · [3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) |
-| 공격 성공 → Passive / Buff | [4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
-| 물리/마법 계약 갭 | [5편]({{ "/notes/combat-boundaries-shipped/" | relative_url }}) |
+| Hitmark 데이터·공유 | [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }}) |
 
 ## 정리
 
 스킬 한 번의 직선 경로는 입력·시전·SkillAnimation(Skill) → 애니 이벤트 → Hitmark 적용 → 피해 계산 → Vital입니다. 층 내부 How는 구조 노트에 맡기고, 시리즈는 이 연결만 기억하면 됩니다.
-
-다음 편: [Hitmark를 스킬 밖에 둔 이유]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})

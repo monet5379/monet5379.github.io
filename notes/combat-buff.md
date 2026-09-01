@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 전투 구조 4/4 Buff 지속 상태
+title: Buff 지속 상태
 permalink: /notes/combat-buff/
 date: 2026-08-04
 excerpt: "스택·지속 시간·상태이상·스탯과 주기 트리거를 다루는 Buff 층의 구조를 정리합니다."
@@ -9,16 +9,13 @@ series: combat-structure
 series_title: 전투 구조
 series_order: 4
 series_total: 4
+series_nav: true
 ---
 
 
 스택·지속 시간·상태이상·스탯과 주기 트리거를 다루는 Buff 층의 구조를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Buff(지속 상태) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})·[시리즈 4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }})을, Passive How는 [Passive]({{ "/notes/combat-passive/" | relative_url }})를, 도트 피해는 [Hitmark]({{ "/notes/combat-hitmark/" | relative_url }})로 넘깁니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
-
-**권장 읽기:** 구조(How) 1→4 후 [경계]({{ "/notes/combat-four-layers/" | relative_url }})(Why) 1→5
-
-**구조:** [1 Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · [2 Skill]({{ "/notes/combat-skill/" | relative_url }}) · [3 Passive]({{ "/notes/combat-passive/" | relative_url }}) · **4**
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Buff(지속 상태) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})·[Buff와 Passive를 나눈 이유 (노트)]({{ "/notes/combat-buff-vs-passive/" | relative_url }})를, Passive How·도트 피해는 구조 노트에 둡니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
 
 ## 맥락
 
@@ -98,10 +95,7 @@ Passive 예시의 공격 시 화염은 Passive가 Buff를 걸고, **틱 피해**
 
 | 주제 | 위치 |
 |------|------|
-| Passive Trigger·실행 큐 | [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }}) |
-| Buff vs Passive Why | [시리즈 4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
-| Hitmark 피해 파이프라인 | [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }}) |
-| 스킬 시전·CC 블로킹 입력 | [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }}) |
+| Buff vs Passive Why | [Buff와 Passive를 나눈 이유 (노트)]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
 | HUD 아이콘 레이아웃 | UI 쪽 (요지만) |
 
 ## 정리

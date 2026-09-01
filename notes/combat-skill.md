@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 전투 구조 2/4 Skill 시전 구조
+title: Skill 시전 구조
 permalink: /notes/combat-skill/
 date: 2026-08-04
 excerpt: "스킬의 입력·쿨다운·Rest·버퍼와 SkillAnimation 재생·애니 이벤트로 Hitmark·Buff·Passive를 적용하는 구조를 정리합니다."
@@ -9,20 +9,17 @@ series: combat-structure
 series_title: 전투 구조
 series_order: 2
 series_total: 4
+series_nav: true
 ---
 
 
 스킬의 입력·쿨다운·Rest·버퍼와 SkillAnimation 재생·애니 이벤트로 Hitmark·Buff·Passive를 적용하는 구조를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Skill(시전) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})를, 직선 해피 패스는 [시리즈 2편]({{ "/notes/combat-skill-happy-path/" | relative_url }})을 보면 됩니다. 타격 이후 수치는 [Hitmark]({{ "/notes/combat-hitmark/" | relative_url }})로 넘깁니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
-
-**권장 읽기:** 구조(How) 1→4 후 [경계]({{ "/notes/combat-four-layers/" | relative_url }})(Why) 1→5
-
-**구조:** [1 Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · **2** · [3 Passive]({{ "/notes/combat-passive/" | relative_url }}) · [4 Buff]({{ "/notes/combat-buff/" | relative_url }})
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Skill(시전) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})를, 직선 해피 패스는 [스킬 한 번의 해피 패스 (노트)]({{ "/notes/combat-skill-happy-path/" | relative_url }})를 보면 됩니다. 타격 이후 수치는 구조 노트 Hitmark로 넘깁니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
 
 ## 맥락
 
-플레이어가 버튼을 누르면 스킬이 나간다고 느끼지만, 구현에서는 입력 권한·쿨다운·애니 중 선입력·시전 직후 경직이 한곳에 섞이기 쉽습니다. Dragon에서 Skill 층은 **언제 쓰는지**만 소유하고, 한 방의 정의·피해 식은 Hitmark에 두지 않습니다.
+플레이어가 버튼을 누르면 스킬이 나간다고 느끼지만, 구현에서는 입력 권한·쿨다운·애니 중 선입력·시전 직후 경직이 한곳에 섞이기 쉽습니다. 드래곤 이즈 데드에서 Skill 층은 **언제 쓰는지**만 소유하고, 한 방의 정의·피해 식은 Hitmark에 두지 않습니다.
 
 시전 성공의 산출물은 지금 이 스킬을 쓴다는 결정과, **SkillAnimation 재생**입니다. Hitmark·Buff·Passive 적용은 대개 클립의 애니 이벤트 시점에 일어나며, 데미지 숫자 자체는 Skill의 책임이 아닙니다.
 
@@ -123,15 +120,12 @@ Ability Rest와 Cast Rest를 한 플래그로 합치면, 입력 전체가 쉬는
 
 | 주제 | 위치 |
 |------|------|
-| Hitmark → 피해 → Vital · Target/Area/Projectile | [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }}) |
-| 입력부터 Vital까지 한 줄기 | [시리즈 2편]({{ "/notes/combat-skill-happy-path/" | relative_url }}) |
-| Hitmark를 Skill 밖에 둔 이유 | [시리즈 3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) |
-| Buff·Passive 상세 | [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }}) · [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }}) · [시리즈 4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
+| 입력부터 Vital까지 한 줄기 | [스킬 한 번의 해피 패스 (노트)]({{ "/notes/combat-skill-happy-path/" | relative_url }}) |
+| Hitmark를 Skill 밖에 둔 이유 | [Hitmark를 스킬 밖에 둔 이유 (노트)]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) |
+| Buff vs Passive Why | [Buff와 Passive를 나눈 이유 (노트)]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
 | 클립명·이벤트 키·Animator 내부 | 범위 밖 (요지만 위에) |
 | 스킬 트리 UI·학습 포인트 예외 전부 | UI·프로필 쪽 (요지만 언급) |
 
 ## 정리
 
 Skill은 **시전 의도와 타이밍**의 층입니다. 입력·쿨·Rest·버퍼·슬롯을 지키고, TryCast 후 SkillAnimation을 재생한 뒤 **애니 이벤트 시점**에 Hitmark·Buff·Passive를 적용합니다. 한 방의 의미와 숫자는 Hitmark로 넘기고, 지속 상태·사건 규칙은 Buff·Passive에 맡깁니다.
-
-다음: [전투 구조 3/4 Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})

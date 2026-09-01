@@ -1,21 +1,22 @@
 ---
 layout: page
-title: 세이브 레이아웃 1/2 Main·Side·Meta로 나눈 이유
+title: Main·Side·Meta로 나눈 이유
 permalink: /notes/save-layout-boundaries/
 date: 2026-08-26
 excerpt: "출시 타이틀에서 프로필·슬롯·백업이 타이틀 코드에 섞일 때 생기는 경계를, Main·Side·공유 Meta로만 남긴 이유를 정리합니다."
 tags: [세이브]
 series: save-layout-why
 series_title: 세이브 레이아웃
-series_order: 1
-series_total: 2
+series_order: 2
+series_total: 3
+series_nav: true
 mermaid: true
 ---
 
 
 출시 타이틀에서 프로필·슬롯·백업이 타이틀 코드에 섞일 때 생기는 경계를, Main·Side·공유 Meta로만 남긴 이유를 정리합니다.
 
-초점은 **디스크 단위를 누가 소유하는지**입니다. 출시 맥락은 [Blade Assault (프로젝트)]({{ "/projects/blade-assault/" | relative_url }})·[Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}), 구현은 [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }})입니다.
+초점은 **디스크 단위를 누가 소유하는지**입니다. 출시 맥락은 [블레이드 어썰트 (프로젝트)]({{ "/projects/blade-assault/" | relative_url }})·[드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}), 구현은 [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }})입니다.
 
 ## 맥락
 
@@ -23,18 +24,18 @@ mermaid: true
 
 ## 출시 타이틀의 한계
 
-[Blade Assault (프로젝트)]({{ "/projects/blade-assault/" | relative_url }})와 [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})는 같은 축에서 세이브를 출시까지 지켰지만, **영구 진행·짧은 진행·실패 백업·선택 메타를 디스크 레인 계약으로 갈라 두지는 않았습니다.**
+[블레이드 어썰트 (프로젝트)]({{ "/projects/blade-assault/" | relative_url }})와 [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})는 같은 축에서 세이브를 출시까지 지켰지만, **영구 진행·짧은 진행·실패 백업·선택 메타를 디스크 레인 계약으로 갈라 두지는 않았습니다.**
 
-| | Blade Assault | Dragon is Dead |
+| | 블레이드 어썰트 | 드래곤 이즈 데드 |
 |--|---------------|----------------|
 | 출시에서 한 일 | 슬롯·쿨다운·필수 세이브·백업을 타이틀 코드에서 처리. 실서비스 이중 파일·암호화 경험 | 슬롯별 프로필을 `persistentDataPath`에 두고, 쿨다운·필수 세이브·다중 백업·마이그레이션·손상 복구를 `GameData` 안에서 처리. Steam Cloud는 Auto-Cloud |
 | 한계 | 레인이 계약으로 드러나지 않아, 손상·이어하기·저장 주기의 역할이 한곳에 섞이기 쉬움 | 동일. 세이브 레이아웃만 따로 재현·설명하기 어려움 |
 
 출시본은 전투·UI·밸런스와 섞인 채 **세이브를 지킨 기록**입니다. 이전 타이틀의 단점을 마이그레이션 코드로 증명하지는 않습니다. 출시 요약은 각 프로젝트 페이지의 세이브 절을 보면 됩니다.
 
-## Save Layout에서 시도한 것
+## 세이브 레이아웃에서 시도한 것
 
-그 경계를 [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }})에서 **레이아웃 계약**으로만 뽑았습니다.
+그 경계를 [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }})에서 **레이아웃 계약**으로만 뽑았습니다.
 
 | 축 | 출시에서 섞이기 쉬웠던 것 | 여기서 고정한 것 |
 |----|---------------------------|------------------|
@@ -116,16 +117,11 @@ Demo의 페이로드·Title UI는 놀이터입니다. 출시 `GameData` 스키�
 
 | 주제 | 위치 |
 |------|------|
-| `Backup/`과 Side를 섞지 않은 이유 | [2편 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }}) |
 | 설치·API·불변조건 표·실패 시나리오 | [GitHub README](https://github.com/monet5379/unity-save-layout) |
-| 무엇을 만들었는지·계보·비범위 요약 | [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) |
-| Blade / Dragon 세이브 출시 요약 | [Blade Assault (프로젝트)]({{ "/projects/blade-assault/" | relative_url }}) · [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) |
+| 무엇을 만들었는지·계보·비범위 요약 | [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) |
+| 블레이드 어썰트 / 드래곤 이즈 데드 세이브 출시 요약 | [블레이드 어썰트 (프로젝트)]({{ "/projects/blade-assault/" | relative_url }}) · [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) |
 | 내부 Architecture·NDA 수치 | 공개하지 않음 |
 
 ## 정리
 
-Save Layout에서 지킨 것은 완벽한 세이브 시스템이 아니라, **슬롯당 Main·선택적 Side·공유 Meta**라는 소유 질문입니다. 어디에 쓸지·언제 쓸지·선택이 어디에 있는지가 섞이지 않으면, 타이틀은 스키마와 장르 규칙만 얹으면 됩니다.
-
-**권장 읽기** — Main·Side·Meta(이 글) → [슬롯 백업 대신 Side 레인을 둔 이유 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }}).
-
-**시리즈: 세이브 레이아웃 (1/2)** — **1** · [2 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }})
+세이브 레이아웃에서 지킨 것은 완벽한 세이브 시스템이 아니라, **슬롯당 Main·선택적 Side·공유 Meta**라는 소유 질문입니다. 어디에 쓸지·언제 쓸지·선택이 어디에 있는지가 섞이지 않으면, 타이틀은 스키마와 장르 규칙만 얹으면 됩니다.

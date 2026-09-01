@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 전투 경계 3/5 Hitmark를 스킬 밖에 둔 이유
+title: Hitmark를 스킬 밖에 둔 이유
 permalink: /notes/combat-hitmark-outside-skill/
 date: 2026-08-04
 excerpt: "타격 정의를 Skill에 넣지 않고 Hitmark로 분리한 이유와, 그 선택이 콘텐츠·수정 단위에 준 이득을 정리합니다."
@@ -9,14 +9,13 @@ series: combat-boundaries
 series_title: 전투 경계
 series_order: 3
 series_total: 5
+series_nav: true
 ---
 
 
 타격 정의를 Skill에 넣지 않고 Hitmark로 분리한 이유와, 그 선택이 콘텐츠·수정 단위에 준 이득을 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 3편입니다. Apply·데이터·예시 등 Hitmark How는 [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})에 두고, 이 글은 [2편]({{ "/notes/combat-skill-happy-path/" | relative_url }})의 ID 참조가 **왜 필요한지**만 풉니다.
-
-**시리즈:** [1]({{ "/notes/combat-four-layers/" | relative_url }}) · [2]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · **3** · [4]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 3편입니다. Apply·데이터·예시 등 Hitmark How는 [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})에 두고, 이 글은 [스킬 한 번의 해피 패스 (노트)]({{ "/notes/combat-skill-happy-path/" | relative_url }})의 ID 참조가 **왜 필요한지**만 풉니다.
 
 ## 맥락
 
@@ -37,5 +36,3 @@ Json 테이블(Skill 등)과 Scriptable 정의(Hitmark 등)를 나눈 매체 선
 ## 정리
 
 Hitmark는 Skill의 내부 필드가 아니라 공유 타격 정의입니다. Skill은 시전과 ID 참조를, Hitmark는 한 방의 의미와 피해 파이프라인을 맡깁니다. How는 구조 노트, Why는 이 편입니다.
-
-다음 편: [Buff와 Passive를 나눈 이유]({{ "/notes/combat-buff-vs-passive/" | relative_url }})

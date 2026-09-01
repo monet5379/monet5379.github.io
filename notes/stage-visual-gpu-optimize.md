@@ -12,7 +12,7 @@ mermaid: true
 
 이동만 할 때 카메라에 따라 커지는 렌더 비용을, Global Light 구조와 Switch Ambient 토글 두 레버로 나눈 설계를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 스테이지 비주얼 최적화에서 적용한 내용입니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 스테이지 비주얼 최적화에서 적용한 내용입니다.
 
 ## 맥락
 

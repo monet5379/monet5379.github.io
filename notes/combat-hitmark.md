@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 전투 구조 1/4 Hitmark 타격 정의
+title: Hitmark 타격 정의
 permalink: /notes/combat-hitmark/
 date: 2026-08-04
 excerpt: "Hitmark 정의와 Target·Area·Projectile 공격 런타임 갈래, 피해 계산·Vital 적용까지를 정리합니다."
@@ -9,20 +9,17 @@ series: combat-structure
 series_title: 전투 구조
 series_order: 1
 series_total: 4
+series_nav: true
 ---
 
 
 Hitmark 정의와 Target·Area·Projectile 공격 런타임 갈래, 피해 계산·Vital 적용까지를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Hitmark(타격) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})를, 왜 Skill 밖에 두었는지는 [시리즈 3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})을 보면 됩니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
-
-**권장 읽기:** 구조(How) 1→4 후 [경계]({{ "/notes/combat-four-layers/" | relative_url }})(Why) 1→5
-
-**구조:** **1** · [2 Skill]({{ "/notes/combat-skill/" | relative_url }}) · [3 Passive]({{ "/notes/combat-passive/" | relative_url }}) · [4 Buff]({{ "/notes/combat-buff/" | relative_url }})
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Hitmark(타격) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})를, 왜 Skill 밖에 두었는지는 [Hitmark를 스킬 밖에 둔 이유 (노트)]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})를 보면 됩니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
 
 ## 맥락
 
-실시간 전투에서 데미지가 들어간다는 감각은 하나지만, 구현에서는 시전·판정·수치·HP가 섞이기 쉽습니다. Dragon에서는 **한 번의 공격이 무엇인지**를 Hitmark로 정의하고, 적용 파이프라인을 그 정의 소비로 모았습니다.
+실시간 전투에서 데미지가 들어간다는 감각은 하나지만, 구현에서는 시전·판정·수치·HP가 섞이기 쉽습니다. 드래곤 이즈 데드에서는 **한 번의 공격이 무엇인지**를 Hitmark로 정의하고, 적용 파이프라인을 그 정의 소비로 모았습니다.
 
 프로젝트 페이지에 적어 둔 히트마크 → 피해 계산 → Vital이 이 층의 한 줄 요약입니다. Skill·Buff·Passive는 이 Hitmark를 **언제 켤지**를 정하고, 피해 식 자체를 복제하지 않습니다.
 
@@ -108,15 +105,14 @@ UI 스킬 상세에서 예상 피해를 보여줄 때도, 가능하면 **같은 
 
 | 주제 | 위치 |
 |------|------|
-| 네 층 전체 지도 | [전투 경계 1편]({{ "/notes/combat-four-layers/" | relative_url }}) |
-| 시전·쿨·입력 버퍼 | [전투 구조 2/4 Skill]({{ "/notes/combat-skill/" | relative_url }}) · [시리즈 2편]({{ "/notes/combat-skill-happy-path/" | relative_url }}) |
-| Buff 스택·Passive 조건 | [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }}) · [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }}) · [시리즈 4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
-| 물리/마법 공격력 계약과 구현 갭 | [시리즈 5편]({{ "/notes/combat-boundaries-shipped/" | relative_url }}) |
+| 네 층 전체 지도·Why | [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }}) |
+| 입력부터 Vital 한 줄기 | [스킬 한 번의 해피 패스 (노트)]({{ "/notes/combat-skill-happy-path/" | relative_url }}) |
+| Hitmark를 Skill 밖에 둔 이유 | [Hitmark를 스킬 밖에 둔 이유 (노트)]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) |
+| Buff vs Passive Why | [Buff와 Passive를 나눈 이유 (노트)]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
+| 물리/마법 공격력 계약과 구현 갭 | [출시까지 지킨 경계와 남은 갭 (노트)]({{ "/notes/combat-boundaries-shipped/" | relative_url }}) |
 | 투사체 이동 종류·풀·매니저 | Projectile transport 상세 (요지만 위에) |
 | 히트 VFX·플로팅 텍스트 연출 | 전투 피드백 쪽 (이 글 범위 밖) |
 
 ## 정리
 
 Hitmark는 스킬 이름이 아니라 **재사용 타격 정의**이고, Target·Area·Projectile은 그 정의를 **누구에게 적용할지** 정하는 공격 런타임 갈래입니다. 갈래가 달라도 Apply 이후는 같은 피해·Vital 파이프라인입니다. 시전 타이밍과 상태·사건 규칙은 다른 층에 둡니다.
-
-다음: [전투 구조 2/4 Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }})

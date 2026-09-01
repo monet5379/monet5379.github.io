@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 전투 경계 5/5 출시까지 지킨 경계와 남은 갭
+title: 출시까지 지킨 경계와 남은 갭
 permalink: /notes/combat-boundaries-shipped/
 date: 2026-08-04
 excerpt: "Skill·Hitmark·Buff·Passive 경계가 얼리 액세스부터 정식까지 준 이득과, 문서에 남긴 구현 갭을 정리합니다."
@@ -9,20 +9,19 @@ series: combat-boundaries
 series_title: 전투 경계
 series_order: 5
 series_total: 5
+series_nav: true
 ---
 
 
 Skill·Hitmark·Buff·Passive 경계가 얼리 액세스부터 정식까지 준 이득과, 문서에 남긴 구현 갭을 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 5편(마지막)입니다. 층별 How는 [전투 구조]({{ "/notes/combat-hitmark/" | relative_url }}) 노트에, [1편]({{ "/notes/combat-four-layers/" | relative_url }})~[4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) 지도가 출시 안에서 **무엇을 지키게 했는지**를 이 글에서 봅니다.
-
-**시리즈:** [1]({{ "/notes/combat-four-layers/" | relative_url }}) · [2]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [3]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [4]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · **5**
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 5편(마지막)입니다. 층별 How는 [전투 구조]({{ "/notes/combat-hitmark/" | relative_url }}) 노트에, [네 층으로 나눈 이유 (노트)]({{ "/notes/combat-four-layers/" | relative_url }})~[Buff와 Passive를 나눈 이유 (노트)]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) 지도가 출시 안에서 **무엇을 지키게 했는지**를 이 글에서 봅니다.
 
 ## 맥락
 
 소규모 팀에서 전투·성장 콘텐츠는 시즌·패치마다 늘어납니다. 경계가 없으면 이번 스킬만 예외가 쌓이고, 라이브 이슈의 재현 범위가 게임 전체로 커집니다.
 
-Dragon은 2024.06 얼리 액세스, 2025.06 정식 출시까지 같은 전투 클러스터 위에서 스킬·히트·버프·패시브를 유지했습니다. 이 글의 주장은 완벽한 설계가 아니라, **출시 가능한 소유 경계를 문서와 코드에 남긴 것**입니다.
+드래곤 이즈 데드는 2024.06 얼리 액세스, 2025.06 정식 출시까지 같은 전투 클러스터 위에서 스킬·히트·버프·패시브를 유지했습니다. 이 글의 주장은 완벽한 설계가 아니라, **출시 가능한 소유 경계를 문서와 코드에 남긴 것**입니다.
 
 ## 경계가 준 이득
 
@@ -58,15 +57,9 @@ Dragon은 2024.06 얼리 액세스, 2025.06 정식 출시까지 같은 전투 �
 
 **Skill 데이터 매체.** Skill 로직·테이블은 Json 쪽을 쓰며, Scriptable SkillAsset으로의 이관은 목표로 남겨 둔 과도기가 있습니다. Hitmark/Buff/Passive와 매체가 다른 것 자체는 1·3편의 선택이지만, Skill 쪽 매체가 한곳에 모이지 않은 상태는 부채입니다.
 
-## 이 시리즈를 어떻게 쓰면 좋은지
+## 읽기 순서
 
-| 독자 | 권장 읽기 |
-|------|-----------|
-| 처음 | [구조 1→4]({{ "/notes/combat-hitmark/" | relative_url }}) 후 [경계 1]({{ "/notes/combat-four-layers/" | relative_url }})→5 |
-| 짧게 | [1편]({{ "/notes/combat-four-layers/" | relative_url }}) + 위 경계가 준 이득 |
-| How / Why / 출시 | 구조 노트 · 경계 2~4 · 이 글 |
-
-면접용 구어체 대본은 사이트 notes와 별도로 두는 편이 낫습니다. 여기서는 **합니다체로 설계 의도**만 고정합니다.
+How는 [전투 구조]({{ "/notes/combat-hitmark/" | relative_url }}) 노트, Why·출시는 이 시리즈(하단 목록)입니다. 처음이면 구조 1→4 후 경계 1→5를 권합니다.
 
 ## 정리
 

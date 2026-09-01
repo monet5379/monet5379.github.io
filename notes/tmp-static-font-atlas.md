@@ -11,7 +11,7 @@ mermaid: true
 
 TMP Dynamic 폰트의 런타임 아틀라스 성장·프레임 히치를 피하기 위해, 문자열 JSON에서 언어별 고유 글자를 뽑아 Static 아틀라스에 넣는 파이프라인을 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다.
 
 ## 맥락
 
@@ -77,7 +77,7 @@ flowchart TD
 
 UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK가 UI 폰트 아틀라스를 불필요하게 키우기 때문입니다. 유럽 계열은 글리프 겹침이 커서 하나로 합쳤습니다. 유지보수 단위는 **언어/버킷별 Static Font Asset**입니다.
 
-**Dragon 배포 vs 공개 Demo.** 위 European **합집합**은 Dragon 출시 기준입니다. 오픈소스 [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) Demo는 EN · FR · DE · IT · ES를 **언어별 버킷·Static asset**으로 분리합니다. UI·Dialogue 분리 원칙은 같고, 유럽어 쪼개기만 다릅니다.
+**드래곤 이즈 데드 배포 vs 공개 Demo.** 위 European **합집합**은 드래곤 이즈 데드 출시 기준입니다. 오픈소스 [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }}) Demo는 EN · FR · DE · IT · ES를 **언어별 버킷·Static asset**으로 분리합니다. UI·Dialogue 분리 원칙은 같고, 유럽어 쪼개기만 다릅니다.
 
 ### 정제
 
@@ -120,7 +120,7 @@ String workbook / JSON이 바뀌면 Static 폰트도 같이 갱신합니다.
 
 ## 공개 구현
 
-Dragon에서 정리한 추출 → Static bake → 런타임 font 선택을 게임 없이 복사해 쓸 수 있게 [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) (`unity-tmp-font`)로 뺐습니다. Install·API·Demo 절차는 [GitHub README](https://github.com/monet5379/unity-tmp-font)가 정본입니다.
+드래곤 이즈 데드에서 정리한 추출 → Static bake → 런타임 font 선택을 게임 없이 복사해 쓸 수 있게 [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }}) (`unity-tmp-font`)로 뺐습니다. Install·API·Demo 절차는 [GitHub README](https://github.com/monet5379/unity-tmp-font)가 정본입니다.
 
 | 항목 | 내용 |
 |------|------|

@@ -1,26 +1,23 @@
 ---
 layout: page
-title: 전투 경계 1/5 네 층으로 나눈 이유
+title: 네 층으로 나눈 이유
 permalink: /notes/combat-four-layers/
 date: 2026-08-04
-excerpt: "Dragon is Dead 전투를 Skill·Hitmark·Buff·Passive 네 층으로 나눈 경계와, 그렇게 둔 이유를 정리합니다."
+excerpt: "드래곤 이즈 데드 전투를 Skill·Hitmark·Buff·Passive 네 층으로 나눈 경계와, 그렇게 둔 이유를 정리합니다."
 tags: [전투]
 series: combat-boundaries
 series_title: 전투 경계
 series_order: 1
 series_total: 5
+series_nav: true
 ---
 
 
-Dragon is Dead 전투를 Skill·Hitmark·Buff·Passive 네 층으로 나눈 경계와, 그렇게 둔 이유를 정리합니다.
+드래곤 이즈 데드 전투를 Skill·Hitmark·Buff·Passive 네 층으로 나눈 경계와, 그렇게 둔 이유를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투·성장 담당에서 설계·유지한 내용입니다. 클래스 목록이 아니라 **소유 경계**와 **왜 그렇게 나눴는지**에 초점을 둡니다. 층별 How는 구조 노트에, 이 시리즈는 지도·Why·출시에 둡니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투·성장 담당에서 설계·유지한 내용입니다. 클래스 목록이 아니라 **소유 경계**와 **왜 그렇게 나눴는지**에 초점을 둡니다. 층별 How는 구조 노트에, 이 시리즈는 지도·Why·출시에 둡니다.
 
-**권장 읽기** — 구조(How·개요) 1→4 후, 경계(Why·출시) 1→5.
-
-**시리즈: 전투 경계 (1/5)** — **1** · [2]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [3]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [4]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
-
-**구조 노트:** [1 Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · [2 Skill]({{ "/notes/combat-skill/" | relative_url }}) · [3 Passive]({{ "/notes/combat-passive/" | relative_url }}) · [4 Buff]({{ "/notes/combat-buff/" | relative_url }})
+**구조 노트:** [Hitmark]({{ "/notes/combat-hitmark/" | relative_url }}) · [Skill]({{ "/notes/combat-skill/" | relative_url }}) · [Passive]({{ "/notes/combat-passive/" | relative_url }}) · [Buff]({{ "/notes/combat-buff/" | relative_url }})
 
 ## 맥락
 
@@ -73,10 +70,6 @@ Passive / Buff 반응 → Buff · Hitmark · Skill API (위임)
 | 주제 | 다룰 곳 |
 |------|---------|
 | Hitmark·Skill·Passive·Buff 런타임·데이터 | [구조 노트]({{ "/notes/combat-hitmark/" | relative_url }}) |
-| 입력 → 시전 → Hitmark → Vital 한 줄기 | [2편]({{ "/notes/combat-skill-happy-path/" | relative_url }}) |
-| Hitmark를 Skill 밖에 둔 이유 | [3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) |
-| Buff vs Passive, 연쇄·Rest·상한 | [4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) |
-| EA→정식에서 경계가 버틴 점과 남은 구현 갭 | [5편]({{ "/notes/combat-boundaries-shipped/" | relative_url }}) |
 | 애니 클립·VFX·트리거 카탈로그 | 구조 노트 요지 또는 범위 밖 |
 | GC·풀링·핫패스 할당 | 별도 성능 노트 |
 
@@ -84,6 +77,4 @@ Passive / Buff 반응 → Buff · Hitmark · Skill API (위임)
 
 ## 정리
 
-Dragon is Dead 전투는 Skill·Hitmark·Buff·Passive 네 층의 소유 경계로 나뉘어 있습니다. 시전 타이밍, 타격 정의, 지속 상태, 사건 반응을 섞지 않은 덕분에, 콘텐츠를 늘리면서도 어디에 넣을지를 같은 기준으로 결정할 수 있었습니다.
-
-다음: 구조는 [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})부터, 시리즈는 [스킬 한 번의 해피 패스]({{ "/notes/combat-skill-happy-path/" | relative_url }}).
+드래곤 이즈 데드 전투는 Skill·Hitmark·Buff·Passive 네 층의 소유 경계로 나뉘어 있습니다. 시전 타이밍, 타격 정의, 지속 상태, 사건 반응을 섞지 않은 덕분에, 콘텐츠를 늘리면서도 어디에 넣을지를 같은 기준으로 결정할 수 있었습니다.

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 전투 경계 4/5 Buff와 Passive를 나눈 이유
+title: Buff와 Passive를 나눈 이유
 permalink: /notes/combat-buff-vs-passive/
 date: 2026-08-04
 excerpt: "지속 상태(Buff)와 사건 규칙(Passive)을 나눈 이유와, 반응 루프에서의 역할 분리를 정리합니다."
@@ -9,14 +9,13 @@ series: combat-boundaries
 series_title: 전투 경계
 series_order: 4
 series_total: 5
+series_nav: true
 ---
 
 
 지속 상태(Buff)와 사건 규칙(Passive)을 나눈 이유와, 반응 루프에서의 역할 분리를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 4편입니다. Buff·Passive **구조**는 [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})·[Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})에 두고, 이 글은 [2편]({{ "/notes/combat-skill-happy-path/" | relative_url }}) 이후 **반응 루프**와 둘을 나눈 이유를 봅니다. 실행 큐·프레임 상한 등 폭주 제어 How는 [Passive 구조]({{ "/notes/combat-passive/" | relative_url }})가 정본입니다.
-
-**시리즈:** [1]({{ "/notes/combat-four-layers/" | relative_url }}) · [2]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [3]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · **4** · [5]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 경계 시리즈의 4편입니다. Buff·Passive **구조**는 [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})·[Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})에 두고, 이 글은 [스킬 한 번의 해피 패스 (노트)]({{ "/notes/combat-skill-happy-path/" | relative_url }}) 이후 **반응 루프**와 둘을 나눈 이유를 봅니다. 실행 큐·프레임 상한 등 폭주 제어 How는 [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }})이 정본입니다.
 
 ## 맥락
 
@@ -70,5 +69,3 @@ Passive는 전투 이벤트에 연쇄되기 쉽습니다. 실행은 전역 큐·
 ## 정리
 
 Buff는 캐릭터에 붙는 지속 상태이고, Passive는 사건에 반응하는 규칙입니다. Passive는 효과를 Buff·Hitmark·Skill에 위임합니다. 연쇄 폭주 제어 How는 구조 노트에 맡깁니다.
-
-다음 편: [출시까지 지킨 경계와 남은 갭]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
