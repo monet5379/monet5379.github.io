@@ -5,18 +5,143 @@ title: 홈
 
 ## 나에 대하여(About Me)
 
-안녕하세요. 저는 **유승현**입니다. Unity 클라이언트 / 게임플레이 엔지니어로, 약 9년간 모바일·PC 게임을 만들어 왔습니다.
+안녕하세요. 저는 **유승현**입니다. Unity 클라이언트 / 게임플레이 엔지니어로, Steam PC 액션 두 편을 프로젝트 초기부터 얼리 액세스를 거쳐 정식 출시까지 맡았습니다. 클라이언트 전반을 구현해 왔고, 출시 뒤에는 유저가 플레이를 이어가지 못하게 막는 축을 줄이며 게임이 계속 돌아갈 수 있는 상태를 지키는 일을 중심으로 일해 왔습니다.
 
-최근에는 팀써니트에서 *드래곤 이즈 데드(Dragon is Dead)*의 개발 리드로 Steam 얼리 액세스와 정식 출시를 마쳤습니다. 그 전에는 *블레이드 어썰트(Blade Assault)*에서 전체 프로그래밍을 맡아 Steam에 출시했습니다. 두 작품 모두 소규모 팀에서, 전투·성장·스테이지·UI·세이브·플랫폼 연동까지 클라이언트 쪽을 넓게 담당했습니다. 그 전에는 모바일 퍼즐·클리커·런게임과 PC·모바일 액션 프로토타입 등에서 UI·게임플레이·서버 연동을 했습니다.
+- **콘텐츠** — 전투·AI·스테이지·UI·Steamworks 등 게임플레이 전반 ([Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}), [Blade Assault (프로젝트)]({{ "/projects/blade-assault/" | relative_url }}))
+- **도구·생산성** — Excel→Json 데이터 파이프라인, 세이브 진단·복구, 런타임/에디터 진단 습관 ([세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }}))
+- **빌드·품질** — 플레이어 빌드 로그 비용 제거, 스테이지 이동 hitch·GPU 비용 분리 ([Conditional 로그 (노트)]({{ "/notes/conditional-log-build-cost/" | relative_url }}), [Area 선스폰 (노트)]({{ "/notes/stage-spawn-area-preload/" | relative_url }}), [GPU 레버 (노트)]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }}))
 
-소규모 팀에서는 기능을 끝까지 닫는 일과, 출시 후에도 세이브·성능·플랫폼 이슈가 다시 안 돌아오게 가드를 두는 일에 신경을 씁니다. 같은 이유로 세이브 레이아웃, Conditional 로그, TMP 폰트 파이프라인처럼 출시에서 겪은 문제를 패키지로 정리해 두고, 설계 회고는 노트로 남깁니다.
+프로그래머 본업 외에, 내러티브에 관심이 많아 스토리 작성에 자원해 *블레이드 어썰트*와 *드래곤 이즈 데드*의 세계관·대사·지역·아이템 설정을 출시까지 맡았습니다. 기획·아트와 맞추며 톤을 유지했고, 팀의 도움이 컸습니다. ([프로그래머가 내러티브를 작성할 수 있었던 이유 (노트)]({{ "/notes/narrative-ownership-shipped/" | relative_url }}))
 
-이 사이트에는 채용·협업을 위한 [경력]({{ "/career/" | relative_url }}), 참여·개인 [포트폴리오]({{ "/projects/" | relative_url }}), [노트]({{ "/notes/" | relative_url }}), [리뷰]({{ "/reviews/" | relative_url }})를 모아 두었습니다. 궁금한 점이 있으면 [메일](mailto:{{ site.email }})로 편하게 연락해 주세요.
+콘솔 SDK 직접 경험은 없습니다. PC·Deck·저사양 콘솔의 포팅을 외주업체와 협력하여 포팅 가드와 측정으로 플랫폼 제약을 다뤄 왔고, 팀 빌드·검증 파이프라인은 빠르게 흡수해 기여할 수 있습니다.
+
+궁금한 점이 있으면 [메일](mailto:{{ site.email }})로 연락해 주세요.
 
 ---
+
+## 요약
+
+- 이름: 유승현
+- 포지션: Unity 클라이언트 / 게임플레이 엔지니어
+- 총 경력: 9년 4개월
+- 핵심 역량: Unity, C#, Steam 출시, 전투·스테이지·세이브, 최적화, 데이터·툴링
+- 관심: 콘솔·PC 신작 클라이언트, 팀 도구·품질 파이프라인
+
+## 경력
+
+<div class="career-entry" markdown="1">
+
+### [드래곤 이즈 데드 (Dragon is Dead)]({{ "/projects/dragon-is-dead/" | relative_url }})
+팀써니트 · 프로그래밍 / 사원 · 2022.05 – 2026.06 (4년 1개월) · Steam
+
+{% include career-media.html slug="dragon-is-dead" youtube="0f0ZXseDMUM" title="Dragon is Dead" %}
+
+- 역할: 프로그래머 1~2명 규모 팀에서 개발 리드
+- 담당: 성장·입력·전투, 적 AI·스테이지, 카메라·UI, 세이브·데이터, 로컬라이즈, Steamworks, 성능·포팅 대응 등 클라이언트 전반
+- 성과: 2024.06.07 얼리 액세스 발매, 2025.06.06 정식 출시 · Steam · Deck 대응
+- 스택: Unity, C#, Cinemachine, Timeline, Steamworks, UGS Analytics
+- 상세: [Projects — Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
+- 링크: [Steam](https://store.steampowered.com/app/2803280/Dragon_Is_Dead/)↗
+    [YouTube](https://youtu.be/0f0ZXseDMUM)↗
+
+</div>
+
+<div class="career-entry" markdown="1">
+
+### [블레이드 어썰트 (Blade Assault)]({{ "/projects/blade-assault/" | relative_url }})
+팀써니트 · 프로그래밍 / 사원 · 2020.02 – 2022.01 (1년 11개월) · Steam
+
+{% include career-media.html slug="blade-assault" youtube="uV-fWC5zbfw" title="Blade Assault" %}
+
+- 역할: 기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍 담당
+- 담당: 런 빌드·액션 척추·스테이지 루프·메타, UI·세이브·빌드·출시 등 클라이언트 전 영역
+- 성과: 경기게임오디션 3위, BIC 참가, 2021.06.06 얼리 액세스 발매, 2022.01.18 정식 출시
+- 스택: Unity, C#
+- 상세: [Projects — Blade Assault]({{ "/projects/blade-assault/" | relative_url }})
+- 링크: [Steam](https://store.steampowered.com/app/1367300/Blade_Assault/)↗
+    [YouTube](https://youtu.be/uV-fWC5zbfw)↗
+
+</div>
+
+<div class="career-entry" markdown="1">
+
+### 아스트로 펭귄
+누라임게임즈 · 프로그래밍 / 사원 · 2019.08 – 2020.02 (0년 6개월) · 모바일 · 유니티 3D 런게임
+
+{% include career-media.html youtube="fy1c9veBKYk" title="아스트로 펭귄" %}
+
+- 역할: Android / iOS 개발, 인앱 결제·광고 연동
+- 링크: [YouTube Shorts](https://youtube.com/shorts/fy1c9veBKYk)↗
+- 스택: Unity, C#
+
+</div>
+
+<div class="career-entry" markdown="1">
+
+### 프로젝트 X (가제)
+PMStudio · 프로그래밍 / 사원 · 2017.10 – 2019.03 (1년 4개월) · 스마일게이트 크로스파이어 IP, 브로포스 방식 2D 플랫폼 실시간 액션
+
+{% include career-media.html youtube="niIEEj2T-hg" title="프로젝트 X" %}
+
+- 역할: UI, 캐릭터·무기 시스템, 맵 오브젝트, 적 AI(등장·이동·피격·사망·근거리/원거리), 데이터 I/O(xlsx, JSON), 인게임 데디케이티드 서버·아웃게임 유저 데이터 서버 대응
+- 플랫폼: PC 개발 중 모바일로 변경 · 런칭하지 않음
+- 팀: 프로그래머 2~3명
+- 링크: [YouTube](https://youtu.be/niIEEj2T-hg)↗
+- 스택: Unity, C#
+
+</div>
+
+<div class="career-entry" markdown="1">
+
+### 디그랜드
+zoniworks · 클라이언트 프로그래머 · 2017.05 – 2017.11 · 모바일 · 2D 클리커 성장 게임 & 비트코인 연동
+
+{% include career-media.html youtube="9I43e2RJJQ8" start="267" title="디그랜드" %}
+
+- 역할: 아웃게임·인게임 UI, 튜토리얼
+- 팀: 프로그래머 2명
+- 성과: 2017.10 한국 런칭
+- 링크: [YouTube](https://www.youtube.com/watch?v=9I43e2RJJQ8&t=267s)↗
+- 스택: Unity, C#
+
+</div>
+
+<div class="career-entry" markdown="1">
+
+### 라인퍼즐프랜즈
+zoniworks · UI 프로그래머 · 2016.05 – 2017.05 · 모바일 · 2D 퍼즐 RPG
+
+{% include career-media.html youtube="FsdUjmx_CLs" title="라인퍼즐프랜즈" %}
+
+- 역할: 아웃게임·인게임 UI
+- 팀: 클라이언트 6명, 서버 2명
+- 성과: 일본·글로벌 버전 런칭
+- 링크: [YouTube](https://youtu.be/FsdUjmx_CLs)↗
+- 스택: Lua, Corona
+
+</div>
+
+## 출시에서 뽑은 도구
+
+상용에서 겪은 비용을 패키지·케이스로 남긴 것들입니다.
+
+- [Conditional 로그 (프로젝트)]({{ "/projects/conditional-log/" | relative_url }}) — 플레이어 빌드에서 로그 호출·인자 평가 제거
+- [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) — 슬롯·마이그레이션·진단 경계
+- [TMP 폰트 파이프라인 (프로젝트)]({{ "/projects/tmp-font-pipeline/" | relative_url }}) — Static atlas·워밍업으로 hitch 완화
+
+## 스킬
+
+| 영역 | 내용 |
+|------|------|
+| 엔진·언어 | Unity, C# |
+| 콘텐츠 | 전투·AI·스테이지, UI, 세이브·데이터, Steamworks, 로컬라이즈 |
+| 도구·품질 | Excel→Json 파이프라인, 세이브 진단·마이그레이션, Conditional 로그, TMP 아틀라스·워밍업 |
+| 빌드·플랫폼 | Dev/Release·플랫폼 define, Steam PC·Deck, Android/iOS |
+| 협업 | 소규모 팀 리드, 기획·아트와 기능 단위 협업 |
+
 ## 바로가기
 
-- [경력]({{ "/career/" | relative_url }}) — 역할·기간·성과를 채용 검토용으로 짧게 정리해 둡니다.
 - [포트폴리오]({{ "/projects/" | relative_url }}) — 참여 프로젝트와 내 기여를 모아 둡니다.
 - [노트]({{ "/notes/" | relative_url }}) — 회고·짧은 팁 등 공개 기술 글을 모아 둡니다.
 - [리뷰]({{ "/reviews/" | relative_url }}) — 플레이·설계 관점의 게임 리뷰를 모아 둡니다.
+- GitHub: [monet5379](https://github.com/monet5379)↗

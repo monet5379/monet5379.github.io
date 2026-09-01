@@ -4,7 +4,7 @@ title: 전투 구조 3/4 Passive 사건 규칙
 permalink: /notes/combat-passive/
 date: 2026-08-04
 excerpt: "트리거·조건·효과와 실행 큐로 동작하는 Passive 층의 구조를 정리합니다."
-tags: [DragonIsDead, Architecture, Combat]
+tags: [전투]
 series: combat-structure
 series_title: 전투 구조
 series_order: 3

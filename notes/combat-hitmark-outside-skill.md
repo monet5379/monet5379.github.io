@@ -4,7 +4,7 @@ title: 전투 경계 3/5 Hitmark를 스킬 밖에 둔 이유
 permalink: /notes/combat-hitmark-outside-skill/
 date: 2026-08-04
 excerpt: "타격 정의를 Skill에 넣지 않고 Hitmark로 분리한 이유와, 그 선택이 콘텐츠·수정 단위에 준 이득을 정리합니다."
-tags: [DragonIsDead, Architecture, Combat]
+tags: [전투]
 series: combat-boundaries
 series_title: 전투 경계
 series_order: 3

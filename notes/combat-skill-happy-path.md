@@ -4,7 +4,7 @@ title: 전투 경계 2/5 스킬 한 번의 해피 패스
 permalink: /notes/combat-skill-happy-path/
 date: 2026-08-04
 excerpt: "스킬 입력부터 Hitmark·피해 계산·Vital까지, 반응 루프를 빼 둔 해피 패스만 따라갑니다."
-tags: [DragonIsDead, Architecture, Combat]
+tags: [전투]
 series: combat-boundaries
 series_title: 전투 경계
 series_order: 2

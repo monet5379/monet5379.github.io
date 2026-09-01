@@ -20,7 +20,7 @@ Unity 프로젝트를 열 때마다 Cursor 규칙을 복사하지 않도록, 공
 - 역할: 설계·문서
 - 초점: common 항상 + personal|game 중 하나, 멀티 루트 워크스페이스, `AGENTS` 템플릿
 - 배포: 저장소 clone 후 프로젝트와 함께 Cursor 멀티 루트로 열기 (선택: submodule + junction)
-- 연관: [Conditional Log]({{ "/projects/conditional-log/" | relative_url }}) · [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) · [Save Layout]({{ "/projects/save-layout/" | relative_url }})
+- 연관: [Conditional Log (프로젝트)]({{ "/projects/conditional-log/" | relative_url }}) · [TMP Font Pipeline (프로젝트)]({{ "/projects/tmp-font-pipeline/" | relative_url }}) · [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }})
 
 ## 문제
 
@@ -60,8 +60,8 @@ Unity 프로젝트를 열 때마다 Cursor 규칙을 복사하지 않도록, 공
 
 | 프로젝트 | 가져온 / 남긴 것 |
 |----------|------------------|
-| [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) | 출시 타이틀 규모의 문서·에이전트 규약 → game 프로필 무게의 계기 |
-| [Conditional Log]({{ "/projects/conditional-log/" | relative_url }}) · [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) · [Save Layout]({{ "/projects/save-layout/" | relative_url }}) | 공개 패키지·케이스 스터디 → personal (README + Invariants) |
+| [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) | 출시 타이틀 규모의 문서·에이전트 규약 → game 프로필 무게의 계기 |
+| [Conditional Log (프로젝트)]({{ "/projects/conditional-log/" | relative_url }}) · [TMP Font Pipeline (프로젝트)]({{ "/projects/tmp-font-pipeline/" | relative_url }}) · [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) | 공개 패키지·케이스 스터디 → personal (README + Invariants) |
 
 설치·프로필 선택·템플릿은 GitHub README에 두고, 여기서는 분리 단위와 설계 축만 담습니다.
 
@@ -77,8 +77,8 @@ Cursor rules, Markdown, Unity 워크플로 가이드
 
 ### 내부
 
-- [Conditional Log]({{ "/projects/conditional-log/" | relative_url }})
-- [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }})
-- [Save Layout]({{ "/projects/save-layout/" | relative_url }})
-- [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
-- [경력]({{ "/career/" | relative_url }})
+- [Conditional Log (프로젝트)]({{ "/projects/conditional-log/" | relative_url }})
+- [TMP Font Pipeline (프로젝트)]({{ "/projects/tmp-font-pipeline/" | relative_url }})
+- [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }})
+- [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})
+- [홈 · 경력]({{ "/#경력" | relative_url }})

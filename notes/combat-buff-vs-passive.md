@@ -4,7 +4,7 @@ title: 전투 경계 4/5 Buff와 Passive를 나눈 이유
 permalink: /notes/combat-buff-vs-passive/
 date: 2026-08-04
 excerpt: "지속 상태(Buff)와 사건 규칙(Passive)을 나눈 이유와, 반응 루프에서의 역할 분리를 정리합니다."
-tags: [DragonIsDead, Architecture, Combat]
+tags: [전투]
 series: combat-boundaries
 series_title: 전투 경계
 series_order: 4

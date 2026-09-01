@@ -4,7 +4,7 @@ title: 전투 구조 1/4 Hitmark 타격 정의
 permalink: /notes/combat-hitmark/
 date: 2026-08-04
 excerpt: "Hitmark 정의와 Target·Area·Projectile 공격 런타임 갈래, 피해 계산·Vital 적용까지를 정리합니다."
-tags: [DragonIsDead, Architecture, Combat]
+tags: [전투]
 series: combat-structure
 series_title: 전투 구조
 series_order: 1

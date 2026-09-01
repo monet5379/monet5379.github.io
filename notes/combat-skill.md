@@ -4,7 +4,7 @@ title: 전투 구조 2/4 Skill 시전 구조
 permalink: /notes/combat-skill/
 date: 2026-08-04
 excerpt: "스킬의 입력·쿨다운·Rest·버퍼와 SkillAnimation 재생·애니 이벤트로 Hitmark·Buff·Passive를 적용하는 구조를 정리합니다."
-tags: [DragonIsDead, Architecture, Combat]
+tags: [전투]
 series: combat-structure
 series_title: 전투 구조
 series_order: 2

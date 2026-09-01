@@ -14,7 +14,7 @@ Dragon 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 게임 밖�
 
 {% include screenshot-carousel.html slug="tmp-font-pipeline" %}
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 다국어 TMP 작업에서 «어떤 글자가 아틀라스에 있는가»와 «언제 처음 그리는가»를 나눈 경험을, `Assets/TmpFontPipeline` 통째 복사로 재현·검증할 수 있게 정리했습니다.
+[Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 다국어 TMP 작업에서 «어떤 글자가 아틀라스에 있는가»와 «언제 처음 그리는가»를 나눈 경험을, `Assets/TmpFontPipeline` 통째 복사로 재현·검증할 수 있게 정리했습니다.
 
 ## 개요
 
@@ -22,7 +22,7 @@ Dragon 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 게임 밖�
 - 역할: 설계·구현·문서
 - 배포: `Assets/TmpFontPipeline` 폴더 복사 (UPM 아님)
 - Demo: `Assets/Demo` — SampleScene, Extract/Apply 샘플 (놀이터, 출시 템플릿 아님)
-- 연관: [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) · [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) · [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
+- 연관: [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) · [TMP Static 아틀라스로 Dynamic hitch 피하기 (노트)]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) · [스플래시·옵션으로 옮긴 TMP 폰트 워밍업 (노트)]({{ "/notes/tmp-font-warmup/" | relative_url }})
 
 ## 문제
 
@@ -53,7 +53,7 @@ Install·Window 조작·API 시그니처는 [GitHub README](https://github.com/m
 | Warmup sample | 언어군 공통 짧은 문장 | 역할별 — Ui `Confirm`, Dialogue `dlg_intro` 등 |
 | 로컬라이즈 | StringGetter · 게임 UI 전체 | Demo만 — `DemoStringTable` · label refresh |
 
-원칙(Static SSOT, warmup ≠ glyph 보장, Dialogue 버킷 분리, input block)은 [노트 2편]({{ "/notes/tmp-static-font-atlas/" | relative_url }})과 같습니다.
+원칙(Static SSOT, warmup ≠ glyph 보장, Dialogue 버킷 분리, input block)은 [노트 2편 (노트)]({{ "/notes/tmp-static-font-atlas/" | relative_url }})과 같습니다.
 
 ## 이 프로젝트가 아닌 것
 
@@ -67,7 +67,7 @@ Install·Window 조작·API 시그니처는 [GitHub README](https://github.com/m
 
 | 프로젝트 | TMP에서 가져온 / 남긴 것 |
 |----------|---------------------------|
-| [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) | Static extract · Dialogue 버킷 · Splash/옵션 warmup · supersede |
+| [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) | Static extract · Dialogue 버킷 · Splash/옵션 warmup · supersede |
 | 이 repo | Editor Apply Window · `FontRoleCatalog` · `FontWarmupService` · Demo |
 
 개념·기각은 노트, 복사 단위·Demo는 여기와 GitHub README에 둡니다.
@@ -84,7 +84,7 @@ Unity, TextMesh Pro, C#
 
 ### 내부
 
-- [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})
-- [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
-- [Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
-- [경력]({{ "/career/" | relative_url }})
+- [TMP Static 아틀라스로 Dynamic hitch 피하기 (노트)]({{ "/notes/tmp-static-font-atlas/" | relative_url }})
+- [스플래시·옵션으로 옮긴 TMP 폰트 워밍업 (노트)]({{ "/notes/tmp-font-warmup/" | relative_url }})
+- [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})
+- [홈 · 경력]({{ "/#경력" | relative_url }})

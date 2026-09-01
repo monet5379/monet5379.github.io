@@ -4,7 +4,7 @@ title: 전투 경계 5/5 출시까지 지킨 경계와 남은 갭
 permalink: /notes/combat-boundaries-shipped/
 date: 2026-08-04
 excerpt: "Skill·Hitmark·Buff·Passive 경계가 얼리 액세스부터 정식까지 준 이득과, 문서에 남긴 구현 갭을 정리합니다."
-tags: [DragonIsDead, Architecture, Combat]
+tags: [전투]
 series: combat-boundaries
 series_title: 전투 경계
 series_order: 5

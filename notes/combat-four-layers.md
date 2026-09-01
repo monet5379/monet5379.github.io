@@ -4,7 +4,7 @@ title: 전투 경계 1/5 네 층으로 나눈 이유
 permalink: /notes/combat-four-layers/
 date: 2026-08-04
 excerpt: "Dragon is Dead 전투를 Skill·Hitmark·Buff·Passive 네 층으로 나눈 경계와, 그렇게 둔 이유를 정리합니다."
-tags: [DragonIsDead, Architecture, Combat]
+tags: [전투]
 series: combat-boundaries
 series_title: 전투 경계
 series_order: 1

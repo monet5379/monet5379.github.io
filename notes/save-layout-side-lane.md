@@ -15,7 +15,7 @@ mermaid: true
 
 손상 복구용 Backup/과 세션·오토용 Side 레인을 섞지 않은 이유와, 슬롯 백업으로 Continue를 흉내 내지 않기로 한 경계를 정리합니다.
 
-[1편]({{ "/notes/save-layout-boundaries/" | relative_url }})에서 Main·Side·Meta 지도를 둔 뒤, 이 글은 **Side를 왜 `Backup/`으로 대체하지 않았는지**만 봅니다. 구현은 [Save Layout]({{ "/projects/save-layout/" | relative_url }})입니다.
+[1편 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }})에서 출시 타이틀의 한계와 Main·Side·Meta 지도를 둔 뒤, 이 글은 **Side를 왜 `Backup/`으로 대체하지 않았는지**만 봅니다. 구현은 [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }})입니다.
 
 ## 맥락
 
@@ -75,7 +75,7 @@ flowchart TD
 |------|-----------|
 | 런 전 Main → `Backup/` 복사 후 복원으로 Continue | 실패 산출물과 제품 상태를 혼동. 클라우드·정리 정책이 꼬임 |
 | Main 안에 런 필드를 넣고 저장 주기만 바꿈 | 한 파일에 영구·짧은 진행이 섞여 손상·쿨다운 반경이 공유됨 |
-| 별도 `runs/` 트리·런 전용 제품 API | 슬롯에 묶인 옆 파일(Side)로 충분하다고 봄 |
+| 별도 `runs/` 트리·런 전용 제품 API | [1편 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }}) 기각과 동일 — Side로 충분 |
 | 크래시 시 Runtime이 Side를 자동 Invalidate | 장르 정책. 타이틀 몫으로 둠 |
 
 타이틀 레시피 예(강제 아님): Session은 안전 지점에서 `SaveSide`, 포기·비정상이면 `InvalidateSide`. Autosave는 `valid`를 유지하고 Continue 기본은 Main.
@@ -84,14 +84,14 @@ flowchart TD
 
 | 주제 | 위치 |
 |------|------|
-| Main·Side·Meta 지도·Meta/`PlayerPrefs` | [1편]({{ "/notes/save-layout-boundaries/" | relative_url }}) |
+| Main·Side·Meta 지도·출시 한계·Meta/`PlayerPrefs` | [1편 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }}) |
 | API·실패 시나리오·Demo F1 | [GitHub README](https://github.com/monet5379/unity-save-layout) |
-| 케이스 스터디 요약 | [Save Layout]({{ "/projects/save-layout/" | relative_url }}) |
+| 케이스 스터디 요약 | [Save Layout (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) |
 
 ## 정리
 
 `Backup/`은 **깨진 파일을 치우는 로컬 흔적**이고, Side는 **슬롯에 붙인 의도적 옆 진행**입니다. Continue·오토·세션을 슬롯 백업으로 흉내 내지 않은 덕분에, 복구와 장르 규칙이 같은 폴더를 두고 싸우지 않습니다.
 
-**권장 읽기** — [Main·Side·Meta로 나눈 이유]({{ "/notes/save-layout-boundaries/" | relative_url }}) → Side 레인(이 글).
+**권장 읽기** — [Main·Side·Meta로 나눈 이유 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }}) → Side 레인(이 글).
 
-**시리즈: 세이브 레이아웃 (2/2)** — [1]({{ "/notes/save-layout-boundaries/" | relative_url }}) · **2**
+**시리즈: 세이브 레이아웃 (2/2)** — [1 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }}) · **2**

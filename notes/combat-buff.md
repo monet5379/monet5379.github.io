@@ -4,7 +4,7 @@ title: 전투 구조 4/4 Buff 지속 상태
 permalink: /notes/combat-buff/
 date: 2026-08-04
 excerpt: "스택·지속 시간·상태이상·스탯과 주기 트리거를 다루는 Buff 층의 구조를 정리합니다."
-tags: [DragonIsDead, Architecture, Combat]
+tags: [전투]
 series: combat-structure
 series_title: 전투 구조
 series_order: 4
