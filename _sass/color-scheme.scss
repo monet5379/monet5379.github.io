@@ -207,6 +207,11 @@ table {
 .site-nav {
   .page-link {
     color: var(--text-color);
+
+    &[aria-current="page"] {
+      color: var(--brand-color);
+      font-weight: 700;
+    }
   }
 
   @include media-query($on-palm) {

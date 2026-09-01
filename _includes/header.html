@@ -37,7 +37,15 @@
               {%- assign my_page = site.pages | where_exp: "p", "p.path contains path" | first -%}
             {%- endunless -%}
             {%- if my_page.title -%}
-            <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+            {%- assign nav_current = false -%}
+            {%- if my_page.url == "/" -%}
+              {%- if page.url == "/" -%}
+                {%- assign nav_current = true -%}
+              {%- endif -%}
+            {%- elsif page.url == my_page.url or page.url contains my_page.url -%}
+              {%- assign nav_current = true -%}
+            {%- endif -%}
+            <a class="page-link"{% if nav_current %} aria-current="page"{% endif %} href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
         </div>

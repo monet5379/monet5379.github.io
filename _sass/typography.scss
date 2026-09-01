@@ -41,6 +41,13 @@
     margin-bottom: 0.5em;
   }
 
+  h4 {
+    font-weight: 600;
+    line-height: 1.4;
+    margin-top: 1.35em;
+    margin-bottom: 0.4em;
+  }
+
   > h2:first-child,
   > h3:first-child {
     margin-top: 0;
@@ -65,7 +72,8 @@
 
   // Section heading → image: keep tight to h2, space before following copy
   > h2 + p:has(> img:only-child),
-  > h3 + p:has(> img:only-child) {
+  > h3 + p:has(> img:only-child),
+  > h4 + p:has(> img:only-child) {
     margin-top: 0.25em;
     margin-bottom: 1.25em;
   }

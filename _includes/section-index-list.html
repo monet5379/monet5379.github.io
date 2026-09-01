@@ -118,15 +118,26 @@
     </a>
     {% endif %}
     <div class="post-list__body">
-      {% if item.date %}
-      <span class="post-meta">
-        <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%Y-%m-%d' }}</time>
-        {% if item.role %}
-        · {{ item.role }}
+      {% if item.date or item.role or item.tags.size > 0 %}
+      <div class="post-list__kicker">
+        {% if item.tags and item.tags.size > 0 %}
+        <ul class="post-list__tags" aria-label="분류">
+          {% for tag in item.tags %}
+          <li data-tag="{{ tag | escape }}">{{ tag | escape }}</li>
+          {% endfor %}
+        </ul>
         {% endif %}
-      </span>
-      {% elsif item.role %}
-      <span class="post-meta">{{ item.role }}</span>
+        {% if item.date %}
+        <span class="post-meta">
+          <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%Y-%m-%d' }}</time>
+          {% if item.role %}
+          · {{ item.role }}
+          {% endif %}
+        </span>
+        {% elsif item.role %}
+        <span class="post-meta">{{ item.role }}</span>
+        {% endif %}
+      </div>
       {% endif %}
       <h3>
         <a class="post-link" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
@@ -137,16 +148,6 @@
       {% endif %}
       {% if item.excerpt %}
       <p>{{ item.excerpt | strip_html | strip }}</p>
-      {% endif %}
-      {% if item.tags and item.tags.size > 0 %}
-      <div class="post-list__tags">
-        <span class="post-list__tags-label">분류:</span>
-        <ul aria-label="분류">
-          {% for tag in item.tags %}
-          <li>{{ tag | escape }}</li>
-          {% endfor %}
-        </ul>
-      </div>
       {% endif %}
     </div>
   </li>
