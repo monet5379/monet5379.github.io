@@ -3,6 +3,7 @@
 사이트 미게시 (`docs/` exclude). 새 개인 프로젝트 글을 쓸 때 이 골격을 복사해 `projects/<슬러그>.md`로 채운다.
 
 **독자가 얻는 것:** 어떤 문제를 타이틀에서 분리해 어떻게 잘랐는지.  
+**독자 전제:** 코드·레포 없음 — 설치·API는 README 링크, 개념·기각은 notes.  
 **설치·API 정본:** GitHub README (있을 때). 개념·기각은 notes.  
 **채우기 예:** `projects/conditional-log.md` · `projects/tmp-font-pipeline.md` · `projects/save-layout.md`
 

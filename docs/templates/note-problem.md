@@ -3,6 +3,7 @@
 사이트 미게시 (`docs/` exclude). 새 문제 해결 노트를 쓸 때 이 골격을 복사해 `notes/<슬러그>.md`로 채운다.
 
 **독자가 얻는 것:** 증상 → 원인 → 해결.  
+**독자 전제:** 코드·레포 없음 — [`../writing-guide.md`](../writing-guide.md) §외부 독자.  
 **채우기 예:** `notes/conditional-log-build-cost.md` · `notes/stage-spawn-area-preload.md`
 
 공통 FM·분류·공개는 [`../site-content-rules.md`](../site-content-rules.md). 톤·유형은 [`../writing-guide.md`](../writing-guide.md).  

@@ -3,7 +3,8 @@
 사이트 미게시 (`docs/` exclude). 경계·Why·시리즈 노트를 쓸 때 이 골격을 복사해 `notes/<슬러그>.md`로 채운다.
 
 **독자가 얻는 것:** 경계·불변조건·기각·읽기 순서.  
-**채우기 예:** `notes/combat-four-layers.md` · `notes/combat-boundaries-shipped.md`
+**독자 전제:** 코드·레포 없음 — [`../writing-guide.md`](../writing-guide.md) §외부 독자.  
+**채우기 예:** `notes/dragon-combat-cluster-read.md` · `notes/dragon-combat-one-hit.md`
 
 공통 FM·분류·시리즈 필드는 [`../site-content-rules.md`](../site-content-rules.md). 톤·유형은 [`../writing-guide.md`](../writing-guide.md).  
 문제 해결 템플릿: [`note-problem.md`](note-problem.md).
@@ -34,33 +35,35 @@ project: dragon-is-dead
 ```yaml
 ---
 layout: page
-title: 네 층으로 나눈 이유
-permalink: /notes/슬러그/
+title: 전투 클러스터를 어떻게 읽을까
+permalink: /notes/dragon-combat-cluster-read/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일"
 tags: [전투]
 project: dragon-is-dead
-series: combat-boundaries
-series_title: 전투 경계
+series: combat-presence
+series_title: 타격·데미지
 series_order: 1
-series_total: 5
+series_total: 4
 series_nav: true
 ---
 ```
 
 - `title`은 이 편만. `{series_title} {n}/{total}`은 FM·킥커 · `series_nav: true`로 하단 목록
-- Why / How는 `series` 슬러그를 다르게 (예: `combat-boundaries` / `combat-structure`)
+- Why / How는 `series` 슬러그를 다르게 (예: `combat-presence` / `combat-reaction`)
 
 ---
 
 ## 본문 골격
 
 ```markdown
-lead (excerpt와 동일)
+lead (excerpt와 동일 — 체감·질문·가치 먼저. 클래스명 나열 금지)
 
 ## 맥락
 
 - 프로젝트·전제
+- (선택) QA·플레이 체감 — 왜 이 경계가 필요한지
+- (선택) ## 이 글에서 쓰는 말 — 역할 | 코드(참고)
 - 1편이면 전체 구조·경계 지도(본문). 형제·읽기 순서는 본문 **하단**
 
 ## 핵심

@@ -3,6 +3,7 @@
 사이트 미게시 (`docs/` exclude). 새 회사 소속 출시 글을 쓸 때 이 골격을 복사해 `projects/<슬러그>.md`로 채운다.
 
 **독자가 얻는 것:** 무엇을 출시했고, 내가 어디까지 담당했는지.  
+**독자 전제:** 코드·레포 없음 — 상세 설계는 notes, API는 README 링크.  
 **상세 설계·경계:** notes에 두고 여기서는 입구·범위만.  
 **채우기 예:** `projects/dragon-is-dead.md` · `projects/blade-assault.md`
 

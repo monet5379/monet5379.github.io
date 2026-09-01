@@ -19,14 +19,15 @@ unity-studio-kit `WritingGuide`(해요체·Unity docs)는 이 사이트에 적�
 
 ## Must
 
-- `date` · `excerpt` 필수 · `title` 부제(`—`) 금지 · notes 시리즈는 `title`에 `{series_title} n/total` 접두 금지 · `excerpt` = lead
+- **독자:** 코드·레포 없이 읽는 외부인 — 홈·projects·notes·reviews 전부 ([`docs/writing-guide.md`](docs/writing-guide.md) §외부 독자) · `title` 부제(`—`) 금지 · notes 시리즈는 `title`에 `{series_title} n/total` 접두 금지 · `excerpt` = lead
 - notes `tags` 정확히 1개 · `project`는 `projects/` 슬러그 0개 또는 1개(`있으면` h1 아래 `프로젝트 : {한글 제목}` 링크·underline) · 시리즈는 킥커·h1 아래 `시리즈 : {제목} n/total` (`site-content-rules` 「시리즈」) · projects에 `project_kind` (`company` \| `personal`) · reviews `subtitle` 선택(부제는 FM 필드)
 - 커밋 제목·본문: 한글 · 사이트 콘텐츠와 docs/설정은 커밋 분리
 - 요청 없이 커밋·push 하지 않음
 
 ## Must not
 
-- Kit 해요체·DocsLite·Locale·Architecture 정책을 notes/projects/reviews에 강제
+- Kit `WritingGuide`·해요체·Architecture 문서 톤을 **게시 본문**에 적용
+- 공개 본문에 Canvas·Architecture를 **유일 근거**처럼 쓰기 (내부·생략·notes 링크로 대체)
 - Intem Studio 글 전문 복제
 - sibling mermaid-kit·`.mmd` 단독 정본 파이프라인 강제 (notes Mermaid는 [`docs/templates/mermaid-diagram.md`](docs/templates/mermaid-diagram.md))
 

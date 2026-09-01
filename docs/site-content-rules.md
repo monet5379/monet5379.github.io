@@ -1,6 +1,6 @@
 # 사이트 콘텐츠·운영 규칙
 
-게시 규약(front matter·공개·이미지·커밋). 글의 유형·목차·톤은 [`writing-guide.md`](writing-guide.md). 채우기 골격은 [`templates/`](templates/).
+게시 규약(front matter·공개·이미지·커밋). 글의 유형·목차·톤·**외부 독자**(코드·레포 없이 읽음)는 [`writing-guide.md`](writing-guide.md). 채우기 골격은 [`templates/`](templates/).
 
 ## 커밋
 
@@ -59,19 +59,19 @@ project: dragon-is-dead
 시리즈·구조 세트일 때 (선택):
 
 ```yaml
-title: 네 층으로 나눈 이유
+title: 캐릭터는 필드에 어떻게 서는가
 project: dragon-is-dead
-series: combat-boundaries
-series_title: 전투 경계
+series: combat-presence
+series_title: 타격·데미지
 series_order: 1
-series_total: 5
+series_total: 4
 ```
 
 ```yaml
-title: Hitmark 타격 정의
+title: 스킬은 어디서 전투로 넘기는가
 project: dragon-is-dead
-series: combat-structure
-series_title: 전투 구조
+series: combat-reaction
+series_title: 트리거·연쇄
 series_order: 1
 series_total: 4
 ```
@@ -85,8 +85,10 @@ series_total: 4
 
 | 분류 | 질문 | 예 |
 |------|------|-----|
-| **전투** | 맞힌 뒤 무엇이 일어나는가 | Skill·Hitmark·Buff·Passive |
+| **전투** | 맞힌 뒤 무엇이 일어나는가 | Hitmark·Buff·Passive·Apply |
 | **액션** | 이 프레임의 의도는 누가 실행하는가 | Command·게이트·Room·Wave·보스 |
+| **스킬** | 스킬을 어떻게 얻고·슬롯에 두고·시전하는가 | 학습·할당·TryCast·SkillAnimation |
+| **인벤** | 아이템을 어떻게 쌓고·배치하고·착용해 Stat·Skill에 반영하는가 | VItem·획득·Equip·Apply |
 | **성장** | 이번 세션이 무엇을 들고 전투에 붙는가 | Core·Gear·Risk·Trait |
 | **세이브** | 진행을 디스크에 어떻게 나누·복구하는가 | Main·Side·Meta, Side vs Backup |
 | **데이터** | 고정 정의를 어디서 고치고 빌드에 어떻게 굳히는가 | Excel→JSON, Facade |
@@ -137,7 +139,7 @@ series_total: 4
 - `title`은 이 편의 **무엇을/왜**만. `{series_title} {n}/{total}` 접두를 붙이지 않습니다. reviews `subtitle`도 쓰지 않습니다.
 - 세트임은 FM으로 두고, 목록·페이지에 킥커로 표시합니다.
 - 날짜가 같으면 목록 정렬 tie-break로 같은 `series`끼리 `series_order` 오름차순(1→N)입니다.
-- How 세트와 Why 시리즈는 `series` 슬러그를 다르게 둡니다 (예: `combat-structure` / `combat-boundaries`).
+- How 세트와 Why 시리즈는 `series` 슬러그를 다르게 둡니다 (예: `combat-presence` / `combat-reaction`).
 - 시리즈 노트는 `series_nav: true`를 둡니다.
 - **본문 내비 위치:** `**구조 노트:**`(해당 시, 시리즈 밖 How 세트) · 수동 `**시리즈:**`·`**구조:**` 줄은 `series_nav`로 대체. lead·맥락·다이어그램 **위가 아니라** 본문 **하단**(보통 `## 정리` 다음)에 두던 **권장 읽기**는 `series_nav`·이전/다음에 맡기고 **두지 않습니다**. 첫 화면은 주제·도식에 쓰고, 형제·발행 순은 하단 UI에 둡니다.
 
