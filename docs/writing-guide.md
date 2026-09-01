@@ -1,6 +1,6 @@
 # 글쓰기 가이드
 
-notes · projects · reviews **본문**의 유형·목차·톤. Jekyll front matter·공개·이미지는 [`site-content-rules.md`](site-content-rules.md). 채우기 골격은 [`templates/`](templates/).
+notes · projects · reviews **본문** 작성(Craft). **검토**는 [`content-review.md`](content-review.md). Jekyll front matter·공개·이미지는 [`site-content-rules.md`](site-content-rules.md). notes는 **§notes 작성 — 규칙 3층**. FM·샘플은 [`templates/`](templates/).
 
 토스 [테크니컬 라이팅](https://technical-writing.dev/overview.html)의 유형·정보 구조·문장을 개인 포트폴리오에 맞게 축약했다. 토스 가이드는 **권장**이지 전부 따를 필요는 없다.
 
@@ -61,20 +61,34 @@ Kit Architecture·Canvas·partial·SSOT처럼 **레포를 봐야만** 의미가 
 - **가치를 먼저** — `excerpt`와 본문 첫 문단(lead)을 동일하게. 목록·검색에서 “이 글이 뭘 주는지”가 바로 보이게.
 - **개요를 빼지 않기** — lead 다음에 `맥락` 또는 `개요`로 배경·전제를 짧게.
 - **한 페이지 한 주제** — notes는 `tags` 1개, `project`는 0개 또는 1개([`site-content-rules.md`](site-content-rules.md)). 시리즈는 Why(경계) / How(구조)처럼 **목적이 다른** 세트로만 묶는다.
-- **예측 가능한 목차** — 아래 [유형별 채우기 템플릿](#유형별-채우기-템플릿)을 기본으로, 필요한 섹션만 추가·생략.
+- **예측 가능한 목차** — **정보 역할**(lead·맥락·본론·기각·정리)은 유지하고, `##` **제목 문자열**은 주제에 맞게 ([notes 목차 — 역할과 섹션명](#notes-목차--역할과-섹션명)).
 
 제목: [효과적인 제목](https://technical-writing.dev/information-architecture/effective-titles.html) — **무엇을 / 왜**가 드러나게. `title`에 부제(`—`)와 시리즈 접두(`세이브 레이아웃 1/3`)는 쓰지 않는다. 세트 표시는 [`site-content-rules.md`](site-content-rules.md) 「시리즈」.
 
 ## 문서 유형
 
-토스 [문서 유형](https://technical-writing.dev/document-types/introduction.html)을 이 사이트에 매핑한 것. 새 글 작성 전 **주 유형 하나**를 정하면 목차가 빨리 잡힌다.
+토스 [문서 유형](https://technical-writing.dev/document-types/introduction.html)을 이 사이트에 매핑한 것. **유형은 작성 전 힌트**입니다 — front matter 필드로 두지 않고, published notes를 **재분류·리네이밍할 필요도 없습니다.**
 
 | 유형 | 독자가 얻는 것 | 주로 쓰는 곳 |
 |------|----------------|--------------|
 | **문제 해결** | 증상 → 원인 → 해결 | notes (최적화·퍼포먼스) |
-| **깊은 이해** | 경계·불변조건·기각·Why | notes (전투·액션·스킬·성장), 시리즈 지도 1편 |
+| **깊은 이해** | 경계·불변조건·기각·Why · 출시 기능 흐름(How) | notes (전투·성장·세이브·엔진) |
 | **참조** | 표·타임라인·확인 포인트 | notes·projects (상세는 README에 두고 링크) |
 | **학습(시리즈)** | 읽기 순서·지도·개념 연결 | notes `series` — Why 세트 / How 세트 분리 |
+
+유형을 **결합**해도 됩니다 (토스 — 분류는 출발점). 한 페이지 한 주제만 유지합니다.
+
+### 깊은 이해 — 작성 힌트 (하위 구분)
+
+코퍼스 대부분이 **깊은 이해**이며, 본론 형태만 다릅니다. **별도 템플릿·FM은 두지 않습니다.** 초고 전에 아래 중 **하나를 주로** 정하면 lead·본론 h2가 빨리 잡힙니다.
+
+| 힌트 | 독자 질문 | lead | 본론 h2 | 정본 예 |
+|------|-----------|------|---------|---------|
+| **How** | 이 기능은 어떻게 동작? | 무엇을 설명·범위 | 흐름·경로 (`획득·교체`, `시전 경로`) | [`dragon-relic-acquire`](../notes/dragon-relic-acquire.md) |
+| **Why** | 왜 이렇게 잘랐나? | 경계·기각 가치 | 대안 표·`왜 ~` (`기각한 대안`) | [`save-layout-side-lane`](../notes/save-layout-side-lane.md) |
+| **지도·복습** | 어디부터 읽나 / 한 장 복습 | 읽기 순서·시리즈 입구 | `권장 읽기`, `end-to-end`, `QA · 회귀` | [`dragon-combat-cluster-read`](../notes/dragon-combat-cluster-read.md) · [`dragon-combat-one-hit`](../notes/dragon-combat-one-hit.md) |
+
+How에 **`## 문제`/`## 해결`을 억지로 넣지 않습니다.** 증상→해결 글만 [문제 해결 최소 골격](#유형별-최소-골격)을 씁니다. 프로세스·역할 회고(`narrative-ownership-shipped` 등)는 위 표 밖 **희귀 예외** — 맥락·흐름·기각만 맞추면 됩니다.
 
 문장 다듬기: 토스 [Step 3](https://technical-writing.dev/sentence/introduction.html)과 `.cursor/rules/korean-humanize.mdc` — 주어 분명, 필요한 정보만, 자연스러운 한국어. 윤문·AI 티 제거는 humanize 규칙을 따른다.
 
@@ -93,18 +107,80 @@ humanize(im-not-ai)는 **AI 티·번역투 제거**용이다. **겹치면 토스
 
 적용 순서: **writing-guide(유형·목차) → 토스 정보 구조 → 토스 문장 → humanize(위와 안 겹칠 때만)**.
 
-## 유형별 채우기 템플릿
+## notes 작성 — 규칙 3층
 
-고정이 아니라 **기본 골격**. 상세는 템플릿을 복사해 채운다. FM·공개·이미지는 [`site-content-rules.md`](site-content-rules.md).
+notes 규칙은 **배선 → 역할 → 유형 힌트** 순입니다. 아래로 갈수록 느슨합니다.
+
+| 층 | 강도 | 내용 |
+|----|------|------|
+| **1. 배선** | Must (검토) | [`site-content-rules.md`](site-content-rules.md) · Gate: [`content-review.md`](content-review.md) |
+| **2. 역할** | Should (검토) | [공통 역할 슬롯](#공통-역할-슬롯) · [유형별 최소 골격](#유형별-최소-골격) — Quality: [`content-review.md`](content-review.md) · `##` 이름은 자유 |
+| **3. 유형 힌트** | May | [문서 유형](#문서-유형) · [깊은 이해 하위 힌트](#깊은-이해--작성-힌트-하위-구분) — 초고 전에만, FM 없음 |
+
+세부 유형 표·템플릿 파일을 늘리지 않습니다. published notes가 이미 How·Why·문제 해결·지도를 섞어 쓰므로, **역할만 맞으면** h2·절 순서는 주제에 맡깁니다.
+
+## notes 목차 — 역할과 섹션명
+
+토스 [예측 가능하게 하기](https://technical-writing.dev/information-architecture/predictability.html)는 **같은 정보 슬롯**을 말하지, 매 글 `## 문제` 같은 **고정 제목**을 요구하지는 않습니다. published notes도 이미 주제별 제목(`Trigger → Effect`, `왜 별도 레인인가` 등)을 씁니다. 규칙은 **역할**을 기준으로 두고, `##` 이름은 **예시**로만 둡니다.
+
+### 고정 vs 유연
+
+| 구분 | 유지 (배선·독자) | 유연 (본문 목차) |
+|------|------------------|------------------|
+| **필수** | `excerpt` = lead · 외부 독자 · `tags` 1개 · 공개 범위 | 본론 `##` 제목·순서 · `실무`/`한계`/`트레이드오프` 등 추가 절 |
+| **권장** | lead 다음 맥락 · 설계 회고의 기각·범위 · 문제 해결의 확인 | `기각·보류` ↔ `기각한 대안` ↔ `출시에서 지킨 것` 등 동의어 h2 |
+| **시리즈만** | `series_nav` · 형제 링크 중복 금지 ([`site-content-rules.md`](site-content-rules.md)) | 지도 1편 vs How 편의 본론 제목 |
+
+### 공통 역할 슬롯
+
+| 역할 | 필수 | 예시 `##` · 위치 |
+|------|------|------------------|
+| **가치·요약** | ● | lead (= `excerpt`) |
+| **전제·배경** | ○ | `맥락`, `이 글에서 쓰는 말` |
+| **본론** | ● | 유형별 ([아래 최소 골격](#유형별-최소-골격)) |
+| **판단·범위 제한** | ○ (설계·출시 회고) | `기각·보류`, `기각한 대안`, `출시에서 지킨 것` |
+| **다루지 않음** | ○ | `이 글에서 다루지 않는 것` |
+| **검증** | ○ (문제 해결) | `확인 포인트` |
+| **마무리** | ○ | `정리` |
+
+● = 빠지면 글 성격이 흐려짐 · ○ = 해당할 때 넣기.
+
+### 유형별 최소 골격
+
+**문제 해결** — 독자가 **증상 → 원인 → 해결**을 따라갈 수 있으면 됩니다. h2 `문제`/`해결`은 **권장**이지 필수가 아닙니다. `## 확인 포인트`는 이 힌트에서 특히 의미 있습니다.
+
+```text
+lead → (맥락) → 증상·원인 → 해결·동작 → (실무·한계·트레이드오프) → (기각·보류) → (확인 포인트) → (정리)
+```
+
+정본 예: [`conditional-log-build-cost.md`](../notes/conditional-log-build-cost.md) · [`stage-spawn-area-preload.md`](../notes/stage-spawn-area-preload.md)
+
+**깊은 이해** — How / Why / 지도·복습 [힌트](#깊은-이해--작성-힌트-하위-구분) 중 하나를 주로 따릅니다. 공통 골격:
+
+```text
+lead → (맥락·용어) → 본론 (h2 주제별) → (기각·출시에서 지킨 것) → (이 글에서 다루지 않는 것) → (정리)
+```
+
+| 힌트 | 정본 예 |
+|------|---------|
+| How | [`dragon-relic-acquire.md`](../notes/dragon-relic-acquire.md) · [`dragon-combat-passive-bridge.md`](../notes/dragon-combat-passive-bridge.md) |
+| Why | [`save-layout-side-lane.md`](../notes/save-layout-side-lane.md) · [`excel-json-fixed-data.md`](../notes/excel-json-fixed-data.md) |
+| 지도·복습 | [`dragon-combat-cluster-read.md`](../notes/dragon-combat-cluster-read.md) · [`dragon-combat-one-hit.md`](../notes/dragon-combat-one-hit.md) |
+
+**혼합** — 증상이 lead에 있어도 본론이 설계 선택이면 Why·How 골격을 우선합니다 (예: [`stage-visual-gpu-optimize.md`](../notes/stage-visual-gpu-optimize.md)). `## 문제`/`## 해결` h2는 **증상→해결**이 본문 중심일 때만 씁니다.
+
+## 유형별 채우기 (샘플·체크리스트)
+
+템플릿은 **복사용 mandatory 골격**이 아니라 **FM 예시 + 역할 체크리스트 + 샘플 목차**입니다. 새 글은 [유형별 최소 골격](#유형별-최소-골격)을 채운 뒤, h2는 주제에 맞게 이름을 붙입니다. FM·공개·이미지는 [`site-content-rules.md`](site-content-rules.md).
 
 ### notes
 
-| 유형 | 독자가 얻는 것 | 템플릿 |
-|------|----------------|--------|
+| 유형 | 독자가 얻는 것 | 샘플·체크리스트 |
+|------|----------------|-----------------|
 | **문제 해결** | 증상 → 원인 → 해결 | [`templates/note-problem.md`](templates/note-problem.md) |
-| **깊은 이해 / 시리즈** | 경계·Why · 지도·형제 링크 | [`templates/note-series.md`](templates/note-series.md) |
+| **깊은 이해** (How · Why · 지도) | 경계·흐름·기각 · 시리즈 | [`templates/note-series.md`](templates/note-series.md) |
 
-시리즈 1편은 **지도** 역할. Why / How는 `series` 슬러그를 다르게 둔다.
+시리즈 1편은 **지도** 힌트. Why / How는 `series` 슬러그를 다르게 둡니다 ([`site-content-rules.md`](site-content-rules.md)).
 
 `project`가 있으면 제목 아래에 `프로젝트 : {한글 짧은 제목}` 링크가 붙습니다. 표시·underline은 [`site-content-rules.md`](site-content-rules.md) 「주 프로젝트」.  
 `series`가 있으면 제목 아래에 `시리즈 : {series_title} {n}/{total}`이 붙습니다. 표시는 [`site-content-rules.md`](site-content-rules.md) 「시리즈」.
@@ -119,4 +195,4 @@ humanize(im-not-ai)는 **AI 티·번역투 제거**용이다. **겹치면 토스
 | **company** | 출시·역할·담당 범위 (깊이는 notes) | [`templates/project-company.md`](templates/project-company.md) |
 | **personal** | 문제·설계·비범위·계보 (설치는 README) | [`templates/project-personal.md`](templates/project-personal.md) |
 
-공통: lead(= `excerpt`) → 개요 → … → 스택 · 링크.
+공통: lead(= `excerpt`) → 개요 → … → 스택 · 링크. **검토:** [`content-review.md`](content-review.md) · project 템플릿 `## 체크`.

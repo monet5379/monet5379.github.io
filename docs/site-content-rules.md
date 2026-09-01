@@ -1,6 +1,6 @@
 # 사이트 콘텐츠·운영 규칙
 
-게시 규약(front matter·공개·이미지·커밋). 글의 유형·목차·톤·**외부 독자**(코드·레포 없이 읽음)는 [`writing-guide.md`](writing-guide.md). 채우기 골격은 [`templates/`](templates/).
+게시 규약(front matter·공개·이미지·커밋). **작성(Craft):** [`writing-guide.md`](writing-guide.md). **검토(Gate):** [`content-review.md`](content-review.md). 채우기 샘플: [`templates/`](templates/).
 
 ## 커밋
 
@@ -159,7 +159,7 @@ series_total: 4
 
 `series_nav: true`이면 **같은 `series` 형제**를 표에 넣지 않습니다. 편 분할은 lead·`series_nav`가 담당합니다. 표에는 **시리즈 밖**만 — 다른 분류·전투 층·UI·Architecture·NDA·후속 과제·아직 없는 노트 등.
 
-본문 골격: [`templates/note-problem.md`](templates/note-problem.md) · [`templates/note-series.md`](templates/note-series.md).
+본문 목차: [`writing-guide.md`](writing-guide.md) §notes 작성 — 규칙 3층. **검토:** [`content-review.md`](content-review.md). 샘플 [`templates/note-problem.md`](templates/note-problem.md) · [`templates/note-series.md`](templates/note-series.md).
 
 ### Mermaid
 
@@ -172,7 +172,7 @@ series_total: 4
 
 | notes 도식 둘 곳 | 맞는 경우 |
 |------------------|-----------|
-| `## 해결` 초입 | 문제 해결 노트에서 목표 경계·`≠` 구조를 그릴 때 (증상 상태가 아님) |
+| 본론 절 초입 (예: `## 해결`) | 문제 해결 노트에서 목표 경계·`≠` 구조를 그릴 때 (증상 절에 두지 않음) |
 | `## 맥락` / 축·용어 표 직후 | 용어를 소개한 뒤 한 장으로 고정할 때 |
 | lead 직후 | 시리즈 1편처럼 **지도가 입구**이고 라벨이 lead만으로 읽힐 때 |
 | 피함 | `## 문제`에 해결 구조도를 두기 (현재 증상으로 오해), `## 정리`·권장 읽기·시리즈 내비 옆 |
@@ -231,4 +231,4 @@ excerpt: "본문 lead와 동일"
 
 ## 규칙 추가
 
-- 이 파일에 요지를 추가하고 `AGENTS.md`에서 링크합니다
+- 배선·FM 요지: 이 파일 · Craft: [`writing-guide.md`](writing-guide.md) · 검토 체크리스트: [`content-review.md`](content-review.md) · `AGENTS.md`에서 링크

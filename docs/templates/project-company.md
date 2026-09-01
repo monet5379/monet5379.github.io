@@ -107,7 +107,9 @@ lead (excerpt와 동일)
 
 ---
 
-## 체크
+## 체크 (Quality)
+
+게시 전 Gate: [`../content-review.md`](../content-review.md) §Gate — projects. 아래는 **company** Quality:
 
 - [ ] `excerpt` = lead
 - [ ] `project_kind: company`

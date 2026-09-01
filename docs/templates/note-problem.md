@@ -1,17 +1,31 @@
-# notes 템플릿 — 문제 해결
+# notes — 문제 해결 (샘플·체크리스트)
 
-사이트 미게시 (`docs/` exclude). 새 문제 해결 노트를 쓸 때 이 골격을 복사해 `notes/<슬러그>.md`로 채운다.
+사이트 미게시 (`docs/` exclude).
 
 **독자가 얻는 것:** 증상 → 원인 → 해결.  
 **독자 전제:** 코드·레포 없음 — [`../writing-guide.md`](../writing-guide.md) §외부 독자.  
-**채우기 예:** `notes/conditional-log-build-cost.md` · `notes/stage-spawn-area-preload.md`
+**정본 예:** [`notes/conditional-log-build-cost.md`](../../notes/conditional-log-build-cost.md) · [`notes/stage-spawn-area-preload.md`](../../notes/stage-spawn-area-preload.md)
 
-공통 FM·분류·공개는 [`../site-content-rules.md`](../site-content-rules.md). 톤·유형은 [`../writing-guide.md`](../writing-guide.md).  
-시리즈·깊은 이해 템플릿: [`note-series.md`](note-series.md).
+[`../writing-guide.md`](../writing-guide.md) §notes 작성 — 규칙 3층. **검토:** [`../content-review.md`](../content-review.md). **증상→해결** 글만 아래 샘플·`## 문제`/`## 해결` 사용. How·Why·지도: [`note-series.md`](note-series.md). FM: [`../site-content-rules.md`](../site-content-rules.md).
 
 ---
 
-## Front matter
+## 역할 체크리스트
+
+| 역할 | 이 유형 | 비고 |
+|------|---------|------|
+| lead = `excerpt` | ● | |
+| 맥락·전제 | ○ | |
+| 증상·원인 | ● | h2 `문제` **권장**, 다른 이름 가능 |
+| 해결·동작 | ● | h2 `해결` **권장** |
+| 실무·한계·트레이드오프 | ○ | 필요 시 별도 h2 |
+| 기각·보류 | ○ | |
+| 확인 포인트 | ○ | Profiler·재현 등 |
+| 정리 | ○ | |
+
+---
+
+## Front matter (예시)
 
 ```yaml
 ---
@@ -29,7 +43,9 @@ project: dragon-is-dead
 
 ---
 
-## 본문 골격
+## 샘플 목차 (`##` 이름은 예시)
+
+아래 `## 문제` · `## 해결`은 **가장 흔한 패턴**일 뿐 필수가 아닙니다. 본론 h2는 주제에 맞게 바꿉니다.
 
 ```markdown
 lead (excerpt와 동일)
@@ -49,16 +65,20 @@ lead (excerpt와 동일)
 
 ## 해결
 
-(선택) 해결 초입 — 제목 + mermaid + 1–2문장
-  목표 경계·`≠` 구조. `## 문제`에 두지 않음 (증상으로 오해).
-  Cursor가 `notes/<슬러그>.md`에 직접 작성. 규칙: [`mermaid-diagram.md`](mermaid-diagram.md).
-  front matter `mermaid: true`. 위치: site-content-rules「notes 도식 둘 곳」.
+(선택) 본론 초입 — 제목 + mermaid + 1–2문장
+  목표 경계·`≠` 구조. 증상 절에 두지 않음.
+  규칙: [`mermaid-diagram.md`](mermaid-diagram.md) · site-content-rules「notes 도식 둘 곳」.
+  front matter `mermaid: true`.
 
 설계·동작. 무엇을 바꿨는지 구체적으로.
 
+## (선택) 실무 · 한계 · 트레이드오프
+
+필요할 때만. `## 해결` 안에 넣어도 됩니다.
+
 ## 기각·보류
 
-(선택) 안 한 것·나중에 할 것.
+(선택) 안 한 것·나중에 할 것. `기각한 대안` 등 동의어 h2 가능.
 
 ## 확인 포인트
 
@@ -68,5 +88,11 @@ lead (excerpt와 동일)
 
 (선택) 한 줄.
 
-**권장 읽기** — … (형제·트랙이 있을 때만. lead 위·직후에 두지 않음)
+**권장 읽기** — … (형제·트랙이 있을 때만. `series_nav`가 있으면 두지 않음)
 ```
+
+---
+
+## 검토
+
+게시 전 [`content-review.md`](../content-review.md) — Gate(notes) · Quality(notes 역할).

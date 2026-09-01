@@ -1,0 +1,45 @@
+---
+description: 게시 콘텐츠 검토·검사. 「검토해줘」「체크해줘」「publish 전」「리뷰」 요청 시 Gate(Must)와 Quality(Should) 체크리스트를 적용한다. 작성(Craft)은 writing-guide.
+globs:
+  - "notes/**/*.md"
+  - "projects/**/*.md"
+  - "reviews/**/*.md"
+  - "index.md"
+alwaysApply: false
+---
+
+# Content Review — 콘텐츠 검토
+
+**작성**과 **검토**를 구분한다.
+
+| | 정본 |
+|---|------|
+| 작성·초고 | [`docs/writing-guide.md`](../../docs/writing-guide.md) · [`docs/templates/`](../../docs/templates/) |
+| 검토·검사 | [`docs/content-review.md`](../../docs/content-review.md) |
+| FM·공개 | [`docs/site-content-rules.md`](../../docs/site-content-rules.md) |
+| 윤문 (검토 이후) | [korean-humanize.mdc](korean-humanize.mdc) |
+
+## 검토 요청 시 순서
+
+1. [`content-review.md`](../../docs/content-review.md) **Gate** — 실패 항목 나열 · 수정 제안
+2. **Quality** — Should 미충족 코멘트
+3. humanize는 사용자가 **윤문**을 요청했을 때만
+
+## Gate 요약 (Must)
+
+- `excerpt` = lead · `title` 부제/시리즈 접두 금지
+- notes: `tags` 1개 · `project`/`series` 규칙 · `series_nav` 내비 중복 없음
+- NDA·Studio 전문 복제·Canvas 유일 근거 금지
+- 상세: content-review 본문
+
+## Quality 요약 (Should)
+
+- lead 가치 먼저 · 외부 독자 · 본론 역할 슬롯
+- How/Why에 억지 `## 문제`/`## 해결` 없음
+- **How vs Why 분류 일치는 검사하지 않음**
+
+## Must not (검토 시)
+
+- writing-guide 유형 힌트로 **게시 거부**하지 않음
+- Craft 전체를 Gate로 격상하지 않음
+- humanize로 lead·표·시리즈 내비 구조를 prose로 풀지 않음
