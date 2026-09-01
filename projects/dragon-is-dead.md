@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 드래곤 이즈 데드(Dragon is Dead)
+title: 드래곤 이즈 데드
 permalink: /projects/dragon-is-dead/
 date: 2025-06-06
 order: 10
@@ -28,7 +28,7 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 
 ## 기여
 
-- 소규모 팀에서 클라이언트 개발을 리드하며 출시까지 일정을 조율했습니다.
+- 소규모 팀에서 클라이언트 개발을 리드하며 출시까지 개발을 진행했습니다.
 - 성장·입력·전투, 적 AI·스테이지, 카메라·연출, UI·설정, 세이브·데이터, 로컬라이즈, Steamworks, 애널리틱스를 포함한 게임플레이·클라이언트 전반을 담당했습니다.
 - 얼리 액세스 이후 정식 출시까지 세이브 손상·복구, 고정 데이터 파이프라인, 외부 업체 포팅(저사양·Deck)에 맞춘 성능·연동 가드로 라이브 이슈를 줄여 갔습니다.
 
@@ -42,14 +42,9 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 
 - **스킬** (기획: 디아블로 4 액션바·스킬 트리 참고)
 
-  ![스킬 트리 — Sword of Frost]({{ "/assets/images/projects/dragon-is-dead/ss-03.jpg" | relative_url }})
+  기획에서 디아블로 4를 참고해 잡은 **기본 / 핵심 / 보조 / 숙련 / 궁극** 카테고리를 기준으로 구현했습니다. **습득 → 액션 슬롯 할당 → 레벨** 순으로 프로필에 쌓이고, 레벨업·장비(룬워드)·유물에서도 스킬을 부여합니다. 시전 의도(Skill)와 타격(Hitmark)·상태(Buff)·규칙(Passive)은 분리했습니다.
 
-  기획에서 디아블로 4를 참고해 잡은 **기본 / 핵심 / 보조 / 숙련 / 궁극** 카테고리를 기준으로 구현했습니다.
-
-  - **구조**: 스킬 습득 → 액션 슬롯 할당 → 레벨. SkillSystem이 런타임 인스턴스를 두고, 시전 의도(Skill)와 타격 정의(Hitmark)·상태(Buff)·규칙(Passive)을 분리합니다. 레벨업·장비(룬워드)·유물에서도 스킬을 부여합니다.
-  - **데이터**: 스킬 로직·테이블은 Excel→Json, 학습·슬롯·레벨은 프로필에 저장합니다. Hitmark/Buff/Passive는 Scriptable로 두고 ID·이름으로 연결합니다.
-  - **애니메이션**: SkillAnimation(Scriptable)을 스킬 ID로 조회해 애니메이터에 붙입니다. 시전 시 클립을 재생하고, Animation Event 시점에 Hitmark·Buff·Passive를 적용합니다(시전과 타격 프레임 분리).
-  - **입력**: 액션 슬롯에 할당한 스킬만 입력이 받습니다. 버퍼·Cast/Ability Rest 등 적용 경로는 입력 · Ability에 둡니다.
+  노트: [스킬이 어떻게 성장하는가]({{ "/notes/dragon-skill-growth/" | relative_url }}) · [스킬이 어떻게 시전되는가]({{ "/notes/dragon-skill-cast/" | relative_url }})
 - **인벤토리**
 
   ![인벤토리·장비 — Frost Wolf's Teeth]({{ "/assets/images/projects/dragon-is-dead/ss-06.jpg" | relative_url }})
@@ -71,13 +66,12 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 
 - **루프**: `GameManager` → `CharacterManager` → `TSCharacter` Ability 배열(Early/Process/Late). 이동·점프·대시·스킬·상호작용이 각각 Ability로 나뉩니다.
 - **입력 게이트**: 전역 `IsBlockCharacterInput`(팝업·타임라인), 캐릭터 `IsBlockInput`, Ability `IsAuthorized`(이동·Condition·Rest). BattleReady와 입력 가능은 별개입니다 — Ready 후에도 스폰 애니·UI가 입력을 막을 수 있습니다.
-- **스킬 적용**: 할당된 액션 슬롯만 `CharacterHandleSkill`이 받습니다. 조건·이동 블록·Ability Rest를 통과하면 `TryCast`(쿨·Cast Rest·SkillAnimation). 당장 불가하면 입력 버퍼에 두었다가 시전 가능 시 소비합니다.
-- **시전 이후**: Animation Event 시점에 Hitmark/Buff/Passive를 켜고, 피해·Vital은 전투가 소유합니다. Ability Rest(입력 Ability)와 Cast Rest(이 스킬 직후)는 나눕니다.
+- **스킬 입력·시전**: 할당 슬롯만 받고, 버퍼·쿨·Rest·SkillAnimation까지는 [스킬이 어떻게 시전되는가 (노트)]({{ "/notes/dragon-skill-cast/" | relative_url }})에 둡니다.
 - **몬스터**: 기기 입력 대신 AI Brain이 이동·공격 의도를 Character API에 위임합니다. 플레이어 스킬 입력 경로와는 갈라집니다.
 
 #### 전투
 
-성장의 스킬이 무엇을 할당·시전할 후보로 두는가, 입력 · Ability가 키를 행동으로 바꾸는가라면, 전투는 한 방·상태·사건 반응·Vital을 소유합니다. Skill · Hitmark · Buff · Passive 네 층으로 나눴습니다.
+성장의 스킬이 무엇을 할당·시전할 후보로 두는가, 입력 · Ability가 키를 행동으로 바꾸는가라면, 전투는 한 방·상태·사건 반응·Vital을 소유합니다. Skill · Hitmark · Buff · Passive 네 층으로 나눴습니다. 성장·시전 How는 [스킬 시리즈]({{ "/notes/dragon-skill-growth/" | relative_url }})에, 타격 이후는 아래에 둡니다.
 
 - **Hitmark (타격)**: 재사용 가능한 타격 정의(Scriptable, ID). Apply → 피해 계산 → Vital(HP/가드) → 사망. Target / Area / Projectile 갈래로 어떻게 맞힐지만 갈라지고, Apply 이후는 같은 파이프라인을 탑니다. 스킬·도트·패시브 추가 타격이 같은 정의를 ID로 공유합니다.
 - **Buff (상태)**: 스택·지속·CC·Stat 보정. 스킬·유물·패시브가 Add합니다. 주기 피해 등은 Buff가 Hitmark를 다시 켜고, 스택·CC 정책은 이 층이 소유합니다.
@@ -87,8 +81,8 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 {% if jekyll.environment != "production" %}
 <div data-private-notes markdown="1">
 
-- 구조: [전투 구조 1/4 Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }}) · [전투 구조 2/4 Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }}) · [전투 구조 3/4 Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }}) · [전투 구조 4/4 Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})
-- 경계: [전투 경계 1/5 네 층으로 나눈 이유]({{ "/notes/combat-four-layers/" | relative_url }}) · [전투 경계 2/5 스킬 한 번의 해피 패스]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [전투 경계 3/5 Hitmark를 스킬 밖에 둔 이유]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [전투 경계 4/5 Buff와 Passive를 나눈 이유]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [전투 경계 5/5 출시까지 지킨 경계와 남은 갭]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
+- 구조: [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }}) · [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }}) · [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }}) · [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})
+- 경계: [네 층으로 나눈 이유]({{ "/notes/combat-four-layers/" | relative_url }}) · [스킬 한 번의 해피 패스]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [Hitmark를 스킬 밖에 둔 이유]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [Buff와 Passive를 나눈 이유]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [출시까지 지킨 경계와 남은 갭]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
 
 </div>
 {% endif %}

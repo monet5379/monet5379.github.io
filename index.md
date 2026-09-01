@@ -3,7 +3,7 @@ layout: page
 title: 홈
 ---
 
-## 나에 대하여(About Me)
+## 나에 대하여
 
 안녕하세요. 저는 **유승현**입니다. Unity 클라이언트 / 게임플레이 엔지니어로, Steam PC 액션 두 편을 프로젝트 초기부터 얼리 액세스를 거쳐 정식 출시까지 맡았습니다. 클라이언트 전반을 구현해 왔고, 출시 뒤에는 유저가 플레이를 이어가지 못하게 막는 축을 줄이며 게임이 계속 돌아갈 수 있는 상태를 지키는 일을 중심으로 일해 왔습니다.
 
@@ -31,10 +31,10 @@ title: 홈
 
 <div class="career-entry" markdown="1">
 
-### [드래곤 이즈 데드 (Dragon is Dead)]({{ "/projects/dragon-is-dead/" | relative_url }})
+### [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})
 팀써니트 · 프로그래밍 / 사원 · 2022.05 – 2026.06 (4년 1개월) · Steam
 
-{% include career-media.html slug="dragon-is-dead" youtube="0f0ZXseDMUM" title="Dragon is Dead" %}
+{% include career-media.html slug="dragon-is-dead" youtube="0f0ZXseDMUM" title="드래곤 이즈 데드" %}
 
 - 역할: 프로그래머 1~2명 규모 팀에서 개발 리드
 - 담당: 성장·입력·전투, 적 AI·스테이지, 카메라·UI, 세이브·데이터, 로컬라이즈, Steamworks, 성능·포팅 대응 등 클라이언트 전반
@@ -47,14 +47,15 @@ title: 홈
 
 <div class="career-entry" markdown="1">
 
-### [블레이드 어썰트 (Blade Assault)]({{ "/projects/blade-assault/" | relative_url }})
+### [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})
 팀써니트 · 프로그래밍 / 사원 · 2020.02 – 2022.01 (1년 11개월) · Steam
 
-{% include career-media.html slug="blade-assault" youtube="uV-fWC5zbfw" title="Blade Assault" %}
+{% include career-media.html slug="blade-assault" youtube="uV-fWC5zbfw" title="블레이드 어썰트" %}
 
 - 역할: 기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍 담당
 - 담당: 런 빌드·액션 척추·스테이지 루프·메타, UI·세이브·빌드·출시 등 클라이언트 전 영역
 - 성과: 경기게임오디션 3위, BIC 참가, 2021.06.06 얼리 액세스 발매, 2022.01.18 정식 출시
+- 퍼블리싱: NEOWIZ와 계약 후 Steam 출시
 - 스택: Unity, C#
 - 링크: [Steam](https://store.steampowered.com/app/1367300/Blade_Assault/)↗
     [YouTube](https://youtu.be/uV-fWC5zbfw)↗

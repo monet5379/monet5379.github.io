@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 조건부 로그(Conditional Log)
+title: 조건부 로그
 permalink: /projects/conditional-log/
 date: 2026-08-21
 order: 40
@@ -14,14 +14,14 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 
 {% include screenshot-carousel.html slug="conditional-log" %}
 
-[Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 필터 off = 비용 없음이 깨졌습니다. 그 경험을 반영해, 게임이 없어도 복사해 쓸 수 있는 최소 로그 레이어를 목표로 합니다.
+[드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 필터 off = 비용 없음이 깨졌습니다. 그 경험을 반영해, 게임이 없어도 복사해 쓸 수 있는 최소 로그 레이어를 목표로 합니다.
 
 ## 개요
 
 - 형태: 개인 Unity 케이스 스터디 (에디터 전용 로그)
 - 역할: 설계·구현·문서
 - 초점: `[Conditional("UNITY_EDITOR")]`, 레벨·태그 필터, Settings·F1, 폴더 복사 배포
-- 연관: [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) · [Conditional로 플레이어 빌드 로그 비용 제거 (노트)]({{ "/notes/conditional-log-build-cost/" | relative_url }})
+- 연관: [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) · [Conditional로 플레이어 빌드 로그 비용 제거 (노트)]({{ "/notes/conditional-log-build-cost/" | relative_url }})
 
 ## 문제
 
@@ -44,7 +44,7 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 | 태그 | 호출부 string. 복사 단위에 도메인 enum 없음 |
 | 출력 | 통과 시 전부 `Debug.Log` (경고·에러 채널과 분리) |
 | 배포 | `Assets/ConditionalLog` 통째 복사 (UPM 아님) |
-| UX | Conditional Log → Settings, Play 중 F1 오버레이 |
+| UX | 조건부 로그 → Settings, Play 중 F1 오버레이 |
 
 ## 한계
 
@@ -62,7 +62,7 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 
 | 프로젝트 | 로그에서 가져온 / 남긴 것 |
 |----------|---------------------------|
-| [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) | Player Profiler에 남은 로그 경로 → Conditional·필터 분리의 계기 |
+| [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) | Player Profiler에 남은 로그 경로 → Conditional·필터 분리의 계기 |
 
 개념·실무 체크는 [Conditional로 플레이어 빌드 로그 비용 제거 (노트)]({{ "/notes/conditional-log-build-cost/" | relative_url }})에 두고, 여기서는 복사 단위와 에디터 UX를 담습니다.
 
@@ -78,6 +78,6 @@ Unity, C#
 
 ### 내부
 
-- [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})
+- [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})
 - [Conditional로 플레이어 빌드 로그 비용 제거 (노트)]({{ "/notes/conditional-log-build-cost/" | relative_url }})
 - [홈 · 경력]({{ "/#경력" | relative_url }})
