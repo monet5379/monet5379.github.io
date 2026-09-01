@@ -14,7 +14,7 @@ Dragon 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 게임 밖�
 
 {% include screenshot-carousel.html slug="tmp-font-pipeline" %}
 
-[Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 다국어 TMP 작업에서 «어떤 글자가 아틀라스에 있는가»와 «언제 처음 그리는가»를 나눈 경험을, `Assets/TmpFontPipeline` 통째 복사로 재현·검증할 수 있게 정리했습니다.
+[Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 다국어 TMP 작업에서 어떤 글자가 아틀라스에 있는가와 언제 처음 그리는가를 나눈 경험을, `Assets/TmpFontPipeline` 통째 복사로 재현·검증할 수 있게 정리했습니다.
 
 ## 개요
 
@@ -28,7 +28,7 @@ Dragon 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 게임 밖�
 
 다국어·CJK에서 TMP Dynamic atlas는 첫 표시·언어 전환 hitch와 메모리 상한 예측 불가를 만듭니다. Static으로 고정해도 **첫 mesh draw·material 경로** 비용은 남고, 옵션에서 언어를 바꿀 때 입력과 warmup이 겹치면 플레이가 끊깁니다.
 
-타이틀 코드 안에만 두면 전투·UI·데이터와 섞여, «추출 sanitize → Static bake → warmup supersede»만 재현·설명하기 어렵습니다. Dragon에서 쓴 불변조건을 **별도 저장소**로 뺐습니다.
+타이틀 코드 안에만 두면 전투·UI·데이터와 섞여, 추출 sanitize → Static bake → warmup supersede만 재현·설명하기 어렵습니다. Dragon에서 쓴 불변조건을 **별도 저장소**로 뺐습니다.
 
 ## 설계
 

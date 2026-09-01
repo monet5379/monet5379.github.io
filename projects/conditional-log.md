@@ -14,7 +14,7 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 
 {% include screenshot-carousel.html slug="conditional-log" %}
 
-[Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 «필터 off = 비용 없음»이 깨졌습니다. 그 경험을 반영해, 게임이 없어도 복사해 쓸 수 있는 최소 로그 레이어를 목표로 합니다.
+[Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 필터 off = 비용 없음이 깨졌습니다. 그 경험을 반영해, 게임이 없어도 복사해 쓸 수 있는 최소 로그 레이어를 목표로 합니다.
 
 ## 개요
 

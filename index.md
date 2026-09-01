@@ -7,11 +7,11 @@ title: 홈
 
 안녕하세요. 저는 **유승현**입니다. Unity 클라이언트 / 게임플레이 엔지니어로, Steam PC 액션 두 편을 프로젝트 초기부터 얼리 액세스를 거쳐 정식 출시까지 맡았습니다. 클라이언트 전반을 구현해 왔고, 출시 뒤에는 유저가 플레이를 이어가지 못하게 막는 축을 줄이며 게임이 계속 돌아갈 수 있는 상태를 지키는 일을 중심으로 일해 왔습니다.
 
-- **콘텐츠** — 전투·AI·스테이지·UI·Steamworks 등 게임플레이 전반 ([Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}), [Blade Assault (프로젝트)]({{ "/projects/blade-assault/" | relative_url }}))
-- **도구·생산성** — Excel→Json 데이터 파이프라인, 세이브 진단·복구, 런타임/에디터 진단 습관 ([세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }}))
-- **빌드·품질** — 플레이어 빌드 로그 비용 제거, 스테이지 이동 hitch·GPU 비용 분리 ([Conditional 로그 (노트)]({{ "/notes/conditional-log-build-cost/" | relative_url }}), [Area 선스폰 (노트)]({{ "/notes/stage-spawn-area-preload/" | relative_url }}), [GPU 레버 (노트)]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }}))
+- **콘텐츠** — 전투·AI·스테이지·성장·UI 등 게임플레이
+- **도구·생산성** — Excel→Json 데이터 파이프라인, 세이브 진단·복구, 런타임/에디터 진단 습관
+- **빌드·플랫폼** — 플레이어 빌드 로그 비용 제거, 스테이지 이동 hitch·GPU 비용 분리, Steamworks(업적·리더보드·Cloud·Deck)
 
-프로그래머 본업 외에, 내러티브에 관심이 많아 스토리 작성에 자원해 *블레이드 어썰트*와 *드래곤 이즈 데드*의 세계관·대사·지역·아이템 설정을 출시까지 맡았습니다. 기획·아트와 맞추며 톤을 유지했고, 팀의 도움이 컸습니다. ([프로그래머가 내러티브를 작성할 수 있었던 이유 (노트)]({{ "/notes/narrative-ownership-shipped/" | relative_url }}))
+프로그래머 본업 외에, [내러티브에 관심이 많아 스토리 작성에 자원해]({{ "/notes/narrative-ownership-shipped/" | relative_url }}) [*블레이드 어썰트*]({{ "/projects/blade-assault/" | relative_url }})와 [*드래곤 이즈 데드*]({{ "/projects/dragon-is-dead/" | relative_url }})의 세계관·대사·지역·아이템 설정을 출시까지 맡았습니다. 기획·아트와 맞추며 톤을 유지했고, 팀의 도움이 컸습니다.
 
 콘솔 SDK 직접 경험은 없습니다. PC·Deck·저사양 콘솔의 포팅을 외주업체와 협력하여 포팅 가드와 측정으로 플랫폼 제약을 다뤄 왔고, 팀 빌드·검증 파이프라인은 빠르게 흡수해 기여할 수 있습니다.
 
@@ -40,7 +40,6 @@ title: 홈
 - 담당: 성장·입력·전투, 적 AI·스테이지, 카메라·UI, 세이브·데이터, 로컬라이즈, Steamworks, 성능·포팅 대응 등 클라이언트 전반
 - 성과: 2024.06.07 얼리 액세스 발매, 2025.06.06 정식 출시 · Steam · Deck 대응
 - 스택: Unity, C#, Cinemachine, Timeline, Steamworks, UGS Analytics
-- 상세: [Projects — Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }})
 - 링크: [Steam](https://store.steampowered.com/app/2803280/Dragon_Is_Dead/)↗
     [YouTube](https://youtu.be/0f0ZXseDMUM)↗
 
@@ -57,7 +56,6 @@ title: 홈
 - 담당: 런 빌드·액션 척추·스테이지 루프·메타, UI·세이브·빌드·출시 등 클라이언트 전 영역
 - 성과: 경기게임오디션 3위, BIC 참가, 2021.06.06 얼리 액세스 발매, 2022.01.18 정식 출시
 - 스택: Unity, C#
-- 상세: [Projects — Blade Assault]({{ "/projects/blade-assault/" | relative_url }})
 - 링크: [Steam](https://store.steampowered.com/app/1367300/Blade_Assault/)↗
     [YouTube](https://youtu.be/uV-fWC5zbfw)↗
 
@@ -125,23 +123,22 @@ zoniworks · UI 프로그래머 · 2016.05 – 2017.05 · 모바일 · 2D 퍼즐
 
 상용에서 겪은 비용을 패키지·케이스로 남긴 것들입니다.
 
-- [Conditional 로그 (프로젝트)]({{ "/projects/conditional-log/" | relative_url }}) — 플레이어 빌드에서 로그 호출·인자 평가 제거
-- [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) — 슬롯·마이그레이션·진단 경계
-- [TMP 폰트 파이프라인 (프로젝트)]({{ "/projects/tmp-font-pipeline/" | relative_url }}) — Static atlas·워밍업으로 hitch 완화
+- [Conditional 로그]({{ "/projects/conditional-log/" | relative_url }})로 플레이어 빌드에서 로그 호출·인자 평가를 제거했습니다.
+- [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }})으로 슬롯·마이그레이션·진단 경계를 정리했습니다.
+- [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }})으로 Static atlas·워밍업 hitch를 완화했습니다.
 
 ## 스킬
 
 | 영역 | 내용 |
 |------|------|
 | 엔진·언어 | Unity, C# |
-| 콘텐츠 | 전투·AI·스테이지, UI, 세이브·데이터, Steamworks, 로컬라이즈 |
+| 콘텐츠 | 전투·AI·스테이지, UI, 세이브·데이터, 로컬라이즈 |
 | 도구·품질 | Excel→Json 파이프라인, 세이브 진단·마이그레이션, Conditional 로그, TMP 아틀라스·워밍업 |
-| 빌드·플랫폼 | Dev/Release·플랫폼 define, Steam PC·Deck, Android/iOS |
+| 빌드·플랫폼 | Dev/Release·플랫폼 define, Steamworks(업적·리더보드·Cloud·Deck), Steam PC·Deck, Android/iOS |
 | 협업 | 소규모 팀 리드, 기획·아트와 기능 단위 협업 |
 
 ## 바로가기
 
-- [포트폴리오]({{ "/projects/" | relative_url }}) — 참여 프로젝트와 내 기여를 모아 둡니다.
-- [노트]({{ "/notes/" | relative_url }}) — 회고·짧은 팁 등 공개 기술 글을 모아 둡니다.
-- [리뷰]({{ "/reviews/" | relative_url }}) — 플레이·설계 관점의 게임 리뷰를 모아 둡니다.
-- GitHub: [monet5379](https://github.com/monet5379)↗
+- 참여 프로젝트와 내 기여는 [포트폴리오]({{ "/projects/" | relative_url }})에 모아 둡니다.
+- 회고·짧은 팁 등 공개 기술 글은 [노트]({{ "/notes/" | relative_url }})에 모아 둡니다.
+- 플레이·설계 관점의 게임 리뷰는 [리뷰]({{ "/reviews/" | relative_url }})에 모아 둡니다.
