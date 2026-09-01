@@ -4,12 +4,21 @@ layout: default
 <article class="post">
 
   <header class="post-header">
+    {% if page.path contains "projects/" and page.name != "index.md" %}
+    <h1 class="post-title">{% include list-subtitle.html text=page.title %}</h1>
+    {% else %}
     <h1 class="post-title">{{ page.title | escape }}</h1>
+    {% endif %}
     {% if page.subtitle %}
     <p class="post-subtitle">{{ page.subtitle | escape }}</p>
     {% endif %}
-    {% if page.path contains "notes/" and page.name != "index.md" and page.project %}
-    <p class="post-project">{% include note-project-link.html slug=page.project %}</p>
+    {% if page.path contains "notes/" and page.name != "index.md" %}
+    {% if page.series_title and page.series_order and page.series_total %}
+    <p class="post-series">시리즈 : {% include note-series-kicker.html series_title=page.series_title series_order=page.series_order series_total=page.series_total %}</p>
+    {% endif %}
+    {% if page.project %}
+    <p class="post-project">프로젝트 : {% include note-project-link.html slug=page.project %}</p>
+    {% endif %}
     {% endif %}
   </header>
 
@@ -17,6 +26,7 @@ layout: default
     {{ content }}
   </div>
 
+  {% include note-series-nav.html %}
   {% include project-related-notes.html %}
   {% include notes-adjacent.html %}
 

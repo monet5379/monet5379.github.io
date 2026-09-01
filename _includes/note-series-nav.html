@@ -1,0 +1,54 @@
+{% comment %}
+  같은 series 슬러그의 노트 목록 — title · excerpt · 현재 편 강조.
+  pilot: front matter series_nav: true (skill-how).
+  production 비공개 노트는 data-private + 로컬 토글과 동일.
+{% endcomment %}
+{% if page.path contains "notes/" and page.name != "index.md" and page.series_nav and page.series and page.series_title and page.series_order and page.series_total %}
+{% assign series_pages = site.pages | where_exp: "p", "p.path contains 'notes/'" | where_exp: "p", "p.name != 'index.md'" | where_exp: "p", "p.series == page.series" %}
+{% assign series_pages = series_pages | sort: "series_order" %}
+{% if series_pages.size > 1 %}
+<nav class="note-series-nav callout" aria-label="시리즈: {{ page.series_title | escape }}">
+  <h2 class="note-series-nav__heading">시리즈: {{ page.series_title | escape }} ({{ page.series_order }}/{{ page.series_total }})</h2>
+  <ol class="note-series-nav__list">
+    {% for item in series_pages %}
+    {% assign item_private = false %}
+    {% if site.notes_production_visible_tags.size > 0 and item.tags.size > 0 %}
+      {% assign item_private = true %}
+      {% for t in item.tags %}
+        {% if site.notes_production_visible_tags contains t %}
+          {% assign item_private = false %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% assign is_current = false %}
+    {% if item.url == page.url %}
+      {% assign is_current = true %}
+    {% endif %}
+    <li class="note-series-nav__item{% if is_current %} note-series-nav__item--current{% endif %}"{% if item_private %} data-private{% endif %}>
+      {% if is_current %}
+      <span class="note-series-nav__link note-series-nav__link--current" aria-current="page">
+        <span class="note-series-nav__order">{{ item.series_order }}</span>
+        <span class="note-series-nav__body">
+          <span class="note-series-nav__title">{{ item.title | escape }}</span>
+          {% if item.excerpt %}
+          <span class="note-series-nav__excerpt">{{ item.excerpt | strip_html | strip }}</span>
+          {% endif %}
+        </span>
+      </span>
+      {% else %}
+      <a class="note-series-nav__link" href="{{ item.url | relative_url }}">
+        <span class="note-series-nav__order">{{ item.series_order }}</span>
+        <span class="note-series-nav__body">
+          <span class="note-series-nav__title">{{ item.title | escape }}</span>
+          {% if item.excerpt %}
+          <span class="note-series-nav__excerpt">{{ item.excerpt | strip_html | strip }}</span>
+          {% endif %}
+        </span>
+      </a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</nav>
+{% endif %}
+{% endif %}

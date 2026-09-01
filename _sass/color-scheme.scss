@@ -27,6 +27,7 @@ html[data-theme="light"] {
   --text-color: var(--color-base-100);
   --background-color: var(--color-base-00);
   --brand-color: var(--color-blue);
+  --link-color: var(--color-base-70);
   --grey-color: var(--color-base-60);
   --grey-color-light: var(--color-base-30);
   --grey-color-dark: var(--color-base-70);
@@ -64,6 +65,7 @@ html[data-theme="dark"] {
   --text-color: var(--color-base-100);
   --background-color: var(--color-base-00);
   --brand-color: var(--color-blue);
+  --link-color: var(--color-base-70);
   --grey-color: var(--color-base-60);
   --grey-color-light: var(--color-base-30);
   --grey-color-dark: var(--color-base-70);
@@ -97,10 +99,10 @@ body {
 }
 
 a {
-  color: var(--brand-color);
+  color: var(--link-color);
 
   &:visited {
-    color: var(--brand-color);
+    color: var(--link-color);
   }
 
   &:hover {
@@ -209,7 +211,7 @@ table {
     color: var(--text-color);
 
     &[aria-current="page"] {
-      color: var(--brand-color);
+      color: var(--text-color);
       font-weight: 700;
     }
   }
@@ -230,7 +232,9 @@ table {
 
 .footer-heading,
 .post-meta,
-.post-subtitle {
+.post-subtitle,
+.post-series,
+.post-project {
   color: var(--grey-color);
 }
 

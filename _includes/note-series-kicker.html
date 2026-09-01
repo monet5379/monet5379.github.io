@@ -1,0 +1,8 @@
+{%- comment -%}
+  series_title, series_order, series_total
+  출력: 세이브 레이아웃 1/3
+  노트 h1 아래는 `_layouts/page.html`이 `시리즈 :` 접두를 붙인다.
+{%- endcomment -%}
+{%- if include.series_title and include.series_order and include.series_total -%}
+{{ include.series_title | escape }} {{ include.series_order }}/{{ include.series_total }}
+{%- endif -%}

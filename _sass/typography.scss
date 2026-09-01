@@ -25,6 +25,7 @@
   line-height: 1.4;
 }
 
+.post-series,
 .post-project {
   margin: 0.4em 0 0;
   font-size: 0.9375rem;
@@ -170,7 +171,13 @@
   line-height: 1.4;
 }
 
-.post-project a,
+// Note title meta: project name is a link — always underline.
+.post-project a {
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: from-font;
+}
+
 .post-list__project a {
   color: inherit;
   text-decoration: none;

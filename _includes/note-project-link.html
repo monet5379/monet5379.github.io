@@ -1,12 +1,14 @@
-{% comment %}
+{%- comment -%}
   slug: projects/<slug>.md 와 같은 슬러그.
-  라벨은 title에서 괄호 앞(한글 짧은 이름).
-{% endcomment %}
-{% assign np_path = "projects/" | append: include.slug | append: ".md" %}
-{% assign np_page = site.pages | where: "path", np_path | first %}
-{% if np_page %}
-  {% assign np_label = np_page.title | split: "(" | first | strip %}
-  <a href="{{ np_page.url | relative_url }}">{{ np_label | escape }}</a>
-{% else %}
-  {{ include.slug | escape }}
-{% endif %}
+  라벨은 projects title(한글). list-subtitle로 라틴 병기 괄호는 제거.
+  노트 본문 h1 아래는 `_layouts/page.html`이 `프로젝트 :` 접두를 붙인다.
+{%- endcomment -%}
+{%- assign np_path = "projects/" | append: include.slug | append: ".md" -%}
+{%- assign np_page = site.pages | where: "path", np_path | first -%}
+{%- if np_page -%}
+{%- capture np_label -%}{%- include list-subtitle.html text=np_page.title -%}{%- endcapture -%}
+{%- assign np_label = np_label | strip -%}
+<a href="{{ np_page.url | relative_url }}">{{ np_label }}</a>
+{%- else -%}
+{{ include.slug | escape }}
+{%- endif -%}

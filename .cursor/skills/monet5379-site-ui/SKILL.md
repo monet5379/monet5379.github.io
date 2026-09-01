@@ -51,7 +51,7 @@ description: >-
 
 - 변경 전 in-scope 파일만 수정. 시작 전 **변경 예정 파일 목록**을 짧게 제시.
 - 다크 · 라이트 모두 readable.
-- **본문 인라인 링크** (`.post-content a`)는 항상 underline. 제목 링크·이미지 링크·nav·목록 카드 제목은 제외. 정본 `_sass/typography.scss` · 규칙 `.cursor/rules/site-link-underline.mdc`.
+- **본문 인라인 링크** (`.post-content a`)와 **노트 제목 아래 프로젝트 링크** (`.post-project a`)는 항상 underline. 제목 링크·이미지 링크·nav·목록 카드 제목은 제외. 정본 `_sass/typography.scss` · 규칙 `.cursor/rules/site-link-underline.mdc`.
 - Minima 클래스 · 구조(`.post-content`, `.page-content`, `.site-header`) 존중.
 - 작업 후 `serve.bat`(또는 production serve)로 확인할 URL을 안내.
 - 커밋 · push는 사용자 요청 시에만. 콘텐츠와 설정/docs 커밋 분리.
@@ -85,7 +85,7 @@ description: >-
 | 푸터 · 비공개 토글 | `_includes/footer.html`, `_includes/private-notes-toggle.html` |
 | 목록 · 필터 | `_includes/section-index-list.html`, `_sass/section-index-list.scss` (`.notes-browse`, `.tag-filter`, `.post-list--*`) |
 | notes 필터 JS | `assets/js/notes-tag-filter.js` |
-| 페이지 shell | `_layouts/page.html` (title · `post-subtitle`) |
+| 페이지 shell | `_layouts/page.html` (title · `post-subtitle` · notes `post-series` · `post-project`) · `_includes/note-series-kicker.html` · `_includes/note-series-nav.html` |
 | 경력(홈) | `_sass/career-entry.scss`, `_includes/career-media.html`, `_sass/youtube-embed.scss` |
 | 캐러셀 | `_sass/screenshot-carousel.scss`, `_includes/screenshot-carousel.html`, `assets/js/screenshot-carousel.js` |
 | callout · 코드 | `_sass/callout.scss`, `_sass/code-collapse.scss` |

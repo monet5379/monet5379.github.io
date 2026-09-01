@@ -106,15 +106,17 @@
       {% for proj in company_filter_projects %}
         {% assign proj_slug = proj.path | split: "/" | last | remove: ".md" %}
         {% if note_project_slugs contains proj_slug %}
-        {% assign proj_label = proj.title | split: "(" | first | strip %}
-      <button type="button" class="tag-filter__btn" data-project="{{ proj_slug | escape }}" aria-pressed="false">{{ proj_label | escape }}</button>
+        {% capture proj_label %}{% include list-subtitle.html text=proj.title %}{% endcapture %}
+        {% assign proj_label = proj_label | strip %}
+      <button type="button" class="tag-filter__btn" data-project="{{ proj_slug | escape }}" aria-pressed="false">{{ proj_label }}</button>
         {% endif %}
       {% endfor %}
       {% for proj in personal_filter_projects %}
         {% assign proj_slug = proj.path | split: "/" | last | remove: ".md" %}
         {% if note_project_slugs contains proj_slug %}
-        {% assign proj_label = proj.title | split: "(" | first | strip %}
-      <button type="button" class="tag-filter__btn" data-project="{{ proj_slug | escape }}" aria-pressed="false">{{ proj_label | escape }}</button>
+        {% capture proj_label %}{% include list-subtitle.html text=proj.title %}{% endcapture %}
+        {% assign proj_label = proj_label | strip %}
+      <button type="button" class="tag-filter__btn" data-project="{{ proj_slug | escape }}" aria-pressed="false">{{ proj_label }}</button>
         {% endif %}
       {% endfor %}
     </nav>
@@ -173,7 +175,7 @@
     </a>
     {% endif %}
     <div class="post-list__body">
-      {% if item.date or item.role or item.tags.size > 0 or item.project %}
+      {% if item.date or item.role or item.tags.size > 0 or item.series_title or item.project %}
       <div class="post-list__kicker">
         {% if item.tags and item.tags.size > 0 %}
         <ul class="post-list__tags" aria-label="분류">
@@ -181,6 +183,9 @@
           <li data-tag="{{ tag | escape }}">{{ tag | escape }}</li>
           {% endfor %}
         </ul>
+        {% endif %}
+        {% if item.series_title and item.series_order and item.series_total %}
+        <span class="post-meta post-list__series">{% include note-series-kicker.html series_title=item.series_title series_order=item.series_order series_total=item.series_total %}</span>
         {% endif %}
         {% if item.project %}
         <span class="post-meta post-list__project">{% include note-project-link.html slug=item.project %}</span>
@@ -198,7 +203,7 @@
       </div>
       {% endif %}
       <h3>
-        <a class="post-link" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+        <a class="post-link" href="{{ item.url | relative_url }}">{% if section_dir == "projects/" %}{% include list-subtitle.html text=item.title %}{% else %}{{ item.title | escape }}{% endif %}</a>
         {% if item_vis == "private" %}<span class="post-list__private">비공개</span>{% endif %}
       </h3>
       {% if item.subtitle %}
