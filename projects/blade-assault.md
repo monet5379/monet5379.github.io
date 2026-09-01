@@ -9,12 +9,12 @@ role: 전체 프로그래밍
 excerpt: "기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍을 담당해 Steam에 출시한 액션 게임입니다."
 ---
 
-
-기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍을 담당해 Steam에 출시한 액션 게임입니다.
-
-{% include screenshot-carousel.html slug="blade-assault" %}
+{% include screenshot-carousel.html slug="blade-assault" youtube="uV-fWC5zbfw" steam="https://store.steampowered.com/app/1367300/Blade_Assault/" %}
 
 ## 개요
+
+기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍을 담당해 Steam에 출시한 액션 게임입니다.
+클라이언트 전 영역을 혼자 구현·유지했고, 네오위즈와 퍼블리싱하며 출시까지 갔습니다.
 
 - 착수: 2019.03 퇴사 직후. 이후 휴지·타사 재직과 병행하며 개발
 - 기간: 2020.02 – 2022.01 (팀써니트 설립 후 본격 개발·출시)
@@ -23,88 +23,72 @@ excerpt: "기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프�
 - 내 역할: 전체 프로그래밍
 - 성과: 경기게임오디션 3위, BIC 참가, 2021.06.06 얼리 액세스 발매, 2022.01.18 정식 출시
 
+**이 페이지에서 볼 것**
+
+- **콘텐츠** — 런 빌드 · 액션 척추 · 스테이지 루프 · 메타를 소유 경계로 분리
+- **생산성** — 새 효과가 «어디에 붙는지»를 먼저 정해 회귀 범위를 가늠
+- **출시** — 얼리 액세스 피드백을 빌드 축 / 손맛 축으로 나눠 정식 반영
+
+## 맥락
+
+**블레이드 어썰트**(Blade Assault)는 이전 회사에서 함께 합을 맞추던 팀원들과 시작한 작은 프로젝트였습니다. 처음에는 하얀 머리, 두꺼운 점퍼, 기계팔을 하고 붉은 전기톱을 쓰는 주인공 킬의 모습뿐이었습니다. 직전 프로젝트가 플랫포머였던 탓에 장르도 플랫포머로 잡았고, 당시 데드셀(Dead Cell) 얼리 액세스가 열리면서 그 게임에서 영감을 받아 미로 같은 지역을 탐험하는 쪽으로 만들었습니다. 부산 게임 인디 페스티벌(BIC)에 출품한 뒤, 유저 피드백과 내부 회의를 거쳐 지금의 로그라이크 형태로 바뀌었습니다. 구성원은 다른 회사에 다니거나 집에서 시간을 내 작업했습니다. 경기게임오디션에서 3위를 하고 사무실을 지원받으면서 비로소 모여 개발을 본격화했습니다. 이후 네오위즈와 퍼블리싱 계약을 맺고 개발을 이어 갔고, 출시까지 이르렀습니다.
+
 ## 기여
 
-- 2019.03 착수 후 휴지·타사 재직과 병행하다, 팀써니트를 만들며 본격 개발로 전환했습니다.
 - 프로그래머 단독으로 클라이언트 전 영역(게임플레이·UI·세이브·빌드·출시)을 구현·유지했습니다.
 - 런 빌드(Core·Gear·개조·Risk), 액션 척추(Command·게이트·무기 hitmark), 스테이지 루프(Room·미션·Progress), 메타(Trait·부활)를 소유 경계로 나눠, 콘텐츠를 늘릴 때 회귀 범위를 가늠할 수 있게 했습니다.
+- 새 효과가 들어오면 런 장착인지, 무기 슬롯인지, 이번 스테이지 위험인지, 입력 게이트인지를 먼저 물었습니다. 답이 갈리면 넣는 곳이 갈리게 두었습니다.
 - 얼리 액세스 피드백을 «빌드 쪽 / 손맛(게이트·무기) 쪽»으로 가른 뒤 정식 출시까지 반영했습니다.
 
 ## 담당 시스템
 
-{% if jekyll.environment != "production" %}
-<div data-private-notes markdown="1">
+### 런 루프
 
-입구: [솔로 출시에서 지킨 경계]({{ "/notes/ba-solo-boundaries/" | relative_url }})
+세션에 무엇을 장착했는가([런 빌드](#런-빌드)) → 이 프레임에 무엇을 시도·적용하는가([액션 척추](#액션-척추)) → 방·보상을 언제 닫는가([스테이지 루프](#스테이지-루프))를 한 축으로 둡니다.
 
-</div>
-{% endif %}
+#### 런 빌드
 
-### 런 빌드
+캐릭터는 킬·달시·제니·제트입니다. 킬만 무기를 세 개 두고 무기고에서 바꿉니다. 기획 축은 코어(무기 속성 부여·강화), 기어(개별 효과), 리스크(부정 효과를 함께 지닌 선택), 무기 개조(기존 기술을 바꿔 공격 메커니즘 변경)입니다.
 
-세션에 «무엇을 장착했는가»를 두고, 타격 파이프라인과 수치 복제를 갈랐습니다.
+세션에 «무엇을 장착했는가»를 두고, 타격 파이프라인과 수치 복제를 갈랐습니다. 스토어의 Cores / Transform Upgrades / 변신 무기 축에 대응합니다.
 
-- Core: 런 세션 소유. Buff·Passive·(필요 시) Hyper 실행으로만 전투에 반영. 피해 식·무기 hitmark는 두지 않음
-- Gear: 획득 즉시 Buff/Passive 또는 Active로 반영. 일부는 Core 레벨 신호로만 넘김
-- 무기 개조: Core·Gear와 다른 세션. 반영은 무기 Buff/Passive로 모음
-- Risk: 이번 스테이지·런의 위험 덱. 캐릭터 Trait와 같은 Add API를 쓰지 않음
+- **Core**: 런 세션이 보유·재생을 소유합니다. 전투 반영은 Buff·Passive 적용과(필요 시) Hyper 실행 표면으로만 넘기고, 피해 식·무기 hitmark는 두지 않습니다.
+- **Gear**: 획득 즉시 상시 Buff/Passive 또는 Active로 반영합니다. 일부는 Core 레벨 신호만 보내고, Core 내부·피해 식은 복제하지 않습니다. Active·Hyper 실행 슬롯은 [액션 척추](#액션-척추) Execute 순서에 붙습니다.
+- **무기 개조**: Core·Gear와 다른 세션(후보·구매·라인 성장)입니다. 반영은 무기 Buff/Passive로 모으고, hitmark 슬롯 정의의 소유자를 빼앗지 않습니다.
+- **Risk**: 이번 스테이지·런의 위험 덱입니다. 캐릭터 Trait와 같은 Add API를 쓰지 않습니다 — [메타](#메타).
 
-{% if jekyll.environment != "production" %}
-<div data-private-notes markdown="1">
+#### 액션 척추
 
-- 관련 notes: [1/4 Core]({{ "/notes/ba-run-core/" | relative_url }}) · [2/4 Gear]({{ "/notes/ba-run-gear/" | relative_url }}) · [3/4 개조]({{ "/notes/ba-run-enhance/" | relative_url }}) · [4/4 Risk]({{ "/notes/ba-run-risk/" | relative_url }})
+한 프레임 의도 → 가능 여부 → 타격을 Player·AI가 같은 순서로 타게 했습니다. [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})의 Ability·전투 층과 문제의식은 통하고, 손잡이(변신 무기·탄약·차지)가 달라 척추 모양이 다릅니다.
 
-</div>
-{% endif %}
+- **Command**: 디바이스 입력(또는 AI)이 채운 프레임 의도를 버스로 모읍니다. Execute 순서로 게이트를 부르고 의도를 리셋합니다. 키 바인드·대시 횟수 본체·피해 식은 두지 않습니다.
+- **게이트**: 대시·스킬·차지·탄약 가능 여부를 Command 밖에 둡니다. Ability / Skill / Charge / Ammo가 «지금 할 수 있는가»에 답하고, 통과 뒤에야 애니·무기 슬롯이 열립니다.
+- **무기 hitmark 슬롯**: Attack·공중·차지·스킬·대시 타격을 무기 단위 카탈로그로 모읍니다. 게이트 통과 후 슬롯이 타격 정의를 고르고, 피해·Vital은 전투 파이프라인으로 이어집니다.
+- **보스**: phase·패턴·step이 전용 행동 트리에 타격을 그리지 않고, 기존 Command를 밀게 둡니다. 패턴 선정과 한 걸음의 실행·피해를 갈라, 보스를 늘릴 때 Combat을 다시 그리지 않게 했습니다.
 
-### 액션 척추
+#### 스테이지 루프
 
-한 프레임 의도 → 가능 여부 → 타격을 Player·AI가 같은 순서로 타게 했습니다.
+스테이지 수명과 방 안 전투 루프·목표·진행 플래그를 나눴습니다. Room은 «언제 싸우는가»이고, [액션 척추](#액션-척추)는 «한 프레임에 무엇을 시도하는가»입니다.
 
-- Command: 디바이스 입력을 프레임 의도 버스로 모음. 키 바인드·피해 식은 두지 않음
-- 게이트: 대시·스킬·차지·탄약 가능 여부를 Command 밖에 둠
-- 무기 hitmark 슬롯: Attack·공중·차지·스킬·대시 타격을 카탈로그로 모음
-- 보스: phase·패턴·step이 전용 행동 트리 대신 기존 Command를 밀게 둠
-
-{% if jekyll.environment != "production" %}
-<div data-private-notes markdown="1">
-
-- 관련 notes: [1/3 Command]({{ "/notes/ba-action-command/" | relative_url }}) · [2/3 게이트]({{ "/notes/ba-action-gates/" | relative_url }}) · [3/3 무기 슬롯]({{ "/notes/ba-action-weapon/" | relative_url }}) · [보스]({{ "/notes/ba-boss-pattern/" | relative_url }})
-
-</div>
-{% endif %}
-
-### 스테이지 루프
-
-스테이지 수명과 방 안 전투 루프·목표·진행 플래그를 나눴습니다.
-
-- Stage: 입장·플레이어 스폰·포트·스테이지 열림/닫힘
-- Room·Wave: 방 전투 시작 → 웨이브 → 종료. 일반·섬멸·보스 방이 같은 골격 위에서만 갈림
-- 미션: 목표 HUD·씬 콜백을 중앙 매니저 없이 이벤트 계약·씬 배선으로 둠
-- Progress: 스테이지·전투·보상 수령 플래그로 지난 구간을 다시 열지 않음
-
-{% if jekyll.environment != "production" %}
-<div data-private-notes markdown="1">
-
-- 관련 notes: [1/3 Room]({{ "/notes/ba-stage-room/" | relative_url }}) · [2/3 미션]({{ "/notes/ba-stage-mission/" | relative_url }}) · [3/3 Progress]({{ "/notes/ba-stage-progress/" | relative_url }})
-
-</div>
-{% endif %}
+- **Stage**: 입장·플레이어 스폰·포트·스테이지 열림/닫힘을 소유합니다. 웨이브 본문은 두지 않습니다.
+- **Room·Wave**: 방 전투 시작 → 웨이브 → 종료. 일반·섬멸·보스 방이 같은 골격 위에서만 시작 연출·종료 조건이 갈립니다.
+- **미션**: 목표 HUD·씬 콜백을 중앙 매니저 없이 시작·갱신·성공·실패 사건 계약과 씬 배선으로 둡니다. 완료 조건은 Room·맵 오브젝트 발행자가 갖습니다.
+- **Progress**: 스테이지·전투·보상 수령·사용 오브젝트 플래그로 지난 구간을 다시 열지 않습니다. 부활 실패 시 인게임 정리는 캐릭터가 호출하고, **무엇을 지울지**는 Progress가 답합니다 — [메타](#메타).
 
 ### 메타
 
-런 위험(Risk)과 캐릭터 정체성·부활을 다른 세션으로 뒀습니다.
+런 위험(Risk)과 캐릭터 정체성·부활을 다른 세션으로 뒀습니다. 효과가 Buff/Passive로 같아 보여도, 목록과 사망 뒤 남는 것이 다릅니다.
 
-- Trait: 캐릭터 프리셋·해금 축. Risk 덱과 섞지 않음
-- 부활: 충전·사망 경로를 런 종료와 가름
+- **Trait**: 캐릭터 프리셋·해금 축입니다. Risk 덱과 섞지 않습니다.
+- **부활**: 프리셋이 여는 충전입니다. 잔여가 있으면 스테이지 안 재개하고, 없으면 Progress로 인게임 구간을 지운 뒤 결과로 갑니다. 위험 하강이나 Core/Gear 정리와 한 묶음이 되지 않게 두었습니다.
 
-{% if jekyll.environment != "production" %}
-<div data-private-notes markdown="1">
+### 세이브
 
-- 관련 notes: [Trait·부활]({{ "/notes/ba-trait-resurrection/" | relative_url }})
-
-</div>
-{% endif %}
+- 슬롯·쿨다운·필수 세이브·백업 등 프로필 세이브를 타이틀 코드 안에서 처리했습니다.
+- **한계**: 영구 진행·짧은 진행·실패 백업·선택 메타의 디스크 레인을 계약으로만 갈라 두지는 않았습니다. [Dragon is Dead (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})와 같은 축에서 겪은 경계입니다.
+- **개선**: 그 경계를 레이아웃 계약으로만 뽑아 개인 프로젝트로 정리했습니다 — [세이브 레이아웃(Save Layout) (프로젝트)]({{ "/projects/save-layout/" | relative_url }})
+  - [세이브 레이아웃 1/2 Main·Side·Meta로 나눈 이유 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }})
+  - [세이브 레이아웃 2/2 슬롯 백업 대신 Side 레인을 둔 이유 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }})
 
 ## 스택
 
@@ -115,14 +99,5 @@ Unity, C#
 ### 외부
 
 - [Steam](https://store.steampowered.com/app/1367300/Blade_Assault/)
+- [Wiki](https://blade-assault.fandom.com/wiki/Blade_Assault_Wiki)
 - [YouTube](https://youtu.be/uV-fWC5zbfw?si=6V-LhUHCYGCOzR3C)
-
-{% if jekyll.environment != "production" %}
-<div data-private-notes markdown="1">
-
-### 내부
-
-- [솔로 출시에서 지킨 경계]({{ "/notes/ba-solo-boundaries/" | relative_url }})
-
-</div>
-{% endif %}
