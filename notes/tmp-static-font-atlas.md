@@ -117,11 +117,11 @@ UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK�
 
 ## 기각·보류
 
-| 결정 | 사유 |
-|------|------|
-| Dynamic을 런타임 기본으로 유지 | atlas 성장·히치·메모리 상한 예측 불가로 기각 |
-| Warmup sample만으로 glyph 보장 | sample은 일부만 커버 — Static 추출이 SSOT |
-| Dialogue를 default 셋에 합치기 | UI atlas가 불필요하게 커짐 — 버킷 분리 유지 |
+**Dynamic을 런타임 기본으로 유지** — atlas 성장·히치·메모리 상한을 예측하기 어렵습니다. 기각했습니다.
+
+**Warmup sample만으로 glyph 보장** — sample은 일부만 커버합니다. Static 추출이 SSOT입니다.
+
+**Dialogue를 default 셋에 합치기** — UI atlas가 불필요하게 커집니다. 버킷 분리를 유지합니다.
 
 ## 문자열 갱신 후
 

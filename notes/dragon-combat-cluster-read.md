@@ -88,14 +88,6 @@ flowchart LR
 
 표로 고치는 Stat Json, Scriptable Hitmark/Buff/Passive 정의가 **어디서 clone되어 들어오는지**가 궁금할 때만 [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }})를 엽니다. 시리즈 1·2는 **런타임 흐름** 위주입니다.
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| Trigger 50+ · Handler 22 전수 | Architecture (스튜디오 내부) |
-| Stage·Wave 스폰 스케줄 | 액션·Stage Architecture |
-| GC · pool hot path | Optimization · 성능 노트 |
-
 ## 정리
 
-전투 클러스터는 **타격·데미지(시리즈 1)** 와 **트리거·연쇄(시리즈 2)** 두 줄기로 읽고, Skill·Hitmark·Buff·Passive 네 층으로 **역할**을 겹쳐 보면 됩니다.
+전투 클러스터는 **타격·데미지(시리즈 1)** 와 **트리거·연쇄(시리즈 2)** 두 줄기로 읽고, Skill·Hitmark·Buff·Passive 네 층으로 **역할**을 겹쳐 보면 됩니다. Trigger 50+·Handler 22 전수는 Architecture(스튜디오 내부)에, Stage·Wave 스폰 스케줄은 액션·Stage Architecture에, GC·pool hot path는 Optimization·성능 노트에 둡니다.

@@ -76,15 +76,6 @@ Consumer(DamageCalculator, UI, Movement) → `FindValueOrDefault` / **`FindCalcu
 
 STR/INT ↔ 물리/마법 공격력 **설계 계약**과 generic `AttackPower` 구현은 아직 어긋날 수 있습니다([읽기 지도 출시 갭]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})). Apply에서 Stat을 읽는 경로는 [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})과 같습니다.
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| Hitmark Apply · Vital.TakeDamage | [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) |
-| Buff Trigger → RefreshStats | [트리거·연쇄 2편]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }}) |
-| StatData Json 필드 표 | [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }}) · Architecture |
-| Attribute 파생·Optimization hot path | Architecture / Optimization (내부) |
-
 ## 정리
 
-Stat은 **Modifier 쓰기**와 **FindCalculateValue 읽기**의 기준입니다. Initialize로 base가 깔리고, Buff·Skill·장비가 Add/Remove하며, combat은 Apply 시점에만 읽습니다. 다음 [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})에서 그 읽기가 Vital까지 이어지는 한 줄기를 봅니다.
+Stat은 **Modifier 쓰기**와 **FindCalculateValue 읽기**의 기준입니다. Initialize로 base가 깔리고, Buff·Skill·장비가 Add/Remove하며, combat은 Apply 시점에만 읽습니다. 다음 [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})에서 그 읽기가 Vital까지 이어지는 한 줄기를 봅니다. Buff Trigger → RefreshStats는 [트리거·연쇄 2편]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }})에, StatData Json 필드 표는 [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }})·Architecture에, Attribute 파생·Optimization hot path는 Architecture/Optimization(내부)에 둡니다.

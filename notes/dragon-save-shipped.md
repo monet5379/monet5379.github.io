@@ -133,15 +133,8 @@ EA 이후 패치에서 스키마 버전을 올리고, 구 세이브는 로드 �
 
 **한계:** 영구 진행·Essential·실패 백업·선택 슬롯이 **같은 타이틀 코드**에 있습니다. 디스크를 Main·Side·Meta로만 설명하기 어렵습니다 — [2편]({{ "/notes/save-layout-boundaries/" | relative_url }})이 그 분리 시도입니다. 구현 필드 표는 Architecture(내부).
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| Excel→Json 고정 데이터 | [excel-json-fixed-data]({{ "/notes/excel-json-fixed-data/" | relative_url }}) |
-| Main·Side·Meta 레이아웃 Why | [2편]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [3편]({{ "/notes/save-layout-side-lane/" | relative_url }}) |
-| 세이브 레이아웃 패키지 | [projects/save-layout]({{ "/projects/save-layout/" | relative_url }}) |
-| 세이브 코드 모듈·필드 표 | Architecture (내부) |
-
 ## 정리
 
 드래곤 이즈 데드 출시 세이브는 **로테이션·Essential·복구 체인·이중 마이그레이션**으로 라이브에서 진행을 지킨 기록입니다. 완벽한 레이아웃 분리가 아니라, 소규모 팀이 게임 세이브 한곳에 저장·복구·스키마를 모아 출시까지 버틴 형태입니다.
+
+Excel→Json 고정 데이터는 [excel-json-fixed-data]({{ "/notes/excel-json-fixed-data/" | relative_url }})에, 세이브 레이아웃 패키지는 [save-layout]({{ "/projects/save-layout/" | relative_url }})에, 세이브 코드 모듈·필드 표는 Architecture(내부)에 둡니다.

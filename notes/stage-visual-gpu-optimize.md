@@ -102,13 +102,15 @@ flowchart TD
 
 ## 기각·보류
 
-| 결정 | 사유 |
-|------|------|
-| Global Light 3→1 병합으로 GPU 절감 | 실측 ΔGPU 미미 — **3 lights 유지** |
-| Ambient Light로 Global까지 OFF | 플레이 가독성·스테이지 조명 채널 깨짐 — 기각 |
-| Ambient를 PC에도 적용 | Switch 전용 부하 완화 — PC는 항상 ON |
-| 스프라이트 OFF에 `SetActive` | 계층·컴포넌트 부작용 — `enabled` 토글 |
-| 전투·타일맵·캐릭터에 Ambient 마커 | 게임플레이 시각과 옵션이 충돌 — 미부착 |
+**Global Light 3→1 병합으로 GPU 절감** — 실측 ΔGPU가 미미했습니다. 3 lights를 유지합니다.
+
+**Ambient Light로 Global까지 OFF** — 플레이 가독성·스테이지 조명 채널이 깨집니다. 기각했습니다.
+
+**Ambient를 PC에도 적용** — Switch 전용 부하 완화입니다. PC는 항상 ON입니다.
+
+**스프라이트 OFF에 `SetActive`** — 계층·컴포넌트 부작용이 있습니다. `enabled` 토글을 씁니다.
+
+**전투·타일맵·캐릭터에 Ambient 마커** — 게임플레이 시각과 옵션이 충돌합니다. 미부착합니다.
 
 구 측정 세션에 Global Light2D 마커가 포함된 경우가 있습니다. 현재 정책(Global 제외)과 **수치를 직접 비교하지 않습니다**.
 

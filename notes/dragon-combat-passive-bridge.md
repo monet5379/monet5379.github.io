@@ -71,15 +71,6 @@ Passive는 전투 이벤트에 연쇄되기 쉽습니다.
 - [1편]({{ "/notes/dragon-combat-character/" | relative_url }}) OnDeath: PassiveSystem.Clear — Stat·Buff와 함께.
 - LogicUpdate: `IsBattleReady` 게이트 아래 Passive tick([1편]({{ "/notes/dragon-combat-character/" | relative_url }})).
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| Trigger 50+ catalog | Architecture (family 표, 내부) |
-| Condition DSL · partial | Architecture (내부) |
-| Buff stack · Handler | [2편]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }}) |
-| Passive SO | [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }}) |
-
 ## 정리
 
-Passive는 **이벤트 → 큐 → Effect 위임**입니다. ExecuteAttack은 combat Apply로, AddBuff는 buff 본체로 이어집니다. 마지막 [4편]({{ "/notes/dragon-combat-one-hit/" | relative_url }})에서 skill·buff·passive·combat·projectile을 한 줄기로 모읍니다.
+Passive는 **이벤트 → 큐 → Effect 위임**입니다. ExecuteAttack은 combat Apply로, AddBuff는 buff 본체로 이어집니다. 마지막 [4편]({{ "/notes/dragon-combat-one-hit/" | relative_url }})에서 skill·buff·passive·combat·projectile을 한 줄기로 모읍니다. Trigger 50+ catalog·Condition DSL·partial은 Architecture(내부)에, Passive SO는 [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }})에 둡니다.

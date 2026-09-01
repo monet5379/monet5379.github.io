@@ -120,12 +120,13 @@ flowchart TD
 
 ## 기각·보류
 
-| 결정 | 사유 |
-|------|------|
-| 첫 UI에서 자연 warmup (명시적 manager 없음) | 플레이·입력과 스파이크가 겹침 — 기각 |
-| 한 프레임에 전 font type 워밍업 | 스플래시 hitch — 프레임 분산 유지 |
-| Warmup만으로 glyph completeness | sample은 일부만 커버 — [Static 추출]({{ "/notes/tmp-static-font-atlas/" | relative_url }})이 SSOT |
-| 전 font type 일괄 warmup | 비용·미사용 타입 — 필요 시 목록 확장 (보류) |
+**첫 UI에서 자연 warmup (명시적 manager 없음)** — 플레이·입력과 스파이크가 겹칩니다. 기각했습니다.
+
+**한 프레임에 전 font type 워밍업** — 스플래시 hitch가 납니다. 프레임 분산을 유지합니다.
+
+**Warmup만으로 glyph completeness** — sample은 일부만 커버합니다. [Static 추출]({{ "/notes/tmp-static-font-atlas/" | relative_url }})이 SSOT입니다.
+
+**전 font type 일괄 warmup** — 비용·미사용 타입 부담입니다. 필요 시 목록 확장은 보류합니다.
 
 ## 확인 포인트
 

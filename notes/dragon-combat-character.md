@@ -91,16 +91,6 @@ BattleReady **전** Skill·Brain을 가정하면 참조가 아직 안 잡혀 **�
 
 매 프레임 **CharacterManager**가 등록된 캐릭터의 LogicUpdate·PhysicsUpdate를 돌립니다. Passive 등은 **`IsBattleReady` 게이트** 아래에서만 tick. Pause는 몬스터·동맹 Brain/Physics 정지(플레이어 Skill Pause와 별도). (`GameManager.Update` → `CharacterManager.LogicUpdate` → `TSCharacter.LogicUpdate`)
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| Modifier Add/Remove · FindCalculateValue | [2편]({{ "/notes/dragon-combat-stat/" | relative_url }}) |
-| Hitmark Apply · DamageCalculator | [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) |
-| Wave·Stage 스폰 스케줄 | Stage·Wave Architecture |
-| AI Decision/Action | Architecture (스튜디오 내부) |
-| 네 층 Why · 출시 요지 | [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) |
-
 ## 정리
 
-캐릭터 층은 **스폰·Initialize·BattleReady·Death Clear·Manager 등록**의 기준입니다. Stat·Combat·Skill·Buff·Passive는 같은 Owner 위에서 돌아가며, 다음 [2편]({{ "/notes/dragon-combat-stat/" | relative_url }})에서 숫자가 어디서 쓰이고 읽히는지 이어집니다.
+캐릭터 층은 **스폰·Initialize·BattleReady·Death Clear·Manager 등록**의 기준입니다. Stat·Combat·Skill·Buff·Passive는 같은 Owner 위에서 돌아가며, 다음 [2편]({{ "/notes/dragon-combat-stat/" | relative_url }})에서 숫자가 어디서 쓰이고 읽히는지 이어집니다. Wave·Stage 스폰 스케줄은 Stage·Wave Architecture에, AI Decision/Action은 Architecture(스튜디오 내부)에, 네 층 Why·출시 요지는 [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})에 둡니다.

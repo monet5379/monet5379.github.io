@@ -83,15 +83,6 @@ UI 스킬 상세의 예상 피해는 가능하면 **같은 계산 경로**를 �
 
 [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})에서 Hitmark는 “무엇이 맞는가” 층입니다. Skill은 Apply **앞**에서 끊고([Apply 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})), Buff·Passive는 Trigger·Effect로 Activate에 다시 붙습니다. Projectile transport는 [4편]({{ "/notes/dragon-combat-projectile/" | relative_url }})으로 분리합니다.
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| Projectile Spawn/Tick/Pool | [4편]({{ "/notes/dragon-combat-projectile/" | relative_url }}) |
-| Buff stack · Passive queue | [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) |
-| Hitmark SO 필드·Scriptable 경로 | [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }}) · Architecture |
-| VFX · Floaty · 피드백 | 전투 피드백 (범위 밖) |
-
 ## 정리
 
-한 번 맞음은 **Activate → (형태) → Apply → DamageCalculator → Vital**로 모입니다. Target·Area·Projectile은 대상 확정만 다르고, Stat은 Apply에서 읽히며, Death는 Vital OnDeath에서 [1편]({{ "/notes/dragon-combat-character/" | relative_url }}) Clear로 이어집니다. Projectile transport는 [4편]({{ "/notes/dragon-combat-projectile/" | relative_url }})에서 이어집니다.
+한 번 맞음은 **Activate → (형태) → Apply → DamageCalculator → Vital**로 모입니다. Target·Area·Projectile은 대상 확정만 다르고, Stat은 Apply에서 읽히며, Death는 Vital OnDeath에서 [1편]({{ "/notes/dragon-combat-character/" | relative_url }}) Clear로 이어집니다. Projectile transport는 [4편]({{ "/notes/dragon-combat-projectile/" | relative_url }})에서 이어집니다. Buff stack·Passive queue는 [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에, Hitmark SO 필드·Scriptable 경로는 [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }})·Architecture에, VFX·Floaty·피드백은 전투 피드백(범위 밖)에 둡니다.

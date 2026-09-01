@@ -63,15 +63,6 @@ flowchart TD
 
 몬스터 스킬도 같은 SkillEntity·Attack 경로를 쓰지만, 프로필 세이브·HUD 이벤트는 Player 전용입니다([스킬 성장]({{ "/notes/dragon-skill-growth/" | relative_url }})).
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| VCharacterSkill Learn/Assign | [스킬 성장]({{ "/notes/dragon-skill-growth/" | relative_url }}) · character-skill-data (내부) |
-| Hitmark 피해 · Vital | [타격·데미지 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) |
-| Buff Handler · CC | [2편]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }}) |
-| Skill Json · SkillData | [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }}) |
-
 ## 정리
 
-스킬 층은 **TryCast·SkillAnimation·애니 이벤트에서 Attack/Buff/Passive를 호출**하고, **Apply부터는 combat**입니다. 다음 [2편]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }})에서 Buff Add·Trigger가 stat·combat으로 이어지는 길을 봅니다.
+스킬 층은 **TryCast·SkillAnimation·애니 이벤트에서 Attack/Buff/Passive를 호출**하고, **Apply부터는 combat**입니다. 다음 [2편]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }})에서 Buff Add·Trigger가 stat·combat으로 이어지는 길을 봅니다. VCharacterSkill Learn/Assign은 [스킬 성장]({{ "/notes/dragon-skill-growth/" | relative_url }})·character-skill-data(내부)에, Hitmark 피해·Vital은 [타격·데미지 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})에, Skill Json·SkillData는 [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }})에 둡니다.

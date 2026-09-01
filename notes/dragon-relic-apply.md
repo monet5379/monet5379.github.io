@@ -116,17 +116,6 @@ Synergy는 **보유 유물의 태그 합**으로 임계를 넘깁니다. 예: Ra
 - Synergy를 Buff Entity로만 표현 — Skill Learn 경로로 유지. HUD는 UI 셸 분리.
 - 유물 Stat을 Equipment source와 합치 — source=`Relic` 분리 유지.
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| 후보 · Pick · Operate · Swap UI 흐름 | [1편]({{ "/notes/dragon-relic-acquire/" | relative_url }}) |
-| FindCalculateValue · DamageCalculator | [stat 2편]({{ "/notes/dragon-combat-stat/" | relative_url }}) |
-| TryCast · SkillAnimation | [스킬 2편]({{ "/notes/dragon-skill-cast/" | relative_url }}) |
-| ThrowRelic Passive Trigger | [passive 3편]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }}) |
-| SellingRelic · RewardBoxEnhancedRelic | Interaction (내부) |
-| UICharacterRelicChangePopup · Synergy Scroll | Architecture_UI (내부) |
-
 ## 정리
 
-드래곤 이즈 데드 유물 2층은 **Register 후 Apply로 Stat·Relic Skill을 넣고, RefreshSynergySkills로 조화 Skill까지 맞추는 경로**입니다. 도전이 끝나면 [1편]({{ "/notes/dragon-relic-acquire/" | relative_url }}) Clear와 함께 Modifier·Skill도 빠집니다. 전투에서 숫자를 **읽는** 쪽은 [stat 2편]({{ "/notes/dragon-combat-stat/" | relative_url }})·[hit-flow 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}), **시전**은 [스킬 2편]({{ "/notes/dragon-skill-cast/" | relative_url }})이 이어 받습니다.
+드래곤 이즈 데드 유물 2층은 **Register 후 Apply로 Stat·Relic Skill을 넣고, RefreshSynergySkills로 조화 Skill까지 맞추는 경로**입니다. 도전이 끝나면 [1편]({{ "/notes/dragon-relic-acquire/" | relative_url }}) Clear와 함께 Modifier·Skill도 빠집니다. 전투에서 숫자를 **읽는** 쪽은 [stat 2편]({{ "/notes/dragon-combat-stat/" | relative_url }})·[hit-flow 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}), **시전**은 [스킬 2편]({{ "/notes/dragon-skill-cast/" | relative_url }})이 이어 받습니다. FindCalculateValue·DamageCalculator는 [stat 2편]({{ "/notes/dragon-combat-stat/" | relative_url }})에, TryCast·SkillAnimation은 [스킬 2편]({{ "/notes/dragon-skill-cast/" | relative_url }})에, ThrowRelic Passive Trigger는 [passive 3편]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }})에 둡니다. SellingRelic·RewardBoxEnhancedRelic는 Interaction(내부)에, UICharacterRelicChangePopup·Synergy Scroll은 Architecture_UI(내부)에 둡니다.

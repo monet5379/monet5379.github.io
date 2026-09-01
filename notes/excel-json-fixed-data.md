@@ -4,7 +4,7 @@ title: Excel을 JSON으로 바꿔 고정 데이터를 읽은 이유
 permalink: /notes/excel-json-fixed-data/
 date: 2026-08-31
 excerpt: "기획자가 Unity를 켜지 않고 밸런스를 고칠 수 있게 Excel로 두고, 빌드에는 에디터에서 JSON으로 굳혀 타입드 조회로만 읽는 고정 데이터 경계를 정리합니다."
-tags: [엔진]
+tags: [데이터]
 mermaid: true
 ---
 

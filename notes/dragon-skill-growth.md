@@ -104,15 +104,6 @@ flowchart TD
 | SkillAnimation | Scriptable. 시전 연출·이벤트 타이밍 ([2편]({{ "/notes/dragon-skill-cast/" | relative_url }})) |
 | Hitmark / Buff / Passive | Scriptable. ID로 연결. 본체는 [전투 클러스터]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) |
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| Hitmark 피해 · Buff 스택 · Passive 큐 | [타격·데미지]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) · [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) |
-| TryCast · 쿨 · 애니 이벤트 | [2편]({{ "/notes/dragon-skill-cast/" | relative_url }}) |
-| 스킬 트리 UI 레이아웃·학습 팝업 전부 | UI 범위 (요지만 위) |
-| 프로필 직렬화 필드·Learn/Assign 코드 표 | Architecture (내부) |
-
 ## 정리
 
-드래곤 이즈 데드 스킬의 성장은 **프로필 세이브에 학습·할당·레벨을 쓰고, 이벤트로 런타임·HUD를 맞추는 경로**입니다. 시전은 그다음에, 슬롯에 올라온 스킬만 입력으로 받습니다 — [2편]({{ "/notes/dragon-skill-cast/" | relative_url }}).
+드래곤 이즈 데드 스킬의 성장은 **프로필 세이브에 학습·할당·레벨을 쓰고, 이벤트로 런타임·HUD를 맞추는 경로**입니다. 시전은 그다음에, 슬롯에 올라온 스킬만 입력으로 받습니다 — [2편]({{ "/notes/dragon-skill-cast/" | relative_url }}). Hitmark 피해·Buff 스택·Passive 큐는 [타격·데미지]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})·[트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에, 스킬 트리 UI 레이아웃·학습 팝업 전부는 UI 범위(요지만 위)에, 프로필 직렬화 필드·Learn/Assign 코드 표는 Architecture(내부)에 둡니다.

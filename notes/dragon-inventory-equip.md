@@ -117,17 +117,6 @@ flowchart TD
 - Equip은 Loadout만 바꾸고 Stat/Skill은 `EquipmentEffectApplier`가 구독 — **미구현**. God Object 안에서 Apply가 Loadout+Effect를 함께 처리.
 - `RefreshEquippedItemStats`를 전역 이벤트 하나로 통일하지 않고, PlayerCharacter.Stats 등 **호출부가 여러 곳** — 호출 누락이 회귀 포인트.
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| TryTake · AddItem · ThrowGround | [1편]({{ "/notes/dragon-inventory-store/" | relative_url }}) |
-| Hitmark · DamageCalculator · Vital | [타격·데미지 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) |
-| TryCast · SkillAnimation | [스킬 2편]({{ "/notes/dragon-skill-cast/" | relative_url }}) |
-| 유물 Stat · Synergy Skill | [유물 2편]({{ "/notes/dragon-relic-apply/" | relative_url }}) |
-| InventoryRefactoring Phase 표 | Architecture (내부) |
-| UIEquipSlotTile 드래그·Compare | Architecture_UI (내부) |
-
 ## 정리
 
-드래곤 이즈 데드 장비 착용은 **EquipmentSlot 배치 후 ApplyItemDataToCharacter로 Stat Modifier와 Profile Skill을 넣고, Unapply·Refresh로 빼는 경로**입니다. 전투에서 숫자를 **읽는** 쪽은 [stat 2편]({{ "/notes/dragon-combat-stat/" | relative_url }})·[hit-flow 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}), 스킬 **시전**은 [스킬 2편]({{ "/notes/dragon-skill-cast/" | relative_url }})이 이어 받습니다.
+드래곤 이즈 데드 장비 착용은 **EquipmentSlot 배치 후 ApplyItemDataToCharacter로 Stat Modifier와 Profile Skill을 넣고, Unapply·Refresh로 빼는 경로**입니다. 전투에서 숫자를 **읽는** 쪽은 [stat 2편]({{ "/notes/dragon-combat-stat/" | relative_url }})·[hit-flow 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}), 스킬 **시전**은 [스킬 2편]({{ "/notes/dragon-skill-cast/" | relative_url }})이 이어 받습니다. Hitmark·DamageCalculator·Vital은 [타격·데미지 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})에, TryCast·SkillAnimation은 [스킬 2편]({{ "/notes/dragon-skill-cast/" | relative_url }})에, 유물 Stat·Synergy Skill은 [유물 2편]({{ "/notes/dragon-relic-apply/" | relative_url }})에 둡니다. InventoryRefactoring Phase 표는 Architecture(내부)에, UIEquipSlotTile 드래그·Compare는 Architecture_UI(내부)에 둡니다.

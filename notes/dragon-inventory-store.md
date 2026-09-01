@@ -124,18 +124,6 @@ flowchart TD
 - `VInventory`를 Store·Queries·Router로 쪼개는 **InventoryRefactoring**은 Architecture에 **목표**로만 두고, 출시본은 monolith를 유지했습니다.
 - 획득·퀘스트 Complete·통계 Increment를 Observer로 빼는 Phase는 **미적용**입니다. `CompleteQuests`는 여전히 `AddItem` 경로에 있습니다.
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| 착용 · AddItemStats · Runeword Skill | [2편]({{ "/notes/dragon-inventory-equip/" | relative_url }}) |
-| Stat Modifier · FindCalculateValue | [타격·데미지 2편 stat]({{ "/notes/dragon-combat-stat/" | relative_url }}) |
-| 스킬 트리·학습·할당 | [스킬 1편]({{ "/notes/dragon-skill-growth/" | relative_url }}) |
-| 유물 Synergy · Relic Skill | [유물 1·2편]({{ "/notes/dragon-relic-acquire/" | relative_url }}) |
-| Drop 확률 · 스포너 · Operate | Architecture (내부) |
-| 인벤 UI 드래그·Compare·Sorting 위젯 | Architecture_UI (내부) |
-| partial 파일·메서드 표 전체 | Architecture (내부) |
-
 ## 정리
 
-드래곤 이즈 데드 인벤의 1층은 **프로필 `VInventory`에 SID 인스턴스를 쌓고, ItemTypes·탭·Validator로 배치를 맞추는 것**입니다. 전투 수치·스킬은 착용 Apply에서 [2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})으로 이어집니다.
+드래곤 이즈 데드 인벤의 1층은 **프로필 `VInventory`에 SID 인스턴스를 쌓고, ItemTypes·탭·Validator로 배치를 맞추는 것**입니다. 전투 수치·스킬은 착용 Apply에서 [2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})으로 이어집니다. Stat Modifier·FindCalculateValue는 [타격·데미지 2편 stat]({{ "/notes/dragon-combat-stat/" | relative_url }})에, 스킬 트리·학습·할당은 [스킬 1편]({{ "/notes/dragon-skill-growth/" | relative_url }})에, 유물 Synergy·Relic Skill은 [유물 1·2편]({{ "/notes/dragon-relic-acquire/" | relative_url }})에 둡니다. Drop 확률·스포너·Operate·partial 파일·메서드 표 전체는 Architecture(내부)에, 인벤 UI 드래그·Compare·Sorting 위젯은 Architecture_UI(내부)에 둡니다.

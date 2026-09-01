@@ -16,17 +16,15 @@ mermaid: true
 
 출시 타이틀에서 프로필·슬롯·백업이 타이틀 코드에 섞일 때 생기는 경계를, Main·Side·공유 Meta로만 남긴 이유를 정리합니다.
 
-**독자:** 세이브 레이아웃 패키지·출시 타이틀의 디스크 계약을 읽는 개발자. 구현 API는 [GitHub README](https://github.com/monet5379/unity-save-layout)가 정본입니다.
-
-초점은 **디스크 단위를 누가 소유하는지**입니다. 출시 맥락은 [블레이드 어썰트 (프로젝트)]({{ "/projects/blade-assault/" | relative_url }})·[드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}), 구현은 [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }})입니다.
+초점은 **디스크 단위를 누가 소유하는지**입니다. 세이브 레이아웃 패키지·출시 타이틀의 디스크 계약을 읽는 개발자를 가정합니다. 구현 API는 [GitHub README](https://github.com/monet5379/unity-save-layout)가 정본입니다. 출시 맥락은 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})·[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}), 구현은 [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }})입니다.
 
 ## 맥락
 
-출시에서 세이브를 지켜도, 역할이 타이틀 코드에 섞여 있으면 **레이아웃 계약만** 재현·설명하기 어렵습니다.
+출시에서 세이브를 지켜도, 역할이 타이틀 코드에 섞여 있으면 **레이아웃 계약만** 재현·설명하기 어렵습니다. 영구 진행·짧은 진행·실패 백업·선택 메타가 한곳에 있으면, “이 파일은 무엇을 위한 것인가”를 코드 밖에서 말하기 힘듭니다.
 
 ## 출시 타이틀의 한계
 
-[블레이드 어썰트 (프로젝트)]({{ "/projects/blade-assault/" | relative_url }})와 [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})는 같은 축에서 세이브를 출시까지 지켰지만, **영구 진행·짧은 진행·실패 백업·선택 메타를 디스크 레인 계약으로 갈라 두지는 않았습니다.**
+[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})와 [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})는 같은 축에서 세이브를 출시까지 지켰지만, **영구 진행·짧은 진행·실패 백업·선택 메타를 디스크 레인 계약으로 갈라 두지는 않았습니다.**
 
 | | 블레이드 어썰트 | 드래곤 이즈 데드 |
 |--|---------------|----------------|
@@ -46,15 +44,15 @@ mermaid: true
 
 ## 세이브 레이아웃에서 시도한 것
 
-그 경계를 [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }})에서 **레이아웃 계약**으로만 뽑았습니다.
+그 경계를 [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }})에서 **레이아웃 계약**으로만 뽑았습니다.
 
 | 축 | 출시에서 섞이기 쉬웠던 것 | 여기서 고정한 것 |
 |----|---------------------------|------------------|
 | 레인 | 타이틀 세이브 코드에 역할이 함께 있음 | 슬롯당 Main + 선택 Side + 공유 Meta |
 | Meta | 선택 슬롯을 세트 밖(`PlayerPrefs` 등)에 두기 쉬움 | Meta에 두고 세트와 같이 이동 |
-| Backup vs Continue | 슬롯 백업으로 이어하기를 흉내 내는 유혹 | `Backup/` = 치운 흔적만. Continue·오토는 Side ([2편 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }})) |
+| Backup vs Continue | 슬롯 백업으로 이어하기를 흉내 내는 유혹 | `Backup/` = 치운 흔적만. Continue·오토는 Side ([2편]({{ "/notes/save-layout-side-lane/" | relative_url }})) |
 
-아래 **세 축**이 그 계약의 지도입니다. 쓰기 주기·허브 정본의 세부는 표·도식과 [2편 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }})에 맡깁니다.
+아래 **세 축**이 그 계약의 지도입니다. 쓰기 주기·허브 정본의 세부는 표·도식과 [2편]({{ "/notes/save-layout-side-lane/" | relative_url }})에 맡깁니다.
 
 ## 세 축
 
@@ -90,7 +88,7 @@ flowchart TD
   S ~~~ NOTE
 ```
 
-허브 디스크 정본은 **Meta + Profile Main**입니다. Side만으로는 세이브 있음이 아니고, 손상·빈 파일은 그 파일만 `Backup/`으로 치운 뒤 null로 둡니다. `Backup/`과 Side의 차이는 [2편 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }})입니다.
+허브 디스크 정본은 **Meta + Profile Main**입니다. Side만으로는 세이브 있음이 아니고, 손상·빈 파일은 그 파일만 `Backup/`으로 치운 뒤 null로 둡니다. `Backup/`과 Side의 차이는 [2편]({{ "/notes/save-layout-side-lane/" | relative_url }})입니다.
 
 ## 왜 이렇게 잘랐는가
 
@@ -113,26 +111,22 @@ class Side { int schemaVersion; bool valid; object payload; }
 
 ## 기각·보류
 
-| 두지 않은 것 | 이유 |
-|--------------|------|
-| 레거시·타 포맷 **이관** | 레이아웃 패키지 범위 밖. 타이틀·툴링 몫 |
-| Payload **필드 마이그레이션** | 스키마는 게임이 소유 |
-| 별도 **`runs/` 트리**·런 전용 제품 API | Side 레인 또는 타이틀 필드로 충분하다고 봄 |
-| Rot·AES·Steam Cloud merge UI | 레이아웃은 Cloud에 올리기 쉽게 두고, 동기화·충돌은 타이틀 |
-| 타이머 오토·Continue 분기 | Side *레이아웃*만 제공. 제품 규칙은 타이틀 |
-| Excel→Json·SO **Facade** | 고정 정의 파이프는 별도 관심사 |
+**레거시·타 포맷 이관** — 레이아웃 패키지 범위 밖입니다. 타이틀·툴링 몫으로 둡니다.
+
+**Payload 필드 마이그레이션** — 스키마는 게임이 소유합니다.
+
+**별도 `runs/` 트리·런 전용 제품 API** — Side 레인 또는 타이틀 필드로 충분하다고 봅니다.
+
+**Rot·AES·Steam Cloud merge UI** — 레이아웃은 Cloud에 올리기 쉽게 두고, 동기화·충돌은 타이틀 몫입니다.
+
+**타이머 오토·Continue 분기** — Side *레이아웃*만 제공합니다. 제품 규칙은 타이틀입니다.
+
+**Excel→Json·SO Facade** — 고정 정의 파이프는 별도 관심사입니다.
 
 Demo의 페이로드·Title UI는 놀이터입니다. 출시 `GameData` 스키마가 아닙니다.
-
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| 설치·API·불변조건 표·실패 시나리오 | [GitHub README](https://github.com/monet5379/unity-save-layout) |
-| 무엇을 만들었는지·계보·비범위 요약 | [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }}) |
-| 블레이드 어썰트 / 드래곤 이즈 데드 세이브 출시 요약 | [블레이드 어썰트 (프로젝트)]({{ "/projects/blade-assault/" | relative_url }}) · [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) |
-| 내부 Architecture·NDA 수치 | 공개하지 않음 |
 
 ## 정리
 
 세이브 레이아웃에서 지킨 것은 완벽한 세이브 시스템이 아니라, **슬롯당 Main·선택적 Side·공유 Meta**라는 소유 질문입니다. 어디에 쓸지·언제 쓸지·선택이 어디에 있는지가 섞이지 않으면, 타이틀은 스키마와 장르 규칙만 얹으면 됩니다.
+
+설치·API·불변조건·실패 시나리오는 [GitHub README](https://github.com/monet5379/unity-save-layout)에, 무엇을 만들었는지·계보·비범위 요약은 [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }})에 있습니다. 블레이드 어썰트·드래곤 이즈 데드 세이브 출시 요약은 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) · [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})를, 내부 Architecture·NDA 수치는 공개하지 않습니다.

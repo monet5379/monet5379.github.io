@@ -96,14 +96,6 @@ Skill 노트는 Apply **앞**에서 끊고, combat은 Apply **뒤**만 소유합
 | 플레이어 스킬 체감 | [스킬]({{ "/notes/dragon-skill-growth/" | relative_url }}) |
 | 고정 데이터 | [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }}) |
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| GC · pool hot path | Optimization · 성능 노트 |
-| Stage·Wave | 액션 Architecture |
-| 코드 경로·Handler 전수 | Architecture (스튜디오 내부) |
-
 ## 정리
 
-한 타격은 **skill/buff/passive가 Activate·Add·Effect로 combat Apply에 들어가고, Stat을 읽어 Vital에 닿으며, 이벤트로 Passive가 다시 연쇄**할 수 있는 구조입니다. 시리즈 1·2를 마쳤으면 [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})로 돌아가 네 층·출시 요지를 복습하거나, [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }})로 데이터 경로를 이어가면 됩니다.
+한 타격은 **skill/buff/passive가 Activate·Add·Effect로 combat Apply에 들어가고, Stat을 읽어 Vital에 닿으며, 이벤트로 Passive가 다시 연쇄**할 수 있는 구조입니다. 시리즈 1·2를 마쳤으면 [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})로 돌아가 네 층·출시 요지를 복습하거나, [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }})로 데이터 경로를 이어가면 됩니다. GC·pool hot path는 Optimization·성능 노트에, Stage·Wave는 액션 Architecture에, 코드 경로·Handler 전수는 Architecture(스튜디오 내부)에 둡니다.

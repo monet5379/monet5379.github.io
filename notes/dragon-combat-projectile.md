@@ -56,16 +56,6 @@ flowchart TD
 - Buff DoT Tick → Target Attack 등 **Projectile 없이** Hitmark 호출하는 경우도 많음([트리거·연쇄 2편]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }})). 도트는 날아가는 오브젝트가 아닐 수 있습니다.
 - [한 타격으로 모이기]({{ "/notes/dragon-combat-one-hit/" | relative_url }})에서 end-to-end로 다시 묶습니다.
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| DamageCalculator · ComputeByType | [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) |
-| Hitmark Scriptable 필드 | [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }}) · Architecture |
-| Pool·Resources 구현 | Resource Architecture (내부) |
-| VFX · Feedbacks | 연출 (범위 밖) |
-| 시리즈 2 — buff/passive 트리거 | [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) |
-
 ## 정리
 
-Projectile은 **운반(transport)** 만 합니다. Spawn·Tick·Collision·Despawn과 registry·pool이 이 층이고, 맞힌 뒤는 child Attack으로 [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) Apply·Vital로 넘깁니다. 시리즈 1을 마쳤으면 [Apply 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에서 트리거·연쇄 줄기로 넘어가면 됩니다.
+Projectile은 **운반(transport)** 만 합니다. Spawn·Tick·Collision·Despawn과 registry·pool이 이 층이고, 맞힌 뒤는 child Attack으로 [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) Apply·Vital로 넘깁니다. 시리즈 1을 마쳤으면 [Apply 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에서 트리거·연쇄 줄기로 넘어가면 됩니다. Hitmark Scriptable 필드는 [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }})·Architecture에, Pool·Resources 구현은 Resource Architecture(내부)에, VFX·Feedbacks는 연출(범위 밖)에, buff/passive 트리거는 [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에 둡니다.

@@ -82,15 +82,6 @@ StateEffect registry · Incompatible maps → **`CharacterHandleSkill` blocking*
 | 역할 | Buff 재발동 간격 | 패시브 규칙 재발동 | 시전 쿨·Rest |
 | 혼동 금지 | ✓ | ✓ | ✓ |
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| Buff partial · Handler 구현 표 | Architecture (스튜디오 내부) |
-| Passive queue · EXECUTE_MAX | [3편]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }}) |
-| Buff SO Scriptable | [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }}) |
-| Save/load 후 인게임 buff 없음 | 의도 — 세이브 범위 밖 |
-
 ## 정리
 
-Buff는 **Add/Stack/Duration + Trigger Handler**로 stat·combat·skill에 연결됩니다. Remove는 Stat 쌍, CC는 skill 입력과 만납니다. 다음 [3편]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }})에서 이벤트 큐·ExecuteAttack을 봅니다.
+Buff는 **Add/Stack/Duration + Trigger Handler**로 stat·combat·skill에 연결됩니다. Remove는 Stat 쌍, CC는 skill 입력과 만납니다. 다음 [3편]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }})에서 이벤트 큐·ExecuteAttack을 봅니다. Buff partial·Handler 구현 표는 Architecture(스튜디오 내부)에, Buff SO Scriptable은 [`excel-json-fixed-data`]({{ "/notes/excel-json-fixed-data/" | relative_url }})에, save/load 후 인게임 buff 없음은 의도(세이브 범위 밖)입니다.

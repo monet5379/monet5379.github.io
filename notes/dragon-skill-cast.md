@@ -116,16 +116,6 @@ Buff RestTime · Passive Rest와도 **혼동하지 않습니다**([buff 2편]({{
 
 BattleReady 전에 Cast가 되면 “슬롯은 있는데 입력이 안 먹는다”와 반대로, 준비 전에 쿨·HUD만 어긋날 수 있습니다.
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| Apply 경계 · 애니→combat | [Apply 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) |
-| Hitmark → 피해 계산 → Vital | [타격·데미지 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) |
-| Buff 스택 · Passive 큐 · 연쇄 상한 | [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) |
-| 클립명·이벤트 키·Animator 내부 | 범위 밖 |
-| SkillAsset SO 이관 · 물리/마법 공격력 계약 감사 | 후속 과제 |
-
 ## 정리
 
-드래곤 이즈 데드 스킬 시전은 **할당 슬롯 입력 → 권한·버퍼·쿨·Rest → TryCast → SkillAnimation → 애니 이벤트에서 전투 층으로 넘기기**입니다. 한 방의 의미와 숫자는 Hitmark·**Apply 이후**, 지속 상태·사건 규칙은 Buff·Passive에 맡깁니다.
+드래곤 이즈 데드 스킬 시전은 **할당 슬롯 입력 → 권한·버퍼·쿨·Rest → TryCast → SkillAnimation → 애니 이벤트에서 전투 층으로 넘기기**입니다. 한 방의 의미와 숫자는 Hitmark·**Apply 이후**, 지속 상태·사건 규칙은 Buff·Passive에 맡깁니다. Apply 경계·애니→combat은 [Apply 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에, Hitmark→피해 계산→Vital은 [타격·데미지 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})에, Buff 스택·Passive 큐·연쇄 상한은 [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에 둡니다. 클립명·이벤트 키·Animator 내부는 범위 밖이고, SkillAsset SO 이관·물리/마법 공격력 계약 감사는 후속 과제입니다.

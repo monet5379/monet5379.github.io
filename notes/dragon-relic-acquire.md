@@ -135,17 +135,6 @@ flowchart TD
 - 유물을 `VInventory` ItemTypes 한 줄로 흡수 — **기각**. 저장·Clear·드랍 매니저가 전부 다름.
 - 후보 풀을 프로필에 영속 — **기각**. `RelicCollectionManager` 비영속 유지.
 
-## 이 글에서 다루지 않는 것
-
-| 주제 | 위치 |
-|------|------|
-| AddRelicStats · Synergy Skill Learn | [2편]({{ "/notes/dragon-relic-apply/" | relative_url }}) |
-| VItem · 가방 · Equipment Apply | [인벤 1·2편]({{ "/notes/dragon-inventory-store/" | relative_url }}) |
-| 스킬 트리·프로필 Learn | [스킬 1편]({{ "/notes/dragon-skill-growth/" | relative_url }}) |
-| SellingRelic · TryEnhance · 보상 상자 Handler | Interaction · 2편 요지 |
-| ChangePopup · Synergy HUD 위젯 | Architecture_UI (내부) |
-| partial·코드 표 전수 | Architecture (내부) |
-
 ## 정리
 
-드래곤 이즈 데드 유물 1층은 **캐릭터 9슬롯에 `VRelic`을 쌓고, RelicCollectionManager로 후보·드랍·획득·교체를 처리하는 것**입니다. 인벤 장비와 달리 **도전이 끝나면 슬롯이 비워집니다**. 전투 반영은 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})으로 이어집니다.
+드래곤 이즈 데드 유물 1층은 **캐릭터 9슬롯에 `VRelic`을 쌓고, RelicCollectionManager로 후보·드랍·획득·교체를 처리하는 것**입니다. 인벤 장비와 달리 **도전이 끝나면 슬롯이 비워집니다**. 전투 반영은 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})으로 이어집니다. VItem·가방·Equipment Apply는 [인벤 1·2편]({{ "/notes/dragon-inventory-store/" | relative_url }})에, 스킬 트리·프로필 Learn은 [스킬 1편]({{ "/notes/dragon-skill-growth/" | relative_url }})에, SellingRelic·TryEnhance·보상 상자 Handler는 Interaction·2편 요지에 둡니다. ChangePopup·Synergy HUD 위젯은 Architecture_UI(내부)에, partial·코드 표 전수는 Architecture(내부)에 둡니다.
