@@ -66,7 +66,7 @@ Skill / Passive / Item / …
 
 ### 상태이상·호환
 
-StateEffect로 CC를 묶고, 함께 있을 수 없는 버프·상태를 맵으로 가집니다. Skill 입력·조건 쪽은 활성 CC를 보고 시전을 막을 수 있습니다. «지금 뭐가 붙어 있나»가 Buff 디버그의 기본 질문입니다.
+StateEffect로 CC를 묶고, 함께 있을 수 없는 버프·상태를 맵으로 가집니다. Skill 입력·조건 쪽은 활성 CC를 보고 시전을 막을 수 있습니다. 지금 뭐가 붙어 있나가 Buff 디버그의 기본 질문입니다.
 
 ### Buff 측 Trigger
 
@@ -76,12 +76,12 @@ StateEffect로 CC를 묶고, 함께 있을 수 없는 버프·상태를 맵으�
 
 | 콘텐츠 | Buff 쪽 | 다른 층 |
 |--------|---------|---------|
-| 화염 도트 5스택 | 스택·틱 간격, 틱마다 Hitmark | Passive/Skill이 «화염을 걸지» 결정 가능 |
+| 화염 도트 5스택 | 스택·틱 간격, 틱마다 Hitmark | Passive/Skill이 화염을 걸지 결정 가능 |
 | 빙결 | StateEffect, 시전·이동 블록 연동 | Skill이 Rest/조건으로 차단 |
 | 공격력 버프 10초 | duration, Stat Modifier Add/Remove | — |
 | 치명 시 공격력 상승 (유물) | (상태가 필요하면) Buff로 보정 | Passive가 치명 조건 후 Buff Add |
 
-Passive 예시의 «공격 시 화염»은 Passive가 Buff를 걸고, **틱 피해**는 Buff→Hitmark입니다. 역할이 한 줄로 갈립니다.
+Passive 예시의 공격 시 화염은 Passive가 Buff를 걸고, **틱 피해**는 Buff→Hitmark입니다. 역할이 한 줄로 갈립니다.
 
 ## 데이터 요지
 
@@ -92,7 +92,7 @@ Passive 예시의 «공격 시 화염»은 Passive가 Buff를 걸고, **틱 피�
 | DoT 피해 | Hitmark ID 호출. 식은 Hitmark·Stat 층 |
 | 호환·CC | StateEffect·Incompatible 맵과 활성 상태 일치 |
 
-필드·밸런스 표와 핸들러 전수 목록은 이 글 범위 밖입니다. 새 상태를 넣을 때의 질문은 «스택·시간·CC인가 / Stat인가 / 주기 Hitmark인가»입니다.
+필드·밸런스 표와 핸들러 전수 목록은 이 글 범위 밖입니다. 새 상태를 넣을 때의 질문은 스택·시간·CC인가 / Stat인가 / 주기 Hitmark인가입니다.
 
 ## 이 글에서 다루지 않는 것
 

@@ -50,19 +50,19 @@ Skill (시전)
 Passive / Buff 반응 → Buff · Hitmark · Skill API (위임)
 ```
 
-프로젝트 페이지에 적어 둔 «히트마크 → 피해 계산 → Vital»은 이 지도에서 **Hitmark 층**의 한 줄기입니다. Skill·Buff·Passive는 그 앞과 뒤를 담당합니다.
+프로젝트 페이지에 적어 둔 히트마크 → 피해 계산 → Vital은 이 지도에서 **Hitmark 층**의 한 줄기입니다. Skill·Buff·Passive는 그 앞과 뒤를 담당합니다.
 
 ## 왜 네 층인가
 
-경계를 나눈 이유는 «레이어를 예쁘게»가 아니라, **콘텐츠를 늘려도 한 시스템이 다른 시스템을 삼키지 않게** 하려는 것이었습니다.
+경계를 나눈 이유는 레이어를 예쁘게가 아니라, **콘텐츠를 늘려도 한 시스템이 다른 시스템을 삼키지 않게** 하려는 것이었습니다.
 
 **재사용.** 같은 타격 정의를 스킬·투사체·버프 주기 피해가 ID로 공유합니다. 스킬마다 피해 로직을 복제하지 않습니다. Hitmark를 Skill 안에 두지 않은 이유는 [3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})에서 더 짚습니다.
 
-**역할 충돌 방지.** «캐릭터에 붙어 있는 지속 상태»와 «사건 기반 자동 규칙»은 겉보기에 비슷한 효과를 낼 수 있어도, 수명·재발동·스택 정책이 다릅니다. 전자는 Buff, 후자는 Passive로 두고, Passive 효과는 Buff·Attack·Skill API에 위임합니다. 차이의 세부와 폭주 제어는 [4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }})에서 다룹니다.
+**역할 충돌 방지.** 캐릭터에 붙어 있는 지속 상태와 사건 기반 자동 규칙은 겉보기에 비슷한 효과를 낼 수 있어도, 수명·재발동·스택 정책이 다릅니다. 전자는 Buff, 후자는 Passive로 두고, Passive 효과는 Buff·Attack·Skill API에 위임합니다. 차이의 세부와 폭주 제어는 [4편]({{ "/notes/combat-buff-vs-passive/" | relative_url }})에서 다룹니다.
 
 **폭주 제어.** 패시브는 공격 성공 같은 이벤트에 연쇄될 수 있습니다. 실행을 전역 큐와 프레임당 상한으로 모으면, 한 프레임에 반응이 폭주하는 경로를 줄일 수 있습니다.
 
-**데이터 변경 속도.** 스킬 슬롯·레벨·테이블성 수치는 Json 쪽에 두고, Hitmark·Buff·Passive처럼 에디터에서 조합·검증하기 좋은 정의는 Scriptable 쪽에 둡니다. «모든 전투 데이터를 한 포맷에»보다, **누가 얼마나 자주 고치는가**에 맞춘 선택입니다.
+**데이터 변경 속도.** 스킬 슬롯·레벨·테이블성 수치는 Json 쪽에 두고, Hitmark·Buff·Passive처럼 에디터에서 조합·검증하기 좋은 정의는 Scriptable 쪽에 둡니다. 모든 전투 데이터를 한 포맷에보다, **누가 얼마나 자주 고치는가**에 맞춘 선택입니다.
 
 **확장 비용.** Buff의 이벤트 반응은 거대 switch보다 트리거 종류별 핸들러로 나누는 편이, 새 트리거를 넣을 때 기존 분기를 덜 건드립니다. 이 또한 Buff 층의 책임 안에서 끝난 일입니다.
 
@@ -84,6 +84,6 @@ Passive / Buff 반응 → Buff · Hitmark · Skill API (위임)
 
 ## 정리
 
-Dragon is Dead 전투는 Skill·Hitmark·Buff·Passive 네 층의 소유 경계로 나뉘어 있습니다. 시전 타이밍, 타격 정의, 지속 상태, 사건 반응을 섞지 않은 덕분에, 콘텐츠를 늘리면서도 «어디에 넣을지»를 같은 기준으로 결정할 수 있었습니다.
+Dragon is Dead 전투는 Skill·Hitmark·Buff·Passive 네 층의 소유 경계로 나뉘어 있습니다. 시전 타이밍, 타격 정의, 지속 상태, 사건 반응을 섞지 않은 덕분에, 콘텐츠를 늘리면서도 어디에 넣을지를 같은 기준으로 결정할 수 있었습니다.
 
 다음: 구조는 [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }})부터, 시리즈는 [스킬 한 번의 해피 패스]({{ "/notes/combat-skill-happy-path/" | relative_url }}).

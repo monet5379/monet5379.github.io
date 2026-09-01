@@ -5,6 +5,7 @@ permalink: /notes/combat-skill-happy-path/
 date: 2026-08-04
 excerpt: "스킬 입력부터 Hitmark·피해 계산·Vital까지, 반응 루프를 빼 둔 해피 패스만 따라갑니다."
 tags: [전투]
+project: dragon-is-dead
 series: combat-boundaries
 series_title: 전투 경계
 series_order: 2

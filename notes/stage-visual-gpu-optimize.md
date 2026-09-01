@@ -5,6 +5,7 @@ permalink: /notes/stage-visual-gpu-optimize/
 date: 2026-07-23
 excerpt: "이동만 할 때 카메라에 따라 커지는 렌더 비용을, Global Light 구조와 Switch Ambient 토글 두 레버로 나눈 설계를 정리합니다."
 tags: [최적화]
+project: dragon-is-dead
 mermaid: true
 ---
 

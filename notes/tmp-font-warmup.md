@@ -15,7 +15,7 @@ mermaid: true
 
 ## 맥락
 
-Static은 «어떤 글자가 아틀라스에 있는가», Warmup은 «언제 처음 그리는가»를 담당합니다. FontWarmup 매니저로 **cancel/supersede·input block**을 한곳에서 묶어, 자연 첫 UI warmup이 플레이·입력과 겹치지 않게 합니다.
+Static은 어떤 글자가 아틀라스에 있는가, Warmup은 언제 처음 그리는가를 담당합니다. FontWarmup 매니저로 **cancel/supersede·input block**을 한곳에서 묶어, 자연 첫 UI warmup이 플레이·입력과 겹치지 않게 합니다.
 
 타임라인:
 
@@ -35,7 +35,7 @@ Static은 «어떤 글자가 아틀라스에 있는가», Warmup은 «언제 처
 
 ## 문제
 
-Static atlas만으로는 «첫 사용 시 머티리얼·메쉬·스프라이트 준비» 비용이 사라지지 않습니다.
+Static atlas만으로는 첫 사용 시 머티리얼·메쉬·스프라이트 준비 비용이 사라지지 않습니다.
 
 | 증상 | 원인 |
 |------|------|
@@ -122,6 +122,6 @@ Dragon은 언어군별 **공통** sample을 씁니다. 공개 Demo는 Ui·Dialog
 
 ## 정리
 
-Static은 «어떤 글자가 아틀라스에 있는가», Warmup은 «언제 처음 그리는가»를 담당합니다. 둘을 한 메커니즘으로 합치지 않고, 스파이크는 대기 구간으로·glyph 완결성은 데이터 추출로 나눕니다.
+Static은 어떤 글자가 아틀라스에 있는가, Warmup은 언제 처음 그리는가를 담당합니다. 둘을 한 메커니즘으로 합치지 않고, 스파이크는 대기 구간으로·glyph 완결성은 데이터 추출로 나눕니다.
 
 **권장 읽기** — [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) → Warmup(이 글).

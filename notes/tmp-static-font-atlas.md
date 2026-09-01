@@ -21,7 +21,7 @@ CJK·다국어 출시에서 Dynamic atlas 성장이 첫 표시·언어 전환 hi
 
 파이프라인은 한 줄로 다음과 같습니다.
 
-`String*.json`(로컬라이즈 문자열) → sanitize · 언어 버킷별 unique codepoint → 생성 텍스트/테이블 → TMP Font Asset Character Table(Static) → 런타임은 언어에 맞는 Font Asset 선택
+`String*.json`(로컬라이즈 문자열) → 정제 · 언어 버킷별 unique codepoint → 생성 텍스트/테이블 → TMP Font Asset Character Table(Static) → 런타임은 언어에 맞는 Font Asset 선택
 
 ## 문제
 
@@ -79,7 +79,7 @@ UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK�
 
 **Dragon 배포 vs 공개 Demo.** 위 European **합집합**은 Dragon 출시 기준입니다. 오픈소스 [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) Demo는 EN · FR · DE · IT · ES를 **언어별 버킷·Static asset**으로 분리합니다. UI·Dialogue 분리 원칙은 같고, 유럽어 쪼개기만 다릅니다.
 
-### Sanitize
+### 정제
 
 아틀라스에 넣지 않는 것:
 
@@ -90,8 +90,6 @@ UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK�
 - 개행·탭·BOM·soft hyphen 등 제어·레이아웃 전용 코드포인트
 
 예: `"<color=red>HP {0}</color> [ITEM]"` → 추출 대상은 실제 노출 글자(`H`, `P` 등). 태그·placeholder·토큰은 제외합니다.
-
-기본(다이얼로그 제외) 셋에는 UI에 쓰는 필수 글리프(예: `▶`)를 포함합니다.
 
 ### 런타임 경계
 
@@ -122,7 +120,7 @@ String workbook / JSON이 바뀌면 Static 폰트도 같이 갱신합니다.
 
 ## 공개 구현
 
-Dragon에서 정리한 «추출 → Static bake → 런타임 font 선택»을 게임 없이 복사해 쓸 수 있게 [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) (`unity-tmp-font`)로 뺐습니다. Install·API·Demo 절차는 [GitHub README](https://github.com/monet5379/unity-tmp-font)가 정본입니다.
+Dragon에서 정리한 추출 → Static bake → 런타임 font 선택을 게임 없이 복사해 쓸 수 있게 [TMP Font Pipeline]({{ "/projects/tmp-font-pipeline/" | relative_url }}) (`unity-tmp-font`)로 뺐습니다. Install·API·Demo 절차는 [GitHub README](https://github.com/monet5379/unity-tmp-font)가 정본입니다.
 
 | 항목 | 내용 |
 |------|------|

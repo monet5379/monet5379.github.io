@@ -14,7 +14,7 @@ series_total: 4
 
 Hitmark 정의와 Target·Area·Projectile 공격 런타임 갈래, 피해 계산·Vital 적용까지를 정리합니다.
 
-[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Hitmark(타격) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})를, «왜 Skill 밖에 두었는지»는 [시리즈 3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})을 보면 됩니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
+[Dragon is Dead]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투에서 담당한 Hitmark(타격) 층입니다. 네 층 지도·Why는 [전투 경계 시리즈]({{ "/notes/combat-four-layers/" | relative_url }})를, 왜 Skill 밖에 두었는지는 [시리즈 3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})을 보면 됩니다. 이 글은 **구조와 런타임 흐름**에 초점을 둡니다.
 
 **권장 읽기:** 구조(How) 1→4 후 [경계]({{ "/notes/combat-four-layers/" | relative_url }})(Why) 1→5
 
@@ -22,9 +22,9 @@ Hitmark 정의와 Target·Area·Projectile 공격 런타임 갈래, 피해 계�
 
 ## 맥락
 
-실시간 전투에서 «데미지가 들어간다»는 감각은 하나지만, 구현에서는 시전·판정·수치·HP가 섞이기 쉽습니다. Dragon에서는 **한 번의 공격이 무엇인지**를 Hitmark로 정의하고, 적용 파이프라인을 그 정의 소비로 모았습니다.
+실시간 전투에서 데미지가 들어간다는 감각은 하나지만, 구현에서는 시전·판정·수치·HP가 섞이기 쉽습니다. Dragon에서는 **한 번의 공격이 무엇인지**를 Hitmark로 정의하고, 적용 파이프라인을 그 정의 소비로 모았습니다.
 
-프로젝트 페이지에 적어 둔 «히트마크 → 피해 계산 → Vital»이 이 층의 한 줄 요약입니다. Skill·Buff·Passive는 이 Hitmark를 **언제 켤지**를 정하고, 피해 식 자체를 복제하지 않습니다.
+프로젝트 페이지에 적어 둔 히트마크 → 피해 계산 → Vital이 이 층의 한 줄 요약입니다. Skill·Buff·Passive는 이 Hitmark를 **언제 켤지**를 정하고, 피해 식 자체를 복제하지 않습니다.
 
 | 용어 | 의미 |
 |------|------|
@@ -36,7 +36,7 @@ Hitmark 정의와 Target·Area·Projectile 공격 런타임 갈래, 피해 계�
 
 ## 구조
 
-Hitmark 층이 답하는 질문은 «무엇이 맞는가»와, 그와 붙는 «어떻게 맞히는가»입니다. 전자는 **정의**, 후자는 **공격 런타임 갈래**입니다.
+Hitmark 층이 답하는 질문은 무엇이 맞는가와, 그와 붙는 어떻게 맞히는가입니다. 전자는 **정의**, 후자는 **공격 런타임 갈래**입니다.
 
 | | 내용 |
 |--|------|
@@ -59,7 +59,7 @@ Hitmark 층이 답하는 질문은 «무엇이 맞는가»와, 그와 붙는 «�
 
 ## 공격 런타임 갈래
 
-Hitmark **정의**는 «이 타격의 수치·타입 묶음»이고, Attack **갈래**는 «그 정의를 누구에게 적용할지»를 정합니다. Skill은 언제 Activate할지만 정하고, 맞히는 수단은 여기 있습니다.
+Hitmark **정의**는 이 타격의 수치·타입 묶음이고, Attack **갈래**는 그 정의를 누구에게 적용할지를 정합니다. Skill은 언제 Activate할지만 정하고, 맞히는 수단은 여기 있습니다.
 
 | 갈래 | 맞히는 방식 | 그 다음 |
 |------|-------------|---------|
@@ -69,7 +69,7 @@ Hitmark **정의**는 «이 타격의 수치·타입 묶음»이고, Attack **�
 
 Projectile은 피해 식을 따로 두지 않습니다. 비행·수명·관통은 transport 쪽이고, 맞은 뒤의 숫자는 child Attack이 같은 Hitmark 파이프라인으로 처리합니다. 이동 종류·풀·매니저 상세는 이 글 범위 밖입니다.
 
-한 Hitmark 정의를 Target 근접과 Projectile 충돌이 **공유**할 수도 있습니다. 갈래를 바꿔도 «한 방의 의미»는 ID 한곳에 남습니다.
+한 Hitmark 정의를 Target 근접과 Projectile 충돌이 **공유**할 수도 있습니다. 갈래를 바꿔도 한 방의 의미는 ID 한곳에 남습니다.
 
 ## 런타임 흐름
 
@@ -80,7 +80,7 @@ Projectile은 피해 식을 따로 두지 않습니다. 비행·수명·관통�
 5. 결과를 Vital에 넣어 Life·Guard·사망으로 이어집니다.
 6. 플레이어 공격이면 다음 프레임 부근에 성공/실패 이벤트가 나가, Passive 등 반응 루프가 붙을 수 있습니다. 반응의 소유는 Hitmark가 아닙니다.
 
-UI 스킬 상세에서 예상 피해를 보여줄 때도, 가능하면 **같은 피해 계산 경로**를 재사용합니다. 전투 씬에 적이 없어도 «이 Hitmark면 어떤 식인가»를 맞추기 위해서입니다.
+UI 스킬 상세에서 예상 피해를 보여줄 때도, 가능하면 **같은 피해 계산 경로**를 재사용합니다. 전투 씬에 적이 없어도 이 Hitmark면 어떤 식인가를 맞추기 위해서입니다.
 
 ## 예시
 
@@ -90,7 +90,7 @@ UI 스킬 상세에서 예상 피해를 보여줄 때도, 가능하면 **같은 
 | 지면 폭발 | Area + 폭발 Hitmark → 범위 다수 | Skill/Passive가 Activate |
 | 화살 | Projectile transport 후 동일 Hitmark Apply | Skill이 발사 시전 |
 | 화염 도트 | (틱마다) Target 등 + 작은 Hitmark | Buff가 스택·간격 |
-| 유물 «치명 시 폭발» | Area 또는 Target + 폭발 Hitmark | Passive가 조건 후 위임 |
+| 유물 치명 시 폭발 | Area 또는 Target + 폭발 Hitmark | Passive가 조건 후 위임 |
 
 참격과 도트가 **같은 작은 화상 Hitmark**를 쓰도록 맞출 수도 있습니다. 숫자를 Skill·Buff 행에 각각 적지 않고 Hitmark 한곳을 고칩니다.
 
@@ -102,7 +102,7 @@ UI 스킬 상세에서 예상 피해를 보여줄 때도, 가능하면 **같은 
 | Skill 등 테이블 | Hitmark ID 목록만. 피해 식 인라인 없음 |
 | Stat | 공격력·방어 등은 계산기가 조회. Modifier 정책은 Stat 층 |
 
-«모든 전투 수치를 Json 한 종류로» 모으지 않은 이유는, 타격 정의가 에디터에서 조합·검증하기 좋은 쪽이기 때문입니다. Skill 밖에 둔 **설계 Why**는 [시리즈 3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})에 모아 두었습니다.
+모든 전투 수치를 Json 한 종류로 모으지 않은 이유는, 타격 정의가 에디터에서 조합·검증하기 좋은 쪽이기 때문입니다. Skill 밖에 둔 **설계 Why**는 [시리즈 3편]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }})에 모아 두었습니다.
 
 ## 이 글에서 다루지 않는 것
 
