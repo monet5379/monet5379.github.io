@@ -28,95 +28,89 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 
 ## 기여
 
-- 소규모 팀에서 클라이언트 개발을 리드하며 출시까지 개발을 진행했습니다.
+- 소규모 팀에서 출시까지 클라이언트 개발을 리드했습니다.
 - 성장·입력·전투, 적 AI·스테이지, 카메라·연출, UI·설정, 세이브·데이터, 로컬라이즈, Steamworks, 애널리틱스를 포함한 게임플레이·클라이언트 전반을 담당했습니다.
-- 얼리 액세스 이후 정식 출시까지 세이브 손상·복구, 고정 데이터 파이프라인, 외부 업체 포팅(저사양·Deck)에 맞춘 성능·연동 가드로 라이브 이슈를 줄여 갔습니다.
+- 얼리 액세스 이후 정식 출시까지 세이브 손상·복구, 고정 데이터 파이프라인, 외부 업체 포팅(저사양·Deck)에 맞춘 성능·연동 가드로 라이브 이슈를 줄였습니다.
 
 ## 담당 시스템
 
-### 플레이 루프
+### 게임플레이 · 전투
 
-스킬 후보(성장) → 키를 행동으로(입력 · Ability) → 한 방·상태·Vital(전투)를 한 축으로 둡니다.
+#### 타격·데미지
 
-#### 성장
+**맞으면 HP가 어떻게 줄어드나** — 필드에 누가 있는지, 피해 숫자는 어디서 오는지, 맞았을 때 HP·투사체까지 어떻게 처리되는지를 캐릭터 → Stat → Hit flow → 투사체 네 편으로 나눈 시리즈입니다. 스킬 시전·버프·패시브가 한 타격으로 이어지는 아래 트리거·연쇄보다 먼저 다루는 축(피격·수치)입니다.
 
-- **스킬** (기획: 디아블로 4 액션바·스킬 트리 참고)
+노트: [전투 클러스터 읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) · [1 — 캐릭터]({{ "/notes/dragon-combat-character/" | relative_url }}) · [2 — Stat]({{ "/notes/dragon-combat-stat/" | relative_url }}) · [3 — Hit flow]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) · [4 — 투사체]({{ "/notes/dragon-combat-projectile/" | relative_url }})
 
-  기획에서 디아블로 4를 참고해 잡은 **기본 / 핵심 / 보조 / 숙련 / 궁극** 카테고리를 기준으로 구현했습니다. **습득 → 액션 슬롯 할당 → 레벨** 순으로 프로필에 쌓이고, 레벨업·장비(룬워드)·유물에서도 스킬을 부여합니다. 시전 의도(Skill)와 타격(Hitmark)·상태(Buff)·규칙(Passive)은 분리했습니다.
+#### 트리거·연쇄
 
-  노트: [스킬이 어떻게 성장하는가]({{ "/notes/dragon-skill-growth/" | relative_url }}) · [스킬이 어떻게 시전되는가]({{ "/notes/dragon-skill-cast/" | relative_url }})
-- **인벤토리**
+**한 번의 공격 입력이 버프·패시브·최종 피해까지 이어지는 경로**입니다. 스킬 시전(애니·타이밍) 뒤 타격이 적용되는 시점부터, 버프 중첩·패시브 발동·한 타격으로 모이는 값까지 네 편으로 나눴습니다.
 
-  ![인벤토리·장비 — Frost Wolf's Teeth]({{ "/assets/images/projects/dragon-is-dead/ss-06.jpg" | relative_url }})
-
-  기획에서 디아블로 시리즈를 참고한 장비 슬롯·격자 가방·등급/옵션 툴팁을 구현했습니다.
-
-  장비 인스턴스(등급·Stat 옵션·룬워드·신화·균열 보석)를 프로필에 보관하고, 착용 시 Stat·Skill을 캐릭터에 반영합니다. 가방·장비·Essence 슬롯, 창고, 필드 픽업·버리기·판매 흐름을 연결합니다.
-- **유물**
-
-  ![유물·시너지]({{ "/assets/images/projects/dragon-is-dead/ss-13.webp" | relative_url }})
-
-  장비와 별도 슬롯에 유물을 두고, 보유 태그 합으로 Synergy 임계(예: Rapidity 3/5)를 넘기면 쿨 감소 등 효과를 켭니다.
-
-  캐릭터별 슬롯에 보관하고, 드랍 후보 풀에서 등급별 추첨·획득·슬롯 교체·버리기를 처리합니다. 착용 시 Stat·Relic Skill·Synergy Skill을 갱신하며, 캠프 강화·Passive 부여·애널리틱스 획득·시너지 이벤트와 연동합니다.
+노트: [1 — Apply 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) · [2 — Buff]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }}) · [3 — Passive]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }}) · [4 — 한 타격]({{ "/notes/dragon-combat-one-hit/" | relative_url }})
 
 #### 입력 · Ability
 
-키·패드의 명령은 중앙 Command 큐가 아니라, 캐릭터에 붙은 **Ability**가 매 프레임 읽어 적용합니다. 성장의 스킬 할당과 전투의 Hitmark 파이프라인 사이에 있습니다.
+키·패드 입력은 캐릭터 **Ability**가 매 프레임 읽습니다. 이동·점프·대시·스킬·상호작용을 Early/Process/Late로 나누고, 전투 준비(BattleReady)와 입력 게이트를 분리했습니다. 몬스터는 AI가 같은 캐릭터 API에 위임합니다.
 
-- **루프**: `GameManager` → `CharacterManager` → `TSCharacter` Ability 배열(Early/Process/Late). 이동·점프·대시·스킬·상호작용이 각각 Ability로 나뉩니다.
-- **입력 게이트**: 전역 `IsBlockCharacterInput`(팝업·타임라인), 캐릭터 `IsBlockInput`, Ability `IsAuthorized`(이동·Condition·Rest). BattleReady와 입력 가능은 별개입니다 — Ready 후에도 스폰 애니·UI가 입력을 막을 수 있습니다.
-- **스킬 입력·시전**: 할당 슬롯만 받고, 버퍼·쿨·Rest·SkillAnimation까지는 [스킬이 어떻게 시전되는가 (노트)]({{ "/notes/dragon-skill-cast/" | relative_url }})에 둡니다.
-- **몬스터**: 기기 입력 대신 AI Brain이 이동·공격 의도를 Character API에 위임합니다. 플레이어 스킬 입력 경로와는 갈라집니다.
+노트: [타격·데미지 1 — 캐릭터]({{ "/notes/dragon-combat-character/" | relative_url }}) · [스킬이 어떻게 시전되는가]({{ "/notes/dragon-skill-cast/" | relative_url }})
 
-#### 전투
+#### 스킬 (기획: 디아블로 4 액션바·스킬 트리 참고)
 
-성장의 스킬이 무엇을 할당·시전할 후보로 두는가, 입력 · Ability가 키를 행동으로 바꾸는가라면, 전투는 한 방·상태·사건 반응·Vital을 소유합니다. Skill · Hitmark · Buff · Passive 네 층으로 나눴습니다. 성장·시전 How는 [스킬 시리즈]({{ "/notes/dragon-skill-growth/" | relative_url }})에, 타격 이후는 아래에 둡니다.
+기획에서 디아블로 4를 참고해 잡은 **기본 / 핵심 / 보조 / 숙련 / 궁극** 카테고리를 기준으로 구현했습니다. **습득 → 액션 슬롯 할당 → 레벨** 순으로 프로필에 쌓이고, 레벨업·장비(룬워드)·유물에서도 스킬을 부여합니다. 시전 의도(Skill)와 타격(Hitmark)·상태(Buff)·규칙(Passive)은 분리했습니다.
 
-- **Hitmark (타격)**: 재사용 가능한 타격 정의(Scriptable, ID). Apply → 피해 계산 → Vital(HP/가드) → 사망. Target / Area / Projectile 갈래로 어떻게 맞힐지만 갈라지고, Apply 이후는 같은 파이프라인을 탑니다. 스킬·도트·패시브 추가 타격이 같은 정의를 ID로 공유합니다.
-- **Buff (상태)**: 스택·지속·CC·Stat 보정. 스킬·유물·패시브가 Add합니다. 주기 피해 등은 Buff가 Hitmark를 다시 켜고, 스택·CC 정책은 이 층이 소유합니다.
-- **Passive (규칙)**: Trigger → Condition → Effect. 피해 식·Buff 스택 정책은 소유하지 않고 Buff / Hitmark / Skill API에 위임합니다. 연쇄는 실행 큐·프레임 상한으로 폭주를 막습니다.
-- **Stat · 피드백**: Modifier 합산이 피해·Vital에 반영됩니다. VFX/카메라/오디오는 Feedbacks로 묶고, 카메라·컷신 본체는 카메라·연출에 둡니다.
-- **캐릭터**: 플레이어·몬스터·보스 분기와 Vital 소유. 이동·스킬 Ability 루프는 입력 · Ability에, 스킬 트리·학습 UI는 성장에 둡니다.
-{% if jekyll.environment != "production" %}
-<div data-private-notes markdown="1">
+노트: [스킬이 어떻게 성장하는가]({{ "/notes/dragon-skill-growth/" | relative_url }}) · [스킬이 어떻게 시전되는가]({{ "/notes/dragon-skill-cast/" | relative_url }})
 
-- 구조: [Hitmark 타격 정의]({{ "/notes/combat-hitmark/" | relative_url }}) · [Skill 시전 구조]({{ "/notes/combat-skill/" | relative_url }}) · [Passive 사건 규칙]({{ "/notes/combat-passive/" | relative_url }}) · [Buff 지속 상태]({{ "/notes/combat-buff/" | relative_url }})
-- 경계: [네 층으로 나눈 이유]({{ "/notes/combat-four-layers/" | relative_url }}) · [스킬 한 번의 해피 패스]({{ "/notes/combat-skill-happy-path/" | relative_url }}) · [Hitmark를 스킬 밖에 둔 이유]({{ "/notes/combat-hitmark-outside-skill/" | relative_url }}) · [Buff와 Passive를 나눈 이유]({{ "/notes/combat-buff-vs-passive/" | relative_url }}) · [출시까지 지킨 경계와 남은 갭]({{ "/notes/combat-boundaries-shipped/" | relative_url }})
+### 성장 · 빌드
 
-</div>
-{% endif %}
+#### 인벤토리
 
-### 적 AI·스테이지
+기획에서 디아블로 시리즈를 참고한 장비 슬롯·격자 가방·등급/옵션 툴팁을 구현했습니다.
+
+장비 인스턴스(등급·Stat 옵션·룬워드·신화·균열 보석)를 프로필에 보관하고, 착용 시 Stat·Skill을 캐릭터에 반영합니다. 가방·장비·Essence 슬롯, 창고, 필드 픽업·버리기·판매 흐름을 연결합니다.
+
+노트: [1 — 보관·획득]({{ "/notes/dragon-inventory-store/" | relative_url }}) · [2 — 착용·Stat·Skill]({{ "/notes/dragon-inventory-equip/" | relative_url }})
+
+#### 유물
+
+장비와 별도 슬롯에 유물을 두고, 보유 태그 합으로 Synergy 임계(예: Rapidity 3/5)를 넘기면 쿨 감소 등 효과를 켭니다.
+
+캐릭터별 슬롯에 보관하고, 드랍 후보 풀에서 등급별 추첨·획득·슬롯 교체·버리기를 처리합니다. 착용 시 Stat·Relic Skill·Synergy Skill을 갱신하며, 캠프 강화·Passive 부여·획득·시너지 Analytics 이벤트와 연동합니다.
+
+노트: [1 — 획득·슬롯]({{ "/notes/dragon-relic-acquire/" | relative_url }}) · [2 — Apply·Synergy]({{ "/notes/dragon-relic-apply/" | relative_url }})
+
+### 월드 · 연출
+
+#### 적 AI·스테이지
 
 - FSM 기반 적 AI(Brain / State / Action / Decision) — 이동·공격 의도는 Character API에 위임
-- **Area · Stage**: 도전 시작 때 지역 전투 스테이지 일괄 스폰 · [지역 안 이동은 활성/비활성]({{ "/notes/stage-spawn-area-preload/" | relative_url }})
+- Area · Stage: 도전 시작 시 지역 전투 스테이지 일괄 스폰 · [지역 안 이동은 활성/비활성]({{ "/notes/stage-spawn-area-preload/" | relative_url }})
 - 웨이브 스폰, 상호작용·드랍·퀘스트 연동
 
-### 카메라·연출
+#### 카메라·연출
 
 - Cinemachine 기반 follow / bound / zoom / shake / 미니맵 카메라
 - Timeline 컷신·시그널, Feedbacks로 전투 연출 일원화
 
-### UI·설정
+#### UI·설정
 
 - Scene UI 허브(팝업·HUD·게이지·플로팅 텍스트), 입력·HUD 동기화
 - 오디오/비디오/언어 설정 영속화, 게임패드·키보드 라우팅
 
-### 세이브·데이터
+### 출시 · 운영
+
+#### 세이브·데이터
 
 - [Excel→Json]({{ "/notes/excel-json-fixed-data/" | relative_url }}) 고정 데이터 · 기획 표가 아닌 것은 ScriptableObject
 - 슬롯 프로필 `persistentDataPath` · 쿨다운·백업·마이그레이션·복구는 타이틀 · Auto-Cloud · [슬롯 로테이션·Essential·복구 체인]({{ "/notes/dragon-save-shipped/" | relative_url }})
-- **한계**: 디스크를 Main·Side·Meta 레인으로 나누지는 않았습니다. 계약은 [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }})의 [Main·Side·Meta]({{ "/notes/save-layout-boundaries/" | relative_url }})와 [Side 레인]({{ "/notes/save-layout-side-lane/" | relative_url }})입니다.
+- 한계: 디스크를 Main·Side·Meta 레인으로 나누지는 않았습니다. 설계상 경계는 [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }})의 [Main·Side·Meta]({{ "/notes/save-layout-boundaries/" | relative_url }})와 [Side 레인]({{ "/notes/save-layout-side-lane/" | relative_url }}) 문서에 정리해 두었습니다.
 
-
-### 로컬라이즈
+#### 로컬라이즈
 
 - 다국어 문자열(JSON)·StringGetter·언어 전환 시 UI 일괄 갱신
 - 언어별 [Static 문자셋 추출]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) · 부팅·언어 전환 [폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
 - 패키지 [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }})
 
-### Steamworks / 플랫폼
+#### Steamworks / 플랫폼
 
 - Steam 초기화·Stats, 업적(보스/난이도/수집 등), 시즌 리더보드(업로드·다운로드·아바타)
 - Steam Deck 런타임 감지(튜토리얼 등 UX 분기)
@@ -132,7 +126,7 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 - [카메라 이동 GPU를 Global·Ambient 레버로 분리]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }})
 - TMP hitch — 로컬라이즈와 동일 축
 
-### 애널리틱스
+#### 애널리틱스
 
 - Unity Gaming Services Analytics 연동 — 릴리스 텔레메트리 초기화 · `Report*` → CustomEvent
 - 게임플레이 이벤트(도전 종료, 사망, 스킬/유물 획득·시너지) · 치명 클라이언트 에러는 메시지로 QA 보완
