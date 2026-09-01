@@ -6,8 +6,8 @@ Personal site: [https://monet5379.github.io](https://monet5379.github.io)
 
 | Path | Purpose |
 |------|---------|
-| `index.md` | Home |
-| `career.md` | Career |
+| `index.md` | Home (about + career) |
+| `career.md` | Redirect `/career/` → home `#경력` |
 | `projects/` | Projects |
 | `notes/` | Notes / writing |
 | `docs/` | Internal rules & templates (not published) — see [`docs/README.md`](docs/README.md) |

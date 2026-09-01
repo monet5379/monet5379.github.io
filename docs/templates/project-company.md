@@ -37,7 +37,7 @@ excerpt: "본문 lead와 동일 — 팀·역할·출시가 한 눈에"
 ```markdown
 lead (excerpt와 동일)
 
-{% include screenshot-carousel.html slug="슬러그" %}
+{% include screenshot-carousel.html slug="슬러그" youtube="videoId" steam="https://store.steampowered.com/app/…" %}
 
 ## 개요
 

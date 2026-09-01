@@ -30,8 +30,8 @@ unity-studio-kit `WritingGuide`(해요체·Unity docs)는 이 사이트에 적�
 
 ## 구조
 
-- `index.md` — 소개·CTA
-- `career.md` — 경력
+- `index.md` — 소개·경력(타임라인)·CTA
+- `career.md` — `/career/` → 홈 `#경력` 리다이렉트(구 URL용, nav 없음)
 - `projects/` — 포트폴리오
 - `notes/` — 개인 공개 기술 글
 - `reviews/` — 게임 리뷰

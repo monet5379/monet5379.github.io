@@ -3,7 +3,7 @@
 사이트 미게시 (`docs/` exclude). 경계·Why·시리즈 노트를 쓸 때 이 골격을 복사해 `notes/<슬러그>.md`로 채운다.
 
 **독자가 얻는 것:** 경계·불변조건·기각·읽기 순서.  
-**채우기 예:** `notes/combat-four-layers.md` · `notes/combat-boundaries-shipped.md` · `notes/ba-solo-boundaries.md`
+**채우기 예:** `notes/combat-four-layers.md` · `notes/combat-boundaries-shipped.md`
 
 공통 FM·분류·시리즈 필드는 [`../site-content-rules.md`](../site-content-rules.md). 톤·유형은 [`../writing-guide.md`](../writing-guide.md).  
 문제 해결 템플릿: [`note-problem.md`](note-problem.md).

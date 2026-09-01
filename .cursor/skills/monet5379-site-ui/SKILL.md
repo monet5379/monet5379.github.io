@@ -85,7 +85,7 @@ description: >-
 | 목록 · 필터 | `_includes/section-index-list.html`, `_sass/section-index-list.scss` (`.notes-browse`, `.tag-filter`, `.post-list--*`) |
 | notes 필터 JS | `assets/js/notes-tag-filter.js` |
 | 페이지 shell | `_layouts/page.html` (title · `post-subtitle`) |
-| 경력 | `_sass/career-entry.scss`, `_includes/career-media.html`, `_sass/youtube-embed.scss` |
+| 경력(홈) | `_sass/career-entry.scss`, `_includes/career-media.html`, `_sass/youtube-embed.scss` |
 | 캐러셀 | `_sass/screenshot-carousel.scss`, `_includes/screenshot-carousel.html`, `assets/js/screenshot-carousel.js` |
 | callout · 코드 | `_sass/callout.scss`, `_sass/code-collapse.scss` |
 | Mermaid | `_sass/mermaid-notes.scss`, `assets/js/mermaid-notes.js` |
@@ -97,7 +97,8 @@ description: >-
 2. 위 파일 맵에서 관련 파일만 Read. Minima · 기존 패턴 따르기.
 3. SCSS 위주 최소 diff. HTML 변경 시 include/layout 영향 범위를 짧게 적기.
 4. 확인 URL 제안:
-   - `/` · `/career/` · `/projects/` · `/notes/` · `/reviews/`
+   - `/` (경력 포함) · `/projects/` · `/notes/` · `/reviews/`
+   - `/career/` — 홈 `#경력` 리다이렉트만 확인 (nav 없음)
    - 긴 note 1개 (`mermaid: true` 있으면 포함) · reviews 1편 · 다크/라이트 토글
    - `/notes/` — tag filter · sticky sidebar · palm(375px) 1단 전환
    - footer **비공개: 숨김/표시** 토글 on/off

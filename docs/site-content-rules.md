@@ -21,16 +21,16 @@
 
 ## 공통 front matter
 
-`career` · `projects` · `notes` · `reviews` 페이지:
+`projects` · `notes` · `reviews` 페이지(및 홈의 경력 블록):
 
-- `date`, `excerpt` 필수
+- `date`, `excerpt` 필수 (`projects` · `notes` · `reviews`)
 - `title` 짧게 · 부제(`—`) 금지
 - `excerpt` = 본문 lead
-- 상단 nav·본문 h1용 카테고리 `title`은 **한글(English)** (예: `경력(Career)`)
+- 상단 nav·본문 h1용 카테고리 `title`은 **한글** (예: `프로젝트`). 경력 본문은 홈(`index.md`)에 두고, `/career/`는 홈 `#경력` 리다이렉트만 유지(nav 미포함)
 
-### career 미디어
+### 홈 경력 미디어
 
-항목마다 `{% include career-media.html ... %}`:
+홈 경력 항목마다 `{% include career-media.html ... %}`:
 
 - `youtube`(video id)가 있으면 임베드 재생 (`start` 초 선택)
 - 없으면 `slug`의 `ss-*` 스크린샷 캐러셀
@@ -90,6 +90,7 @@ series_total: 4
 | **폰트** | TMP·로컬라이즈 글리프·워밍업 | Static atlas, warmup |
 | **최적화** | 로드·렌더·GPU 비용 | Stage preload, 비주얼 |
 | **출시** | 팀·스코프로 어디까지 지켰는가 | 소유 경계 회고 |
+| **내러티브** | 세계관·대사·설정 소유와 직군 경계 | 프로그래머가 내러티브를 작성할 수 있었던 회고 |
 
 - 프로젝트(Dragon is Dead, Blade Assault)는 태그가 아니라 본문·프로젝트 링크로만 표시합니다.
 - 애매하면 **시리즈 소속**을 따릅니다. 시리즈를 분류 축으로 쪼개지 않습니다.
@@ -147,7 +148,7 @@ excerpt: "본문 lead와 동일"
 - 설명형 이름이 필요하면 `combat-01.jpg`처럼 역할 + 번호
 - 폴더에 실제 이미지가 있으면 `.gitkeep` 제거
 - 목록 썸네일: `cover.*` 우선, 없으면 첫 `ss-*` (`section-index-list`, projects · reviews)
-- 캐러셀: `{% include screenshot-carousel.html slug="<슬러그>" %}` — `ss-*`를 이름순으로 Steam식 미리보기
+- 캐러셀: `{% include screenshot-carousel.html slug="<슬러그>" %}` — `ss-*`를 이름순으로 Steam식 미리보기. `youtube`(video id)가 있으면 캐러셀 위에 임베드 (`start` 초 선택). `steam`(스토어 URL)이 있으면 임베드 바로 아래(없으면 캐러셀 위)에 Steam 링크
 - projects 히어로 개념도는 PNG(`ss-*-dark.png`). README도 PNG.
 - **notes 예외:** front matter `mermaid: true`인 페이지만 브라우저 Mermaid(`assets/js/mermaid-notes.js`). 본문에 ` ```mermaid ` 블록. 테마 토글과 `themechange`로 재렌더.
 - **notes 도식 캡션:** 블록 **위**에 짧은 제목(`**한 이야기**` — 보통 `≠`·경계 한 줄), **아래**에 도식이 말하는 내용 1–2문장 또는 역할 요약 콜아웃(`<div class="callout" markdown="1">` + 불릿). lead·인접 문단과 제목을 중복하지 않는다.

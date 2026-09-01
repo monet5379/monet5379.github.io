@@ -23,7 +23,6 @@ plugins:
 
 header_pages:
   - index.md
-  - career.md
   - projects/index.md
   - notes/index.md
   - reviews/index.md
@@ -35,3 +34,4 @@ notes_production_visible_tags:
   - 세이브
   - 폰트
   - 최적화
+  - 내러티브
