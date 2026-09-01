@@ -51,6 +51,7 @@ description: >-
 
 - 변경 전 in-scope 파일만 수정. 시작 전 **변경 예정 파일 목록**을 짧게 제시.
 - 다크 · 라이트 모두 readable.
+- **본문 인라인 링크** (`.post-content a`)는 항상 underline. 제목 링크·이미지 링크·nav·목록 카드 제목은 제외. 정본 `_sass/typography.scss` · 규칙 `.cursor/rules/site-link-underline.mdc`.
 - Minima 클래스 · 구조(`.post-content`, `.page-content`, `.site-header`) 존중.
 - 작업 후 `serve.bat`(또는 production serve)로 확인할 URL을 안내.
 - 커밋 · push는 사용자 요청 시에만. 콘텐츠와 설정/docs 커밋 분리.

@@ -38,7 +38,7 @@ notes · projects · reviews **본문**의 유형·목차·톤. Jekyll front mat
 
 - **가치를 먼저** — `excerpt`와 본문 첫 문단(lead)을 동일하게. 목록·검색에서 “이 글이 뭘 주는지”가 바로 보이게.
 - **개요를 빼지 않기** — lead 다음에 `맥락` 또는 `개요`로 배경·전제를 짧게.
-- **한 페이지 한 주제** — notes는 `tags` 1개([`site-content-rules.md`](site-content-rules.md)), 시리즈는 Why(경계) / How(구조)처럼 **목적이 다른** 세트로만 묶는다.
+- **한 페이지 한 주제** — notes는 `tags` 1개, `project`는 0개 또는 1개([`site-content-rules.md`](site-content-rules.md)). 시리즈는 Why(경계) / How(구조)처럼 **목적이 다른** 세트로만 묶는다.
 - **예측 가능한 목차** — 아래 [유형별 채우기 템플릿](#유형별-채우기-템플릿)을 기본으로, 필요한 섹션만 추가·생략.
 
 제목: [효과적인 제목](https://technical-writing.dev/information-architecture/effective-titles.html) — **무엇을 / 왜**가 드러나게. `title`에 부제(`—`)는 쓰지 않는다.
@@ -49,7 +49,7 @@ notes · projects · reviews **본문**의 유형·목차·톤. Jekyll front mat
 
 | 유형 | 독자가 얻는 것 | 주로 쓰는 곳 |
 |------|----------------|--------------|
-| **문제 해결** | 증상 → 원인 → 해결 | notes (엔진·퍼포먼스) |
+| **문제 해결** | 증상 → 원인 → 해결 | notes (최적화·퍼포먼스) |
 | **깊은 이해** | 경계·불변조건·기각·Why | notes (전투·액션·성장), 시리즈 지도 1편 |
 | **참조** | 표·타임라인·확인 포인트 | notes·projects (상세는 README에 두고 링크) |
 | **학습(시리즈)** | 읽기 순서·지도·개념 연결 | notes `series` — Why 세트 / How 세트 분리 |

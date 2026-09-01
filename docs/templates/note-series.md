@@ -22,8 +22,11 @@ permalink: /notes/슬러그/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일"
 tags: [전투]
+project: dragon-is-dead
 ---
 ```
+
+`project`는 선택. 여러 타이틀을 동등하게 다루면 생략 ([`site-content-rules.md`](../site-content-rules.md)).
 
 시리즈·구조 세트:
 
@@ -35,6 +38,7 @@ permalink: /notes/슬러그/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일"
 tags: [전투]
+project: dragon-is-dead
 series: combat-boundaries
 series_title: 전투 경계
 series_order: 1

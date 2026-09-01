@@ -1,7 +1,7 @@
 # Mermaid 도식 (notes 정본)
 
-사이트 미게시. **notes** 본문 도식 작성·Cursor 요청용.  
-projects 캐러셀 PNG는 [`../site-content-rules.md`](../site-content-rules.md) 「projects 이미지」선택 항목.
+사이트 미게시. notes·projects 본문 도식 작성·Cursor 요청용.
+목록·캐러셀 PNG는 [`../site-content-rules.md`](../site-content-rules.md) 「projects 이미지」.
 
 ## 정본
 
@@ -44,8 +44,8 @@ notes/<슬러그>.md에 Mermaid 도식을 넣어 줘.
 
 ## projects와의 관계
 
-- **기본:** 개념은 note, project는 `연관:`·개요에서 note 링크 + **Demo 캡처** 캐러셀.
-- **선택:** 목록/OG용 `ss-01-dark.png`만 notes Mermaid에서 export (정본은 note).
+- **기본:** 개념은 live Mermaid. 실기 UI가 있으면 Demo 캡처 캐러셀.
+- **목록:** Mermaid만 있는 프로젝트는 `ss-01-dark.png`를 두지 않음 (썸네일 없음).
 
 ## 쓸 때 / 안 쓸 때
 

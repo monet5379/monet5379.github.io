@@ -19,11 +19,12 @@ title: 짧은 제목
 permalink: /notes/슬러그/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일 — 증상과 해결이 한 눈에"
-tags: [엔진]
+tags: [최적화]
+project: dragon-is-dead
 ---
 ```
 
-`tags`는 분류 1개 ([`site-content-rules.md`](../site-content-rules.md) 표).
+`tags`는 분류 1개, `project`는 `projects/` 슬러그 0개 또는 1개 ([`site-content-rules.md`](../site-content-rules.md)).
 
 ---
 

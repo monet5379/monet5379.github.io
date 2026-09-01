@@ -51,7 +51,8 @@ title: 짧은 제목
 permalink: /notes/슬러그/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일"
-tags: [엔진]
+tags: [최적화]
+project: dragon-is-dead
 ---
 ```
 
@@ -59,6 +60,7 @@ tags: [엔진]
 
 ```yaml
 title: 전투 경계 1/5 네 층으로 나눈 이유
+project: dragon-is-dead
 series: combat-boundaries
 series_title: 전투 경계
 series_order: 1
@@ -67,6 +69,7 @@ series_total: 5
 
 ```yaml
 title: 전투 구조 1/4 Hitmark 타격 정의
+project: dragon-is-dead
 series: combat-structure
 series_title: 전투 구조
 series_order: 1
@@ -85,16 +88,38 @@ series_total: 4
 | **전투** | 맞힌 뒤 무엇이 일어나는가 | Skill·Hitmark·Buff·Passive |
 | **액션** | 이 프레임의 의도는 누가 실행하는가 | Command·게이트·Room·Wave·보스 |
 | **성장** | 이번 세션이 무엇을 들고 전투에 붙는가 | Core·Gear·Risk·Trait |
-| **엔진** | 비용을 언제·어디서 치르는가 | Conditional 로그 등 |
 | **세이브** | 진행을 디스크에 어떻게 나누·복구하는가 | Main·Side·Meta, Side vs Backup |
+| **데이터** | 고정 정의를 어디서 고치고 빌드에 어떻게 굳히는가 | Excel→JSON, Facade |
 | **폰트** | TMP·로컬라이즈 글리프·워밍업 | Static atlas, warmup |
 | **최적화** | 로드·렌더·GPU 비용 | Stage preload, 비주얼 |
 | **출시** | 팀·스코프로 어디까지 지켰는가 | 소유 경계 회고 |
 | **내러티브** | 세계관·대사·설정 소유와 직군 경계 | 프로그래머가 내러티브를 작성할 수 있었던 회고 |
 
-- 프로젝트(Dragon is Dead, Blade Assault)는 태그가 아니라 본문·프로젝트 링크로만 표시합니다.
 - 애매하면 **시리즈 소속**을 따릅니다. 시리즈를 분류 축으로 쪼개지 않습니다.
-- 필터 목록은 `notes/index.md`의 `filter_categories`에서 관리합니다. 목록 UI는 **왼쪽 분류 사이드바**입니다. 페이지당 글 수는 `notes_page_size`(기본 5)이며 `<< < 1 2 … > >>` 페이지네이션을 씁니다.
+- 필터 목록은 `notes/index.md`의 `filter_categories`에서 관리합니다. 목록 UI는 **왼쪽 사이드바**(분류 · 프로젝트). 분류는 허용 목록 순서이되 **그 태그를 단 노트가 있을 때만** 버튼을 냅니다. 프로젝트 필터는 그룹 제목 없이, **노트에 `project:`가 있는** `projects/` 페이지만 회사 `order` → 개인 `order`로 나열합니다. 분류와 프로젝트는 **AND**입니다. 페이지당 글 수는 `notes_page_size`(기본 5)이며 `<< < 1 2 … > >>` 페이지네이션을 씁니다.
+- 노트 본문 하단 **이전 글 / 다음 글**은 같은 `tags` 안에서, 목록과 같은 정렬(date 최신순 · `series`·`series_order` tie-break)입니다. 이전 = 목록에서 위, 다음 = 아래. 시리즈 본문 내비(`**시리즈: …**`)와 별개입니다. `project`와 무관합니다.
+
+### 주 프로젝트 (`project`)
+
+글당 **0개 또는 1개**. 값은 `projects/<슬러그>/` permalink와 같은 슬러그입니다. 회사/개인 구분은 notes가 아니라 그 페이지의 `project_kind`입니다.
+
+고르는 질문: **이 글이 증명하는 페이지가 어디인가.** 본문에서 다른 타이틀·OSS를 링크하는 것은 그대로입니다.
+
+- **있으면:** 그 프로젝트 페이지 **관련 노트**와 `/notes/` 프로젝트 필터에 포함합니다. 필터에서 해당 버튼을 고르면 이 글이 남습니다.
+- **없으면:** 분류만 있는 글입니다. 여러 타이틀을 동등하게 다루는 회고 등. 프로젝트 필터·프로젝트 페이지 자동 목록에는 넣지 않습니다. 타이틀 페이지에서는 본문 링크로 안내합니다.
+
+시리즈는 가능하면 같은 `project`를 씁니다. **세이브 레이아웃**은 예외입니다. 1편은 출시 세이브(`dragon-is-dead`), 2·3편은 레이아웃 계약(`save-layout`).
+
+| 슬러그 | `project_kind` |
+|--------|----------------|
+| `dragon-is-dead` | company |
+| `blade-assault` | company |
+| `save-layout` | personal |
+| `conditional-log` | personal |
+| `tmp-font-pipeline` | personal |
+| `studio-kit` | personal |
+
+공개·비공개는 `tags`만 봅니다. `project`는 공개 축이 아닙니다.
 
 ### 시리즈
 
@@ -139,7 +164,7 @@ excerpt: "본문 lead와 동일"
 
 - `reviews/<슬러그>.md`를 추가하면 `reviews/index.md` 목록에 자동으로 포함됩니다 (`date` 최신순).
 - `subtitle`(선택): 본문 h1 아래·목록 제목 아래에 표시. `title`에 `—` 부제를 붙이지 말고 이 필드를 씁니다.
-- notes `tags`·projects `project_kind`와 별개. 분류 필터는 두지 않습니다.
+- notes `tags`·`project`·projects `project_kind`와 별개. 분류 필터는 두지 않습니다.
 - 이미지(선택): `assets/images/reviews/<슬러그>/` — `cover.*` · `ss-*` 규칙은 projects와 동일 취지. 본문 캐러셀: `{% include screenshot-carousel.html dir="assets/images/reviews/<슬러그>/" title="…" %}`
 
 ## projects
@@ -158,9 +183,9 @@ excerpt: "본문 lead와 동일"
 - 소문자 · kebab-case · ASCII만
 - Steam 해시·해상도 접미사(`.1920x1080` 등) 금지
 - 대표: `cover.jpg` (또는 `cover.webp`) — projects 목록 썸네일
-- **기본:** 실기 UI·Demo 캡처 `ss-01.jpg`, `ss-02.jpg`, … (두 자리 번호, 표시 순서)
-- **개념도:** notes에 live Mermaid로 둔다 ([`templates/mermaid-diagram.md`](templates/mermaid-diagram.md)). 프로젝트 본문·개요·연관에서 해당 note 링크.
-- **선택 — 캐러셀/목록용 개념 PNG:** notes와 **같은** Mermaid를 dark 테마로 export → `ss-01-dark.png`. 정본이 아니며 notes 수정 시 재export. `.mmd` 단독 정본은 두지 않는다.
+- **개념도:** 본문 live Mermaid (`mermaid: true`). 목록·캐러셀용 PNG는 **두지 않음** — `cover`/`ss-*`가 없으면 목록은 텍스트만 (`section-index-list`).
+- **기본 (실기 UI·Demo):** `ss-01.jpg`, `ss-02.jpg`, … (두 자리 번호, 표시 순서)
+- **선택 — 캐러셀용 개념 PNG:** 실기 캡처와 **같이** 둘 때만 notes와 **같은** Mermaid를 dark 테마로 export → `ss-01-dark.png`. 정본이 아니며 Mermaid 수정 시 재export. `.mmd` 단독 정본은 두지 않는다. **Mermaid만 있는 글은 export하지 않음.**
 - 개념 PNG + 실기 캡처를 같이 두면 개념 PNG를 `ss-01-dark.png`, 캡처를 `ss-02.jpg`… (캐러셀은 `ss-*` 이름순)
 - 설명형 이름이 필요하면 `combat-01.jpg`처럼 역할 + 번호
 - 폴더에 실제 이미지가 있으면 `.gitkeep` 제거
