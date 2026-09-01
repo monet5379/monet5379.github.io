@@ -30,6 +30,10 @@ header_pages:
 # /notes/ 공개 분류. 여기 없는 tags는 비공개.
 # production 목록에는 공개만 빌드. 로컬 serve는 전 글 + 비공개 토글(기본 숨김).
 notes_production_visible_tags:
+  - 전투
+  - 스킬
+  - 인벤
+  - 성장
   - 세이브
   - 데이터
   - 폰트

@@ -12,5 +12,5 @@ excerpt: "개인 공개 기술 노트. 회고·짧은 팁·포트폴리오를 �
 {% assign section_sort = "date" %}
 {% assign show_tag_filter = true %}
 {% assign notes_page_size = 5 %}
-{% assign filter_categories = "전투|액션|성장|세이브|데이터|폰트|최적화|출시|내러티브" | split: "|" %}
+{% assign filter_categories = "전투|액션|스킬|인벤|성장|세이브|데이터|폰트|최적화|출시|내러티브" | split: "|" %}
 {% include section-index-list.html %}
