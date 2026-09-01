@@ -85,7 +85,7 @@ humanize(im-not-ai)는 **AI 티·번역투 제거**용이다. **겹치면 토스
 시리즈 1편은 **지도** 역할. Why / How는 `series` 슬러그를 다르게 둔다.
 
 **권장 읽기 · 시리즈 내비**는 lead·맥락 위가 아니라 본문 **하단**(`## 정리` 다음).  
-**Mermaid**는 lead 직후 고정이 아니라, 설명하는 절 옆 ([`site-content-rules.md`](site-content-rules.md) 「notes 도식 위치」).
+**Mermaid**는 lead 직후 고정이 아니라, 설명하는 절 옆 ([`site-content-rules.md`](site-content-rules.md) 「notes 도식 둘 곳」 · [`templates/mermaid-diagram.md`](templates/mermaid-diagram.md)).
 
 ### projects
 

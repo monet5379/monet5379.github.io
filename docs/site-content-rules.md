@@ -106,6 +106,22 @@ series_total: 4
 
 본문 골격: [`templates/note-problem.md`](templates/note-problem.md) · [`templates/note-series.md`](templates/note-series.md).
 
+### Mermaid
+
+- **정본:** `notes/<슬러그>.md` 본문 ` ```mermaid ` 블록. Cursor·에이전트가 여기에 직접 작성한다.
+- **렌더:** `mermaid: true`인 note만 `assets/js/mermaid-notes.js` (Mermaid 11, `securityLevel: strict`).
+- **init:** `%%{init:…}%%`는 사이트에서 strip — 테마·스타일은 사이트 light/dark에 맡긴다. init에 의존하지 않는다.
+- **캡션:** 블록 **위** 짧은 제목(`**한 이야기**`), **아래** 1–2문장 또는 callout. lead·인접 문단과 제목 중복 금지.
+- **위치:** lead 직후 고정 아님 — 설명하는 절 옆. 작성·Cursor 요청: [`templates/mermaid-diagram.md`](templates/mermaid-diagram.md).
+- **긴 코드 접기:** 노트 개별 글에서 8줄 이상 fenced 블록은 `assets/js/code-collapse.js`가 기본 접힘. Mermaid·짧은 스니펫은 제외.
+
+| notes 도식 둘 곳 | 맞는 경우 |
+|------------------|-----------|
+| `## 해결` 초입 | 문제 해결 노트에서 목표 경계·`≠` 구조를 그릴 때 (증상 상태가 아님) |
+| `## 맥락` / 축·용어 표 직후 | 용어를 소개한 뒤 한 장으로 고정할 때 |
+| lead 직후 | 시리즈 1편처럼 **지도가 입구**이고 라벨이 lead만으로 읽힐 때 |
+| 피함 | `## 문제`에 해결 구조도를 두기 (현재 증상으로 오해), `## 정리`·권장 읽기·시리즈 내비 옆 |
+
 ## reviews
 
 ### Front matter
@@ -142,25 +158,20 @@ excerpt: "본문 lead와 동일"
 - 소문자 · kebab-case · ASCII만
 - Steam 해시·해상도 접미사(`.1920x1080` 등) 금지
 - 대표: `cover.jpg` (또는 `cover.webp`) — projects 목록 썸네일
-- 스크린샷(실기 UI): `ss-01.jpg`, `ss-02.jpg`, … (두 자리 번호, 표시 순서)
-- 개념도(Mermaid → PNG): `ss-01-dark.png` — 개인 케이스 스터디 히어로. 작성·렌더는 sibling [`private/mermaid-kit`](../../private/mermaid-kit/), 사이트 쪽 안내는 [`templates/project-diagram.md`](templates/project-diagram.md)
-- 개념도 + 실기 캡처를 같이 두면 개념도를 `ss-01-dark.png`, 캡처를 `ss-02.jpg`… (캐러셀은 `ss-*` 이름순)
+- **기본:** 실기 UI·Demo 캡처 `ss-01.jpg`, `ss-02.jpg`, … (두 자리 번호, 표시 순서)
+- **개념도:** notes에 live Mermaid로 둔다 ([`templates/mermaid-diagram.md`](templates/mermaid-diagram.md)). 프로젝트 본문·개요·연관에서 해당 note 링크.
+- **선택 — 캐러셀/목록용 개념 PNG:** notes와 **같은** Mermaid를 dark 테마로 export → `ss-01-dark.png`. 정본이 아니며 notes 수정 시 재export. `.mmd` 단독 정본은 두지 않는다.
+- 개념 PNG + 실기 캡처를 같이 두면 개념 PNG를 `ss-01-dark.png`, 캡처를 `ss-02.jpg`… (캐러셀은 `ss-*` 이름순)
 - 설명형 이름이 필요하면 `combat-01.jpg`처럼 역할 + 번호
 - 폴더에 실제 이미지가 있으면 `.gitkeep` 제거
 - 목록 썸네일: `cover.*` 우선, 없으면 첫 `ss-*` (`section-index-list`, projects · reviews)
 - 캐러셀: `{% include screenshot-carousel.html slug="<슬러그>" %}` — `ss-*`를 이름순으로 Steam식 미리보기. `youtube`(video id)가 있으면 캐러셀 위에 임베드 (`start` 초 선택). `steam`(스토어 URL)이 있으면 임베드 바로 아래(없으면 캐러셀 위)에 Steam 링크
-- projects 히어로 개념도는 PNG(`ss-*-dark.png`). README도 PNG.
-- **notes 예외:** front matter `mermaid: true`인 페이지만 브라우저 Mermaid(`assets/js/mermaid-notes.js`). 본문에 ` ```mermaid ` 블록. 테마 토글과 `themechange`로 재렌더.
-- **notes 도식 캡션:** 블록 **위**에 짧은 제목(`**한 이야기**` — 보통 `≠`·경계 한 줄), **아래**에 도식이 말하는 내용 1–2문장 또는 역할 요약 콜아웃(`<div class="callout" markdown="1">` + 불릿). lead·인접 문단과 제목을 중복하지 않는다.
-- **notes 도식 위치:** lead 직후 **고정이 아니다.** 도식이 설명하는 주장·경계가 나오는 절 옆에 둔다 (표는 아래). 골격: [`templates/note-problem.md`](templates/note-problem.md) · [`templates/note-series.md`](templates/note-series.md).
-- **긴 코드 접기:** 노트 개별 글에서 8줄 이상 fenced 블록은 `assets/js/code-collapse.js`가 기본 접힘(펼치기/접기). Mermaid·짧은 스니펫은 제외.
+- **company** (`project_kind: company`): 히어로는 실기 스크린샷 유지. Mermaid로 대체하지 않는다.
 
-| notes 도식 둘 곳 | 맞는 경우 |
-|------------------|-----------|
-| `## 해결` 초입 | 문제 해결 노트에서 목표 경계·`≠` 구조를 그릴 때 (증상 상태가 아님) |
-| `## 맥락` / 축·용어 표 직후 | 용어를 소개한 뒤 한 장으로 고정할 때 |
-| lead 직후 | 시리즈 1편처럼 **지도가 입구**이고 라벨이 lead만으로 읽힐 때 |
-| 피함 | `## 문제`에 해결 구조도를 두기 (현재 증상으로 오해), `## 정리`·권장 읽기·시리즈 내비 옆 |
+#### 기존 게시물 (2026-09 이전)
+
+- 이미 올라간 `ss-*-dark.png`·note Mermaid는 **그대로 둔다**. 정본 이전·PNG 삭제는 글 수정 시에만.
+- 신규·대폭 개정부터 위 규칙과 notes 「Mermaid」를 따른다.
 
 ## 규칙 추가
 

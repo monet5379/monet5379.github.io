@@ -49,7 +49,8 @@ lead (excerpt와 동일)
 
 (선택) 해결 초입 — 제목 + mermaid + 1–2문장
   목표 경계·`≠` 구조. `## 문제`에 두지 않음 (증상으로 오해).
-  front matter `mermaid: true`. 위치: site-content-rules「notes 도식 위치」.
+  Cursor가 `notes/<슬러그>.md`에 직접 작성. 규칙: [`mermaid-diagram.md`](mermaid-diagram.md).
+  front matter `mermaid: true`. 위치: site-content-rules「notes 도식 둘 곳」.
 
 설계·동작. 무엇을 바꿨는지 구체적으로.
 

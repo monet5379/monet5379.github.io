@@ -88,7 +88,7 @@ description: >-
 | 경력(홈) | `_sass/career-entry.scss`, `_includes/career-media.html`, `_sass/youtube-embed.scss` |
 | 캐러셀 | `_sass/screenshot-carousel.scss`, `_includes/screenshot-carousel.html`, `assets/js/screenshot-carousel.js` |
 | callout · 코드 | `_sass/callout.scss`, `_sass/code-collapse.scss` |
-| Mermaid | `_sass/mermaid-notes.scss`, `assets/js/mermaid-notes.js` |
+| Mermaid | `_sass/mermaid-notes.scss`, `assets/js/mermaid-notes.js` · 작성 규칙: [`docs/templates/mermaid-diagram.md`](../../docs/templates/mermaid-diagram.md) (notes live; projects 캐러셀은 `ss-*`) |
 | notes 인접 | `_sass/notes-adjacent.scss`, `_includes/notes-adjacent.html` |
 
 ## 작업 절차

@@ -63,7 +63,7 @@ lead (excerpt와 동일)
 
 (선택) 축·용어 표 직후 또는 해결/경계 절 — 제목 + mermaid + 1–2문장
   front matter `mermaid: true`. lead 직후는 지도가 입구일 때만.
-  규칙: site-content-rules「notes 도식 위치」·「notes 도식 캡션」.
+  Cursor direct. 규칙: [`mermaid-diagram.md`](mermaid-diagram.md) · site-content-rules「notes 도식 둘 곳」.
 
 ## 기각·보류 / 출시에서 지킨 것
 

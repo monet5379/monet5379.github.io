@@ -10,6 +10,7 @@ Intem Studio(`intemstudio.github.io`)와 **별개**. 스튜디오 글 전문 복
 | UI/UX (SCSS·layout) | [`.cursor/skills/monet5379-site-ui/SKILL.md`](.cursor/skills/monet5379-site-ui/SKILL.md) — 글/FM과 분리 |
 | 글쓰기(유형·목차·톤) | [`docs/writing-guide.md`](docs/writing-guide.md) |
 | FM·공개·이미지·커밋 | [`docs/site-content-rules.md`](docs/site-content-rules.md) |
+| notes Mermaid | [`docs/templates/mermaid-diagram.md`](docs/templates/mermaid-diagram.md) — 정본은 note `.md` |
 | projects · notes · reviews 채우기 | [`docs/templates/`](docs/templates/) |
 | docs 목차 | [`docs/README.md`](docs/README.md) |
 | 윤문 | [`.cursor/rules/korean-humanize.mdc`](.cursor/rules/korean-humanize.mdc) — 충돌 시 writing-guide 우선 |
@@ -27,6 +28,7 @@ unity-studio-kit `WritingGuide`(해요체·Unity docs)는 이 사이트에 적�
 
 - Kit 해요체·DocsLite·Locale·Architecture 정책을 notes/projects/reviews에 강제
 - Intem Studio 글 전문 복제
+- sibling mermaid-kit·`.mmd` 단독 정본 파이프라인 강제 (notes Mermaid는 [`docs/templates/mermaid-diagram.md`](docs/templates/mermaid-diagram.md))
 
 ## 구조
 
