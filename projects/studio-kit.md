@@ -20,7 +20,7 @@ Unity 프로젝트를 열 때마다 Cursor 규칙을 복사하지 않도록, 공
 - 역할: 설계·문서
 - 초점: common 항상 + personal|game 중 하나, 멀티 루트 워크스페이스, `AGENTS` 템플릿
 - 배포: 저장소 clone 후 프로젝트와 함께 Cursor 멀티 루트로 열기 (선택: submodule + junction)
-- 연관: [조건부 로그 (프로젝트)]({{ "/projects/conditional-log/" | relative_url }}) · [TMP 폰트 파이프라인 (프로젝트)]({{ "/projects/tmp-font-pipeline/" | relative_url }}) · [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }})
+- 연관: [조건부 로그]({{ "/projects/conditional-log/" | relative_url }}) · [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }}) · [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }})
 
 ## 문제
 
@@ -68,8 +68,8 @@ Cursor rules, Markdown, Unity 워크플로 가이드
 
 ### 내부
 
-- [조건부 로그 (프로젝트)]({{ "/projects/conditional-log/" | relative_url }})
-- [TMP 폰트 파이프라인 (프로젝트)]({{ "/projects/tmp-font-pipeline/" | relative_url }})
-- [세이브 레이아웃 (프로젝트)]({{ "/projects/save-layout/" | relative_url }})
-- [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})
+- [조건부 로그]({{ "/projects/conditional-log/" | relative_url }})
+- [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }})
+- [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }})
+- [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})
 - [홈 · 경력]({{ "/#경력" | relative_url }})

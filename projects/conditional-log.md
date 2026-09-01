@@ -14,14 +14,14 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 
 {% include screenshot-carousel.html slug="conditional-log" %}
 
-[드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 필터 off = 비용 없음이 깨졌습니다. 그 경험을 반영해, 게임이 없어도 복사해 쓸 수 있는 최소 로그 레이어를 목표로 합니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 필터 off = 비용 없음이 깨졌습니다. 그 경험을 반영해, 게임이 없어도 복사해 쓸 수 있는 최소 로그 레이어를 목표로 합니다.
 
 ## 개요
 
 - 형태: 개인 Unity 케이스 스터디 (에디터 전용 로그)
 - 역할: 설계·구현·문서
 - 초점: `[Conditional("UNITY_EDITOR")]`, 레벨·태그 필터, Settings·F1, 폴더 복사 배포
-- 연관: [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) · [Conditional로 플레이어 빌드 로그 비용 제거 (노트)]({{ "/notes/conditional-log-build-cost/" | relative_url }})
+- 연관: [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) · [Conditional로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})
 
 ## 문제
 
@@ -48,7 +48,7 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 
 ## 한계
 
-`[Conditional]`은 `UNITY_EDITOR`에만 걸려 있습니다. 에디터(Play 포함)에서 레벨·태그를 꺼도 호출부 인자 평가는 남습니다. 필터는 가시성만 바꿉니다. 에디터 핫 패스 비용을 필터로 없애지 않는 것이 이 패키지의 현재 한계입니다 — 상세는 [Conditional로 플레이어 빌드 로그 비용 제거 (노트)]({{ "/notes/conditional-log-build-cost/" | relative_url }})·[README](https://github.com/monet5379/unity-conditional-log).
+`[Conditional]`은 `UNITY_EDITOR`에만 걸려 있습니다. 에디터(Play 포함)에서 레벨·태그를 꺼도 호출부 인자 평가는 남습니다. 필터는 가시성만 바꿉니다. 에디터 핫 패스 비용을 필터로 없애지 않는 것이 이 패키지의 현재 한계입니다 — 상세는 [Conditional로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})·[README](https://github.com/monet5379/unity-conditional-log).
 
 ## 이 프로젝트가 아닌 것
 
@@ -62,9 +62,9 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 
 | 프로젝트 | 로그에서 가져온 / 남긴 것 |
 |----------|---------------------------|
-| [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) | Player Profiler에 남은 로그 경로 → Conditional·필터 분리의 계기 |
+| [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) | Player Profiler에 남은 로그 경로 → Conditional·필터 분리의 계기 |
 
-개념·실무 체크는 [Conditional로 플레이어 빌드 로그 비용 제거 (노트)]({{ "/notes/conditional-log-build-cost/" | relative_url }})에 두고, 여기서는 복사 단위와 에디터 UX를 담습니다.
+개념·실무 체크는 [Conditional로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})에 두고, 여기서는 복사 단위와 에디터 UX를 담습니다.
 
 ## 스택
 
@@ -78,6 +78,6 @@ Unity, C#
 
 ### 내부
 
-- [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})
-- [Conditional로 플레이어 빌드 로그 비용 제거 (노트)]({{ "/notes/conditional-log-build-cost/" | relative_url }})
+- [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})
+- [Conditional로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})
 - [홈 · 경력]({{ "/#경력" | relative_url }})

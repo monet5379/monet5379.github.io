@@ -21,7 +21,7 @@ mermaid: true
 - 역할: 설계·구현·문서
 - 초점: 슬롯당 Main 1, 선택적 Side, Meta, AtomicWrite, 슬롯 단위 백업·진단
 - 배포: `Assets/SaveLayout` 폴더 복사 (UPM 아님) — Runtime / Editor 분리
-- 연관: [블레이드 어썰트 (프로젝트)]({{ "/projects/blade-assault/" | relative_url }}) · [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) · [드래곤 이즈 데드 출시 세이브 (노트)]({{ "/notes/dragon-save-shipped/" | relative_url }}) · [Main·Side·Meta (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [Side 레인 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }})
+- 연관: [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) · [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) · [드래곤 이즈 데드 출시 세이브]({{ "/notes/dragon-save-shipped/" | relative_url }}) · [Main·Side·Meta]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [Side 레인]({{ "/notes/save-layout-side-lane/" | relative_url }})
 
 ## 문제
 
@@ -98,10 +98,10 @@ flowchart TD
 
 | 프로젝트 | 가져온 / 남긴 것 |
 |----------|------------------|
-| [블레이드 어썰트 (프로젝트)]({{ "/projects/blade-assault/" | relative_url }}) | 실서비스 이중 파일·암호화 경험 → 복구·시퀀스·레이아웃으로 재정리 |
-| [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) | 타이틀 결합 프로필·슬롯·백업 → 계약 추출 |
+| [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) | 실서비스 이중 파일·암호화 경험 → 복구·시퀀스·레이아웃으로 재정리 |
+| [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) | 타이틀 결합 프로필·슬롯·백업 → 계약 추출 |
 
-드래곤 이즈 데드 프로젝트 페이지의 [세이브·데이터 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }}) 절과 같은 문제 의식을, 여기서는 레이아웃 단위로만 펼칩니다. Why는 [세이브 레이아웃 시리즈]({{ "/notes/dragon-save-shipped/" | relative_url }}) — [드래곤 이즈 데드 출시 세이브 슬롯·복구·마이그레이션 (1/3)]({{ "/notes/dragon-save-shipped/" | relative_url }}) · [Main·Side·Meta로 나눈 이유 (2/3)]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [Side 레인 (3/3)]({{ "/notes/save-layout-side-lane/" | relative_url }}) — 에 둡니다.
+드래곤 이즈 데드 프로젝트 페이지의 [세이브·데이터]({{ "/projects/dragon-is-dead/" | relative_url }}) 절과 같은 문제 의식을, 여기서는 레이아웃 단위로만 펼칩니다. Why는 [세이브 레이아웃 시리즈]({{ "/notes/dragon-save-shipped/" | relative_url }}) — [드래곤 이즈 데드 출시 세이브 슬롯·복구·마이그레이션 (1/3)]({{ "/notes/dragon-save-shipped/" | relative_url }}) · [Main·Side·Meta로 나눈 이유 (2/3)]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [Side 레인 (3/3)]({{ "/notes/save-layout-side-lane/" | relative_url }}) — 에 둡니다.
 
 ## 스택
 
@@ -115,9 +115,9 @@ Unity, C#, Newtonsoft.Json
 
 ### 내부
 
-- [드래곤 이즈 데드 출시 세이브 (노트)]({{ "/notes/dragon-save-shipped/" | relative_url }})
-- [Main·Side·Meta로 나눈 이유 (노트)]({{ "/notes/save-layout-boundaries/" | relative_url }})
-- [슬롯 백업 대신 Side 레인을 둔 이유 (노트)]({{ "/notes/save-layout-side-lane/" | relative_url }})
-- [블레이드 어썰트 (프로젝트)]({{ "/projects/blade-assault/" | relative_url }})
-- [드래곤 이즈 데드 (프로젝트)]({{ "/projects/dragon-is-dead/" | relative_url }})
+- [드래곤 이즈 데드 출시 세이브]({{ "/notes/dragon-save-shipped/" | relative_url }})
+- [Main·Side·Meta로 나눈 이유]({{ "/notes/save-layout-boundaries/" | relative_url }})
+- [슬롯 백업 대신 Side 레인을 둔 이유]({{ "/notes/save-layout-side-lane/" | relative_url }})
+- [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})
+- [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})
 - [홈 · 경력]({{ "/#경력" | relative_url }})
