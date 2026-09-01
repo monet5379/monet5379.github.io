@@ -8,12 +8,16 @@ layout: default
     {% if page.subtitle %}
     <p class="post-subtitle">{{ page.subtitle | escape }}</p>
     {% endif %}
+    {% if page.path contains "notes/" and page.name != "index.md" and page.project %}
+    <p class="post-project">{% include note-project-link.html slug=page.project %}</p>
+    {% endif %}
   </header>
 
   <div class="post-content">
     {{ content }}
   </div>
 
+  {% include project-related-notes.html %}
   {% include notes-adjacent.html %}
 
 </article>

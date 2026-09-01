@@ -1,0 +1,30 @@
+{% comment %}
+  프로젝트 페이지: 같은 project 슬러그인 노트 목록.
+  공개 판정은 notes 목록과 같음 (tags × notes_production_visible_tags).
+{% endcomment %}
+{% if page.path contains "projects/" and page.name != "index.md" %}
+{% assign rel_slug = page.path | split: "/" | last | remove: ".md" %}
+{% assign related_notes = site.pages | where_exp: "p", "p.path contains 'notes/'" | where_exp: "p", "p.name != 'index.md'" | where_exp: "p", "p.project == rel_slug" %}
+{% if related_notes.size > 0 %}
+{% assign related_notes = related_notes | sort: "date" | reverse %}
+<section class="related-notes" aria-labelledby="related-notes-heading">
+  <h2 id="related-notes-heading">관련 노트</h2>
+  <ul>
+    {% for item in related_notes %}
+    {% assign item_vis = "public" %}
+    {% if site.notes_production_visible_tags.size > 0 %}
+      {% assign item_vis = "private" %}
+      {% for t in item.tags %}
+        {% if site.notes_production_visible_tags contains t %}
+          {% assign item_vis = "public" %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    <li{% if item_vis == "private" %} data-private{% endif %}>
+      <a href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endif %}

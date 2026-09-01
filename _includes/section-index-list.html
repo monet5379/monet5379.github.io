@@ -4,7 +4,7 @@
   section_filter_kind: projects 전용 — project_kind front matter로 목록 분할 (company | personal)
   show_tag_filter: true면 분류 필터 UI (notes)
   notes_page_size: notes 목록 페이지당 글 수 (있으면 페이지네이션)
-  filter_categories: 분류 필터 (사이드바, 예: "전투|액션|성장|엔진|세이브|출시" | split: "|")
+  filter_categories: 분류 필터 (사이드바, 예: "전투|액션|성장|세이브|데이터|출시" | split: "|")
   notes_production_visible_tags: 공개 분류 (_config.yml). production 목록은 이 태그만.
   로컬(development)은 전 글을 넣고, 비공개는 footer 전역 토글(localStorage)로 가린다.
 {% endcomment %}
@@ -53,17 +53,72 @@
 {% if show_category_filter %}
 <div class="notes-browse">
   <aside class="notes-browse__sidebar">
+    {% assign note_tag_csv = "" %}
+    {% for item in section_articles %}
+      {% for t in item.tags %}
+        {% assign note_tag_csv = note_tag_csv | append: t | append: "," %}
+      {% endfor %}
+    {% endfor %}
+    {% assign note_present_tags = note_tag_csv | split: "," | uniq %}
     <nav class="tag-filter tag-filter--stack" data-tag-filter aria-label="분류 필터">
       <span class="tag-filter__label">분류</span>
       <button type="button" class="tag-filter__btn is-active" data-tag="" aria-pressed="true">전체</button>
       {% for tag in active_filter_categories %}
+      {% if note_present_tags contains tag %}
       {% assign cat_private = "yes" %}
       {% if site.notes_production_visible_tags.size == 0 or site.notes_production_visible_tags contains tag %}
         {% assign cat_private = "no" %}
       {% endif %}
       <button type="button" class="tag-filter__btn" data-tag="{{ tag | escape }}" aria-pressed="false"{% if cat_private == "yes" %} data-private-tag{% endif %}>{{ tag | escape }}</button>
+      {% endif %}
       {% endfor %}
     </nav>
+    {% assign note_project_csv = "" %}
+    {% for item in section_articles %}
+      {% if item.project %}
+        {% assign note_project_csv = note_project_csv | append: item.project | append: "," %}
+      {% endif %}
+    {% endfor %}
+    {% assign note_project_slugs = note_project_csv | split: "," | uniq %}
+    {% assign all_project_pages = site.pages | where_exp: "p", "p.path contains 'projects/'" | where_exp: "p", "p.name != 'index.md'" %}
+    {% if jekyll.environment == "production" %}
+      {% assign all_project_pages = all_project_pages | where_exp: "p", "p.private != true" %}
+    {% endif %}
+    {% assign company_filter_projects = all_project_pages | where: "project_kind", "company" | sort: "order" %}
+    {% assign personal_filter_projects = all_project_pages | where: "project_kind", "personal" | sort: "order" %}
+    {% assign notes_filter_projects = 0 %}
+    {% for proj in company_filter_projects %}
+      {% assign proj_slug = proj.path | split: "/" | last | remove: ".md" %}
+      {% if note_project_slugs contains proj_slug %}
+        {% assign notes_filter_projects = notes_filter_projects | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    {% for proj in personal_filter_projects %}
+      {% assign proj_slug = proj.path | split: "/" | last | remove: ".md" %}
+      {% if note_project_slugs contains proj_slug %}
+        {% assign notes_filter_projects = notes_filter_projects | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    {% if notes_filter_projects > 0 %}
+    <nav class="tag-filter tag-filter--stack" data-project-filter aria-label="프로젝트 필터">
+      <span class="tag-filter__label">프로젝트</span>
+      <button type="button" class="tag-filter__btn is-active" data-project="" aria-pressed="true">전체</button>
+      {% for proj in company_filter_projects %}
+        {% assign proj_slug = proj.path | split: "/" | last | remove: ".md" %}
+        {% if note_project_slugs contains proj_slug %}
+        {% assign proj_label = proj.title | split: "(" | first | strip %}
+      <button type="button" class="tag-filter__btn" data-project="{{ proj_slug | escape }}" aria-pressed="false">{{ proj_label | escape }}</button>
+        {% endif %}
+      {% endfor %}
+      {% for proj in personal_filter_projects %}
+        {% assign proj_slug = proj.path | split: "/" | last | remove: ".md" %}
+        {% if note_project_slugs contains proj_slug %}
+        {% assign proj_label = proj.title | split: "(" | first | strip %}
+      <button type="button" class="tag-filter__btn" data-project="{{ proj_slug | escape }}" aria-pressed="false">{{ proj_label | escape }}</button>
+        {% endif %}
+      {% endfor %}
+    </nav>
+    {% endif %}
   </aside>
   <div class="notes-browse__main">
     <h2>글 목록</h2>
@@ -105,7 +160,7 @@
       {% endif %}
     {% endif %}
   {% endif %}
-  <li{% if thumb %} class="post-list__item--has-thumb"{% endif %}{% if item_vis == "private" %} data-private{% endif %}{% if item.date %} data-date="{{ item.date | date: '%Y-%m-%d' }}"{% endif %}{% if item.series %} data-series="{{ item.series | escape }}"{% endif %}{% if item.series_order %} data-series-order="{{ item.series_order }}"{% endif %}{% if item.tags %} data-tags='{{ item.tags | jsonify | escape }}'{% endif %}>
+  <li{% if thumb %} class="post-list__item--has-thumb"{% endif %}{% if item_vis == "private" %} data-private{% endif %}{% if item.date %} data-date="{{ item.date | date: '%Y-%m-%d' }}"{% endif %}{% if item.series %} data-series="{{ item.series | escape }}"{% endif %}{% if item.series_order %} data-series-order="{{ item.series_order }}"{% endif %}{% if item.tags %} data-tags='{{ item.tags | jsonify | escape }}'{% endif %}{% if item.project %} data-project="{{ item.project | escape }}"{% endif %}>
     {% if thumb %}
     <a class="post-list__thumb" href="{{ item.url | relative_url }}" tabindex="-1" aria-hidden="true">
       <img
@@ -118,7 +173,7 @@
     </a>
     {% endif %}
     <div class="post-list__body">
-      {% if item.date or item.role or item.tags.size > 0 %}
+      {% if item.date or item.role or item.tags.size > 0 or item.project %}
       <div class="post-list__kicker">
         {% if item.tags and item.tags.size > 0 %}
         <ul class="post-list__tags" aria-label="분류">
@@ -126,6 +181,9 @@
           <li data-tag="{{ tag | escape }}">{{ tag | escape }}</li>
           {% endfor %}
         </ul>
+        {% endif %}
+        {% if item.project %}
+        <span class="post-meta post-list__project">{% include note-project-link.html slug=item.project %}</span>
         {% endif %}
         {% if item.date %}
         <span class="post-meta">
@@ -154,7 +212,7 @@
   {% endfor %}
 </ul>
 {% if show_list_controls %}
-<p class="tag-filter__empty" data-tag-filter-empty hidden>선택한 분류에 맞는 글이 없습니다.</p>
+<p class="tag-filter__empty" data-tag-filter-empty hidden>선택한 조건에 맞는 글이 없습니다.</p>
 {% if notes_page_size and notes_page_size > 0 %}
 <nav class="notes-pagination" data-notes-pager hidden aria-label="노트 목록 페이지"></nav>
 {% endif %}

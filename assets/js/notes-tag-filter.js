@@ -56,6 +56,8 @@
   var pagerEl = document.querySelector("[data-notes-pager]");
   var pageSize = parseInt(list.getAttribute("data-page-size") || "0", 10) || 0;
   var currentPage = 1;
+  var projectRoot = document.querySelector("[data-project-filter]");
+  var activeProject = "";
   var tagRoots = Array.prototype.slice.call(
     document.querySelectorAll("[data-tag-filter]")
   );
@@ -110,6 +112,10 @@
     return 0;
   }
 
+  function itemProject(item) {
+    return item.getAttribute("data-project") || "";
+  }
+
   function selectedTags() {
     return tagRoots
       .map(function (_root, i) {
@@ -147,6 +153,7 @@
     return items.filter(function (item) {
       var tags = itemTags(item);
       var show = required.length === 0 || hasAllTags(tags, required);
+      if (activeProject && itemProject(item) !== activeProject) show = false;
       if (!showPrivate && item.hasAttribute("data-private")) show = false;
       return show;
     });
@@ -292,6 +299,17 @@
 
     syncPrivateButtons();
 
+    if (projectRoot) {
+      Array.prototype.slice
+        .call(projectRoot.querySelectorAll(".tag-filter__btn"))
+        .forEach(function (btn) {
+          var selected =
+            (btn.getAttribute("data-project") || "") === activeProject;
+          btn.classList.toggle("is-active", selected);
+          btn.setAttribute("aria-pressed", selected ? "true" : "false");
+        });
+    }
+
     privateTagButtons.forEach(function (btn) {
       btn.hidden = !showPrivate;
     });
@@ -334,6 +352,15 @@
       apply(true);
     });
   });
+
+  if (projectRoot) {
+    projectRoot.addEventListener("click", function (event) {
+      var btn = event.target.closest(".tag-filter__btn");
+      if (!btn || !projectRoot.contains(btn)) return;
+      activeProject = btn.getAttribute("data-project") || "";
+      apply(true);
+    });
+  }
 
   if (pagerEl) {
     pagerEl.addEventListener("click", function (event) {

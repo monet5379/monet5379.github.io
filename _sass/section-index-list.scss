@@ -104,7 +104,7 @@
 
 // Sidebar width + gap pulled into the left page margin so `__main`
 // keeps full measure; needs ~ (sidebar+gap) outside the wrapper.
-$notes-sidebar-width: 9.5rem;
+$notes-sidebar-width: 11rem;
 $notes-sidebar-gap: 1.75rem;
 $notes-browse-outside: 1100px;
 
@@ -131,6 +131,9 @@ $notes-browse-outside: 1100px;
 .notes-browse__sidebar {
   position: sticky;
   top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
 
   @include media-query($on-palm) {
     position: static;
@@ -194,6 +197,11 @@ $notes-browse-outside: 1100px;
       margin-bottom: 0;
     }
 
+    .tag-filter__group {
+      flex-basis: 100%;
+      margin: 0.15rem 0 0;
+    }
+
     .tag-filter__btn {
       width: auto;
       border-left: 0;
@@ -211,6 +219,16 @@ $notes-browse-outside: 1100px;
 .tag-filter__label {
   color: var(--grey-color);
   font-size: 0.875rem;
+}
+
+.tag-filter__group {
+  margin: 0.45rem 0 0.1rem;
+  color: var(--grey-color);
+  font-size: 0.75rem;
+}
+
+.tag-filter--stack .tag-filter__group {
+  display: block;
 }
 
 .tag-filter__btn {
@@ -285,7 +303,8 @@ $notes-browse-outside: 1100px;
 html:not([data-notes-private="on"]) {
   .post-list > li[data-private],
   .tag-filter [data-private-tag],
-  [data-private-notes] {
+  [data-private-notes],
+  .related-notes [data-private] {
     display: none;
   }
 }
@@ -333,20 +352,6 @@ html:not([data-notes-private="on"]) {
     color: var(--tag-panel);
     --tag-panel: var(--color-blue);
   }
-
-  li[data-tag="전투"] { --tag-panel: var(--color-red); }
-  li[data-tag="액션"] { --tag-panel: var(--color-orange); }
-  li[data-tag="성장"] { --tag-panel: var(--color-green); }
-  li[data-tag="엔진"] { --tag-panel: var(--color-blue); }
-  li[data-tag="세이브"] { --tag-panel: var(--color-cyan); }
-  li[data-tag="폰트"] {
-    --tag-panel: color-mix(in srgb, var(--color-blue) 55%, var(--color-purple));
-  }
-  li[data-tag="최적화"] {
-    --tag-panel: color-mix(in srgb, var(--color-yellow) 45%, var(--color-orange));
-  }
-  li[data-tag="출시"] { --tag-panel: var(--color-pink); }
-  li[data-tag="내러티브"] { --tag-panel: var(--color-purple); }
 }
 
 html[data-theme="dark"] .post-list__tags li {
