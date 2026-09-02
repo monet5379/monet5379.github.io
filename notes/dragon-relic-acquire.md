@@ -5,7 +5,8 @@ permalink: /notes/dragon-relic-acquire/
 date: 2026-09-02
 excerpt: "이번 도전에서 유물을 최대 9칸에 쌓고, 필드에서 줍·교체·버리는 흐름을 정리합니다. 장비(인벤)와 달리 도전이 끝나면 슬롯이 비워집니다."
 tags: [성장]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: relic-how
 series_title: 유물
 series_order: 1
@@ -51,13 +52,7 @@ Json 정본은 `RelicData` · `RelicSynergyData` · `DropRelicData`입니다. �
 
 ## 무엇이 한곳에 모이는가
 
-| 타입 | 역할 |
-|------|------|
-| `VCharacterRelic` | `MyRelics[9]` · Register/Unregister · Apply 진입 |
-| `VRelic` | SID · StatOptions · Enhances · CustomSynergy |
-| `RelicCollectionManager` | 후보 풀 · Pick · Take · Throw · Swap · ChangePopup |
-| `DropRelic` | 필드 Operate(획득) · OrderOperate(파괴·골드) |
-| `VItemGenerator` (Relic partial) | 등급별 `PickRelicItems` |
+출시본에서 유물 층은 `VCharacterRelic`(`MyRelics[9]` · Register/Unregister · Apply 진입), `VRelic`(SID · StatOptions · Enhances · CustomSynergy), `RelicCollectionManager`(후보 · Pick · Take · Throw · Swap · ChangePopup), `DropRelic`(Operate · OrderOperate), `VItemGenerator` Relic partial(`PickRelicItems`)에 모입니다.
 
 `EquipRelicSlot`은 인벤 UI 배치용 특수 슬롯이고, **런타임 유물 9칸**은 `VCharacterRelic.MyRelics`입니다. 이름만 “Relic”으로 겹치므로 QA·문서에서 혼동하기 쉽습니다.
 
@@ -72,10 +67,9 @@ flowchart TD
   E --> P["PickDroppable(grade)"]
   P --> D["SpawnDropRelic · DropRelic.Setup"]
   D --> REG["RegisterDropRelic<br/>Name당 월드 1개"]
-
-  NOTE["≠ VInventory.AddItem<br/>인벤 획득은 1편"]
-  REG ~~~ NOTE
 ```
+
+인벤 `VInventory.AddItem` 경로가 아닙니다. 장비·가방 획득은 [인벤 1편]({{ "/notes/dragon-inventory-store/" | relative_url }})입니다.
 
 1. `RegisterAllCandidates` — Json `RelicData`, `IsBlock` 제외.
 2. `ExcludeRelics` — 이미 소지·판매 후보·Statistics에 잡힌 이름 제외.
@@ -95,40 +89,26 @@ flowchart TD
   T -->|Full| C["ChangePopup → SwapRelic"]
   TH["ThrowGroundRelic"] --> U["Unregister · SpawnDrop"]
   X["OrderOperate"] --> G["Currency · ITEM_RELIC_DESTROY"]
-
-  NOTE["Stat · Synergy는 2편"]
-  A ~~~ NOTE
 ```
 
-| 동작 | 요지 | 플레이어가 보는 것 |
-|------|------|-------------------|
-| 빈 슬롯 획득 | `RegisterRelic` · `Acquired` · Analytics | 슬롯에 추가 |
-| 9슬롯 Full | `SpawnRelicChangePopup` → `SwapRelic` | 교체 UI |
-| 버리기 | Unregister → 필드 Spawn → Skill Remove | 슬롯 비움 · 필드에 떨어짐 |
-| 파괴 | `OrderOperate` — DestroyPrice 골드 | 골드 획득 |
+Stat·Synergy Apply는 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})입니다.
+
+빈 슬롯이면 `RegisterRelic` · `Acquired` · Analytics로 슬롯에 추가하고, 9슬롯 Full이면 `SpawnRelicChangePopup` → `SwapRelic` 교체 UI로 갑니다. 버리기는 Unregister → 필드 Spawn → Skill Remove, 파괴는 `OrderOperate`로 DestroyPrice 골드를 줍니다.
 
 **동일 `RelicNames` 중복 착용 불가** — `TryAddRelic` · `Contains`. Swap은 old Unregister → new Take → old Throw 순입니다.
 
 ## 도전 리셋과 씬 Cleanup
 
-유물 “수명”은 인벤과 갈라지는 지점입니다.
-
-| 호출 | 유물·Manager | QA |
-|------|--------------|-----|
-| `VCharacter.ClearIngameData` | UnregisterAll · 슬롯 null · Synergy 추가치 Clear | 캐릭터 단위 리셋 |
-| `GameData.ClearIngameData` (포기·균열 완료 등) | 위 + `ClearDroppedRelics` + `ClearCandidates` | **도전 종료** |
-| `GameMainScene.CleanupCurrentScene` | `ClearDroppedRelics` **만** — 후보 풀 유지 | **씬 전환**만 |
+유물 “수명”은 인벤과 갈라지는 지점입니다. `VCharacter.ClearIngameData`는 UnregisterAll · 슬롯 null · Synergy 추가치 Clear(캐릭터 단위). `GameData.ClearIngameData`(포기·균열 완료 등)는 그 위에 `ClearDroppedRelics` + `ClearCandidates`로 **도전 종료**를 고정합니다. `GameMainScene.CleanupCurrentScene`은 `ClearDroppedRelics` **만** 하고 후보 풀은 유지합니다 — **씬 전환**만입니다.
 
 프로필 **장비·가방**은 같은 `ClearIngameData`에서 통째로 지우지 않습니다. **「유물 = 이번 도전 빌드」** 를 코드로 고정한 부분입니다.
 
-## 출시에서 지킌 것
+## 출시에서 남긴 것
 
-| 경계 | QA에서 보이는 쪽 |
-|------|------------------|
-| **인벤과 분리 설계** | Relic을 VItem TryTake에 넣지 않음 |
-| **Pick 후 UnregisterCandidate** | 같은 유물 재추첨 |
-| **Apply/Unapply 쌍** | Throw·Unregister 후 Skill·Stat 잔존 → [2편]({{ "/notes/dragon-relic-apply/" | relative_url }}) |
-| **씬 vs 런 리셋** | 씬 전환 vs 도전 포기 구분 |
+- **인벤과 분리 설계** — Relic을 VItem TryTake에 넣지 않음
+- **Pick 후 UnregisterCandidate** — 같은 유물 재추첨
+- **Apply/Unapply 쌍** — Throw·Unregister 후 Skill·Stat 잔존 → [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})
+- **씬 vs 런 리셋** — 씬 전환 vs 도전 포기 구분
 
 ## 기각·보류
 

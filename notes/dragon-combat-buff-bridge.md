@@ -5,7 +5,8 @@ permalink: /notes/dragon-combat-buff-bridge/
 date: 2026-09-02
 excerpt: "버프는 지속·중첩·주기 틱을 가진 상태이고, 붙을 때·틱마다 스탯·타격·스킬로 연결됩니다. CC(기절 등)가 스킬 입력을 막는 지점까지 정리합니다."
 tags: [전투]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: combat-reaction
 series_title: 트리거·연쇄
 series_order: 2

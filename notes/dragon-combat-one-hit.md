@@ -5,7 +5,8 @@ permalink: /notes/dragon-combat-one-hit/
 date: 2026-09-02
 excerpt: "스킬·버프·패시브·투사체가 한 번의 타격으로 모일 때, combat·HP·연쇄까지 이어지는 한 장 지도로 복습합니다. 시리즈 1·2를 마친 뒤 QA·회귀 확인 축으로 씁니다."
 tags: [전투]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: combat-reaction
 series_title: 트리거·연쇄
 series_order: 4

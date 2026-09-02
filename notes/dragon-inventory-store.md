@@ -5,7 +5,8 @@ permalink: /notes/dragon-inventory-store/
 date: 2026-09-02
 excerpt: "필드에서 아이템을 줍고 가방·장비 슬롯·Essence 탭에 넣을 때, 프로필 세이브에 인스턴스가 어떻게 쌓이고 ItemTypes별로 배치되는지를 정리합니다."
 tags: [인벤]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: inventory-how
 series_title: 인벤토리
 series_order: 1
@@ -31,11 +32,7 @@ QA에서 자주 갈라지는 체감:
 - **세이브에는 있는데 필드에도 떠 있음** — ThrowGround 순서(Remove 전 Spawn) 어긋남
 - **같은 검 이름인데 퀘스트가 안 맞음** — Json 행 vs `VItem` SID 혼동
 
-| 구분 | 정본 | 역할 |
-|------|------|------|
-| `ItemData` (Json) | Excel→Json | 이름·Type·Wearable·슬롯·등급 테이블. **읽기 전용** |
-| `VItem` | 프로필 세이브 | SID·Level·옵션·슬롯 배치가 붙은 **인스턴스** |
-| `VInventory` | `VProfile.Inventory` | SID → `VItem` 보관 |
+`ItemData`(Excel→Json)는 이름·Type·Wearable·슬롯·등급의 **읽기 전용** 카탈로그이고, `VItem`은 SID·Level·옵션·슬롯이 붙은 **프로필 인스턴스**, `VInventory`(`VProfile.Inventory`)는 SID → `VItem` 보관입니다.
 
 Json 행을 런타임에 mutate하지 않고, 생성·검사·UI는 **clone 또는 읽기**만 씁니다. **「같은 검 이름」**과 **「내가 들고 있는 검 한 자루」**를 혼동하면 퀘스트·통계·착용 QA가 한꺼번에 어긋납니다.
 
@@ -51,13 +48,7 @@ Json 행을 런타임에 mutate하지 않고, 생성·검사·UI는 **clone 또�
 
 ## 무엇이 한곳에 모이는가
 
-출시본에서 `VInventory`는 **저장·조회·슬롯·착용·Stat/Skill 적용·퀘스트 부수 효과**까지 한 타입에 있습니다. 주변은 얇게 나뉩니다.
-
-| 타입 | 역할 |
-|------|------|
-| `UIInventoryHandler` | 필드 픽업·버리기·판매 — 런타임 **명령** 진입 |
-| `InventoryItemValidator` | 로드·가방 정렬 때 슬롯·탭 **쌍 보정** |
-| `VItemGenerator` | 드랍·보상·Dev에서 `VItem` **생성** |
+출시본에서 `VInventory`는 **저장·조회·슬롯·착용·Stat/Skill 적용·퀘스트 부수 효과**까지 한 타입에 있습니다. 주변은 `UIInventoryHandler`(필드 픽업·버리기·판매 명령), `InventoryItemValidator`(로드·가방 정렬 때 슬롯·탭 쌍 보정), `VItemGenerator`(드랍·보상·Dev 생성)로 얇게 나뉩니다.
 
 UI 팝업·드래그·Compare 위젯, 월드 `SpawnDrop*`, `RelicCollectionManager`는 **인벤 데이터 층 밖**입니다. 유물은 `VCharacter.Relic`(`VRelic`)이고, `EquipRelicSlot`은 UI 배치용 별 개념입니다 — [유물 1편]({{ "/notes/dragon-relic-acquire/" | relative_url }}).
 
@@ -87,10 +78,9 @@ flowchart TD
   T --> TK["TakeItem<br/>Type · ToggleSlot 분기"]
   TK --> AD["VInventory.AddItem"]
   AD --> E["CompleteQuests · 통계 · ITEM_ADDED"]
-
-  NOTE["≠ ApplyItemDataToCharacter<br/>착용·Stat은 2편"]
-  AD ~~~ NOTE
 ```
+
+`ApplyItemDataToCharacter`가 아닙니다. 착용·Stat은 [2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})입니다.
 
 `TryTakeItem`은 Type별로 빈 Equip 슬롯·가방·Essence·`IsOnlyOne` 중복을 먼저 봅니다. `TakeItem`은 ToggleSlot에 따라 Essence / Quest / Equipment·RiftGem으로 갈라집니다. 가방이 꽉 차면 빈 Equip을 시도하고, 그래도 안 되면 필드에 다시 떨어뜨리거나 거절합니다.
 
@@ -110,14 +100,12 @@ flowchart TD
 
 가방 인덱스는 `GameDefine.INVENTORY_BAG_*`와 UI 슬롯 상한을 함께 봅니다. 반지는 `Ring` **한 칸**만 씁니다(구 Ring1/Ring2 금지).
 
-## 출시에서 지킨 것
+## 출시에서 남긴 것
 
-| 경계 | QA에서 보이는 쪽 |
-|------|------------------|
-| **SID 유일성** — `GenerateItemSID()` 발급, 동일 SID 거부 | Stat Modifier 키와 공유([2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})) |
-| **AssingedSlot ↔ ToggleSlotType** 쌍 | 로드 후 슬롯·탭 어긋남 |
-| **ThrowGround** — Remove 후 Spawn | 버린 아이템이 세이브에 남음 |
-| **Inventory → Quest 로드 순서** | 퀘스트 Migrate·CompleteQuests 엇갈림 |
+- **SID 유일성** — `GenerateItemSID()` 발급, 동일 SID 거부 · Stat Modifier 키와 공유([2편]({{ "/notes/dragon-inventory-equip/" | relative_url }}))
+- **AssingedSlot ↔ ToggleSlotType** 쌍 — 로드 후 슬롯·탭 어긋남
+- **ThrowGround** — Remove 후 Spawn · 버린 아이템이 세이브에 남음
+- **Inventory → Quest 로드 순서** — 퀘스트 Migrate·CompleteQuests 엇갈림
 
 ## 기각·보류
 

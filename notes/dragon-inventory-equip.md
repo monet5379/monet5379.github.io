@@ -5,7 +5,8 @@ permalink: /notes/dragon-inventory-equip/
 date: 2026-09-02
 excerpt: "장비 슬롯에 끼운 아이템이 능력치 Modifier와 프로필 스킬에 반영되고, 해제·강화·캐릭터 전환 때 Unapply·Refresh로 맞추는 경로를 정리합니다."
 tags: [인벤]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: inventory-how
 series_title: 인벤토리
 series_order: 2
@@ -21,13 +22,7 @@ mermaid: true
 
 ## 맥락
 
-플레이어가 “장비 효과가 먹었다”고 느낄 때 실제로는 세 가지가 겹칩니다.
-
-| 체감 | 구현상 반영 |
-|------|-------------|
-| 공격력·방어 등 | `StatOptions` → `Player.Stat` Modifier |
-| 룬워드·신화·균열 보석 스킬 | `RunewordOptions` 등 → `VCharacter.Skill` Learn/Remove |
-| 슬롯에 끼움 | `AssingedSlot` · Owner · `EquipedSlotType` |
+플레이어가 “장비 효과가 먹었다”고 느낄 때 실제로는 세 가지가 겹칩니다. 공격력·방어 등은 `StatOptions` → `Player.Stat` Modifier, 룬워드·신화·균열 보석 스킬은 `RunewordOptions` 등 → `VCharacter.Skill` Learn/Remove, 슬롯에 끼움은 `AssingedSlot` · Owner · `EquipedSlotType`입니다.
 
 QA에서 자주 보는 증상:
 
@@ -59,9 +54,6 @@ flowchart TD
   A --> SK["AddRunewordSkill → VCharacter.Skill"]
   X["UnapplyItemDataToCharacter"] --> ST
   X --> SK
-
-  NOTE["RefreshEquippedItemStats<br/>Owner 장비 batch"]
-  ST ~~~ NOTE
 ```
 
 1. `CheckEquippable` — Json `Wearable`, 양손/보조무기 규칙.
@@ -72,14 +64,7 @@ flowchart TD
 
 ## Stat 연동
 
-장비 Stat은 [타격·데미지 2편 stat]({{ "/notes/dragon-combat-stat/" | relative_url }})의 Producer **Item** 경로입니다.
-
-| 항목 | 규칙 | QA |
-|------|------|-----|
-| Add | `AddItemStats` → `Player.Stat.AddWithModifier` | 착용 후 공격력↑ |
-| Remove | `RemoveItemStats` → 동일 **SID**로 Remove | 해제 후 원복 |
-| OptionIndex | 옵션 슬롯별 Modifier 구분 | 옵션만 다른 동일 SID |
-| Initialize | `RefreshEquippedItemStats` — BattleReady 전 프로필·장비 반영 | [캐릭터 1편]({{ "/notes/dragon-combat-character/" | relative_url }}) |
+장비 Stat은 [타격·데미지 2편 stat]({{ "/notes/dragon-combat-stat/" | relative_url }})의 Producer **Item** 경로입니다. Add는 `AddItemStats` → `Player.Stat.AddWithModifier`(착용 후 공격력↑), Remove는 동일 **SID**로 Remove(해제 후 원복)입니다. OptionIndex로 옵션 슬롯별 Modifier를 구분하고, BattleReady 전 `RefreshEquippedItemStats`로 프로필·장비를 반영합니다([캐릭터 1편]({{ "/notes/dragon-combat-character/" | relative_url }})).
 
 **Add/Remove 쌍**을 깨면 unequip·Death·교체 뒤 Modifier가 남습니다. Death 시 `Stat.Clear()`는 [캐릭터 1편]({{ "/notes/dragon-combat-character/" | relative_url }}) 경로와 함께 봅니다.
 
@@ -89,11 +74,7 @@ flowchart TD
 
 룬워드·신화·균열 보석 옵션은 **프로필** `VCharacter.Skill`에 Learn/Remove됩니다. [스킬 1편]({{ "/notes/dragon-skill-growth/" | relative_url }})의 학습·할당과 같은 저장소를 쓰지만, 진입은 **장비 Apply**입니다 — 트리에서 배운 스킬과 **같은 액션바**로 이어질 수 있습니다.
 
-| 변경 | 반영 | 플레이어가 보는 것 |
-|------|------|-------------------|
-| Equip / Unapply | Runeword·Mythic·RiftGem 목록 Learn/Remove | 슬롯에 스킬 추가·제거 |
-| 대장간 Enhance · Transcend · 각인 | 착용 중이면 `ApplyItemDataToCharacter` **직접 재호출** | 강화 후 수치·스킬 갱신 |
-| 룬북 승급 | Stat/Skill 갱신 + `ITEM_BOOKOFRUNES_ITEM_UPGRADE` · 통계 | 룬북 UI 후 반영 |
+Equip / Unapply는 Runeword·Mythic·RiftGem 목록 Learn/Remove로 슬롯 스킬을 맞추고, 대장간 Enhance · Transcend · 각인은 착용 중이면 `ApplyItemDataToCharacter`를 **직접 재호출**합니다. 룬북 승급은 Stat/Skill 갱신 + `ITEM_BOOKOFRUNES_ITEM_UPGRADE` · 통계입니다.
 
 이벤트 기반 mutator·idempotent Reapply는 Refactoring Phase 3~4 **목표**입니다. 출시본 QA는 “착용 중 강화 → 수치·스킬 한 번 더 Apply”를 수동으로 확인하는 편이 안전합니다.
 
@@ -103,14 +84,12 @@ flowchart TD
 
 몬스터는 프로필 장비 경로가 없습니다. 인벤 Apply 이야기는 **플레이어·캠프** 중심입니다.
 
-## 출시에서 지킨 것
+## 출시에서 남긴 것
 
-| 경계 | QA에서 보이는 쪽 |
-|------|------------------|
-| Modifier **SID = item SID** | Buff/Skill Source와 겹치지 않게 장비만 이 키로 Remove |
-| **Equip/Unapply 쌍** | 가방↔Equip 교체 시 기존 장비 Unapply |
-| **착용 중 트랜잭션** | Blacksmith·룬북 UI 후 Apply 재호출 |
-| **Legendary 전투 조회** | Stat Apply vs Skill Learn 경로 혼동 금지 |
+- Modifier **SID = item SID** — Buff/Skill Source와 겹치지 않게 장비만 이 키로 Remove
+- **Equip/Unapply 쌍** — 가방↔Equip 교체 시 기존 장비 Unapply
+- **착용 중 트랜잭션** — Blacksmith·룬북 UI 후 Apply 재호출
+- **Legendary 전투 조회** — Stat Apply vs Skill Learn 경로 혼동 금지
 
 ## 기각·보류
 

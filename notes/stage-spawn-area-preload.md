@@ -6,6 +6,8 @@ date: 2026-07-23
 excerpt: "지역 소속 스테이지를 미리 일괄 스폰하고, 동일 지역 내 이동은 활성/비활성만 하도록 바꾼 이유를 정리합니다."
 tags: [최적화]
 mermaid: true
+project:
+  - dragon-is-dead
 ---
 
 
@@ -69,10 +71,6 @@ flowchart TD
   end
 
   I --> G
-
-  NOTE["이동마다 Instantiate ≠ After<br/>스폰 단위 = 지역 진입 한 번<br/>preload ≠ 가드 생략"]
-  I ~~~ NOTE
-  S ~~~ NOTE
 ```
 
 지역 진입 때 소속 Stage를 일괄 스폰하고, 같은 Area 안 이동은 활성·비활성만 바꿉니다. preload만 넣고 공존 가드를 빼면 안 됩니다.

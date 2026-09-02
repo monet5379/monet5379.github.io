@@ -5,7 +5,8 @@ permalink: /notes/dragon-relic-apply/
 date: 2026-09-02
 excerpt: "유물 슬롯에 등록한 뒤 능력치·유물 스킬·Synergy(조화) 스킬이 반영되고, 교체·버리기·도전 종료 때 Unapply·Refresh로 맞추는 경로를 정리합니다."
 tags: [성장]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: relic-how
 series_title: 유물
 series_order: 2
@@ -25,12 +26,7 @@ mermaid: true
 
 ![유물·시너지 — Rapidity 등]({{ "/assets/images/projects/dragon-is-dead/ss-13.webp" | relative_url }})
 
-| 체감 | 구현상 반영 |
-|------|-------------|
-| 공격력·쿨 등 수치 | `StatOptions` → `Player.Stat` Modifier |
-| 유물 고유 스킬 | `RelicData.RegisterSkills` → `VCharacterSkill.Learn` |
-| 조화(Synergy) 임계 | 태그 합 vs `ActivatingCounts` → Synergy Skill Learn/Remove |
-
+공격력·쿨 등 수치는 `StatOptions` → `Player.Stat` Modifier, 유물 고유 스킬은 `RelicData.RegisterSkills` → `VCharacterSkill.Learn`, 조화(Synergy) 임계는 태그 합 vs `ActivatingCounts` → Synergy Skill Learn/Remove입니다.
 QA에서 자주 보는 증상:
 
 - **유물 바꿨는데 Synergy HUD만 안 맞음** — `RefreshSynergySkills` 누락
@@ -61,10 +57,9 @@ flowchart TD
   SY --> SL["Learn / Remove Synergy Skill"]
   U["UnregisterRelic · Throw"] --> RST["RemoveRelicStats · RemoveRelicSkill"]
   RST --> SY
-
-  NOTE["≠ DamageCalculator<br/>숫자 읽기는 stat 2편"]
-  ST ~~~ NOTE
 ```
+
+DamageCalculator 경로가 아닙니다. 전투 중 숫자 읽기는 [stat 2편]({{ "/notes/dragon-combat-stat/" | relative_url }})입니다.
 
 1. `AddRelicStats` — `StatSystem.AddWithModifier`, source=`Relic`, **SID = relic SID**.
 2. `AddRelicSkill` — Json `RegisterSkills` 목록 Learn. `MaxLevel` 도달 시 early return — 다중 RegisterSkills 루프 QA 주의.
@@ -75,14 +70,7 @@ Add/Remove·Synergy Refresh **쌍**을 깨면 교체·Throw·Clear 뒤 Modifier�
 
 ## Synergy
 
-Synergy는 **보유 유물의 태그 합**으로 임계를 넘깁니다. 예: Rapidity 3/5.
-
-| 항목 | 규칙 | 플레이어가 보는 것 |
-|------|------|-------------------|
-| 카운트 | `GetTotalSynergyCount` — 보유 + `AdditionalSynergyCounts` | Synergy UI 숫자 |
-| 활성 | `ActivatingCounts` 이상이면 Synergy Skill Learn | 쿨 감소 등 효과 |
-| 교체 UI | `PreviewRelicName` — ChangePopup 미리보기 | 교체 전 Synergy 미리보기 |
-| 강화 | `TryEnhance` Synergy 분기 → `RefreshSynergySkills` | 강화 후 조화 재계산 |
+Synergy는 **보유 유물의 태그 합**으로 임계를 넘깁니다. 예: Rapidity 3/5. `GetTotalSynergyCount`(보유 + `AdditionalSynergyCounts`)가 Synergy UI 숫자이고, `ActivatingCounts` 이상이면 Synergy Skill Learn(쿨 감소 등)입니다. 교체 UI는 `PreviewRelicName`으로 ChangePopup 미리보기를 주고, `TryEnhance` Synergy 분기도 `RefreshSynergySkills`로 재계산합니다.
 
 [스킬 1편]({{ "/notes/dragon-skill-growth/" | relative_url }})에서 유물·장비가 같은 `VCharacterSkill` 저장소로 Learn하지만, **유물 Skill은 도전 Clear와 함께 RemoveIngameData**에서 빠집니다. 프로필 스킬 트리 학습과 **수명이 다릅니다**.
 
@@ -96,20 +84,13 @@ Synergy는 **보유 유물의 태그 합**으로 임계를 넘깁니다. 예: Ra
 
 1편과 짝입니다. `RemoveIngameData`는 UnregisterAll 후 **빈 슬롯 배열**로 돌아갑니다. Apply로 넣었던 Stat·Skill은 Unregister 경로에서 먼저 빠져야 합니다.
 
-| 시나리오 | 확인 |
-|----------|------|
-| 9슬롯 Full → Swap | old Throw · new Apply · Synergy HUD |
-| ThrowGround | Stat/Skill Remove · Synergy Refresh |
-| ClearIngameData | 슬롯 empty · Manager 후보 Clear([1편]({{ "/notes/dragon-relic-acquire/" | relative_url }})) |
-| 캐릭터 2명 | `VCharacter.Relic` 분리 — 선택 캐릭터만 |
+회귀 확인 축: 9슬롯 Full → Swap(old Throw · new Apply · Synergy HUD), ThrowGround(Stat/Skill Remove · Synergy Refresh), ClearIngameData(슬롯 empty · Manager 후보 Clear — [1편]({{ "/notes/dragon-relic-acquire/" | relative_url }})), 캐릭터 2명(`VCharacter.Relic` 분리 — 선택 캐릭터만).
 
-## 출시에서 지킨 것
+## 출시에서 남긴 것
 
-| 경계 | QA에서 보이는 쪽 |
-|------|------------------|
-| **SID = Modifier 키** | [인벤 2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})과 같이 Relic SID로 Remove |
-| **Synergy Refresh 필수** | Add/Remove/Enhance/Throw마다 — “Stat만”으로 끝내지 않음 |
-| **Analytics** | `ArtifactAcquired` · `ArtifactSynergyActive` |
+- **SID = Modifier 키** — [인벤 2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})과 같이 Relic SID로 Remove
+- **Synergy Refresh 필수** — Add/Remove/Enhance/Throw마다 — “Stat만”으로 끝내지 않음
+- **Analytics** — `ArtifactAcquired` · `ArtifactSynergyActive`
 
 ## 기각·보류
 

@@ -5,7 +5,8 @@ permalink: /notes/dragon-combat-passive-bridge/
 date: 2026-09-02
 excerpt: "패시브는 맞았을 때·치명타 났을 때 같은 사건에 반응하는 규칙입니다. 한 타격이 연쇄로 다른 타격·버프·스킬을 부를 수 있어, 큐·프레임 상한·재발동 간격으로 폭주를 막습니다."
 tags: [전투]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: combat-reaction
 series_title: 트리거·연쇄
 series_order: 3

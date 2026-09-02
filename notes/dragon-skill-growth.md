@@ -5,7 +5,8 @@ permalink: /notes/dragon-skill-growth/
 date: 2026-09-01
 excerpt: "트리·보상·유물로 스킬을 얻고 액션바에 끼운 뒤 레벨을 올릴 때, 그 변경이 프로필 세이브에 어떻게 남고 전투·HUD와 맞춰지는지를 정리합니다."
 tags: [스킬]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: skill-how
 series_title: 스킬
 series_order: 1
@@ -58,12 +59,9 @@ flowchart TD
   SRC["UI · 레벨업 · 아이템 · 유물"] --> PROFILE["프로필 세이브<br/>학습 · 할당 · 레벨"]
   PROFILE --> EVT["플레이어 전용 이벤트"]
   EVT --> RUN["스킬 런타임<br/>Entity · 레벨 · HUD"]
-
-  NOTE["≠ 시전 TryCast<br/>성장 = 세이브 쓰기"]
-  RUN ~~~ NOTE
 ```
 
-스킬 트리 UI·인벤토리·유물 창은 프로필 세이브를 바꿉니다. 바뀐 뒤 플레이어 캐릭터에만 등록된 이벤트가 스킬 런타임에 **추가·제거·레벨 갱신·슬롯 동기화**를 요청합니다. 몬스터는 같은 스킬 Entity를 쓰더라도 이 HUD·프로필 세이브 이벤트 경로와는 갈라집니다.
+성장은 프로필 세이브 쓰기입니다. [시전 TryCast]({{ "/notes/dragon-skill-cast/" | relative_url }})와는 다른 경로입니다. 스킬 트리 UI·인벤토리·유물 창은 프로필 세이브를 바꿉니다. 바뀐 뒤 플레이어 캐릭터에만 등록된 이벤트가 스킬 런타임에 **추가·제거·레벨 갱신·슬롯 동기화**를 요청합니다. 몬스터는 같은 스킬 Entity를 쓰더라도 이 HUD·프로필 세이브 이벤트 경로와는 갈라집니다.
 
 | 이벤트 역할 | 런타임 쪽 |
 |-------------|-----------|

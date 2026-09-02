@@ -5,7 +5,8 @@ permalink: /notes/dragon-combat-stat/
 date: 2026-09-02
 excerpt: "장비·버프·레벨이 섞여 공격력·체력이 바뀔 때, 어디서 숫자를 넣고 빼며, 타격·UI는 어디서만 읽는지를 정리합니다."
 tags: [전투]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: combat-presence
 series_title: 타격·데미지
 series_order: 2
@@ -66,7 +67,7 @@ flowchart TD
 | 장비 | Item | SID + OptionIndex |
 | Relic · CharacterGrow | 각 Source | Source/SID 쌍 |
 
-**반드시 지킬 것:** Add/Remove **쌍**(동일 Source/SID). 버프 해제 후 스탯이 안 돌아오면 여기부터 봅니다. `StatModType.Once`는 Modifier 리스트에 남지 않고 OnAdd만. Death 시 `Stat.Clear()` — Attack·Passive·Buff Clear와 함께([1편]({{ "/notes/dragon-combat-character/" | relative_url }})).
+**반드시 맞출 것:** Add/Remove **쌍**(동일 Source/SID). 버프 해제 후 스탯이 안 돌아오면 여기부터 봅니다. `StatModType.Once`는 Modifier 리스트에 남지 않고 OnAdd만. Death 시 `Stat.Clear()` — Attack·Passive·Buff Clear와 함께([1편]({{ "/notes/dragon-combat-character/" | relative_url }})).
 
 ## Read — FindCalculateValue
 

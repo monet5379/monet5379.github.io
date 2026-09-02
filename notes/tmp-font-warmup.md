@@ -11,6 +11,9 @@ series_order: 2
 series_total: 2
 series_nav: true
 mermaid: true
+project:
+  - dragon-is-dead
+  - tmp-font-pipeline
 ---
 
 
@@ -39,13 +42,7 @@ Static은 어떤 글자가 아틀라스에 있는가, Warmup은 언제 처음 �
 2. 옵션에서 언어 변경 → input block → warmup → UI refresh → unblock
 3. 연속 변경 시 진행 중 작업 supersede → block이 풀림
 
-| 타입 | 쓰임 |
-|------|------|
-| Title | 타이틀·큰 제목 |
-| Content 계열 | 본문·일반 UI |
-| Number | 숫자·수치 표시 등 |
-
-실제로 쓰는 타입만 워밍업합니다. 미사용 타입까지 일괄 넣지 않습니다. 키보드(PC)·조이스틱·커런시 등 Sprite Asset도 언어 UI와 같이 처음 그릴 때 스파이크가 나므로, 같은 대기 구간으로 옮깁니다.
+드래곤 이즈 데드에서는 Title(타이틀)·Content 계열(본문·일반 UI)·Number(수치)처럼 **실제로 쓰는 타입만** 워밍업합니다. 미사용 타입까지 일괄 넣지 않습니다. 키보드(PC)·조이스틱·커런시 등 Sprite Asset도 언어 UI와 같이 처음 그릴 때 스파이크가 나므로, 같은 대기 구간으로 옮깁니다.
 
 **공개 Demo 매핑.** [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }})은 Title / Content / Number 대신 **Ui · Dialogue** `FontUsageRole`로 나눕니다. weight enum이 아니라 Static extract 버킷·Font Asset 역할입니다. Warmup sample도 역할별입니다 — Ui는 UI JSON(`Confirm` 등), Dialogue는 dialogue JSON(`dlg_intro` 등). glyph SSOT는 여전히 [Static 추출]({{ "/notes/tmp-static-font-atlas/" | relative_url }})입니다.
 
@@ -78,43 +75,19 @@ flowchart TD
   subgraph AVOID["피한 경로"]
     N["첫 UI에서 자연 warmup"]
   end
-
-  NOTE["Warmup ≠ glyph 전량 보장<br/>대기 구간 ≠ 플레이 중 스파이크<br/>SSOT는 Static 추출 노트"]
-  U ~~~ NOTE
-  N ~~~ NOTE
 ```
 
 첫 그리기 비용을 스플래시·언어 변경 대기 구간으로 옮깁니다. sample은 경로를 깨울 뿐이고, glyph 전량 보장은 Static 추출이 담당합니다.
 
-| 항목 | 내용 |
-|------|------|
-| 트리거 | Splash 시작 / Title 미완료 시 fallback / 언어 변경 |
-| 방식 | 화면 밖 TMP에 sample text → `ForceMeshUpdate` — **font 1개당 1프레임** |
-| 부가 | 키보드(PC)·조이스틱·커런시 등 Sprite Asset preload |
-| 완료 후 | 언어 변경 경로에서 input unblock + 언어 변경 이벤트 |
-| 재요청 | 진행 중 warmup은 cancel(supersede); 이미 완료된 언어는 즉시 완료 콜백 |
-
-워밍업 대상은 실제로 쓰는 타입(Title·Content 계열·Number 등)에 한정합니다. 미사용 타입까지 일괄 넣지 않습니다.
+트리거는 Splash 시작, Title 미완료 시 fallback, 언어 변경입니다. 화면 밖 TMP에 sample text를 넣고 `ForceMeshUpdate`로 **font 1개당 1프레임** 돌리며, 키보드·조이스틱·커런시 Sprite Asset도 같은 구간에 preload합니다. 언어 변경 경로에서는 완료 후 input unblock과 언어 변경 이벤트를 보내고, 진행 중 warmup은 cancel(supersede)·이미 완료된 언어는 즉시 완료 콜백합니다. 워밍업 대상은 Title·Content 계열·Number 등 실제 사용 타입에 한정합니다.
 
 ### Sample text
 
-전 glyph가 아닙니다. 폰트·머티리얼 경로를 깨우는 짧은 샘플만 씁니다.
-
-| 언어군 | 예시 |
-|--------|------|
-| CJK | `字体预热테스트漢字` |
-| European | `Font Warmup AaBbCc012` |
-
-드래곤 이즈 데드는 언어군별 **공통** sample을 씁니다. 공개 Demo는 Ui·Dialogue atlas가 다르므로 **역할별** 짧은 문장(예: KO Ui `확인`, Dialogue `어서 오세요, 모험가.`)을 씁니다 — 전 glyph 보장이 아니라 해당 Static atlas 안의 글자만 참조합니다.
+전 glyph가 아닙니다. 폰트·머티리얼 경로를 깨우는 짧은 샘플만 씁니다. 드래곤 이즈 데드는 언어군별 **공통** sample(CJK `字体预热테스트漢字`, European `Font Warmup AaBbCc012` 등)을 씁니다. 공개 Demo는 Ui·Dialogue atlas가 다르므로 **역할별** 짧은 문장(예: KO Ui `확인`, Dialogue `어서 오세요, 모험가.`)을 씁니다 — 전 glyph 보장이 아니라 해당 Static atlas 안의 글자만 참조합니다.
 
 ## 공개 구현
 
-| 항목 | 내용 |
-|------|------|
-| 서비스 | `FontWarmupService` — 숨김 canvas, **font 1개당 1프레임**, supersede |
-| 계약 | `IFontWarmupTarget` — `GetFontForWarmup`, **역할별** `GetSampleText` |
-| 호출 | 부팅·언어 변경 시 `RequestWarmup`; input block은 게임/Demo 책임 |
-| Demo | `DemoLanguageSwitcher` — block → warmup → label refresh → unblock |
+`FontWarmupService`가 숨김 canvas에서 **font 1개당 1프레임**·supersede를 담당하고, `IFontWarmupTarget`으로 `GetFontForWarmup`·역할별 `GetSampleText`를 받습니다. 부팅·언어 변경 시 `RequestWarmup`을 호출하며, input block은 게임/Demo 책임입니다. Demo는 `DemoLanguageSwitcher`로 block → warmup → label refresh → unblock 순입니다.
 
 상세는 [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }}) · [GitHub README](https://github.com/monet5379/unity-tmp-font)를 따릅니다.
 

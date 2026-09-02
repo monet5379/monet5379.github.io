@@ -11,12 +11,14 @@ series_order: 2
 series_total: 3
 series_nav: true
 mermaid: true
+project:
+  - save-layout
 ---
 
 
 출시 타이틀에서 프로필·슬롯·백업이 타이틀 코드에 섞일 때 생기는 경계를, Main·Side·공유 Meta로만 남긴 이유를 정리합니다.
 
-초점은 **디스크 단위를 누가 소유하는지**입니다. 세이브 레이아웃 패키지·출시 타이틀의 디스크 계약을 읽는 개발자를 가정합니다. 구현 API는 [GitHub README](https://github.com/monet5379/unity-save-layout)가 정본입니다. 출시 맥락은 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})·[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}), 구현은 [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }})입니다.
+초점은 **디스크 단위를 누가 소유하는지**입니다. 세이브 레이아웃 패키지·출시 타이틀의 디스크 계약을 읽는 개발자를 가정합니다.
 
 ## 맥락
 
@@ -24,12 +26,11 @@ mermaid: true
 
 ## 출시 타이틀의 한계
 
-[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})와 [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})는 같은 축에서 세이브를 출시까지 지켰지만, **영구 진행·짧은 진행·실패 백업·선택 메타를 디스크 레인 계약으로 갈라 두지는 않았습니다.**
+[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})와 [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})는 같은 축에서 세이브를 출시까지 버텼지만, **영구 진행·짧은 진행·실패 백업·선택 메타를 디스크 레인 계약으로 갈라 두지는 않았습니다.**
 
-| | 블레이드 어썰트 | 드래곤 이즈 데드 |
-|--|---------------|----------------|
-| 출시에서 한 일 | 슬롯·쿨다운·필수 세이브·백업을 타이틀 코드에서 처리. 실서비스 이중 파일·암호화 경험 | 슬롯별 프로필을 로컬 저장 폴더에 두고, 쿨다운·필수 세이브·다중 백업·마이그레이션·손상 복구를 게임 세이브 한곳에서 처리. Steam Cloud는 Auto-Cloud ([출시 세이브 노트]({{ "/notes/dragon-save-shipped/" | relative_url }})) |
-| 한계 | 레인이 계약으로 드러나지 않아, 손상·이어하기·저장 주기의 역할이 한곳에 섞이기 쉬움 | 동일. 세이브 레이아웃만 따로 재현·설명하기 어려움 |
+**블레이드 어썰트**에서는 슬롯, 쿨다운, 필수 세이브, 백업을 모두 타이틀 코드 안에서 처리했습니다. 실서비스 과정에서 이중 파일과 암호화도 경험했습니다. 하지만 레인이 계약으로 명확히 드러나지 않아, 손상·이어하기·저장 주기가 한곳에 섞이기 쉬운 한계가 있었습니다.
+
+**드래곤 이즈 데드**에서는 슬롯별 프로필을 로컬 저장 폴더에 두고, 쿨다운, 필수 세이브, 다중 백업, 마이그레이션, 손상 복구까지 게임 세이브 한곳에서 처리했습니다. Steam Cloud는 Auto-Cloud를 이용했고, 자세한 내용은 [출시 세이브 노트]({{ "/notes/dragon-save-shipped/" | relative_url }})에 있습니다. 그러나 마찬가지로 세이브 레이아웃만 따로 재현하거나 설명하기는 어려웠습니다.
 
 ## 이 글에서 쓰는 말
 
@@ -40,7 +41,7 @@ mermaid: true
 | **Meta** | 어떤 슬롯이 선택됐는지 (프로필 본문 없음) |
 | **Backup/** | 손상·빈 파일을 치울 때 생기는 로컬 흔적 (Continue 정본 아님) |
 
-출시본은 전투·UI·밸런스와 섞인 채 **세이브를 지킨 기록**입니다. 이전 타이틀의 단점을 마이그레이션 코드로 증명하지는 않습니다. 출시 요약은 각 프로젝트 페이지의 세이브 절·[드래곤 출시 세이브 노트]({{ "/notes/dragon-save-shipped/" | relative_url }})를 보면 됩니다.
+출시본은 전투·UI·밸런스와 섞인 채 **세이브를 버틴 기록**입니다. 이전 타이틀의 단점을 마이그레이션 코드로 증명하지는 않습니다. 출시 요약은 각 프로젝트 페이지의 세이브 절·[드래곤 출시 세이브 노트]({{ "/notes/dragon-save-shipped/" | relative_url }})를 보면 됩니다.
 
 ## 세이브 레이아웃에서 시도한 것
 
@@ -82,10 +83,6 @@ flowchart TD
 
   M --> P
   P -.-> S
-
-  NOTE["허브 정본 = Meta + Main<br/>Side만 ≠ 세이브 있음<br/>Save flush ≠ SaveSide"]
-  P ~~~ NOTE
-  S ~~~ NOTE
 ```
 
 허브 디스크 정본은 **Meta + Profile Main**입니다. Side만으로는 세이브 있음이 아니고, 손상·빈 파일은 그 파일만 `Backup/`으로 치운 뒤 null로 둡니다. `Backup/`과 Side의 차이는 [2편]({{ "/notes/save-layout-side-lane/" | relative_url }})입니다.
@@ -127,6 +124,6 @@ Demo의 페이로드·Title UI는 놀이터입니다. 출시 `GameData` 스키�
 
 ## 정리
 
-세이브 레이아웃에서 지킨 것은 완벽한 세이브 시스템이 아니라, **슬롯당 Main·선택적 Side·공유 Meta**라는 소유 질문입니다. 어디에 쓸지·언제 쓸지·선택이 어디에 있는지가 섞이지 않으면, 타이틀은 스키마와 장르 규칙만 얹으면 됩니다.
+세이브 레이아웃에서 남긴 것은 완벽한 세이브 시스템이 아니라, **슬롯당 Main·선택적 Side·공유 Meta**라는 소유 질문입니다. 어디에 쓸지·언제 쓸지·선택이 어디에 있는지가 섞이지 않으면, 타이틀은 스키마와 장르 규칙만 얹으면 됩니다.
 
 설치·API·불변조건·실패 시나리오는 [GitHub README](https://github.com/monet5379/unity-save-layout)에, 무엇을 만들었는지·계보·비범위 요약은 [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }})에 있습니다. 블레이드 어썰트·드래곤 이즈 데드 세이브 출시 요약은 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) · [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})를, 내부 Architecture·NDA 수치는 공개하지 않습니다.

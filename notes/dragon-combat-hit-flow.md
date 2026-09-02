@@ -5,7 +5,8 @@ permalink: /notes/dragon-combat-hit-flow/
 date: 2026-09-02
 excerpt: "한 번 맞았을 때 타격 정의가 로드되고, 능력치를 읽어 계산한 뒤 HP·가드에 닿는 경로와, 근접·범위·투사체가 대상만 다르게 잡는 방식을 정리합니다."
 tags: [전투]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: combat-presence
 series_title: 타격·데미지
 series_order: 3

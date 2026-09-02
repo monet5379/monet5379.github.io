@@ -11,6 +11,9 @@ series_order: 1
 series_total: 2
 series_nav: true
 mermaid: true
+project:
+  - dragon-is-dead
+  - tmp-font-pipeline
 ---
 
 
@@ -69,10 +72,6 @@ flowchart TD
   end
 
   F --> G
-
-  NOTE["Charset SSOT ≠ warmup sample<br/>Extract → Static 테이블이 SSOT<br/>Dynamic atlas ≠ 배포 기본"]
-  F ~~~ NOTE
-  H ~~~ NOTE
 ```
 
 문자열 JSON에서 버킷별 글자를 뽑아 Static Character Table에 넣는 경로입니다. Warmup sample이나 Dynamic atlas가 glyph SSOT가 아닙니다.
@@ -83,13 +82,9 @@ flowchart TD
 
 ### 언어 버킷
 
-| 버킷 | 구성 |
-|------|------|
-| Korean / Simplified Chinese / Traditional Chinese / Japanese | 언어별 개별 셋 → UI용 Font Asset |
-| European | English · French · German · Italian · Spanish 합집합 → UI용 Font Asset |
-| Dialogue 전용 | 대화 문자열만 별도 버킷 → Dialogue용 Font Asset |
+Korean · Simplified/Traditional Chinese · Japanese는 **언어별 개별 셋**으로 UI Font Asset을 만들고, English·French·German·Italian·Spanish는 글리프 겹침이 커서 **European 합집합** 하나로 묶었습니다. 대화 문자열만 **Dialogue 전용** 버킷으로 빼 UI atlas와 갈랐습니다.
 
-UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK가 UI 폰트 아틀라스를 불필요하게 키우기 때문입니다. 유럽 계열은 글리프 겹침이 커서 하나로 합쳤습니다. 유지보수 단위는 **언어/버킷별 Static Font Asset**입니다.
+UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK가 UI 폰트 아틀라스를 불필요하게 키우기 때문입니다. 유지보수 단위는 **언어/버킷별 Static Font Asset**입니다.
 
 **드래곤 이즈 데드 배포 vs 공개 Demo.** 위 European **합집합**은 드래곤 이즈 데드 출시 기준입니다. 오픈소스 [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }}) Demo는 EN · FR · DE · IT · ES를 **언어별 버킷·Static asset**으로 분리합니다. UI·Dialogue 분리 원칙은 같고, 유럽어 쪼개기만 다릅니다.
 
@@ -107,11 +102,7 @@ UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK�
 
 ### 런타임 경계
 
-| 계층 | 역할 |
-|------|------|
-| Static TMP Font Asset | 추출 문자셋으로 빌드한 배포 아틀라스 |
-| [Font warmup]({{ "/notes/tmp-font-warmup/" | relative_url }}) | 언어별 font·sprite preload — Dynamic atlas 대체재가 아님 |
-| Localized text UI | 현재 언어에 맞는 Font Asset 선택·표시 |
+배포 아틀라스는 Static TMP Font Asset이고, Localized text UI는 현재 언어에 맞는 Font Asset만 고릅니다. [Font warmup]({{ "/notes/tmp-font-warmup/" | relative_url }})은 언어별 font·sprite preload이며 Dynamic atlas 대체재가 아닙니다.
 
 워밍업은 전환 시 입력 블록·프리로드 경로를 안정화하는 역할이고, “이 sample이면 CJK 전 glyph가 보장된다”는 계약으로 쓰지 않습니다. glyph SSOT는 Static 추출입니다. 최초 사용 스파이크를 스플래시·옵션으로 옮기는 설계는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 참고합니다.
 
@@ -136,12 +127,7 @@ String workbook / JSON이 바뀌면 Static 폰트도 같이 갱신합니다.
 
 드래곤 이즈 데드에서 정리한 추출 → Static bake → 런타임 font 선택을 게임 없이 복사해 쓸 수 있게 [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }}) (`unity-tmp-font`)로 뺐습니다. Install·API·Demo 절차는 [GitHub README](https://github.com/monet5379/unity-tmp-font)가 정본입니다.
 
-| 항목 | 내용 |
-|------|------|
-| Extract | Editor Window **Extract** — `String*.json` → `unique_chars_*.txt`, sanitize |
-| Apply | **Apply** + `FontAtlasApplyProfile` — Generated txt → Static SDF (2048 bake) |
-| Role | `FontRoleCatalog` — `LanguageId` + **Ui** / **Dialogue** → `TMP_FontAsset` |
-| Demo | `Assets/Demo` — SampleScene, Extract/Apply 샘플 데이터 (놀이터 전용) |
+Editor Window **Extract**는 `String*.json` → `unique_chars_*.txt`(sanitize), **Apply** + `FontAtlasApplyProfile`은 Generated txt → Static SDF(2048 bake)입니다. `FontRoleCatalog`가 `LanguageId` + **Ui** / **Dialogue** → `TMP_FontAsset`을 잇고, `Assets/Demo` SampleScene은 Extract/Apply 놀이터입니다.
 
 ## 확인 포인트
 

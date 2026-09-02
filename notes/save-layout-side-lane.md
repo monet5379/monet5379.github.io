@@ -11,6 +11,8 @@ series_order: 3
 series_total: 3
 series_nav: true
 mermaid: true
+project:
+  - save-layout
 ---
 
 
@@ -50,10 +52,6 @@ flowchart TD
   subgraph SIDE["SIDE — 의도적 레인"]
     S["SaveSide · valid 힌트"]
   end
-
-  NOTE["Backup ≠ Continue<br/>실패 산출물 ≠ 세션 레인<br/>슬롯 삭제 ≠ Backup/ 정리"]
-  B ~~~ NOTE
-  S ~~~ NOTE
 ```
 
 `Backup/`은 손상·빈 파일을 치울 때 생기는 실패 산출물입니다. Side는 세션·오토 등 의도한 옆 진행이고, Continue 흉내에 쓰지 않습니다.

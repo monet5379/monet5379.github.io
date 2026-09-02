@@ -5,7 +5,8 @@ permalink: /notes/dragon-combat-skill-bridge/
 date: 2026-09-02
 excerpt: "스킬 시전·연출과 데미지 계산의 경계인 Apply 호출, 애니 이벤트가 타격·버프·패시브를 부르는 지점을 정리합니다."
 tags: [전투]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: combat-reaction
 series_title: 트리거·연쇄
 series_order: 1

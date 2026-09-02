@@ -5,7 +5,8 @@ permalink: /notes/dragon-skill-cast/
 date: 2026-09-01
 excerpt: "액션바에 할당된 슬롯 입력이 권한·쿨·Rest를 거쳐 TryCast되고, SkillAnimation과 애니 이벤트에서 타격·버프·패시브로 넘기는 흐름을 정리합니다. 데미지 숫자는 Apply 이후 전투 층입니다."
 tags: [스킬]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: skill-how
 series_title: 스킬
 series_order: 2
@@ -62,12 +63,9 @@ flowchart TD
   ANIM --> EV["애니 이벤트"]
   EV --> OUT["Hitmark / Buff / Passive 호출"]
   OUT --> COMBAT["Apply · HP · Vital<br/>전투 층"]
-
-  NOTE["시전 성공 = 결정 + 애니<br/>숫자는 Apply 이후"]
-  CAST ~~~ NOTE
 ```
 
-캐릭터 아래에는 스킬 런타임 목록·스킬 입력 Ability·캐릭터당 입력 버퍼가 있습니다. [1편]({{ "/notes/dragon-skill-growth/" | relative_url }})의 프로필 세이브 할당과 맞춰진 뒤, [BattleReady]({{ "/notes/dragon-combat-character/" | relative_url }}) 게이트를 지나야 이 경로가 열립니다.
+시전 성공은 TryCast 결정 + 애니까지입니다. 데미지 숫자는 Hitmark **Apply** 이후입니다. 캐릭터 아래에는 스킬 런타임 목록·스킬 입력 Ability·캐릭터당 입력 버퍼가 있습니다. [1편]({{ "/notes/dragon-skill-growth/" | relative_url }})의 프로필 세이브 할당과 맞춰진 뒤, [BattleReady]({{ "/notes/dragon-combat-character/" | relative_url }}) 게이트를 지나야 이 경로가 열립니다.
 
 ## 입력에서 TryCast까지
 

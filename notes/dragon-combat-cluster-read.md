@@ -5,7 +5,8 @@ permalink: /notes/dragon-combat-cluster-read/
 date: 2026-09-02
 excerpt: "전투 코드를 처음 볼 때 어디부터 읽어야 하는지, 스킬·타격·버프·패시브가 서로 무엇을 넘기지 않는지를 두 줄기로 정리합니다."
 tags: [전투]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 mermaid: true
 ---
 
@@ -70,7 +71,7 @@ flowchart LR
 
 런타임 흐름만 따라가면 1~4까지로 충분합니다. Json·Scriptable 필드는 필요할 때만 fixed-data를 엽니다.
 
-## 출시에서 지킨 것 (요지)
+## 출시에서 남긴 것 (요지)
 
 얼리 액세스(2024.06)부터 정식(2025.06)까지 같은 클러스터 위에서 콘텐츠를 늘렸을 때, 문서·코드에 남긴 **소유 경계**입니다. 완벽한 설계가 아니라 “어디에 넣을지”를 고정한 기록에 가깝습니다.
 
