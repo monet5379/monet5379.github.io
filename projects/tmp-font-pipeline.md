@@ -7,6 +7,7 @@ order: 50
 project_kind: personal
 role: 설계·구현
 excerpt: "드래곤 이즈 데드 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 게임 밖으로 분리한 Unity Editor·Runtime 패키지입니다."
+mermaid: true
 ---
 
 
@@ -33,6 +34,35 @@ excerpt: "드래곤 이즈 데드 로컬라이즈에서 Static 문자셋 추출�
 ## 설계
 
 한 줄: `String*.json` → sanitize · extract → Static SDF Apply → 런타임 `FontRoleCatalog` + `FontWarmupService`.
+
+**Editor · Runtime**
+
+```mermaid
+flowchart TD
+  subgraph EDITOR["EDITOR — Extract · Apply"]
+    A["String*.json"] --> B["Sanitize"]
+    B --> C["Extract"]
+    C --> D["Ui 버킷"]
+    C --> E["Dialogue 버킷"]
+    D --> F["Static SDF Apply"]
+    E --> F
+  end
+
+  subgraph RUNTIME["RUNTIME"]
+    G["FontRoleCatalog"] --> H["FontWarmupService"]
+    H --> I["표시"]
+  end
+
+  F --> G
+```
+
+<div class="callout" markdown="1">
+
+- **Editor**: JSON → sanitize → extract(Ui·Dialogue) → Static Apply — charset SSOT
+- **Runtime**: 역할별 Font Asset 선택 → warmup(1프레임·supersede) → 표시
+- **≠**: warmup sample은 glyph 전량 보장·charset SSOT가 아님
+
+</div>
 
 | 축 | 선택 |
 |----|------|

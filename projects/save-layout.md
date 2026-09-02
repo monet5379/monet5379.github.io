@@ -59,17 +59,14 @@ flowchart TD
 
   M --> P
   P -.-> S
-
-  NOTE["허브 = Meta + Main<br/>Side만 ≠ 세이브 있음<br/>Backup/ ≠ Side"]
-  P ~~~ NOTE
-  S ~~~ NOTE
 ```
 
 <div class="callout" markdown="1">
 
 - **Main**: 슬롯당 영구 진행 — 쿨다운·pending 저장
-- **Side**: 짧은 진행·스냅샷 — `SaveSide` / `InvalidateSide` (Main과 분리)
+- **Side**: 짧은 진행·스냅샷 — `SaveSide` / `InvalidateSide` (Main과 분리). Side만 ≠ 세이브 있음
 - **Meta**: 선택 슬롯·시퀀스 — 세트와 함께 이동
+- **허브**: Meta + Main. `Backup/` ≠ Side
 
 </div>
 

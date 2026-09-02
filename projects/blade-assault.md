@@ -9,8 +9,6 @@ role: 전체 프로그래밍
 excerpt: "기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍을 담당해 Steam에 출시한 액션 게임입니다."
 ---
 
-{% include screenshot-carousel.html slug="blade-assault" youtube="uV-fWC5zbfw" steam="https://store.steampowered.com/app/1367300/Blade_Assault/" %}
-
 ## 개요
 
 기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍을 담당해 Steam에 출시한 액션 게임입니다.

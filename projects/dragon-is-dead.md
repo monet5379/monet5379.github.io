@@ -6,14 +6,12 @@ date: 2025-06-06
 order: 10
 project_kind: company
 role: 개발 리드
-excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 전투·세이브·데이터·성능까지 클라이언트를 출시 후까지 지킨 액션 게임입니다."
+excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 전투·세이브·데이터·성능까지 클라이언트를 출시 후까지 유지한 액션 게임입니다."
 ---
-
-{% include screenshot-carousel.html slug="dragon-is-dead" youtube="0f0ZXseDMUM" steam="https://store.steampowered.com/app/2803280/Dragon_Is_Dead/" %}
 
 ## 개요
 
-프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 전투·세이브·데이터·성능까지 클라이언트를 출시 후까지 지킨 액션 게임입니다.
+프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 전투·세이브·데이터·성능까지 클라이언트를 출시 후까지 유지한 액션 게임입니다.
 클라이언트 전반을 구현하고, 출시 후 유저 체감 축(끊김·세이브·성능·플랫폼)을 줄였습니다.
 
 - 기간: 2022.05 – 2026.06 (팀써니트)
