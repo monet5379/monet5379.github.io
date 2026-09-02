@@ -32,7 +32,7 @@ unity-studio-kit `WritingGuide`(해요체·Unity docs)는 이 사이트에 적�
 Gate — 상세·체크리스트: [`docs/content-review.md`](docs/content-review.md). 요약:
 
 - **`excerpt` = lead** · `title` 부제(`—`) 금지 · notes `title`에 시리즈 `{n}/{total}` 접두 금지
-- notes `tags` 1개 · `project` 0~1(`있으면` h1 아래 `프로젝트 : {한글 제목}` · underline) · 시리즈 킥커·`series_nav` ([`site-content-rules`](docs/site-content-rules.md))
+- notes `tags` 1개 · `project` 0~N YAML 목록(`있으면` h1 아래 `프로젝트 : {한글 제목}` · 복수 시 ` · ` · underline) · 시리즈 킥커·`series_nav` ([`site-content-rules`](docs/site-content-rules.md))
 - projects `project_kind` (`company` \| `personal`) · reviews `subtitle` 선택
 - 커밋 제목·본문 한글 · 사이트 콘텐츠와 docs/설정 커밋 분리 · 요청 없이 commit·push 금지
 

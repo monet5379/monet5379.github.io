@@ -35,11 +35,12 @@ permalink: /notes/슬러그/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일 — 증상과 해결이 한 눈에"
 tags: [최적화]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 ---
 ```
 
-`tags`는 분류 1개, `project`는 `projects/` 슬러그 0개 또는 1개. `project`가 있으면 제목 아래에 `프로젝트 : {한글 짧은 제목}` 링크가 자동으로 붙습니다 ([`site-content-rules.md`](../site-content-rules.md) 「주 프로젝트」).
+`tags`는 분류 1개, `project`는 `projects/` 슬러그 YAML 목록(0개 이상). `project`가 있으면 제목 아래에 `프로젝트 : {한글 짧은 제목}` 링크가 자동으로 붙습니다 ([`site-content-rules.md`](../site-content-rules.md) 「주 프로젝트」).
 
 ---
 
@@ -66,7 +67,7 @@ lead (excerpt와 동일)
 ## 해결
 
 (선택) 본론 초입 — 제목 + mermaid + 1–2문장
-  목표 경계·`≠` 구조. 증상 절에 두지 않음.
+  흐름·레인. 경계·`≠`는 아래 prose가 기본(도식 안 NOTE 강제 아님). 증상 절에 두지 않음.
   규칙: [`mermaid-diagram.md`](mermaid-diagram.md) · site-content-rules「notes 도식 둘 곳」.
   front matter `mermaid: true`.
 

@@ -2,14 +2,16 @@
 description: notes Mermaid 도식 — Cursor direct, mermaid-diagram.md 정본.
 globs:
   - "notes/**/*.md"
+  - "projects/**/*.md"
 alwaysApply: false
 ---
 
-# notes Mermaid
+# notes · projects Mermaid
 
-notes 본문 Mermaid 작성·수정 시 [`docs/templates/mermaid-diagram.md`](../../docs/templates/mermaid-diagram.md)와 [`docs/site-content-rules.md`](../../docs/site-content-rules.md) 「Mermaid」를 따른다.
+본문 Mermaid 작성·수정 시 [`docs/templates/mermaid-diagram.md`](../../docs/templates/mermaid-diagram.md)와 [`docs/site-content-rules.md`](../../docs/site-content-rules.md) 「Mermaid」를 따른다.
 
-- 정본: note 본문 ` ```mermaid ` + front matter `mermaid: true`
+- 정본: 본문 ` ```mermaid ` + front matter `mermaid: true`
 - sibling mermaid-kit·`.mmd` 단독 정본 사용하지 않음
 - `%%{init:…}%%` 없음 — 테마는 사이트 light/dark
+- 도식 안 `≠`/`NOTE` **강제 금지** — 아래 prose·callout에 경계가 있으면 넣지 않음; 오해 방지용일 때만 짧게 하나
 - 작성 후 `bundle exec jekyll serve`로 light/dark 확인

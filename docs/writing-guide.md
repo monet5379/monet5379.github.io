@@ -25,7 +25,7 @@ notes · projects · reviews **본문** 작성(Craft). **검토**는 [`content-r
 
 ### 외부 독자 (사이트 전역)
 
-Kit Architecture·Canvas·partial·SSOT처럼 **레포를 봐야만** 의미가 잡히는 쓰기는 공개 본문에 두지 않습니다. 설계 판단·경계·출시에서 지킨 것은 **코드 없이** 따라갈 수 있게 씁니다.
+Kit Architecture·Canvas·partial·SSOT처럼 **레포를 봐야만** 의미가 잡히는 쓰기는 공개 본문에 두지 않습니다. 설계 판단·경계·출시에서 남긴 것은 **코드 없이** 따라갈 수 있게 씁니다.
 
 | 경로 | lead·맥락 | 코드·내부 |
 |------|-----------|-----------|
@@ -49,7 +49,7 @@ Kit Architecture·Canvas·partial·SSOT처럼 **레포를 봐야만** 의미가 
 | 경로 | 한 페이지의 목적 | API·설치 정본 |
 |------|------------------|---------------|
 | **projects/** | 무엇을 만들었는지, 내 기여, 타 프로젝트와 차이. `company`=출시·역할, `personal`=케이스 스터디 | GitHub README (있을 때) |
-| **notes/** | 왜 그렇게 설계했는지, 경계·기각·출시에서 지킨 것 | 본문 + projects·README 링크 |
+| **notes/** | 왜 그렇게 설계했는지, 경계·기각·출시에서 남긴 것 | 본문 + projects·README 링크 |
 | **reviews/** | 플레이·설계 관점의 게임 감상. notes의 출시 회고와 겹치지 않게 | 본문 (출처·스크린샷) |
 
 한 주제를 projects와 notes에 나눌 때: **케이스 스터디(projects)** 와 **설계 회고(notes)** 로 역할을 겹치지 않게 둔다. 게임 감상·비평은 **reviews**에 둔다.
@@ -60,7 +60,7 @@ Kit Architecture·Canvas·partial·SSOT처럼 **레포를 봐야만** 의미가 
 
 - **가치를 먼저** — `excerpt`와 본문 첫 문단(lead)을 동일하게. 목록·검색에서 “이 글이 뭘 주는지”가 바로 보이게.
 - **개요를 빼지 않기** — lead 다음에 `맥락` 또는 `개요`로 배경·전제를 짧게.
-- **한 페이지 한 주제** — notes는 `tags` 1개, `project`는 0개 또는 1개([`site-content-rules.md`](site-content-rules.md)). 시리즈는 Why(경계) / How(구조)처럼 **목적이 다른** 세트로만 묶는다.
+- **한 페이지 한 주제** — notes는 `tags` 1개, `project`는 0개 이상 YAML 목록([`site-content-rules.md`](site-content-rules.md)). 시리즈는 Why(경계) / How(구조)처럼 **목적이 다른** 세트로만 묶는다.
 - **예측 가능한 목차** — **정보 역할**(lead·맥락·본론·기각·정리)은 유지하고, `##` **제목 문자열**은 주제에 맞게 ([notes 목차 — 역할과 섹션명](#notes-목차--역할과-섹션명)).
 
 제목: [효과적인 제목](https://technical-writing.dev/information-architecture/effective-titles.html) — **무엇을 / 왜**가 드러나게. `title`에 부제(`—`)와 시리즈 접두(`세이브 레이아웃 1/3`)는 쓰지 않는다. 세트 표시는 [`site-content-rules.md`](site-content-rules.md) 「시리즈」.
@@ -145,7 +145,7 @@ notes 규칙은 **배선 → 역할 → 유형 힌트** 순입니다. 아래로 
 | 구분 | 유지 (배선·독자) | 유연 (본문 목차) |
 |------|------------------|------------------|
 | **필수** | `excerpt` = lead · 외부 독자 · `tags` 1개 · 공개 범위 | 본론 `##` 제목·순서 · `실무`/`한계`/`트레이드오프` 등 추가 절 |
-| **권장** | lead 다음 맥락 · 설계 회고의 기각·범위 · 문제 해결의 확인 | `기각·보류` ↔ `기각한 대안` ↔ `출시에서 지킨 것` 등 동의어 h2 |
+| **권장** | lead 다음 맥락 · 설계 회고의 기각·범위 · 문제 해결의 확인 | `기각·보류` ↔ `기각한 대안` ↔ `출시에서 남긴 것` 등 동의어 h2 |
 | **시리즈만** | `series_nav` · 형제 링크 중복 금지 ([`site-content-rules.md`](site-content-rules.md)) | 지도 1편 vs How 편의 본론 제목 |
 
 ### 공통 역할 슬롯
@@ -155,7 +155,7 @@ notes 규칙은 **배선 → 역할 → 유형 힌트** 순입니다. 아래로 
 | **가치·요약** | ● | lead (= `excerpt`) |
 | **전제·배경** | ○ | `맥락`, `이 글에서 쓰는 말` |
 | **본론** | ● | 유형별 ([아래 최소 골격](#유형별-최소-골격)) |
-| **판단·범위 제한** | ○ (설계·출시 회고) | `기각·보류`, `기각한 대안`, `출시에서 지킨 것` |
+| **판단·범위 제한** | ○ (설계·출시 회고) | `기각·보류`, `기각한 대안`, `출시에서 남긴 것` |
 | **다루지 않음** | ○ | `## 정리` 마지막 prose + 링크 (별도 h2·표 없음) |
 | **검증** | ○ (문제 해결) | `확인 포인트` |
 | **마무리** | ○ | `정리` |
@@ -175,7 +175,7 @@ lead → (맥락) → 증상·원인 → 해결·동작 → (실무·한계·트
 **깊은 이해** — How / Why / 지도·복습 [힌트](#깊은-이해--작성-힌트-하위-구분) 중 하나를 주로 따릅니다. 공통 골격:
 
 ```text
-lead → (맥락·용어) → 본론 (h2 주제별) → (기각·출시에서 지킨 것) → (정리 + 범위 밖 prose)
+lead → (맥락·용어) → 본론 (h2 주제별) → (기각·출시에서 남긴 것) → (정리 + 범위 밖 prose)
 ```
 
 | 힌트 | 정본 예 |
@@ -199,7 +199,7 @@ lead → (맥락·용어) → 본론 (h2 주제별) → (기각·출시에서 �
 
 시리즈 1편은 **지도** 힌트. Why / How는 `series` 슬러그를 다르게 둡니다 ([`site-content-rules.md`](site-content-rules.md)).
 
-`project`가 있으면 제목 아래에 `프로젝트 : {한글 짧은 제목}` 링크가 붙습니다. 표시·underline은 [`site-content-rules.md`](site-content-rules.md) 「주 프로젝트」.  
+`project`가 있으면 제목 아래에 `프로젝트 : {한글 짧은 제목}` 링크가 붙습니다. 여러 개면 ` · `로 이어집니다. 표시·underline은 [`site-content-rules.md`](site-content-rules.md) 「주 프로젝트」.  
 `series`가 있으면 제목 아래에 `시리즈 : {series_title} {n}/{total}`이 붙습니다. 표시는 [`site-content-rules.md`](site-content-rules.md) 「시리즈」.
 
 `series_nav: true`이면 `## 정리` 다음 **권장 읽기·수동 시리즈·구조 줄 없이** — 시리즈 목록(`note-series-nav`) · 발행 순 이전/다음(`notes-adjacent`)이 layout에서 이어집니다. **범위 밖 prose**에 같은 `series` 형제 링크는 두지 않습니다 ([§표와 prose](#notes--표와-prose) · [`site-content-rules.md`](site-content-rules.md) 「범위 밖 · 시리즈」).

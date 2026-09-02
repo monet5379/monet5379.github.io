@@ -24,7 +24,7 @@
 | lead = `excerpt` | ● | How=동작·범위 · Why=경계·기각 · 지도=읽기 순서 |
 | 맥락·용어 | ○ | `이 글에서 쓰는 말` 표 |
 | 본론 | ● | **h2 주제별** — `## 핵심` / `## 문제` 필수 아님 |
-| 기각·출시에서 지킨 것 | ○ | Why·How 모두 |
+| 기각·출시에서 남긴 것 | ○ | Why·How 모두 |
 | 이 글에서 다루지 않음 | ○ | `## 정리` 마지막 prose · `series_nav` 시 형제 링크 금지 |
 | 정리 | ○ | |
 | 확인 포인트 | — | 문제 해결 힌트에만 ([`note-problem.md`](note-problem.md)) |
@@ -66,7 +66,8 @@ permalink: /notes/슬러그/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일"
 tags: [전투]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 ---
 ```
 
@@ -80,7 +81,8 @@ permalink: /notes/dragon-relic-acquire/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일"
 tags: [성장]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: relic-how
 series_title: 유물
 series_order: 1
@@ -103,7 +105,7 @@ lead (동작·범위)
 ## 이 글에서 쓰는 말
 ## (예) 후보 풀 → 필드 드랍
 ## (예) 획득·교체·버리기
-## 출시에서 지킨 것
+## 출시에서 남긴 것
 ## 정리
 (범위 밖·README·Architecture — prose + 링크)
 ```

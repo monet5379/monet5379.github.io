@@ -52,7 +52,8 @@ permalink: /notes/슬러그/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일"
 tags: [최적화]
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 ---
 ```
 
@@ -60,7 +61,8 @@ project: dragon-is-dead
 
 ```yaml
 title: 캐릭터는 필드에 어떻게 서는가
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: combat-presence
 series_title: 타격·데미지
 series_order: 1
@@ -69,11 +71,19 @@ series_total: 4
 
 ```yaml
 title: 스킬은 어디서 전투로 넘기는가
-project: dragon-is-dead
+project:
+  - dragon-is-dead
 series: combat-reaction
 series_title: 트리거·연쇄
 series_order: 1
 series_total: 4
+```
+
+```yaml
+# 출시 적용 + OSS 케이스 스터디처럼 증명이 둘일 때
+project:
+  - dragon-is-dead
+  - tmp-font-pipeline
 ```
 
 - `notes/<슬러그>.md`를 추가하면 `notes/index.md` 목록에 자동으로 포함됩니다 (`date` 최신순. 같은 날짜는 `series`·`series_order` tie-break).
@@ -94,23 +104,23 @@ series_total: 4
 | **데이터** | 고정 정의를 어디서 고치고 빌드에 어떻게 굳히는가 | Excel→JSON, Facade |
 | **폰트** | TMP·로컬라이즈 글리프·워밍업 | Static atlas, warmup |
 | **최적화** | 로드·렌더·GPU 비용 | Stage preload, 비주얼 |
-| **출시** | 팀·스코프로 어디까지 지켰는가 | 소유 경계 회고 |
+| **출시** | 팀·스코프로 어디까지 남겼는가 | 소유 경계 회고 |
 | **내러티브** | 세계관·대사·설정 소유와 직군 경계 | 프로그래머가 내러티브를 작성할 수 있었던 회고 |
 
 - 애매하면 **시리즈 소속**을 따릅니다. 시리즈를 분류 축으로 쪼개지 않습니다.
-- 필터 목록은 `notes/index.md`의 `filter_categories`에서 관리합니다. 목록 UI는 **왼쪽 사이드바**(분류 · 프로젝트). 분류는 허용 목록 순서이되 **그 태그를 단 노트가 있을 때만** 버튼을 냅니다. 프로젝트 필터는 그룹 제목 없이, **노트에 `project:`가 있는** `projects/` 페이지만 회사 `order` → 개인 `order`로 나열합니다. 분류와 프로젝트는 **AND**입니다. 페이지당 글 수는 `notes_page_size`(기본 5)이며 `<< < 1 2 … > >>` 페이지네이션을 씁니다.
+- 필터 목록은 `notes/index.md`의 `filter_categories`에서 관리합니다. 목록 UI는 **왼쪽 사이드바**(분류 · 프로젝트). 분류는 허용 목록 순서이되 **그 태그를 단 노트가 있을 때만** 버튼을 냅니다. 프로젝트 필터는 그룹 제목 없이, **노트 `project` 목록에 등장한** `projects/` 페이지를 회사 `order` → 개인 `order`로 나열하고, `project`가 비어 있는 노트가 있으면 **프로젝트 없음**을 둡니다. 분류와 프로젝트는 **AND**입니다. 한 노트가 여러 `project`를 가지면 그중 **하나라도** 고른 필터와 같으면 남습니다. 페이지당 글 수는 `notes_page_size`(기본 5)이며 `<< < 1 2 … > >>` 페이지네이션을 씁니다.
 - 노트 본문 하단 **이전 글 / 다음 글**은 **공개 노트 전체**에서 `/notes/` 기본 목록과 같은 정렬(date 최신순 · `series`·`series_order` tie-break)입니다. 이전 = 목록에서 위, 다음 = 아래. 라벨 분류는 **상대 글**의 `tags`. 시리즈 형제는 `series_nav`(`note-series-nav`)와 별개입니다. `/notes/` 분류·프로젝트 필터와 무관합니다.
 
 ### 주 프로젝트 (`project`)
 
-글당 **0개 또는 1개**. 값은 `projects/<슬러그>/` permalink와 같은 슬러그입니다. 회사/개인 구분은 notes가 아니라 그 페이지의 `project_kind`입니다.
+글당 **0개 이상**. YAML **목록**으로 `projects/<슬러그>/` permalink와 같은 슬러그를 적습니다. 회사/개인 구분은 notes가 아니라 그 페이지의 `project_kind`입니다.
 
-고르는 질문: **이 글이 증명하는 페이지가 어디인가.** 본문에서 다른 타이틀·OSS를 링크하는 것은 그대로입니다.
+고르는 질문: **이 글이 증명하는 페이지가 어디인가.** 출시 타이틀과 OSS 케이스 스터디처럼 증명이 둘이면 **둘 다** 넣습니다. 순서는 표시 순(앞이 먼저). 본문에서 다른 타이틀·OSS를 링크하는 것은 그대로입니다.
 
-- **있으면:** 그 프로젝트 페이지 **관련 노트**와 `/notes/` 프로젝트 필터에 포함합니다. 필터에서 해당 버튼을 고르면 이 글이 남습니다. 노트 **h1 아래** 표시는 아래 「제목 아래 프로젝트 링크」.
-- **없으면:** 분류만 있는 글입니다. 여러 타이틀을 동등하게 다루는 회고 등. 프로젝트 필터·프로젝트 페이지 자동 목록에는 넣지 않습니다. 제목 아래 프로젝트 줄도 두지 않습니다. 타이틀 페이지에서는 본문 링크로 안내합니다.
+- **있으면:** 목록에 있는 **각** 프로젝트 페이지 **관련 노트**와 `/notes/` 프로젝트 필터에 포함합니다. 필터에서 해당 버튼을 고르면 이 글이 남습니다. 노트 **h1 아래** 표시는 아래 「제목 아래 프로젝트 링크」.
+- **없으면:** 분류만 있는 글입니다. 여러 타이틀을 동등하게 다루는 회고 등. 프로젝트 필터의 **프로젝트 없음**·프로젝트 페이지 자동 목록에는 넣지 않습니다. 제목 아래 프로젝트 줄도 두지 않습니다. 타이틀 페이지에서는 본문 링크로 안내합니다.
 
-시리즈는 가능하면 같은 `project`를 씁니다. **세이브 레이아웃**은 예외입니다. 1편은 출시 세이브(`dragon-is-dead`), 2·3편은 레이아웃 계약(`save-layout`).
+시리즈는 가능하면 같은 `project` 목록을 씁니다. **세이브 레이아웃**은 예외입니다. 1편은 출시 세이브(`dragon-is-dead`), 2·3편은 레이아웃 계약(`save-layout`). **TMP 폰트**는 출시 적용(`dragon-is-dead`)과 파이프라인 OSS(`tmp-font-pipeline`)를 함께 둡니다.
 
 | 슬러그 | `project_kind` |
 |--------|----------------|
@@ -125,14 +135,13 @@ series_total: 4
 
 #### 제목 아래 프로젝트 링크
 
-`project`가 있으면 노트 h1 아래에 `프로젝트 : 드래곤 이즈 데드`처럼 표시합니다. `프로젝트 :` 는 라벨, 제목만 링크입니다.
+`project`가 있으면 노트 h1 아래에 `프로젝트 : 드래곤 이즈 데드`처럼 표시합니다. 여러 개면 `프로젝트 : A · B` (목록 순서, ` · ` 구분). `프로젝트 :` 는 라벨, 제목만 링크입니다.
 
 - 라벨 `프로젝트 :` 는 텍스트, 제목만 `projects/<슬러그>/` 링크
 - 제목은 `projects/<슬러그>.md`의 `title`(한글). `_includes/list-subtitle.html`로 라틴 병기 `(English)`가 남아 있으면 제거
 - 링크는 본문 인라인과 같이 **항상 underline** (`.post-project a`)
 - `/notes/` 목록 킥커는 제목만 링크하고 `프로젝트 :` 접두는 두지 않음
-- 구현: `_layouts/page.html` · `_includes/note-project-link.html` · `_includes/section-index-list.html`(프로젝트 목록 h3)
-
+- 구현: `_layouts/page.html` · `_includes/note-project-link.html` · `_includes/note-project-links.html` · `_includes/section-index-list.html`
 ### 시리즈
 
 - `series`(슬러그)·`series_title`·`series_order`·`series_total`을 넣습니다.
@@ -166,13 +175,13 @@ series_total: 4
 - **정본:** `notes/<슬러그>.md` 본문 ` ```mermaid ` 블록. Cursor·에이전트가 여기에 직접 작성한다.
 - **렌더:** `mermaid: true`인 note만 `assets/js/mermaid-notes.js` (Mermaid 11, `securityLevel: strict`).
 - **init:** `%%{init:…}%%`는 사이트에서 strip — 테마·스타일은 사이트 light/dark에 맡긴다. init에 의존하지 않는다.
-- **캡션:** 블록 **위** 짧은 제목(`**한 이야기**`), **아래** 1–2문장 또는 callout. lead·인접 문단과 제목 중복 금지.
+- **캡션:** 블록 **위** 짧은 제목(`**한 이야기**`), **아래** 1–2문장 또는 callout. lead·인접 문단과 제목 중복 금지. 경계·`≠`는 **아래 prose가 기본** — 도식 안 `NOTE`는 강제하지 않음 ([`mermaid-diagram.md`](templates/mermaid-diagram.md)).
 - **위치:** lead 직후 고정 아님 — 설명하는 절 옆. 작성·Cursor 요청: [`templates/mermaid-diagram.md`](templates/mermaid-diagram.md).
 - **긴 코드 접기:** 노트 개별 글에서 8줄 이상 fenced 블록은 `assets/js/code-collapse.js`가 기본 접힘. Mermaid·짧은 스니펫은 제외.
 
 | notes 도식 둘 곳 | 맞는 경우 |
 |------------------|-----------|
-| 본론 절 초입 (예: `## 해결`) | 문제 해결 노트에서 목표 경계·`≠` 구조를 그릴 때 (증상 절에 두지 않음) |
+| 본론 절 초입 (예: `## 해결`) | 문제 해결 노트에서 목표 흐름·레인·경계를 그릴 때 (증상 절에 두지 않음) |
 | `## 맥락` / 축·용어 표 직후 | 용어를 소개한 뒤 한 장으로 고정할 때 |
 | lead 직후 | 시리즈 1편처럼 **지도가 입구**이고 라벨이 lead만으로 읽힐 때 |
 | 피함 | `## 문제`에 해결 구조도를 두기 (현재 증상으로 오해), `## 정리`·권장 읽기·시리즈 내비 옆 |
