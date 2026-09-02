@@ -5,7 +5,7 @@ title: 홈
 
 ## 나에 대하여
 
-안녕하세요. 저는 **유승현**입니다. Unity 클라이언트 / 게임플레이 엔지니어로, Steam PC 액션 두 편을 프로젝트 초기부터 얼리 액세스를 거쳐 정식 출시까지 맡았습니다. 클라이언트 전반을 구현해 왔고, 출시 뒤에는 유저가 플레이를 이어가지 못하게 막는 축을 줄이며 게임이 계속 돌아갈 수 있는 상태를 유지하는 일을 중심으로 일해 왔습니다.
+안녕하세요. 저는 **유승현**입니다. 스팀 게임 2개 출시 경험 유니티 프로그래머입니다. Unity 클라이언트 / 게임플레이 프로그래머로, Steam PC 액션 2편을 프로젝트 초기부터 얼리 액세스를 거쳐 정식 출시까지 맡았습니다. 클라이언트 전반을 구현해 왔고, 출시 뒤에는 유저가 플레이를 이어가지 못하게 막는 버그와 에러를 줄이며 게임이 계속 돌아갈 수 있는 상태를 유지하는 일을 중심으로 일해 왔습니다.
 
 - **콘텐츠** — 전투·AI·스테이지·성장·UI 등 게임플레이
 - **도구·생산성** — Excel→Json 데이터 파이프라인, 세이브 진단·복구, 런타임/에디터 진단 습관
@@ -39,7 +39,7 @@ title: 홈
 - 역할: 프로그래머 1~2명 규모 팀에서 개발 리드
 - 담당: 성장·입력·전투, 적 AI·스테이지, 카메라·UI, 세이브·데이터, 로컬라이즈, Steamworks, 성능·포팅 대응 등 클라이언트 전반
 - 성과: 2024.06.07 얼리 액세스 발매, 2025.06.06 정식 출시 · Steam · Deck 대응
-- 스택: Unity, C#, Cinemachine, Timeline, Steamworks, UGS Analytics
+- 스택: Unity, C#, Steamworks, UGS Analytics
 - 링크: [Steam](https://store.steampowered.com/app/2803280/Dragon_Is_Dead/)↗
     [YouTube](https://youtu.be/0f0ZXseDMUM)↗
 
@@ -53,11 +53,10 @@ title: 홈
 {% include career-media.html slug="blade-assault" youtube="uV-fWC5zbfw" title="블레이드 어썰트" %}
 
 - 착수: 2019.03 · 휴지·타사 재직 병행 후, 팀써니트 설립(2020.02)부터 본격 개발·출시
-- 역할: 기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍 담당
-- 담당: 런 빌드·액션 척추·스테이지 루프·메타, UI·세이브·빌드·출시 등 클라이언트 전 영역
-- 성과: 경기게임오디션 3위, BIC 참가, 2021.06.06 얼리 액세스 발매, 2022.01.18 정식 출시
-- 퍼블리싱: NEOWIZ와 계약 후 Steam 출시
-- 스택: Unity, C#
+- 역할: 기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍
+- 담당: 런 빌드·액션 파이프라인·스테이지 루프·메타, UI·세이브·빌드·출시 등 클라이언트 전 영역
+- 성과: 서프블레이드로 경기게임오디션 3위(2019.09)·BIC 참가 후 블레이드 어썰트로 개명 · 2021.06.06 얼리 액세스 · 2022.01.18 정식 출시 · NEOWIZ 퍼블리싱
+- 스택: Unity, C#, Steamworks
 - 링크: [Steam](https://store.steampowered.com/app/1367300/Blade_Assault/)↗
     [YouTube](https://youtu.be/uV-fWC5zbfw)↗
 
@@ -65,59 +64,46 @@ title: 홈
 
 <div class="career-entry" markdown="1">
 
-### 아스트로 펭귄
-누라임게임즈 · 프로그래밍 / 사원 · 2019.08 – 2020.02 (0년 6개월) · 모바일 · 유니티 3D 런게임
-
-{% include career-media.html youtube="fy1c9veBKYk" title="아스트로 펭귄" %}
-
-- 역할: Android / iOS 개발, 인앱 결제·광고 연동
-- 링크: [YouTube Shorts](https://youtube.com/shorts/fy1c9veBKYk)↗
-- 스택: Unity, C#
-
-</div>
-
-<div class="career-entry" markdown="1">
-
 ### 프로젝트 X (가제)
-PMStudio · 프로그래밍 / 사원 · 2017.10 – 2019.03 (1년 4개월) · 스마일게이트 크로스파이어 IP, 브로포스 방식 2D 플랫폼 실시간 액션
+PMStudio · 프로그래밍 / 사원 · 2017.10 – 2019.03 (1년 4개월) · 미출시 · 크로스파이어 IP
 
 {% include career-media.html youtube="niIEEj2T-hg" title="프로젝트 X" %}
 
-- 역할: UI, 캐릭터·무기 시스템, 맵 오브젝트, 적 AI(등장·이동·피격·사망·근거리/원거리), 데이터 I/O(xlsx, JSON), 인게임 데디케이티드 서버·아웃게임 유저 데이터 서버 대응
-- 플랫폼: PC 개발 중 모바일로 변경 · 런칭하지 않음
-- 팀: 프로그래머 2~3명
-- 링크: [YouTube](https://youtu.be/niIEEj2T-hg)↗
+- 역할: 기획 1 · 아트 5 · 프로그래머 2 · 사운드 2 규모 팀에서 개발
+- 담당: UI, 캐릭터·무기 시스템, 맵 오브젝트, 적 AI(등장·이동·피격·사망·근거리/원거리), 데이터 I/O(xlsx, JSON), 인게임 로컬 데디케이티드 서버·아웃게임 유저 데이터 서버 대응
+- 성과: 런칭하지 않음 (개발 중 PC→모바일 변경)
 - 스택: Unity, C#
+- 링크: [YouTube](https://youtu.be/niIEEj2T-hg)↗
 
 </div>
 
 <div class="career-entry" markdown="1">
 
 ### 디그랜드
-zoniworks · 클라이언트 프로그래머 · 2017.05 – 2017.11 · 모바일 · 2D 클리커 성장 게임 & 비트코인 연동
+zoniworks · 클라이언트 프로그래머 · 2017.05 – 2017.11 (6개월) · 모바일 · 2D 클리커
 
 {% include career-media.html youtube="9I43e2RJJQ8" start="267" title="디그랜드" %}
 
-- 역할: 아웃게임·인게임 UI, 튜토리얼
-- 팀: 프로그래머 2명
-- 성과: 2017.10 한국 런칭
-- 링크: [YouTube](https://www.youtube.com/watch?v=9I43e2RJJQ8&t=267s)↗
+- 역할: 아트 2 · 프로그래머 2 규모 팀에서 개발
+- 담당: 아웃게임·인게임 UI, 튜토리얼
+- 성과: 2017.10 한국 런칭 · 미탭스플러스 협업, 비트코인 보상
 - 스택: Unity, C#
+- 링크: [YouTube](https://www.youtube.com/watch?v=9I43e2RJJQ8&t=267s)↗
 
 </div>
 
 <div class="career-entry" markdown="1">
 
 ### 라인퍼즐프랜즈
-zoniworks · UI 프로그래머 · 2016.05 – 2017.05 · 모바일 · 2D 퍼즐 RPG
+zoniworks · UI 프로그래머 · 2016.05 – 2017.05 (1년) · 모바일 · 2D 퍼즐 RPG
 
 {% include career-media.html youtube="FsdUjmx_CLs" title="라인퍼즐프랜즈" %}
 
-- 역할: 아웃게임·인게임 UI
-- 팀: 클라이언트 6명, 서버 2명
+- 역할: 아트 5 · 클라이언트 6 · 서버 2 규모 팀에서 개발
+- 담당: 아웃게임·인게임 UI
 - 성과: 일본·글로벌 버전 런칭
-- 링크: [YouTube](https://youtu.be/FsdUjmx_CLs)↗
 - 스택: Lua, Corona
+- 링크: [YouTube](https://youtu.be/FsdUjmx_CLs)↗
 
 </div>
 
