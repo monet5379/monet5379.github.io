@@ -57,6 +57,7 @@
   var pageSize = parseInt(list.getAttribute("data-page-size") || "0", 10) || 0;
   var currentPage = 1;
   var projectRoot = document.querySelector("[data-project-filter]");
+  var projectNone = "__none__";
   var activeProject = "";
   var tagRoots = Array.prototype.slice.call(
     document.querySelectorAll("[data-tag-filter]")
@@ -112,8 +113,18 @@
     return 0;
   }
 
-  function itemProject(item) {
-    return item.getAttribute("data-project") || "";
+  function itemProjects(item) {
+    var raw = item.getAttribute("data-projects");
+    if (!raw) {
+      var one = item.getAttribute("data-project") || "";
+      return one ? [one] : [];
+    }
+    try {
+      var parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
   }
 
   function selectedTags() {
@@ -153,7 +164,12 @@
     return items.filter(function (item) {
       var tags = itemTags(item);
       var show = required.length === 0 || hasAllTags(tags, required);
-      if (activeProject && itemProject(item) !== activeProject) show = false;
+      var projects = itemProjects(item);
+      if (activeProject === projectNone) {
+        if (projects.length > 0) show = false;
+      } else if (activeProject && projects.indexOf(activeProject) === -1) {
+        show = false;
+      }
       if (!showPrivate && item.hasAttribute("data-private")) show = false;
       return show;
     });

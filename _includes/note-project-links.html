@@ -1,0 +1,8 @@
+{%- comment -%}
+  slugs: projects/ 슬러그 배열 (1개 이상).
+  구분자 · 로 note-project-link를 이어 붙인다.
+{%- endcomment -%}
+{%- for slug in include.slugs -%}
+{%- unless forloop.first %} · {% endunless -%}
+{%- include note-project-link.html slug=slug -%}
+{%- endfor -%}

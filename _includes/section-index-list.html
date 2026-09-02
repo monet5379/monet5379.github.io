@@ -75,9 +75,9 @@
     </nav>
     {% assign note_project_csv = "" %}
     {% for item in section_articles %}
-      {% if item.project %}
-        {% assign note_project_csv = note_project_csv | append: item.project | append: "," %}
-      {% endif %}
+      {% for slug in item.project %}
+        {% assign note_project_csv = note_project_csv | append: slug | append: "," %}
+      {% endfor %}
     {% endfor %}
     {% assign note_project_slugs = note_project_csv | split: "," | uniq %}
     {% assign all_project_pages = site.pages | where_exp: "p", "p.path contains 'projects/'" | where_exp: "p", "p.name != 'index.md'" %}
@@ -99,10 +99,19 @@
         {% assign notes_filter_projects = notes_filter_projects | plus: 1 %}
       {% endif %}
     {% endfor %}
-    {% if notes_filter_projects > 0 %}
+    {% assign notes_without_project = 0 %}
+    {% for item in section_articles %}
+      {% if item.project == nil or item.project.size == 0 %}
+        {% assign notes_without_project = notes_without_project | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    {% if notes_filter_projects > 0 or notes_without_project > 0 %}
     <nav class="tag-filter tag-filter--stack" data-project-filter aria-label="프로젝트 필터">
       <span class="tag-filter__label">프로젝트</span>
       <button type="button" class="tag-filter__btn is-active" data-project="" aria-pressed="true">전체</button>
+      {% if notes_without_project > 0 %}
+      <button type="button" class="tag-filter__btn" data-project="__none__" aria-pressed="false">프로젝트 없음</button>
+      {% endif %}
       {% for proj in company_filter_projects %}
         {% assign proj_slug = proj.path | split: "/" | last | remove: ".md" %}
         {% if note_project_slugs contains proj_slug %}
@@ -162,7 +171,7 @@
       {% endif %}
     {% endif %}
   {% endif %}
-  <li{% if thumb %} class="post-list__item--has-thumb"{% endif %}{% if item_vis == "private" %} data-private{% endif %}{% if item.date %} data-date="{{ item.date | date: '%Y-%m-%d' }}"{% endif %}{% if item.series %} data-series="{{ item.series | escape }}"{% endif %}{% if item.series_order %} data-series-order="{{ item.series_order }}"{% endif %}{% if item.tags %} data-tags='{{ item.tags | jsonify | escape }}'{% endif %}{% if item.project %} data-project="{{ item.project | escape }}"{% endif %}>
+  <li{% if thumb %} class="post-list__item--has-thumb"{% endif %}{% if item_vis == "private" %} data-private{% endif %}{% if item.date %} data-date="{{ item.date | date: '%Y-%m-%d' }}"{% endif %}{% if item.series %} data-series="{{ item.series | escape }}"{% endif %}{% if item.series_order %} data-series-order="{{ item.series_order }}"{% endif %}{% if item.tags %} data-tags='{{ item.tags | jsonify | escape }}'{% endif %}{% if item.project and item.project.size > 0 %} data-projects='{{ item.project | jsonify | escape }}'{% endif %}>
     {% if thumb %}
     <a class="post-list__thumb" href="{{ item.url | relative_url }}" tabindex="-1" aria-hidden="true">
       <img
@@ -175,7 +184,7 @@
     </a>
     {% endif %}
     <div class="post-list__body">
-      {% if item.date or item.role or item.tags.size > 0 or item.series_title or item.project %}
+      {% if item.date or item.role or item.tags.size > 0 or item.series_title or item.project.size > 0 %}
       <div class="post-list__kicker">
         {% if item.tags and item.tags.size > 0 %}
         <ul class="post-list__tags" aria-label="분류">
@@ -187,8 +196,8 @@
         {% if item.series_title and item.series_order and item.series_total %}
         <span class="post-meta post-list__series">{% include note-series-kicker.html series_title=item.series_title series_order=item.series_order series_total=item.series_total %}</span>
         {% endif %}
-        {% if item.project %}
-        <span class="post-meta post-list__project">{% include note-project-link.html slug=item.project %}</span>
+        {% if item.project and item.project.size > 0 %}
+        <span class="post-meta post-list__project">{% include note-project-links.html slugs=item.project %}</span>
         {% endif %}
         {% if item.date %}
         <span class="post-meta">

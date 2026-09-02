@@ -1,10 +1,10 @@
 {% comment %}
-  프로젝트 페이지: 같은 project 슬러그인 노트 목록.
+  프로젝트 페이지: project 목록에 이 슬러그가 포함된 노트.
   공개 판정은 notes 목록과 같음 (tags × notes_production_visible_tags).
 {% endcomment %}
 {% if page.path contains "projects/" and page.name != "index.md" %}
 {% assign rel_slug = page.path | split: "/" | last | remove: ".md" %}
-{% assign related_notes = site.pages | where_exp: "p", "p.path contains 'notes/'" | where_exp: "p", "p.name != 'index.md'" | where_exp: "p", "p.project == rel_slug" %}
+{% assign related_notes = site.pages | where_exp: "p", "p.path contains 'notes/'" | where_exp: "p", "p.name != 'index.md'" | where_exp: "p", "p.project contains rel_slug" %}
 {% if related_notes.size > 0 %}
 {% assign related_notes = related_notes | sort: "date" | reverse %}
 <section class="related-notes" aria-labelledby="related-notes-heading">
