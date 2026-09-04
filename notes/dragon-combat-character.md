@@ -7,6 +7,7 @@ excerpt: "스테이지에 전투 주체가 서는 순서, 전투 준비 전후�
 tags: [전투]
 project:
   - dragon-is-dead
+  - blade-assault
 series: combat-presence
 series_title: 타격·데미지
 series_order: 1
@@ -28,7 +29,7 @@ mermaid: true
 - **죽은 뒤** 버프·능력치·패시브가 남아 다음 전투에 섞임
 - **세이브 캐릭터**와 **지금 필드의 몬스터**를 같은 대상으로 QA함
 
-전투 숫자·히트마크·버프를 설명할 때 Owner가 없으면 “누구의 능력치인가”“BattleReady 전에 스킬을 써도 되나”가 공중에 뜹니다. 드래곤 이즈 데드에서는 **캐릭터 베이스**(`TSCharacter`)가 런타임 엔티티이고, **캐릭터 매니저**(`CharacterManager`)가 플레이어·몬스터·동맹을 등록합니다.
+전투 숫자·히트마크·버프를 설명할 때 Owner가 없으면 “누구의 능력치인가”“BattleReady 전에 스킬을 써도 되나”가 공중에 뜹니다. 캐릭터가 필드 호스트가 되고 하위 시스템을 생명주기에 묶는 축은 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에서도 같았습니다. 드래곤 이즈 데드에서는 **캐릭터 베이스**(`TSCharacter`)가 런타임 엔티티이고, **캐릭터 매니저**(`CharacterManager`)가 플레이어·몬스터·동맹을 등록합니다.
 
 | 구분 | Profile / Data | Runtime (필드) |
 |------|----------------|----------------|

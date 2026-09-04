@@ -7,6 +7,7 @@ excerpt: "액션바에 할당된 슬롯 입력이 권한·쿨·Rest를 거쳐 Tr
 tags: [스킬]
 project:
   - dragon-is-dead
+  - blade-assault
 series: skill-how
 series_title: 스킬
 series_order: 2
@@ -28,7 +29,7 @@ mermaid: true
 - **나갔는데 숫자가 없음** — 아직 애니 이벤트 전 · Apply 이전
 - **쿨 UI와 체감이 다름** — Cast Rest vs Ability Rest · 입력 버퍼
 
-드래곤 이즈 데드에서 시전 층은 **언제 쓰는지**와 **어떤 클립을 재생할지**만 소유합니다.
+시전 가능 여부(게이트)와 피해 식을 가른 점은 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에서도 같았습니다. 드래곤 이즈 데드에서 시전 층은 **언제 쓰는지**와 **어떤 클립을 재생할지**만 소유합니다.
 
 **플레이어 체감 타임라인:** 입력 → (권한·버퍼) → TryCast·쿨 → 동작 재생 → **애니 이벤트(타격 프레임)** → 숫자·HP
 

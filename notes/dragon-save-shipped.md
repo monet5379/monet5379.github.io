@@ -7,6 +7,7 @@ excerpt: "크래시·패치·Steam Cloud 환경에서 플레이어 진행 유실
 tags: [세이브]
 project:
   - dragon-is-dead
+  - blade-assault
 series: save-layout-why
 series_title: 세이브 레이아웃
 series_order: 1
@@ -33,7 +34,7 @@ mermaid: true
 
 출시 과정에서 세이브는 위 압력을 한곳에서 맞춰야 했습니다. 잦은 저장은 쿨다운·보류 큐로, 손상은 타임스탬프 백업과 복구 체인으로, EA 스키마 변경은 JSON 버전·진행 데이터 이중 마이그레이션으로, Steam Cloud는 PC 로컬 폴더 정본 + Auto-Cloud로 대응했습니다.
 
-영구 진행·짧은 진행·선택 슬롯·실패 백업 역할은 **디스크 레인 계약으로 밖에 드러내지 않고** 게임 세이브 한 덩어리에 있습니다. 아래는 그 출시본 지도입니다. 레인만 분리한 설계는 [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }}) 시리즈 [2·3편]({{ "/notes/save-layout-boundaries/" | relative_url }}).
+영구 진행·짧은 진행·선택 슬롯·실패 백업 역할은 **디스크 레인 계약으로 밖에 드러내지 않고** 게임 세이브 한 덩어리에 있습니다. 같은 축에서 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})도 슬롯·백업·암호화로 출시까지 진행했고, 레인 계약으로만 가르지 않은 한계는 [2편]({{ "/notes/save-layout-boundaries/" | relative_url }})에 적어 두었습니다. 아래는 드래곤 출시본 지도입니다. 레인만 분리한 설계는 [세이브 레이아웃]({{ "/projects/save-layout/" | relative_url }}) 시리즈 [2·3편]({{ "/notes/save-layout-boundaries/" | relative_url }}).
 
 ## 이 글에서 쓰는 말
 

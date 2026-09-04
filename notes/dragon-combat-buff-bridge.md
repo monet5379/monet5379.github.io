@@ -7,6 +7,7 @@ excerpt: "버프는 지속·중첩·주기 틱을 가진 상태이고, 붙을 �
 tags: [전투]
 project:
   - dragon-is-dead
+  - blade-assault
 series: combat-reaction
 series_title: 트리거·연쇄
 series_order: 2
@@ -27,6 +28,8 @@ mermaid: true
 | 단위 | BuffEntity · stack · duration | PassiveEntity · Manager queue |
 | 비유 | **지금 걸린 상태** (독·공격력 up·기절) | **사건에 반응하는 규칙** |
 | AddBuff | **본체** | Effect가 BuffSystem.Add **호출** |
+
+지속·중첩 상태를 Buff로 두고 Passive와 가른 축은 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에서도 출시했습니다.
 
 게임 예:
 

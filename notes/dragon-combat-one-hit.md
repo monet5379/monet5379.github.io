@@ -7,6 +7,7 @@ excerpt: "스킬·버프·패시브·투사체가 한 번의 타격으로 모일
 tags: [전투]
 project:
   - dragon-is-dead
+  - blade-assault
 series: combat-reaction
 series_title: 트리거·연쇄
 series_order: 4
@@ -22,7 +23,7 @@ mermaid: true
 
 ## 맥락
 
-시리즈 1([타격·데미지]({{ "/notes/dragon-combat-character/" | relative_url }}))에서 Owner·Stat·Apply·Projectile transport를 봤고, 시리즈 2([1편]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}~[3편]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }}))에서 트리거·연쇄를 봤습니다. 여기서 **한 번의 입력/이벤트가 Vital·연쇄까지** 어떻게 모이는지 한 장으로 고정합니다.
+시리즈 1([타격·데미지]({{ "/notes/dragon-combat-character/" | relative_url }}))에서 Owner·Stat·Apply·Projectile transport를 봤고, 시리즈 2([1편]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}~[3편]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }}))에서 트리거·연쇄를 봤습니다. 한 타에 스킬·버프·패시브가 모이는 문제는 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에서도 있었고, 이 글은 드래곤 시리즈를 한 장으로 복습합니다. 여기서 **한 번의 입력/이벤트가 Vital·연쇄까지** 어떻게 모이는지 한 장으로 고정합니다.
 
 **읽는 순서:** 왼쪽(스킬·버프·패시브)에서 Activate/Add/Effect로 combat에 진입 → Apply·Vital → (선택) Passive 연쇄. Projectile은 transport([4편]({{ "/notes/dragon-combat-projectile/" | relative_url }}))만 거친 뒤 같은 Apply.
 

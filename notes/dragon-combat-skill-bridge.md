@@ -7,6 +7,7 @@ excerpt: "스킬 시전·연출과 데미지 계산의 경계인 Apply 호출, �
 tags: [전투]
 project:
   - dragon-is-dead
+  - blade-assault
 series: combat-reaction
 series_title: 트리거·연쇄
 series_order: 1
@@ -29,6 +30,8 @@ mermaid: true
 | [스킬 성장]({{ "/notes/dragon-skill-growth/" | relative_url }}) | 프로필에 학습·슬롯·레벨이 어떻게 쓰이나 |
 | [스킬 시전]({{ "/notes/dragon-skill-cast/" | relative_url }}) | 입력·쿨·Rest·TryCast·SkillAnimation · Skill 층 How |
 | **이 글** | **Apply 호출 = combat(데미지) 시작** · SkillEntity가 넘기는 것 |
+
+시전·연출과 피해(Apply)를 가르는 경계는 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에서도 썼습니다. BA는 시전 게이트와 무기 hitmark 슬롯이 앞에 더 두껍고, 이 글은 드래곤의 Apply 시점입니다.
 
 **플레이어 체감 타임라인:** 입력 → 쿨 소모 → 동작 재생 → **애니 이벤트(타격 프레임)** → 숫자·HP. 시전 성공의 산출물은 (1) TryCast 결정, (2) SkillAnimation 재생입니다. Hitmark·Buff·Passive **적용**은 대개 클립 **애니 이벤트** 시점입니다 — 버튼을 누른 순간 HP가 깎이지 않습니다.
 

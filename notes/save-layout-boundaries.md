@@ -13,6 +13,8 @@ series_nav: true
 mermaid: true
 project:
   - save-layout
+  - dragon-is-dead
+  - blade-assault
 ---
 
 

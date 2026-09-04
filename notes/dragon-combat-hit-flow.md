@@ -7,6 +7,7 @@ excerpt: "한 번 맞았을 때 타격 정의가 로드되고, 능력치를 읽�
 tags: [전투]
 project:
   - dragon-is-dead
+  - blade-assault
 series: combat-presence
 series_title: 타격·데미지
 series_order: 3
@@ -33,7 +34,7 @@ mermaid: true
 
 ## 맥락
 
-“맞았는데 0”“근접과 투사체 숫자가 달라야 하는데 같다/다르다” 같은 QA는 **경로 B(Apply 이후)** 에서 잡힙니다. 드래곤 이즈 데드는 **Hitmark ID**로 “한 방의 의미”를 고정하고, Target / Area / Projectile은 **누구에게 Apply할지**만 다르게 둡니다.
+“맞았는데 0”“근접과 투사체 숫자가 달라야 하는데 같다/다르다” 같은 QA는 **경로 B(Apply 이후)** 에서 잡힙니다. 타격 정의 → 계산 → Vital 축은 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에서도 출시했습니다. BA는 Command·무기 hitmark 슬롯이 앞에 더 두껍고, 이 글은 드래곤의 Activate·Apply 경계입니다. 드래곤 이즈 데드는 **Hitmark ID**로 “한 방의 의미”를 고정하고, Target / Area / Projectile은 **누구에게 Apply할지**만 다르게 둡니다.
 
 - **Target** — 지정·근접 단일(계) 대상
 - **Area** — 박스·원·호 범위 검색

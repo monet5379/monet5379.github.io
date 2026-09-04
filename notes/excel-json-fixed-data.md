@@ -8,6 +8,7 @@ tags: [데이터]
 mermaid: true
 project:
   - dragon-is-dead
+  - blade-assault
 ---
 
 

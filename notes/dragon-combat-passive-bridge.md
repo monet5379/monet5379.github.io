@@ -7,6 +7,7 @@ excerpt: "패시브는 맞았을 때·치명타 났을 때 같은 사건에 반�
 tags: [전투]
 project:
   - dragon-is-dead
+  - blade-assault
 series: combat-reaction
 series_title: 트리거·연쇄
 series_order: 3
@@ -22,7 +23,7 @@ mermaid: true
 
 ## 맥락
 
-Passive는 **사건 규칙**입니다. Buff는 **상태**(stack·duration)를 직접 들고, Passive는 Effect가 BuffSystem.Add · ExecuteAttack · CastSkill 등 **API에 위임**합니다([읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})).
+Passive는 **사건 규칙**입니다. Buff는 **상태**(stack·duration)를 직접 들고, Passive는 Effect가 BuffSystem.Add · ExecuteAttack · CastSkill 등 **API에 위임**합니다([읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})). 사건 규칙 → Effect 위임과 폭주 제어는 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에서도 같은 층이었습니다.
 
 **연쇄 예:** 공격 성공 GlobalEvent → Passive ExecuteAttack → **또 한 번** [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) Apply 파이프라인. 무한 루프·한 프레임 폭주가 나기 쉬워 **큐·상한·Rest**가 전제입니다.
 

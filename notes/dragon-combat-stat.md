@@ -7,6 +7,7 @@ excerpt: "장비·버프·레벨이 섞여 공격력·체력이 바뀔 때, 어�
 tags: [전투]
 project:
   - dragon-is-dead
+  - blade-assault
 series: combat-presence
 series_title: 타격·데미지
 series_order: 2
@@ -24,7 +25,7 @@ mermaid: true
 
 전투에서 “공격력이 올랐다”는 체감은 Buff·장비·레벨·스킬이 한꺼번에 섞입니다. QA에서는 **스킬 UI 예상 피해와 실제 타격 숫자 불일치**, **버프 해제 후 스탯 잔존**이 자주 Stat·Combat 경계 문제입니다.
 
-구현에서는 **StatSystem**이 Modifier를 Add/Remove하고, **DamageCalculator**·UI 등은 **FindCalculateValue**로만 읽습니다. combat 층이 식을 복제하지 않게 하려면 이 경계를 지킵니다.
+Modifier 쓰기와 타격·UI 읽기를 가르는 경계는 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에서도 썼습니다. 드래곤에서는 **StatSystem**이 Modifier를 Add/Remove하고, **DamageCalculator**·UI 등은 **FindCalculateValue**로만 읽습니다. combat 층이 식을 복제하지 않게 하려면 이 경계를 지킵니다.
 
 | 축 | Stat | Combat |
 |----|------|--------|

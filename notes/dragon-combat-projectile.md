@@ -7,6 +7,7 @@ excerpt: "투사체는 날아가서 맞히는 것만 담당하고, 데미지 계
 tags: [전투]
 project:
   - dragon-is-dead
+  - blade-assault
 series: combat-presence
 series_title: 타격·데미지
 series_order: 4
@@ -22,7 +23,7 @@ mermaid: true
 
 ## 맥락
 
-투사체를 “작은 스킬”처럼 두면 **쿨·피해 식·pool·VFX**가 한 클래스에 섞입니다. 드래곤 이즈 데드에서는 **Projectile = transport(날아가 맞히기)**, **child Attack + Hitmark Apply = combat(숫자·HP)** 으로 경계를 둡니다.
+투사체를 “작은 스킬”처럼 두면 **쿨·피해 식·pool·VFX**가 한 클래스에 섞입니다. 투사체를 transport만 두고 피해는 기존 타격 파이프라인에 넘긴 경계는 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에서도 같았습니다. 드래곤 이즈 데드에서는 **Projectile = transport(날아가 맞히기)**, **child Attack + Hitmark Apply = combat(숫자·HP)** 으로 경계를 둡니다.
 
 QA에서 “화살이 맞았는데 0”이면 transport가 아니라 [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) Apply·Hitmark 쪽을 봅니다. “안 맞음·벽에 막힘·pool 미반환”은 이 글 transport 쪽입니다.
 
