@@ -9,6 +9,7 @@
       root.querySelectorAll(".shot-carousel__thumb")
     );
     var currentEl = root.querySelector("[data-shot-current]");
+    var captionEl = root.querySelector("[data-shot-caption]");
     var prevBtn = root.querySelector("[data-shot-prev]");
     var nextBtn = root.querySelector("[data-shot-next]");
     var index = 0;
@@ -35,6 +36,10 @@
 
       if (currentEl) {
         currentEl.textContent = String(index + 1);
+      }
+
+      if (captionEl) {
+        captionEl.textContent = slides[index].getAttribute("alt") || "";
       }
     }
 

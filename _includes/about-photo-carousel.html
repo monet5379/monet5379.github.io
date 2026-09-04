@@ -1,0 +1,36 @@
+{% comment %}
+  Home 「나에 대하여」 compact portrait carousel.
+  Reuses assets/js/screenshot-carousel.js (data-shot-carousel + .shot-carousel__slide).
+{% endcomment %}
+<figure class="about-photo-carousel" data-shot-carousel aria-label="유승현 사진">
+  <div class="about-photo-carousel__viewport">
+    <img
+      class="shot-carousel__slide about-photo-carousel__img is-active"
+      src="{{ '/assets/images/about/profile.jpg' | relative_url }}"
+      alt="유승현"
+      width="148"
+      height="192"
+      loading="eager"
+      decoding="async"
+      data-shot-index="0">
+    <img
+      class="shot-carousel__slide about-photo-carousel__img"
+      src="{{ '/assets/images/about/id.jpg' | relative_url }}"
+      alt="유승현 증명사진"
+      width="148"
+      height="188"
+      loading="lazy"
+      decoding="async"
+      data-shot-index="1"
+      hidden>
+  </div>
+  <button type="button" class="about-photo-carousel__nav about-photo-carousel__nav--prev" data-shot-prev aria-label="이전 사진">
+    <span aria-hidden="true">‹</span>
+  </button>
+  <button type="button" class="about-photo-carousel__nav about-photo-carousel__nav--next" data-shot-next aria-label="다음 사진">
+    <span aria-hidden="true">›</span>
+  </button>
+  <figcaption class="about-photo-carousel__counter">
+    <span data-shot-current>1</span> / 2
+  </figcaption>
+</figure>

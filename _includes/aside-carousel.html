@@ -1,0 +1,63 @@
+{% comment %}
+  Compact side carousel (reuses data-shot-carousel JS).
+  dir: folder relative path (trailing / optional)
+  files: comma-separated filenames
+  alts: pipe-separated alt/caption (same order as files)
+  label: aria-label (optional)
+{% endcomment %}
+{% assign aside_dir = include.dir | default: "" | strip %}
+{% if aside_dir != "" %}
+  {% assign aside_dir_last = aside_dir | slice: -1, 1 %}
+  {% if aside_dir_last != "/" %}
+    {% assign aside_dir = aside_dir | append: "/" %}
+  {% endif %}
+{% endif %}
+{% assign aside_files = include.files | default: "" | split: "," %}
+{% assign aside_alts = include.alts | default: "" | split: "|" %}
+{% assign aside_label = include.label | default: "이정표 사진" %}
+{% assign aside_count = 0 %}
+{% for fname in aside_files %}
+  {% assign fname_trim = fname | strip %}
+  {% unless fname_trim == "" %}
+    {% assign aside_count = aside_count | plus: 1 %}
+  {% endunless %}
+{% endfor %}
+
+{% if aside_dir != "" and aside_count > 0 %}
+<figure class="shot-carousel shot-carousel--aside" data-shot-carousel aria-label="{{ aside_label | escape }}">
+  <div class="shot-carousel__stage">
+    <button type="button" class="shot-carousel__nav shot-carousel__nav--prev" data-shot-prev aria-label="이전 사진">
+      <span aria-hidden="true">‹</span>
+    </button>
+    <div class="shot-carousel__viewport">
+      {% assign aside_i = 0 %}
+      {% for fname in aside_files %}
+        {% assign fname_trim = fname | strip %}
+        {% unless fname_trim == "" %}
+          {% assign aside_alt = aside_alts[aside_i] | default: aside_label | strip %}
+          {% assign aside_src = aside_dir | append: fname_trim %}
+          <img
+            class="shot-carousel__slide{% if aside_i == 0 %} is-active{% endif %}"
+            src="{{ aside_src | relative_url }}"
+            alt="{{ aside_alt | escape }}"
+            {% if aside_i == 0 %}loading="eager"{% else %}loading="lazy"{% endif %}
+            decoding="async"
+            data-shot-index="{{ aside_i }}"
+            {% unless aside_i == 0 %}hidden{% endunless %}>
+          {% assign aside_i = aside_i | plus: 1 %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+    <button type="button" class="shot-carousel__nav shot-carousel__nav--next" data-shot-next aria-label="다음 사진">
+      <span aria-hidden="true">›</span>
+    </button>
+  </div>
+  {% assign aside_caption0 = aside_alts[0] | default: aside_label | strip %}
+  <figcaption class="shot-carousel__caption" data-shot-caption>{{ aside_caption0 | escape }}</figcaption>
+  {% if aside_count > 1 %}
+  <p class="shot-carousel__counter">
+    <span data-shot-current>1</span> / {{ aside_count }}
+  </p>
+  {% endif %}
+</figure>
+{% endif %}

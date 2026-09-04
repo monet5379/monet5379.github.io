@@ -100,7 +100,7 @@ flowchart TD
 | 스킬 로직·표 | Json 행(clone). ID·쿨·코스트 등 |
 | 학습·슬롯·레벨 | 프로필 세이브. 캐릭터마다 보관 |
 | SkillAnimation | Scriptable. 시전 연출·이벤트 타이밍 ([2편]({{ "/notes/dragon-skill-cast/" | relative_url }})) |
-| Hitmark / Buff / Passive | Scriptable. ID로 연결. 본체는 [전투 클러스터]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) |
+| Hitmark / Buff / Passive | Scriptable. ID로 연결. 본체는 [전투 코드 읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) |
 
 ## 정리
 

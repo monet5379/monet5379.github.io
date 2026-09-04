@@ -18,7 +18,7 @@ mermaid: true
 
 버프는 지속·중첩·주기 틱을 가진 상태이고, 붙을 때·틱마다 스탯·타격·스킬로 연결됩니다. CC(기절 등)가 스킬 입력을 막는 지점까지 정리합니다.
 
-[트리거·연쇄]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) 시리즈 2편입니다. Buff 층의 Add·Stack·Trigger How와 Buff/Passive **역할 분리**는 [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})·[3편 passive]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }})와 함께 봅니다. 이 글은 **클러스터 연동** — Add/Trigger → stat·combat, CC → skill — 에 맞춥니다.
+[트리거·연쇄]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) 시리즈 2편입니다. Buff 층의 Add·Stack·Trigger How와 Buff/Passive **역할 분리**는 [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})·[3편 passive]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }})와 함께 봅니다. 이 글은 **전투 연동** — Add/Trigger → stat·combat, CC → skill — 에 맞춥니다.
 
 ## 맥락
 

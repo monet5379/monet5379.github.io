@@ -88,7 +88,7 @@ TryCast가 성공하면 **SkillAnimation**(Scriptable)을 스킬 ID로 조회해
 | 부가 효과 | 애니 이벤트 또는 시전 흐름 | Buff Add · Passive Add | 버프·패시브 |
 | 피해·Vital | — | Hitmark **Apply** 이후 | 데미지 숫자·HP |
 
-언제 휘두를지·언제 맞출지의 체감 타이밍은 애니 이벤트가 잡고, 한 방의 수치·타입은 Hitmark가 잡습니다. 스킬 Entity는 Attack·Buff·Passive를 **호출만** 하고, 피해 식·스택·큐 본체는 [전투 클러스터]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) 각 층에 둡니다.
+언제 휘두를지·언제 맞출지의 체감 타이밍은 애니 이벤트가 잡고, 한 방의 수치·타입은 Hitmark가 잡습니다. 스킬 Entity는 Attack·Buff·Passive를 **호출만** 하고, 피해 식·스택·큐 본체는 [전투 코드 읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) 각 층에 둡니다.
 
 입력 버퍼는 이 재생 구간을 전제로 합니다. 애니 재생 중에도 다음 스킬 입력을 받아 두었다가, 시전 가능 시점에 소비해 연계가 끊기는 느낌을 줄입니다.
 

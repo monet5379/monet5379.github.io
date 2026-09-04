@@ -9,6 +9,8 @@ role: 개발 리드
 excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 전투·세이브·데이터·성능까지 클라이언트를 출시 후까지 유지한 액션 게임입니다."
 ---
 
+{% include screenshot-carousel.html slug="dragon-is-dead" %}
+
 ## 개요
 
 프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 전투·세이브·데이터·성능까지 클라이언트를 출시 후까지 유지한 액션 게임입니다.
@@ -34,11 +36,14 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 
 ### 게임플레이 · 전투
 
+전투는 **피격·수치**와 **트리거·연쇄** 두 줄기로 나뉩니다.
+어디부터 읽을지는 [전투 코드 읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) 를 보면 됩니다.
+
 #### 타격·데미지
 
 **맞으면 HP가 어떻게 줄어드나** — 필드에 누가 있는지, 피해 숫자는 어디서 오는지, 맞았을 때 HP·투사체까지 어떻게 처리되는지를 캐릭터 → Stat → Hit flow → 투사체 네 편으로 나눈 시리즈입니다. 스킬 시전·버프·패시브가 한 타격으로 이어지는 아래 트리거·연쇄보다 먼저 다루는 축(피격·수치)입니다.
 
-노트: [전투 클러스터 읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) · [1 — 캐릭터]({{ "/notes/dragon-combat-character/" | relative_url }}) · [2 — Stat]({{ "/notes/dragon-combat-stat/" | relative_url }}) · [3 — Hit flow]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) · [4 — 투사체]({{ "/notes/dragon-combat-projectile/" | relative_url }})
+노트: [1 — 캐릭터]({{ "/notes/dragon-combat-character/" | relative_url }}) · [2 — Stat]({{ "/notes/dragon-combat-stat/" | relative_url }}) · [3 — Hit flow]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) · [4 — 투사체]({{ "/notes/dragon-combat-projectile/" | relative_url }})
 
 #### 트리거·연쇄
 
@@ -48,7 +53,7 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 
 #### 입력 · Ability
 
-키·패드 입력은 캐릭터 **Ability**가 매 프레임 읽습니다. 이동·점프·대시·스킬·상호작용을 Early/Process/Late로 나누고, 전투 준비(BattleReady)와 입력 게이트를 분리했습니다. 몬스터는 AI가 같은 캐릭터 API에 위임합니다.
+캐릭터는 입력에 따라 반응하는 각 어빌리티(Ability)를 가집니다. 키·패드 입력은 캐릭터 Ability가 매 프레임 읽습니다. 이동·점프·대시·스킬·상호작용을 Early/Process/Late로 나누고, 전투 준비(BattleReady)와 입력 게이트를 분리했습니다. 몬스터는 AI가 같은 캐릭터 API에 위임합니다.
 
 노트: [타격·데미지 1 — 캐릭터]({{ "/notes/dragon-combat-character/" | relative_url }}) · [스킬이 어떻게 시전되는가]({{ "/notes/dragon-skill-cast/" | relative_url }})
 
@@ -139,5 +144,8 @@ Unity, C#, Cinemachine, Timeline, Steamworks, Unity Gaming Services Analytics
 
 ### 외부
 
-- [Steam](https://store.steampowered.com/app/2803280/Dragon_Is_Dead/)
-- [YouTube](https://youtu.be/0f0ZXseDMUM?si=VXCv4QvJkLEn-ji9)
+{% include youtube-embed.html id="0f0ZXseDMUM" title="드래곤 이즈 데드" %}
+
+<p class="shot-carousel__store">
+  Steam 스토어 페이지: <a href="https://store.steampowered.com/app/2803280/Dragon_Is_Dead/" rel="noopener noreferrer">드래곤 이즈 데드</a>
+</p>

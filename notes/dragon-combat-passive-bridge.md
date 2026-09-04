@@ -18,7 +18,7 @@ mermaid: true
 
 패시브는 맞았을 때·치명타 났을 때 같은 사건에 반응하는 규칙입니다. 한 타격이 연쇄로 다른 타격·버프·스킬을 부를 수 있어, 큐·프레임 상한·재발동 간격으로 폭주를 막습니다.
 
-[트리거·연쇄]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) 시리즈 3편입니다. Passive **구조·폭주 제어**와 **combat 클러스터 연동**(ExecuteAttack · AddBuff Effect · CastSkill)을 함께 봅니다. [2편 buff]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }})와 짝으로 읽으면 “타격 후 반응”이 잡힙니다.
+[트리거·연쇄]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) 시리즈 3편입니다. Passive **구조·폭주 제어**와 **combat 연동**(ExecuteAttack · AddBuff Effect · CastSkill)을 함께 봅니다. [2편 buff]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }})와 짝으로 읽으면 “타격 후 반응”이 잡힙니다.
 
 ## 맥락
 

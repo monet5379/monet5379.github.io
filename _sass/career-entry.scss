@@ -15,6 +15,22 @@
   h3 {
     margin-top: 0;
     margin-bottom: 0;
+
+    // Linked titles → portfolio: underline + brand blue (body links stay grey)
+    a {
+      color: var(--brand-color);
+      text-decoration: underline;
+      text-underline-offset: 0.14em;
+      text-decoration-thickness: from-font;
+
+      &:visited {
+        color: var(--brand-color);
+      }
+
+      &:hover {
+        color: var(--brand-color);
+      }
+    }
   }
 
   // Same secondary-line rhythm as list .post-meta under title

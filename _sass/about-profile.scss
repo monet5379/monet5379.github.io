@@ -1,0 +1,120 @@
+// Home 「나에 대하여」 — compact float portrait carousel (not project shot-carousel)
+// Outline matches .career-entry (1px · grey-color-light · radius 4px)
+// JS: same data-shot-carousel hooks as screenshot-carousel.js
+.about-with-photo {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media screen and (max-width: 480px) {
+    .about-photo-carousel {
+      float: none;
+      display: block;
+      width: 7.5rem;
+      max-width: 42%;
+      margin: 0 0 1em;
+    }
+  }
+}
+
+.about-photo-carousel {
+  float: right;
+  position: relative;
+  width: 9.25rem; // ~148px — same as prior single photo
+  max-width: 38%;
+  margin: 0.15em 0 1em 1.25em;
+  padding: 0;
+  border: 1px solid var(--grey-color-light);
+  border-radius: 4px;
+  overflow: hidden;
+  background: transparent;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--brand-color);
+  }
+}
+
+.about-photo-carousel__viewport {
+  position: relative;
+  aspect-ratio: 10 / 13;
+  overflow: hidden;
+  background: var(--grey-color-light);
+}
+
+// Override global .shot-carousel__slide (16:9 / black stage) inside this frame
+.about-photo-carousel .shot-carousel__slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  background: transparent;
+}
+
+.about-photo-carousel .shot-carousel__slide[hidden] {
+  display: none;
+}
+
+.about-photo-carousel__nav {
+  appearance: none;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 1px solid var(--grey-color-light);
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--background-color) 88%, transparent);
+  color: var(--text-color);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--grey-color);
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--brand-color);
+  }
+
+  &--prev {
+    left: 0.25rem;
+  }
+
+  &--next {
+    right: 0.25rem;
+  }
+}
+
+.about-photo-carousel__counter {
+  position: absolute;
+  z-index: 1;
+  right: 0.35rem;
+  bottom: 0.3rem;
+  margin: 0;
+  padding: 0.1rem 0.35rem;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--background-color) 82%, transparent);
+  color: var(--grey-color-dark);
+  font-size: 0.7rem;
+  line-height: 1.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-photo-carousel__nav {
+    transition: none;
+  }
+}

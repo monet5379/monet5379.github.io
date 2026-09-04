@@ -9,6 +9,8 @@ role: 전체 프로그래밍
 excerpt: "기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍을 담당해 Steam에 출시한 액션 게임입니다."
 ---
 
+{% include screenshot-carousel.html slug="blade-assault" %}
+
 ## 개요
 
 기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프로그래밍을 담당해 Steam에 출시한 액션 게임입니다.
@@ -29,7 +31,22 @@ excerpt: "기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프�
 
 ## 맥락
 
+<div class="context-with-media" markdown="1">
+
+<div class="context-with-media__copy" markdown="1">
+
 **블레이드 어썰트**는 이전 회사에서 함께 합을 맞추던 팀원들과 시작한 작은 프로젝트였습니다. 처음에는 하얀 머리, 두꺼운 점퍼, 기계팔을 하고 붉은 전기톱을 쓰는 주인공 킬의 모습뿐이었습니다. 직전 프로젝트가 플랫포머였던 탓에 장르도 플랫포머로 잡았고, 당시 데드셀(Dead Cell) 얼리 액세스가 열리면서 그 게임에서 영감을 받아 미로 같은 지역을 탐험하는 쪽으로 만들었습니다. 부산 게임 인디 페스티벌(BIC)과 경기게임오디션 출품 당시 타이틀명은 서프블레이드였고, 이후 개발 과정에서 블레이드 어썰트로 바꿨습니다. BIC 출품 뒤 유저 피드백과 내부 회의를 거쳐 지금의 로그라이크 형태로 바뀌었습니다. 구성원은 다른 회사에 다니거나 집에서 시간을 내 작업했습니다. 경기게임오디션에서 3위를 하고 사무실을 지원받으면서 비로소 모여 개발을 본격화했습니다. 이후 네오위즈와 퍼블리싱 계약을 맺고 개발을 이어 갔고, 출시까지 이르렀습니다.
+
+</div>
+
+{% include aside-carousel.html
+  dir="assets/images/projects/blade-assault/"
+  files="blade-assault-bic.jpg,blade-assault-audition.jpg"
+  alts="BIC 참가 — 서프블레이드|경기게임오디션 3위 (2019.09)"
+  label="서프블레이드 이정표"
+%}
+
+</div>
 
 ## 기여
 
@@ -96,6 +113,12 @@ Unity, C#
 
 ### 외부
 
-- [Steam](https://store.steampowered.com/app/1367300/Blade_Assault/)
-- [Wiki](https://blade-assault.fandom.com/wiki/Blade_Assault_Wiki)
-- [YouTube](https://youtu.be/uV-fWC5zbfw?si=6V-LhUHCYGCOzR3C)
+{% include youtube-embed.html id="uV-fWC5zbfw" title="블레이드 어썰트" %}
+
+<p class="shot-carousel__store">
+  Steam 스토어 페이지: <a href="https://store.steampowered.com/app/1367300/Blade_Assault/" rel="noopener noreferrer">블레이드 어썰트</a>
+</p>
+
+<p class="shot-carousel__store">
+  Wiki 페이지: <a href="https://blade-assault.fandom.com/wiki/Blade_Assault_Wiki" rel="noopener noreferrer">블레이드 어썰트 위키</a>
+</p>
