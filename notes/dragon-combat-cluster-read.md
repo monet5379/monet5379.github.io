@@ -34,9 +34,9 @@ mermaid: true
 | 말 | 역할 |
 |----|------|
 | **Owner** | 타격·버프·능력치의 주인 캐릭터 |
-| **Hitmark** | 한 방의 정의 — 수치·타입 묶음 |
+| **히트마크** | 한 방의 정의 — 수치·타입 묶음 (`Hitmark`) |
 | **Activate** | 타격 **시작** — 대상을 잡기 전 |
-| **Apply** | 정의를 읽어 계산한 뒤 HP·자원에 **반영** |
+| **적용** | 정의를 읽어 계산한 뒤 HP·자원에 **반영** |
 | **transport** | 날아가 맞히기만 — 데미지 식은 없음 |
 
 **두 줄기 흐름**
@@ -45,7 +45,7 @@ mermaid: true
 flowchart LR
   P["들어가며<br/>(이 글)"]
   S1["타격·데미지<br/>캐릭터 → 능력치 → 공격 → 투사체"]
-  S2["트리거·연쇄<br/>Apply → 버프 → 패시브 → 한 타격"]
+  S2["트리거·연쇄<br/>적용 → 버프 → 패시브 → 한 타격"]
   P --> S1
   S1 --> S2
   FD["fixed-data<br/>(필요할 때)"]
@@ -59,19 +59,19 @@ flowchart LR
 
 | 층 | 질문 | 이 층이 결정하는 것 | 넘기지 않음 | 시리즈에서 |
 |----|------|---------------------|-------------|------------|
-| **스킬** | 언제 쓰는가 | 입력·쿨·Rest·버퍼·슬롯 | 피해 공식·스택·CC | [Apply 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) · [스킬 시전]({{ "/notes/dragon-skill-cast/" | relative_url }}) |
-| **히트마크** | 무엇이 맞는가 | 타격 정의 → Apply → Vital | 쿨·패시브 조건식 | [타격·데미지 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) |
+| **스킬** | 언제 쓰는가 | 입력·쿨·Rest·버퍼·슬롯 | 피해 공식·스택·CC | [적용 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) · [스킬 시전]({{ "/notes/dragon-skill-cast/" | relative_url }}) |
+| **히트마크** | 무엇이 맞는가 | 타격 정의 → 적용 → Vital | 쿨·패시브 조건식 | [타격·데미지 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) |
 | **버프** | 지금 어떤 상태인가 | stack·duration·CC·Trigger | 이벤트 규칙 전체 | [트리거·연쇄 2편]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }}) |
 | **패시브** | 무슨 일이면 무엇을 하는가 | Trigger→Condition→Effect·큐 | 피해 식·버프 stack 정책 | [트리거·연쇄 3편]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }}) |
 
-같은 히트마크 ID를 스킬·투사체·버프 DoT가 공유합니다. 스킬은 Apply **앞**에서 끊고, 패시브 Effect는 버프·히트마크·스킬 API에 **위임**합니다.
+같은 히트마크 ID를 스킬·투사체·버프 DoT가 공유합니다. 스킬은 적용 **앞**에서 끊고, 패시브 Effect는 버프·히트마크·스킬 API에 **위임**합니다.
 
 ## 이어서 볼 글
 
 1. **이 글** — 두 줄기·네 층·용어
 2. **[타격·데미지]({{ "/notes/dragon-combat-character/" | relative_url }})** — 캐릭터 → 능력치 → [맞으면 무엇이 일어나는가]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) → [투사체]({{ "/notes/dragon-combat-projectile/" | relative_url }})
 3. (선택) 히트마크/버프/패시브 SO·능력치 Json — [Excel-Json 고정 데이터]({{ "/notes/excel-json-fixed-data/" | relative_url }})
-4. **[트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})** — Apply → 버프 → 패시브 → [한 타격으로 모이기]({{ "/notes/dragon-combat-one-hit/" | relative_url }})
+4. **[트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})** — 적용 → 버프 → 패시브 → [한 타격으로 모이기]({{ "/notes/dragon-combat-one-hit/" | relative_url }})
 
 구조와 흐름만 잡으면 1~4까지로 시리즈를 이어갈 수 있습니다. Json·Scriptable 필드는 필요할 때만 fixed-data를 엽니다.
 
@@ -80,12 +80,14 @@ flowchart LR
 얼리 액세스(2024.06)부터 정식(2025.06)까지 같은 전투 구조 위에서 콘텐츠를 늘렸을 때, 문서·코드에 남긴 **역할 분담**입니다. 완벽한 설계가 아니라 “어디에 넣을지”를 고정한 기록에 가깝습니다.
 
 **스킬** — 쿨타임·Rest·버퍼·슬롯. 피해 식은 히트마크. QA에서는 스킬 UI와 실제 데미지 숫자가 다른 층으로 갈라집니다.  
-**히트마크** — 무효·로드 실패 시 Apply 중단. 맞았는데 0 · 정의 없음.  
+**히트마크** — 무효·로드 실패 시 적용 중단. 맞았는데 0 · 정의 없음.  
 **패시브** — 전역 큐·프레임 상한·Rest. Effect는 API 위임. 한 프레임에 연쇄 폭주.  
 **버프 제거** — 능력치 소스 제거 쌍. 버프 해제 후 능력치 잔존.  
 **데이터** — Facade로만 읽기. 핫패스 dict 직접 접근 금지.
 
-**남은 갭:** STR/INT ↔ 물리/마법 공격력 **설계 계약**과 generic `AttackPower` 구현은 아직 어긋날 수 있습니다([2편 능력치]({{ "/notes/dragon-combat-stat/" | relative_url }})). 패시브·버프·Damage **이벤트 순서**는 콘텐츠가 늘수록 QA가 필요합니다.
+## 한계
+
+STR/INT ↔ 물리/마법 공격력 **설계 계약**과 generic `AttackPower` 구현은 아직 어긋날 수 있습니다 — 상세는 [2편 능력치 · 한계]({{ "/notes/dragon-combat-stat/" | relative_url }}#한계). 패시브·버프·Damage **이벤트 순서**는 콘텐츠가 늘수록 QA가 필요합니다. 역할 분담을 고정한 것이지, 계약·순서가 전부 맞춰진 상태는 아닙니다.
 
 ## 고정 데이터(fixed-data)는 언제 여는가
 

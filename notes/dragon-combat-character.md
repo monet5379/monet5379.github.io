@@ -19,7 +19,7 @@ mermaid: true
 
 스테이지에 전투 주체가 서는 순서, 전투 준비 전후에 스킬·AI·숫자가 켜지는 시점, 사망 시 하위 시스템을 비우는 생명주기를 정리합니다.
 
-[타격·데미지]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) 시리즈 1편입니다. Stat·Combat·스킬·버프·패시브는 같은 **Owner**(캐릭터) 아래 붙지만, **누가 씬에 있고 언제 tick이 켜지는지**는 캐릭터 층이 먼저 정합니다. [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})에서 두 줄기 전체를 보면 됩니다.
+[타격·데미지]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) 시리즈 1편입니다. 능력치·전투·스킬·버프·패시브는 같은 **Owner**(캐릭터) 아래 붙지만, **누가 씬에 있고 언제 tick이 켜지는지**는 캐릭터 층이 먼저 정합니다. [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})에서 두 줄기 전체를 보면 됩니다.
 
 ## 맥락
 
@@ -54,7 +54,7 @@ flowchart TD
   CL --> DS["디스폰 · 등록 해제"]
 ```
 
-1. **스폰** — 플레이어·몬스터가 씬에 등장. 플레이어 Spawner는 **Stage 프리팹 자식**(GameMain 루트 금지).
+1. **스폰** — 플레이어·몬스터가 씬에 등장. 플레이어 Spawner는 **스테이지 프리팹 자식**(GameMain 루트 금지).
 2. **초기화** — 기본 능력치·능력·Attack 배선. ([2편]({{ "/notes/dragon-combat-stat/" | relative_url }})) 이 단계까지는 **전투 입력·AI가 아직 열리지 않을 수 있음**.
 3. **전투 준비** — 다음 프레임 뒤. Attack·Shield·Feedbacks. 플레이어는 장비·유물·스킬/버프·HUD. **여기서부터** “전투 준비 완료”로 QA.
 4. **전투 준비 이벤트** — 플레이어가 준비되면 입력·미니맵·퀘스트 등이 구독. 보스 등은 캠프별 참여 신호가 따로 있습니다.
@@ -85,7 +85,7 @@ flowchart TD
 | 능력치 | 초기화 · 사망 Clear | [2편]({{ "/notes/dragon-combat-stat/" | relative_url }}) |
 | Vital · Attack | 초기화 · 사망 | [3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) |
 | 버프 · 패시브 | 전투 준비 · 매 프레임 · Clear | [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) |
-| 스킬 | 플레이어 전투 준비 · 시전 | [스킬 시전]({{ "/notes/dragon-skill-cast/" | relative_url }}) · [Apply 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) |
+| 스킬 | 플레이어 전투 준비 · 시전 | [스킬 시전]({{ "/notes/dragon-skill-cast/" | relative_url }}) · [적용 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) |
 
 이동·점프·대시·스킬 입력 등은 매 프레임 능력 루프에서 돌며, **전투 권한**과 **UI 팝업으로 입력을 막는 것**은 별개입니다.
 

@@ -6,12 +6,12 @@ date: 2026-08-25
 order: 50
 project_kind: personal
 role: 설계·구현
-excerpt: "드래곤 이즈 데드 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 게임 밖으로 분리한 Unity Editor·Runtime 패키지입니다."
+excerpt: "드래곤 이즈 데드 로컬라이즈에서 정적 문자셋 추출·TMP warmup을 게임 밖으로 분리한 Unity Editor·Runtime 패키지입니다."
 mermaid: true
 ---
 
 
-드래곤 이즈 데드 로컬라이즈에서 Static 문자셋 추출·TMP warmup을 게임 밖으로 분리한 Unity Editor·Runtime 패키지입니다.
+드래곤 이즈 데드 로컬라이즈에서 정적 문자셋 추출·TMP warmup을 게임 밖으로 분리한 Unity Editor·Runtime 패키지입니다.
 
 {% include screenshot-carousel.html slug="tmp-font-pipeline" %}
 
@@ -22,29 +22,29 @@ mermaid: true
 - 형태: 개인 Unity OSS (`unity-tmp-font`)
 - 역할: 설계·구현·문서
 - 배포: `Assets/TmpFontPipeline` 폴더 복사 (UPM 아님)
-- Demo: `Assets/Demo` — SampleScene, Extract/Apply 샘플 (놀이터, 출시 템플릿 아님)
-- 연관: [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) · [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) · [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
+- Demo: `Assets/Demo` — SampleScene, Extract/적용 샘플 (놀이터, 출시 템플릿 아님)
+- 연관: [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) · [TMP 정적 아틀라스로 동적 히치 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) · [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
 
 ## 문제
 
-다국어·CJK에서 TMP Dynamic atlas는 첫 표시·언어 전환 hitch와 메모리 상한 예측 불가를 만듭니다. Static으로 고정해도 **첫 mesh draw·material 경로** 비용은 남고, 옵션에서 언어를 바꿀 때 입력과 warmup이 겹치면 플레이가 끊깁니다.
+다국어·CJK에서 TMP 동적 아틀라스는 첫 표시·언어 전환 히치와 메모리 상한 예측 불가를 만듭니다. 정적으로 고정해도 **첫 mesh draw·material 경로** 비용은 남고, 옵션에서 언어를 바꿀 때 입력과 warmup이 겹치면 플레이가 끊깁니다.
 
-타이틀 코드 안에만 두면 전투·UI·데이터와 섞여, 추출 sanitize → Static bake → warmup supersede만 재현·설명하기 어렵습니다. 드래곤 이즈 데드에서 쓴 불변조건을 **별도 저장소**로 뺐습니다.
+타이틀 코드 안에만 두면 전투·UI·데이터와 섞여, 추출 sanitize → 정적 bake → warmup supersede만 재현·설명하기 어렵습니다. 드래곤 이즈 데드에서 쓴 불변조건을 **별도 저장소**로 뺐습니다.
 
 ## 설계
 
-한 줄: `String*.json` → sanitize · extract → Static SDF Apply → 런타임 `FontRoleCatalog` + `FontWarmupService`.
+한 줄: `String*.json` → sanitize · extract → 정적 SDF 적용 → 런타임 `FontRoleCatalog` + `FontWarmupService`.
 
 **Editor · Runtime**
 
 ```mermaid
 flowchart TD
-  subgraph EDITOR["EDITOR — Extract · Apply"]
+  subgraph EDITOR["EDITOR — Extract · 적용"]
     A["String*.json"] --> B["Sanitize"]
     B --> C["Extract"]
     C --> D["Ui 버킷"]
     C --> E["Dialogue 버킷"]
-    D --> F["Static SDF Apply"]
+    D --> F["정적 SDF 적용"]
     E --> F
   end
 
@@ -58,7 +58,7 @@ flowchart TD
 
 <div class="callout" markdown="1">
 
-- **Editor**: JSON → sanitize → extract(Ui·Dialogue) → Static Apply — charset SSOT
+- **Editor**: JSON → sanitize → extract(Ui·Dialogue) → 정적 적용 — charset SSOT
 - **Runtime**: 역할별 Font Asset 선택 → warmup(1프레임·supersede) → 표시
 - **≠**: warmup sample은 glyph 전량 보장·charset SSOT가 아님
 
@@ -66,7 +66,7 @@ flowchart TD
 
 | 축 | 선택 |
 |----|------|
-| 문자셋 SSOT | Extract 출력 → TMP Character Table (Static) |
+| 문자셋 SSOT | Extract 출력 → TMP Character Table (정적) |
 | Editor | Window **Extract** / **Apply** / **Help**, `FontAtlasApplyProfile` |
 | Role | **Ui** · **Dialogue** — extract 버킷·Font Asset 역할 (TMP weight 아님) |
 | Warmup | `IFontWarmupTarget`, **역할별** sample, font 1프레임당 1개, supersede |
@@ -78,12 +78,12 @@ Install·Window 조작·API 시그니처는 [GitHub README](https://github.com/m
 
 | 항목 | 드래곤 이즈 데드 (출시) | 이 repo (Demo/OSS) |
 |------|---------------|---------------------|
-| 유럽어 버킷 | English~Spanish **합집합** 1 Static | **언어별** EN/FR/DE/IT/ES 분리 |
+| 유럽어 버킷 | English~Spanish **합집합** 1 정적 | **언어별** EN/FR/DE/IT/ES 분리 |
 | Warmup 단위 | Title · Content · Number 등 font type | **Ui · Dialogue** role |
 | Warmup sample | 언어군 공통 짧은 문장 | 역할별 — Ui `Confirm`, Dialogue `dlg_intro` 등 |
 | 로컬라이즈 | StringGetter · 게임 UI 전체 | Demo만 — `DemoStringTable` · label refresh |
 
-원칙(Static SSOT, warmup ≠ glyph 보장, Dialogue 버킷 분리, input block)은 [노트 2편]({{ "/notes/tmp-static-font-atlas/" | relative_url }})과 같습니다.
+원칙(정적 SSOT, warmup ≠ glyph 보장, Dialogue 버킷 분리, input block)은 [노트 2편]({{ "/notes/tmp-static-font-atlas/" | relative_url }})과 같습니다.
 
 ## 이 프로젝트가 아닌 것
 
@@ -91,14 +91,14 @@ Install·Window 조작·API 시그니처는 [GitHub README](https://github.com/m
 - Addressables String 테이블·In-game `[token]` 치환을 제공하지 않습니다.
 - UPM 배포·Noto 폰트 재배포가 아닙니다 — Demo 폰트는 `Assets/Demo/Fonts/` 참고용입니다.
 
-증명·전달하려는 것은 **데이터 기반 Static charset + 분리된 warmup 경로**를 최소 패키지로 옮기는 방법입니다.
+증명·전달하려는 것은 **데이터 기반 정적 charset + 분리된 warmup 경로**를 최소 패키지로 옮기는 방법입니다.
 
 ## 계보
 
 | 프로젝트 | TMP에서 가져온 / 남긴 것 |
 |----------|---------------------------|
-| [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) | Static extract · Dialogue 버킷 · Splash/옵션 warmup · supersede |
-| 이 repo | Editor Apply Window · `FontRoleCatalog` · `FontWarmupService` · Demo |
+| [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) | 정적 extract · Dialogue 버킷 · Splash/옵션 warmup · supersede |
+| 이 repo | Editor 적용 Window · `FontRoleCatalog` · `FontWarmupService` · Demo |
 
 개념·기각은 노트, 복사 단위·Demo는 여기와 GitHub README에 둡니다.
 
@@ -114,7 +114,7 @@ Unity, TextMesh Pro, C#
 
 ### 내부
 
-- [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})
+- [TMP 정적 아틀라스로 동적 히치 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})
 - [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
 - [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})
 - [홈 · 경력]({{ "/#경력" | relative_url }})

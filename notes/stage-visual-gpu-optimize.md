@@ -85,7 +85,7 @@ flowchart TD
 | Ambient Light | 비-Global 장식 Light2D |
 | Ambient Sprite | 수동 태깅한 배경 SpriteRenderer |
 
-흐름은 비디오 설정 → 변경 이벤트 → 마커·매니저 Apply입니다. 저사양(Switch) 기본은 장식 일부(예: 배경 파티클)를 끄는 쪽으로 둡니다.
+흐름은 비디오 설정 → 변경 이벤트 → 마커·매니저 적용입니다. 저사양(Switch) 기본은 장식 일부(예: 배경 파티클)를 끄는 쪽으로 둡니다.
 
 ### 원칙
 
@@ -109,7 +109,11 @@ flowchart TD
 
 **전투·타일맵·캐릭터에 Ambient 마커** — 게임플레이 시각과 옵션이 충돌합니다. 미부착합니다.
 
-구 측정 세션에 Global Light2D 마커가 포함된 경우가 있습니다. 현재 정책(Global 제외)과 **수치를 직접 비교하지 않습니다**.
+## 한계
+
+Ambient 토글은 **Switch(또는 Switch 런타임 proxy)에서만** 장식 GPU를 줄입니다. PC·에디터는 항상 ON이라, 이 옵션으로 Steam(PC) 이동 중 GPU를 깎지 않습니다. Global Light는 구조 실험 축이고, Ambient로 끄지 않습니다.
+
+측정·합격은 proxy 중심으로 두고, Switch **실기기 수치 없이 「최적화 완료」로 닫지 않습니다.** 구 측정에 Global Light2D 마커가 포함된 세션은 현재 정책(Global 제외)과 **수치를 직접 비교하지 않습니다.** 전투 VFX·타일맵·캐릭터는 이 트랙 밖입니다.
 
 ## 확인 포인트
 
@@ -123,4 +127,4 @@ flowchart TD
 
 Global은 **프리팹 구조**로, Ambient는 **Switch 전용 런타임 토글**로 다룹니다. 장식만 끄고 글로벌 조명·게임플레이 비주얼은 건드리지 않는 경계를 마커 정책으로 고정합니다.
 
-**권장 읽기** — [StageSpawn preload로 지역 내 이동 hitch 제거]({{ "/notes/stage-spawn-area-preload/" | relative_url }}) · 이동 중 GPU(이 글). TMP 최초 사용 스파이크는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 따릅니다.
+**권장 읽기** — [스테이지 스폰 preload로 지역 내 이동 히치 제거]({{ "/notes/stage-spawn-area-preload/" | relative_url }}) · 이동 중 GPU(이 글). TMP 최초 사용 스파이크는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 따릅니다.

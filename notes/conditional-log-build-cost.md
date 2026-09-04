@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Conditional로 플레이어 빌드 로그 비용 제거
+title: 조건부로 플레이어 빌드 로그 비용 제거
 permalink: /notes/conditional-log-build-cost/
 date: 2026-07-23
 excerpt: "에디터 레벨·태그 필터와 플레이어 빌드에서 호출·인자 평가를 없애는 [Conditional]은 다른 문제라는 점을, 드래곤 이즈 데드 Log API 기준으로 정리합니다."
@@ -22,7 +22,7 @@ project:
 | `Log.Progress` / `Info` / `Warning` / `Error` 등 | 개발 가시성(레벨·태그 필터) | `[Conditional("UNITY_EDITOR")]`로 **호출문·인자 평가 제거** |
 | `Debug.Log*` / 리포팅 | 릴리스에 남길 메시지 | `Log` 밖 **별도 경로** |
 
-에디터 필터는 콘솔 가시성만 바꿉니다. 호출에 `Combat`, `Stage` 같은 도메인 태그를 붙이고, 에디터에서 레벨·태그를 켜고 끕니다. 꺼도 출력만 막을 뿐 호출부의 `$""`는 그대로 평가됩니다. 바이너리 비용은 Conditional이 담당합니다.
+에디터 필터는 콘솔 가시성만 바꿉니다. 호출에 `Combat`, `Stage` 같은 도메인 태그를 붙이고, 에디터에서 레벨·태그를 켜고 끕니다. 꺼도 출력만 막을 뿐 호출부의 `$""`는 그대로 평가됩니다. 바이너리 비용은 조건부가 담당합니다.
 
 ## 문제
 
@@ -43,7 +43,7 @@ Log.Info("Combat", $"dmg={CalcDamage()}");
 
 ## 해결
 
-**필터 ≠ Conditional**
+**필터 ≠ 조건부**
 
 ```mermaid
 flowchart TD
@@ -66,7 +66,7 @@ flowchart TD
 <div class="callout" markdown="1">
 
 - **에디터 필터**: 레벨·태그로 콘솔 가시성만 바꿈. 꺼도 호출·인자 평가는 남음
-- **Conditional**: 플레이어 빌드에서 호출문·인자 평가 제거
+- **조건부**: 플레이어 빌드에서 호출문·인자 평가 제거
 
 </div>
 
@@ -139,7 +139,7 @@ public static class GameLog
 
 런타임 early return / `#if`만으로 플레이어 비용을 제어하는 방식은 기각합니다. 호출부 인자 평가가 남습니다.
 
-`Log` 안에 릴리스 전용 Error·파일 로그를 유지하면 “빌드에 남는가” 경계가 섞입니다. 출력 API는 Conditional로 분리합니다.
+`Log` 안에 릴리스 전용 Error·파일 로그를 유지하면 “빌드에 남는가” 경계가 섞입니다. 출력 API는 조건부로 분리합니다.
 
 Unity Logging 패키지·API 대폭 축소는 빌드 비용 합격선과 무관해 보류합니다.
 

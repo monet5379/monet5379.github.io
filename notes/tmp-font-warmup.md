@@ -19,13 +19,13 @@ project:
 
 부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다.
 
-TMP 폰트 시리즈 2편입니다. [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다. Static 문자셋(Dynamic atlas 회피)은 [TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})를 따릅니다.
+TMP 폰트 시리즈 2편입니다. [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 로컬라이즈 작업에서 적용한 내용입니다. 정적 문자셋(동적 아틀라스 회피)은 [TMP 정적 아틀라스로 동적 히치 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})를 따릅니다.
 
 ## 이 글에서 쓰는 말
 
 | 말 | 역할 |
 |----|------|
-| **Static** | 어떤 글자가 아틀라스에 있는가 — [1편]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) |
+| **정적** | 어떤 글자가 아틀라스에 있는가 — [1편]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) |
 | **워밍업** | 언제 처음 그리는가 — 이 글 |
 | **input block** | 워밍업 중 입력·UI 갱신을 막아 플레이와 겹치지 않게 함 |
 | **supersede** | 연속 언어 변경 시 이전 워밍업을 취소하고 새 작업으로 교체 |
@@ -44,11 +44,11 @@ Static은 어떤 글자가 아틀라스에 있는가, Warmup은 언제 처음 �
 
 드래곤 이즈 데드에서는 Title(타이틀)·Content 계열(본문·일반 UI)·Number(수치)처럼 **실제로 쓰는 타입만** 워밍업합니다. 미사용 타입까지 일괄 넣지 않습니다. 키보드(PC)·조이스틱·커런시 등 Sprite Asset도 언어 UI와 같이 처음 그릴 때 스파이크가 나므로, 같은 대기 구간으로 옮깁니다.
 
-**공개 Demo 매핑.** [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }})은 Title / Content / Number 대신 **Ui · Dialogue** `FontUsageRole`로 나눕니다. weight enum이 아니라 Static extract 버킷·Font Asset 역할입니다. Warmup sample도 역할별입니다 — Ui는 UI JSON(`Confirm` 등), Dialogue는 dialogue JSON(`dlg_intro` 등). glyph SSOT는 여전히 [Static 추출]({{ "/notes/tmp-static-font-atlas/" | relative_url }})입니다.
+**공개 Demo 매핑.** [TMP 폰트 파이프라인]({{ "/projects/tmp-font-pipeline/" | relative_url }})은 Title / Content / Number 대신 **Ui · Dialogue** `FontUsageRole`로 나눕니다. weight enum이 아니라 정적 extract 버킷·Font Asset 역할입니다. Warmup sample도 역할별입니다 — Ui는 UI JSON(`Confirm` 등), Dialogue는 dialogue JSON(`dlg_intro` 등). glyph SSOT는 여전히 [정적 추출]({{ "/notes/tmp-static-font-atlas/" | relative_url }})입니다.
 
 ## 문제
 
-Static atlas만으로는 첫 사용 시 머티리얼·메쉬·스프라이트 준비 비용이 사라지지 않습니다.
+정적 atlas만으로는 첫 사용 시 머티리얼·메쉬·스프라이트 준비 비용이 사라지지 않습니다.
 
 | 증상 | 원인 |
 |------|------|
@@ -77,13 +77,13 @@ flowchart TD
   end
 ```
 
-첫 그리기 비용을 스플래시·언어 변경 대기 구간으로 옮깁니다. sample은 경로를 깨울 뿐이고, glyph 전량 보장은 Static 추출이 담당합니다.
+첫 그리기 비용을 스플래시·언어 변경 대기 구간으로 옮깁니다. sample은 경로를 깨울 뿐이고, glyph 전량 보장은 정적 추출이 담당합니다.
 
 트리거는 Splash 시작, Title 미완료 시 fallback, 언어 변경입니다. 화면 밖 TMP에 sample text를 넣고 `ForceMeshUpdate`로 **font 1개당 1프레임** 돌리며, 키보드·조이스틱·커런시 Sprite Asset도 같은 구간에 preload합니다. 언어 변경 경로에서는 완료 후 input unblock과 언어 변경 이벤트를 보내고, 진행 중 warmup은 cancel(supersede)·이미 완료된 언어는 즉시 완료 콜백합니다. 워밍업 대상은 Title·Content 계열·Number 등 실제 사용 타입에 한정합니다.
 
 ### Sample text
 
-전 glyph가 아닙니다. 폰트·머티리얼 경로를 깨우는 짧은 샘플만 씁니다. 드래곤 이즈 데드는 언어군별 **공통** sample(CJK `字体预热테스트漢字`, European `Font Warmup AaBbCc012` 등)을 씁니다. 공개 Demo는 Ui·Dialogue atlas가 다르므로 **역할별** 짧은 문장(예: KO Ui `확인`, Dialogue `어서 오세요, 모험가.`)을 씁니다 — 전 glyph 보장이 아니라 해당 Static atlas 안의 글자만 참조합니다.
+전 glyph가 아닙니다. 폰트·머티리얼 경로를 깨우는 짧은 샘플만 씁니다. 드래곤 이즈 데드는 언어군별 **공통** sample(CJK `字体预热테스트漢字`, European `Font Warmup AaBbCc012` 등)을 씁니다. 공개 Demo는 Ui·Dialogue atlas가 다르므로 **역할별** 짧은 문장(예: KO Ui `확인`, Dialogue `어서 오세요, 모험가.`)을 씁니다 — 전 glyph 보장이 아니라 해당 정적 atlas 안의 글자만 참조합니다.
 
 ## 공개 구현
 
@@ -95,20 +95,26 @@ flowchart TD
 
 **첫 UI에서 자연 warmup (명시적 manager 없음)** — 플레이·입력과 스파이크가 겹칩니다. 기각했습니다.
 
-**한 프레임에 전 font type 워밍업** — 스플래시 hitch가 납니다. 프레임 분산을 유지합니다.
+**한 프레임에 전 font type 워밍업** — 스플래시 히치가 납니다. 프레임 분산을 유지합니다.
 
-**Warmup만으로 glyph completeness** — sample은 일부만 커버합니다. [Static 추출]({{ "/notes/tmp-static-font-atlas/" | relative_url }})이 SSOT입니다.
+**Warmup만으로 glyph completeness** — sample은 일부만 커버합니다. [정적 추출]({{ "/notes/tmp-static-font-atlas/" | relative_url }})이 SSOT입니다.
 
 **전 font type 일괄 warmup** — 비용·미사용 타입 부담입니다. 필요 시 목록 확장은 보류합니다.
 
+## 한계
+
+워밍업은 **언제 처음 그리는가**만 옮깁니다. sample text는 경로를 깨울 뿐이고, **glyph 전량·tofu 없음**은 [정적 추출]({{ "/notes/tmp-static-font-atlas/" | relative_url }})이 SSOT입니다. 동적 아틀라스 대체재가 아닙니다.
+
+`input block`·언어 변경 후 UI refresh는 **게임/Demo 책임**입니다. 패키지 서비스만으로는 입력이 막히지 않습니다. 미사용 font type까지 일괄 넣지 않으므로, 목록 밖의 타입은 첫 사용 스파이크가 남을 수 있습니다.
+
 ## 확인 포인트
 
-- 콜드 부팅 → Splash warmup → Title: 첫 UI에서 폰트 관련 장시간 hitch·tofu 없음
+- 콜드 부팅 → Splash warmup → Title: 첫 UI에서 폰트 관련 장시간 히치·tofu 없음
 - Splash 완료 전 Title fallback이 겹쳐도 supersede/complete로 입력이 죽지 않음
 - 옵션 언어 변경 → warmup 중 input block → 완료 후 UI refresh·조작 가능
 - 언어를 빠르게 연속 변경해도 superseded로 block이 풀림
 - Profiler상 warmup 비용이 스플래시·언어 변경 구간에만 유의미
-- 워밍업 미완료·실패 시: 첫 UI hitch 또는 언어 변경 후 입력이 풀리지 않음으로 드러남
+- 워밍업 미완료·실패 시: 첫 UI 히치 또는 언어 변경 후 입력이 풀리지 않음으로 드러남
 
 ## 정리
 

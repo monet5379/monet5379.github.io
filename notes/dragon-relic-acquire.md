@@ -18,7 +18,7 @@ mermaid: true
 
 이번 도전에서 유물을 최대 9칸에 쌓고, 필드에서 줍·교체·버리는 흐름을 정리합니다. 장비(인벤)와 달리 도전이 끝나면 슬롯이 비워집니다.
 
-유물 시리즈 1편입니다. [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})에서 유물은 [인벤 1편]({{ "/notes/dragon-inventory-store/" | relative_url }})의 가방·장비와 **별 타입·별 컨테이너**입니다. 프로필 장비는 도전을 마쳐도 남지만, 유물 슬롯은 **도전이 끝날 때 비워지는 런 빌드**입니다. 이 글은 **후보·드랍·획득·교체·버리기**만 다룹니다. Stat·유물 스킬·Synergy 반영은 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})입니다.
+유물 시리즈 1편입니다. [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})에서 유물은 [인벤 1편]({{ "/notes/dragon-inventory-store/" | relative_url }})의 가방·장비와 **별 타입·별 컨테이너**입니다. 프로필 장비는 도전을 마쳐도 남지만, 유물 슬롯은 **도전이 끝날 때 비워지는 런 빌드**입니다. 이 글은 **후보·드랍·획득·교체·버리기**만 다룹니다. 능력치·유물 스킬·시너지 반영은 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})입니다.
 
 ## 맥락
 
@@ -52,7 +52,7 @@ Json 정본은 `RelicData` · `RelicSynergyData` · `DropRelicData`입니다. �
 
 ## 무엇이 한곳에 모이는가
 
-출시본에서 유물 층은 `VCharacterRelic`(`MyRelics[9]` · Register/Unregister · Apply 진입), `VRelic`(SID · StatOptions · Enhances · CustomSynergy), `RelicCollectionManager`(후보 · Pick · Take · Throw · Swap · ChangePopup), `DropRelic`(Operate · OrderOperate), `VItemGenerator` Relic partial(`PickRelicItems`)에 모입니다.
+출시본에서 유물 층은 `VCharacterRelic`(`MyRelics[9]` · Register/Unregister · 적용 진입), `VRelic`(SID · StatOptions · Enhances · CustomSynergy), `RelicCollectionManager`(후보 · Pick · Take · Throw · Swap · ChangePopup), `DropRelic`(Operate · OrderOperate), `VItemGenerator` Relic partial(`PickRelicItems`)에 모입니다.
 
 `EquipRelicSlot`은 인벤 UI 배치용 특수 슬롯이고, **런타임 유물 9칸**은 `VCharacterRelic.MyRelics`입니다. 이름만 “Relic”으로 겹치므로 QA·문서에서 혼동하기 쉽습니다.
 
@@ -85,21 +85,21 @@ flowchart TD
 ```mermaid
 flowchart TD
   O["DropRelic.Operate"] --> T["TryTakeRelic"]
-  T -->|빈 슬롯| A["RegisterRelic + Apply"]
+  T -->|빈 슬롯| A["RegisterRelic + 적용"]
   T -->|Full| C["ChangePopup → SwapRelic"]
   TH["ThrowGroundRelic"] --> U["Unregister · SpawnDrop"]
   X["OrderOperate"] --> G["Currency · ITEM_RELIC_DESTROY"]
 ```
 
-Stat·Synergy Apply는 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})입니다.
+능력치·시너지 적용는 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})입니다.
 
-빈 슬롯이면 `RegisterRelic` · `Acquired` · Analytics로 슬롯에 추가하고, 9슬롯 Full이면 `SpawnRelicChangePopup` → `SwapRelic` 교체 UI로 갑니다. 버리기는 Unregister → 필드 Spawn → Skill Remove, 파괴는 `OrderOperate`로 DestroyPrice 골드를 줍니다.
+빈 슬롯이면 `RegisterRelic` · `Acquired` · Analytics로 슬롯에 추가하고, 9슬롯 Full이면 `SpawnRelicChangePopup` → `SwapRelic` 교체 UI로 갑니다. 버리기는 Unregister → 필드 Spawn → 스킬 Remove, 파괴는 `OrderOperate`로 DestroyPrice 골드를 줍니다.
 
 **동일 `RelicNames` 중복 착용 불가** — `TryAddRelic` · `Contains`. Swap은 old Unregister → new Take → old Throw 순입니다.
 
 ## 도전 리셋과 씬 Cleanup
 
-유물 “수명”은 인벤과 갈라지는 지점입니다. `VCharacter.ClearIngameData`는 UnregisterAll · 슬롯 null · Synergy 추가치 Clear(캐릭터 단위). `GameData.ClearIngameData`(포기·균열 완료 등)는 그 위에 `ClearDroppedRelics` + `ClearCandidates`로 **도전 종료**를 고정합니다. `GameMainScene.CleanupCurrentScene`은 `ClearDroppedRelics` **만** 하고 후보 풀은 유지합니다 — **씬 전환**만입니다.
+유물 “수명”은 인벤과 갈라지는 지점입니다. `VCharacter.ClearIngameData`는 UnregisterAll · 슬롯 null · 시너지 추가치 Clear(캐릭터 단위). `GameData.ClearIngameData`(포기·균열 완료 등)는 그 위에 `ClearDroppedRelics` + `ClearCandidates`로 **도전 종료**를 고정합니다. `GameMainScene.CleanupCurrentScene`은 `ClearDroppedRelics` **만** 하고 후보 풀은 유지합니다 — **씬 전환**만입니다.
 
 프로필 **장비·가방**은 같은 `ClearIngameData`에서 통째로 지우지 않습니다. **「유물 = 이번 도전 빌드」** 를 코드로 고정한 부분입니다.
 
@@ -107,7 +107,7 @@ Stat·Synergy Apply는 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})
 
 - **인벤과 분리 설계** — Relic을 VItem TryTake에 넣지 않음
 - **Pick 후 UnregisterCandidate** — 같은 유물 재추첨
-- **Apply/Unapply 쌍** — Throw·Unregister 후 Skill·Stat 잔존 → [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})
+- **적용/해제 쌍** — Throw·Unregister 후 스킬·능력치 잔존 → [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})
 - **씬 vs 런 리셋** — 씬 전환 vs 도전 포기 구분
 
 ## 기각·보류
@@ -117,4 +117,4 @@ Stat·Synergy Apply는 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})
 
 ## 정리
 
-드래곤 이즈 데드 유물 1층은 **캐릭터 9슬롯에 `VRelic`을 쌓고, RelicCollectionManager로 후보·드랍·획득·교체를 처리하는 것**입니다. 인벤 장비와 달리 **도전이 끝나면 슬롯이 비워집니다**. 전투 반영은 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})으로 이어집니다. VItem·가방·Equipment Apply는 [인벤 1·2편]({{ "/notes/dragon-inventory-store/" | relative_url }})에, 스킬 트리·프로필 Learn은 [스킬 1편]({{ "/notes/dragon-skill-growth/" | relative_url }})에, SellingRelic·TryEnhance·보상 상자 Handler는 Interaction·2편 요지에 둡니다. ChangePopup·Synergy HUD 위젯은 Architecture_UI(내부)에, partial·코드 표 전수는 Architecture(내부)에 둡니다.
+드래곤 이즈 데드 유물 1층은 **캐릭터 9슬롯에 `VRelic`을 쌓고, RelicCollectionManager로 후보·드랍·획득·교체를 처리하는 것**입니다. 인벤 장비와 달리 **도전이 끝나면 슬롯이 비워집니다**. 전투 반영은 [2편]({{ "/notes/dragon-relic-apply/" | relative_url }})으로 이어집니다. VItem·가방·Equipment 적용는 [인벤 1·2편]({{ "/notes/dragon-inventory-store/" | relative_url }})에, 스킬 트리·프로필 Learn은 [스킬 1편]({{ "/notes/dragon-skill-growth/" | relative_url }})에, SellingRelic·TryEnhance·보상 상자 Handler는 Interaction·2편 요지에 둡니다. ChangePopup·시너지 HUD 위젯은 Architecture_UI(내부)에, partial·코드 표 전수는 Architecture(내부)에 둡니다.

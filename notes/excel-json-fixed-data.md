@@ -22,7 +22,7 @@ project:
 
 - **패치 후 수치가 안 맞음** — 시트는 고쳤는데 변환·빌드 갱신을 안 한 경우
 - **런타임 크래시·빈 이름** — 시트 열 추가·빈 칸·배열 표기가 JSON 파싱까지 전달된 경우
-- **전투 연출이 표에 없음** — Buff·Passive·Hitmark는 ScriptableObject 경로 (이 글 밖)
+- **전투 연출이 표에 없음** — 버프·패시브·히트마크는 ScriptableObject 경로 (이 글 밖)
 
 그때마다 Unity를 열고 Scriptable·Inspector를 만지게 하면, 편집 도구가 클라이언트 전제에 묶입니다. 시트(`.xlsx`)로 두면 Excel만으로 수치를 맞출 수 있고, 프로그래머는 변환 메뉴로 JSON을 갱신해 빌드에 넣습니다.
 
@@ -38,7 +38,7 @@ project:
 | **변환** | 시트 → JSON (에디터만) | Excel4Unity + 타이틀 메뉴 |
 | **로드** | 빌드에서 JSON 한 번 읽기 | `JsonDataManager` |
 | **조회** | 게임플레이가 바꾸지 않는 복제본 | `Find*Clone` |
-| **Scriptable 경로** | 트리거·연출·참조 묶음 | Buff / Passive / Hitmark |
+| **Scriptable 경로** | 트리거·연출·참조 묶음 | Buff / Passive / Hitmark SO |
 
 ## 두 경로
 
@@ -47,7 +47,7 @@ project:
 | 맞는 질문 | Unity 없이 표로 고칠 수치·이름·문자열인가 | 에디터에서 트리거·연출·참조를 묶을 것인가 |
 | 편집 | `.xlsx` (기획) → 변환 메뉴 (클라) | Inspector |
 | 런타임 | `JsonDataManager` 로드·조회 | `ScriptableDataManager` |
-| 예 | Character / Skill / Item / String* | Buff / Passive / Hitmark |
+| 예 | Character / Skill / Item / String* | 버프 / 패시브 / 히트마크 SO |
 
 **에디터에서 굳히고, 런타임은 JSON만**
 
@@ -68,7 +68,7 @@ flowchart TD
 
 <div class="callout" markdown="1">
 
-- Scriptable 파이프라인(Buff / Passive / Hitmark)은 이 도식 밖에 둡니다.
+- Scriptable 파이프라인(버프 / 패시브 / 히트마크)은 이 도식 밖에 둡니다.
 
 </div>
 
@@ -101,15 +101,25 @@ flowchart TD
 
 리소스 경로는 파일명 → `Resources` leaf를 메타로 찾아 갑니다. JSON을 추가·이름 바꾼 뒤에는 그 메타도 맞춰야 로드가 실패하지 않습니다.
 
-문자열 JSON은 이 파이프라인의 산물이며, TMP Static 문자셋 추출의 입력이기도 합니다 ([TMP Static 아틀라스로 Dynamic hitch 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})).
+문자열 JSON은 이 파이프라인의 산물이며, TMP 정적 문자셋 추출의 입력이기도 합니다 ([TMP 정적 아틀라스로 동적 히치 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})).
 
 ## 기각·보류
 
 - 시트에서 C# 모델 코드를 매번 재생성하는 쪽에 의존하지 않았습니다. upstream이 제공하는 생성 경로는 두고, 스키마는 헤더와 손수 맞춘 모델(`ParseData`·Excel 전용 원시 필드)이 계약입니다.
 - 세이브 프로필·런 진행은 이 경로가 아닙니다. 고정 카탈로그와 진행 저장은 [세이브·데이터]({{ "/projects/dragon-is-dead/" | relative_url }}#세이브데이터)에서 따로 둡니다.
 
+## 한계
+
+이 시스템에서 사용하는 데이터 구조(스키마)는 엑셀 파일의 **헤더(첫 번째 줄)**와 직접 작성한 **C# 모델 코드**(데이터를 담는 클래스·구조체) 두 부분이 항상 일치해야 합니다.
+
+예를 들어, 엑셀 시트에 새로운 열을 추가하거나 컬럼 이름을 바꿀 때는, C#의 `ParseData` 함수와 데이터 필드(멤버 변수)도 꼭 함께 수정해야 올바르게 데이터를 읽어오고, 원하는 값을 찾을 수 있습니다. 만약 둘 중 하나만 바꾼다면, 프로그램에서 데이터를 제대로 불러오지 못하거나 오류가 발생할 수 있습니다.
+
+코드 생성기(codegen)가 자동으로 C# 모델을 매번 만들어주는 구조가 아니므로, 엑셀과 C# 모델을 사람이 직접 맞춰주는 과정이 반드시 필요합니다.
+
+플레이어 경로는 `Resources` JSON만 읽습니다. 시트만 고치고 **변환·빌드 갱신**을 빼먹으면 패치 수치가 안 맞습니다. JSON을 추가·이름 바꾼 뒤에는 `Resources` leaf **메타**도 맞춰야 합니다. 버프·패시브·히트마크 Scriptable과 세이브 진행은 이 경로 밖입니다.
+
 ## 정리
 
 upstream은 시트→JSON까지이고, 타이틀 규약·`JsonDataManager`·Scriptable 분리는 그 위에 얹은 경계입니다.
 
-**권장 읽기** — [Excel4Unity](https://github.com/joexi/Excel4Unity) (변환 기반) → [드래곤 이즈 데드 · 세이브·데이터]({{ "/projects/dragon-is-dead/" | relative_url }}#세이브데이터) → [TMP Static 아틀라스]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) (String JSON 소비) → [Conditional 로그]({{ "/notes/conditional-log-build-cost/" | relative_url }}) (에디터 vs 플레이어 빌드 비용 경계)
+**권장 읽기** — [Excel4Unity](https://github.com/joexi/Excel4Unity) (변환 기반) → [드래곤 이즈 데드 · 세이브·데이터]({{ "/projects/dragon-is-dead/" | relative_url }}#세이브데이터) → [TMP 정적 아틀라스]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) (String JSON 소비) → [조건부 로그]({{ "/notes/conditional-log-build-cost/" | relative_url }}) (에디터 vs 플레이어 빌드 비용 경계)

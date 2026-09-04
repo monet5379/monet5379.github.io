@@ -30,7 +30,7 @@ QA에서 자주 갈라지는 체감:
 
 - **트리에서 배웠는데** 액션바에 없음 → 할당(슬롯) 문제
 - **슬롯에 있는데** 전투에서 입력이 안 먹음 → [2편]({{ "/notes/dragon-skill-cast/" | relative_url }}) 시전·BattleReady 문제
-- **레벨은 올랐는데** 타격 숫자가 안 바뀜 → [stat]({{ "/notes/dragon-combat-stat/" | relative_url }})·Hitmark 경로
+- **레벨은 올랐는데** 타격 숫자가 안 바뀜 → [능력치]({{ "/notes/dragon-combat-stat/" | relative_url }})·히트마크 경로
 
 구현에서는 **프로필 세이브의 스킬 상태**(학습 목록·할당 슬롯·레벨)가 정본이고, 전투 씬의 스킬 런타임은 그 뒤를 따라갑니다. 스킬 로직·밸런스 표는 Excel→Json, 학습·슬롯·레벨은 프로필 세이브에 남습니다.
 
@@ -47,7 +47,7 @@ QA에서 자주 갈라지는 체감:
 |----|------|-------------------|
 | **학습** | 트리·보상 등으로 스킬 ID를 **소유** | Learn · TryLearn |
 | **할당** | 액션 슬롯에 스킬 ID **연결** | Assign |
-| **레벨** | 해당 스킬 강도 — 타격 시 Hitmark에 전달 | Entity level |
+| **레벨** | 해당 스킬 강도 — 타격 시 히트마크에 전달 | Entity level |
 | **프로필 세이브** | 캠페인 슬롯별 진행 데이터 | `VCharacter` Skill |
 
 ## 성장 경로
@@ -66,7 +66,7 @@ flowchart TD
 | 이벤트 역할 | 런타임 쪽 |
 |-------------|-----------|
 | 스킬 추가·제거 | Entity 가감 |
-| 레벨 갱신 | Entity 레벨 → 타격 시 Hitmark에 전달 |
+| 레벨 갱신 | Entity 레벨 → 타격 시 히트마크에 전달 |
 | 슬롯 할당·해제 | 입력 슬롯과 스킬 ID 동기화 |
 | 허용 스킬 등록 | 전투 준비와 별 경로로 목록 갱신 |
 
@@ -100,8 +100,8 @@ flowchart TD
 | 스킬 로직·표 | Json 행(clone). ID·쿨·코스트 등 |
 | 학습·슬롯·레벨 | 프로필 세이브. 캐릭터마다 보관 |
 | SkillAnimation | Scriptable. 시전 연출·이벤트 타이밍 ([2편]({{ "/notes/dragon-skill-cast/" | relative_url }})) |
-| Hitmark / Buff / Passive | Scriptable. ID로 연결. 본체는 [전투 코드 읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) |
+| 히트마크 / 버프 / 패시브 | Scriptable. ID로 연결. 본체는 [전투 코드 읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) |
 
 ## 정리
 
-드래곤 이즈 데드 스킬의 성장은 **프로필 세이브에 학습·할당·레벨을 쓰고, 이벤트로 런타임·HUD를 맞추는 경로**입니다. 시전은 그다음에, 슬롯에 올라온 스킬만 입력으로 받습니다 — [2편]({{ "/notes/dragon-skill-cast/" | relative_url }}). Hitmark 피해·Buff 스택·Passive 큐는 [타격·데미지]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})·[트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에, 스킬 트리 UI 레이아웃·학습 팝업 전부는 UI 범위(요지만 위)에, 프로필 직렬화 필드·Learn/Assign 코드 표는 Architecture(내부)에 둡니다.
+드래곤 이즈 데드 스킬의 성장은 **프로필 세이브에 학습·할당·레벨을 쓰고, 이벤트로 런타임·HUD를 맞추는 경로**입니다. 시전은 그다음에, 슬롯에 올라온 스킬만 입력으로 받습니다 — [2편]({{ "/notes/dragon-skill-cast/" | relative_url }}). 히트마크 피해·버프 스택·패시브 큐는 [타격·데미지]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})·[트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에, 스킬 트리 UI 레이아웃·학습 팝업 전부는 UI 범위(요지만 위)에, 프로필 직렬화 필드·Learn/Assign 코드 표는 Architecture(내부)에 둡니다.

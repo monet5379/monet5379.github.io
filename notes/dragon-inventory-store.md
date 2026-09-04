@@ -3,7 +3,7 @@ layout: page
 title: 인벤에 무엇을 어떻게 쌓는가
 permalink: /notes/dragon-inventory-store/
 date: 2026-09-02
-excerpt: "필드에서 아이템을 줍고 가방·장비 슬롯·Essence 탭에 넣을 때, 프로필 세이브에 인스턴스가 어떻게 쌓이고 ItemTypes별로 배치되는지를 정리합니다."
+excerpt: "필드에서 아이템을 줍고 가방·장비 슬롯·정수 탭에 넣을 때, 프로필 세이브에 인스턴스가 어떻게 쌓이고 ItemTypes별로 배치되는지를 정리합니다."
 tags: [인벤]
 project:
   - dragon-is-dead
@@ -16,9 +16,9 @@ mermaid: true
 ---
 
 
-필드에서 아이템을 줍고 가방·장비 슬롯·Essence 탭에 넣을 때, 프로필 세이브에 인스턴스가 어떻게 쌓이고 ItemTypes별로 배치되는지를 정리합니다.
+필드에서 아이템을 줍고 가방·장비 슬롯·정수 탭에 넣을 때, 프로필 세이브에 인스턴스가 어떻게 쌓이고 ItemTypes별로 배치되는지를 정리합니다.
 
-인벤토리 시리즈 1편입니다. [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})에서 플레이어가 “아이템을 얻었다·가방에 넣었다”고 느끼는 체감은 착용·스탯 반영보다 먼저 **프로필 세이브에 인스턴스가 쌓이는 것**입니다. 이 글은 그 **보관·배치·획득**만 다룹니다. 장비를 끼었을 때 Stat·Skill이 바뀌는 경로는 [2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})에 둡니다.
+인벤토리 시리즈 1편입니다. [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})에서 플레이어가 “아이템을 얻었다·가방에 넣었다”고 느끼는 체감은 착용·능력치 반영보다 먼저 **프로필 세이브에 인스턴스가 쌓이는 것**입니다. 이 글은 그 **보관·배치·획득**만 다룹니다. 장비를 끼었을 때 능력치·스킬이 바뀌는 경로는 [2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})에 둡니다.
 
 ## 맥락
 
@@ -41,14 +41,14 @@ Json 행을 런타임에 mutate하지 않고, 생성·검사·UI는 **clone 또�
 | 말 | 역할 | 코드에서는 (참고) |
 |----|------|-------------------|
 | **SID** | 세이브 안 아이템 **인스턴스** 고유 번호 | `GenerateItemSID` |
-| **ItemTypes** | 장비·Essence·퀘스트 탭 등 **어디에 둘지** | Enum |
+| **ItemTypes** | 장비·정수·퀘스트 탭 등 **어디에 둘지** | Enum |
 | **AssingedSlot / ToggleSlotType** | UI 탭·슬롯과 세이브 배치 **쌍** | Validator 보정 |
 | **TryTake / TakeItem** | 줍기 **시도** → 프로필 **반영** | Handler |
 | **ThrowGround** | 버리기 — **세이브에서 먼저 제거** 후 필드 스폰 | Remove → Spawn |
 
 ## 무엇이 한곳에 모이는가
 
-출시본에서 `VInventory`는 **저장·조회·슬롯·착용·Stat/Skill 적용·퀘스트 부수 효과**까지 한 타입에 있습니다. 주변은 `UIInventoryHandler`(필드 픽업·버리기·판매 명령), `InventoryItemValidator`(로드·가방 정렬 때 슬롯·탭 쌍 보정), `VItemGenerator`(드랍·보상·Dev 생성)로 얇게 나뉩니다.
+출시본에서 `VInventory`는 **저장·조회·슬롯·착용·능력치/스킬 적용·퀘스트 부수 효과**까지 한 타입에 있습니다. 주변은 `UIInventoryHandler`(필드 픽업·버리기·판매 명령), `InventoryItemValidator`(로드·가방 정렬 때 슬롯·탭 쌍 보정), `VItemGenerator`(드랍·보상·Dev 생성)로 얇게 나뉩니다.
 
 UI 팝업·드래그·Compare 위젯, 월드 `SpawnDrop*`, `RelicCollectionManager`는 **인벤 데이터 층 밖**입니다. 유물은 `VCharacter.Relic`(`VRelic`)이고, `EquipRelicSlot`은 UI 배치용 별 개념입니다 — [유물 1편]({{ "/notes/dragon-relic-acquire/" | relative_url }}).
 
@@ -61,7 +61,7 @@ UI 팝업·드래그·Compare 위젯, 월드 `SpawnDrop*`, `RelicCollectionManag
 | Equipment | `MyItems` + Equipment 또는 Bag | 빈 Equip + 착용 가능하면 자동 착용, 아니면 가방 |
 | RiftGem | `MyItems` + 균열 보석 슬롯 | 전용 Take 분기 |
 | ETC · SkillBook · Prayers · Soulgem | `MyItems` + Quest 탭 | Soulgem 등은 **중복 시 새 슬롯 없이 Level만** |
-| Essence | `MyItems` + CharacterEssence 탭 | 별도 저장소가 아니라 같은 Dictionary |
+| 정수 | `MyItems` + CharacterEssence 탭 | 별도 저장소가 아니라 같은 Dictionary |
 | Relic | `VCharacter.Relic` | 인벤 장비와 다른 축 |
 | Rune · Potion 등 | `VProfile.Rune` · 캐릭터 포션 등 | 인벤 Store 밖 (리팩터 계획에서도 분리) |
 
@@ -82,7 +82,7 @@ flowchart TD
 
 `ApplyItemDataToCharacter`가 아닙니다. 착용·Stat은 [2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})입니다.
 
-`TryTakeItem`은 Type별로 빈 Equip 슬롯·가방·Essence·`IsOnlyOne` 중복을 먼저 봅니다. `TakeItem`은 ToggleSlot에 따라 Essence / Quest / Equipment·RiftGem으로 갈라집니다. 가방이 꽉 차면 빈 Equip을 시도하고, 그래도 안 되면 필드에 다시 떨어뜨리거나 거절합니다.
+`TryTakeItem`은 Type별로 빈 Equip 슬롯·가방·정수·`IsOnlyOne` 중복을 먼저 봅니다. `TakeItem`은 ToggleSlot에 따라 정수 / Quest / Equipment·RiftGem으로 갈라집니다. 가방이 꽉 차면 빈 Equip을 시도하고, 그래도 안 되면 필드에 다시 떨어뜨리거나 거절합니다.
 
 **버리기**는 순서가 고정입니다. `ThrowGroundItem` → **저장에서 Remove** → `ResourcesManager.SpawnDrop*`. Spawn만 하면 **세이브와 월드가 어긋납니다** — QA: “버렸는데 다시 줍으면 두 개”.
 
@@ -102,7 +102,7 @@ flowchart TD
 
 ## 출시에서 남긴 것
 
-- **SID 유일성** — `GenerateItemSID()` 발급, 동일 SID 거부 · Stat Modifier 키와 공유([2편]({{ "/notes/dragon-inventory-equip/" | relative_url }}))
+- **SID 유일성** — `GenerateItemSID()` 발급, 동일 SID 거부 · 능력치 Modifier 키와 공유([2편]({{ "/notes/dragon-inventory-equip/" | relative_url }}))
 - **AssingedSlot ↔ ToggleSlotType** 쌍 — 로드 후 슬롯·탭 어긋남
 - **ThrowGround** — Remove 후 Spawn · 버린 아이템이 세이브에 남음
 - **Inventory → Quest 로드 순서** — 퀘스트 Migrate·CompleteQuests 엇갈림
@@ -114,4 +114,4 @@ flowchart TD
 
 ## 정리
 
-드래곤 이즈 데드 인벤의 1층은 **프로필 `VInventory`에 SID 인스턴스를 쌓고, ItemTypes·탭·Validator로 배치를 맞추는 것**입니다. 전투 수치·스킬은 착용 Apply에서 [2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})으로 이어집니다. Stat Modifier·FindCalculateValue는 [타격·데미지 2편 stat]({{ "/notes/dragon-combat-stat/" | relative_url }})에, 스킬 트리·학습·할당은 [스킬 1편]({{ "/notes/dragon-skill-growth/" | relative_url }})에, 유물 Synergy·Relic Skill은 [유물 1·2편]({{ "/notes/dragon-relic-acquire/" | relative_url }})에 둡니다. Drop 확률·스포너·Operate·partial 파일·메서드 표 전체는 Architecture(내부)에, 인벤 UI 드래그·Compare·Sorting 위젯은 Architecture_UI(내부)에 둡니다.
+드래곤 이즈 데드 인벤의 1층은 **프로필 `VInventory`에 SID 인스턴스를 쌓고, ItemTypes·탭·Validator로 배치를 맞추는 것**입니다. 전투 수치·스킬은 착용 적용에서 [2편]({{ "/notes/dragon-inventory-equip/" | relative_url }})으로 이어집니다. 능력치 Modifier·FindCalculateValue는 [타격·데미지 2편 능력치]({{ "/notes/dragon-combat-stat/" | relative_url }})에, 스킬 트리·학습·할당은 [스킬 1편]({{ "/notes/dragon-skill-growth/" | relative_url }})에, 유물 시너지·유물 스킬은 [유물 1·2편]({{ "/notes/dragon-relic-acquire/" | relative_url }})에 둡니다. Drop 확률·스포너·Operate·partial 파일·메서드 표 전체는 Architecture(내부)에, 인벤 UI 드래그·Compare·Sorting 위젯은 Architecture_UI(내부)에 둡니다.
