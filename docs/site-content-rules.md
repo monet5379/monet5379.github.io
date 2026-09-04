@@ -95,10 +95,10 @@ project:
 
 | 분류 | 질문 | 예 |
 |------|------|-----|
-| **전투** | 맞힌 뒤 무엇이 일어나는가 | Hitmark·Buff·Passive·Apply |
-| **액션** | 이 프레임의 의도는 누가 실행하는가 | Command·게이트·Room·Wave·보스 |
+| **전투** | 맞힌 뒤 무엇이 일어나는가 | 히트마크·버프·패시브·Apply |
+| **액션** | 이 프레임의 의도는 누가 실행하는가 | 명령·게이트·Room·Wave·보스 |
 | **스킬** | 스킬을 어떻게 얻고·슬롯에 두고·시전하는가 | 학습·할당·TryCast·SkillAnimation |
-| **인벤** | 아이템을 어떻게 쌓고·배치하고·착용해 Stat·Skill에 반영하는가 | VItem·획득·Equip·Apply |
+| **인벤** | 아이템을 어떻게 쌓고·배치하고·착용해 능력치·스킬에 반영하는가 | VItem·획득·Equip·Apply |
 | **성장** | 이번 세션이 무엇을 들고 전투에 붙는가 | Core·Gear·Risk·Trait |
 | **세이브** | 진행을 디스크에 어떻게 나누·복구하는가 | Main·Side·Meta, Side vs Backup |
 | **데이터** | 고정 정의를 어디서 고치고 빌드에 어떻게 굳히는가 | Excel→JSON, Facade |
