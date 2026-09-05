@@ -1,0 +1,16 @@
+# Jekyll / bundler (git에도 있으나 Cursor 인덱싱용으로 명시)
+_site/
+_site_prod/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+.bundle/
+
+# 로컬 에디터·볼트 UI (내용 탐색에 불필요)
+.obsidian/
+**/.obsidian/
+
+# OS
+.DS_Store
+Thumbs.db
