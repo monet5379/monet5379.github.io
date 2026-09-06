@@ -55,7 +55,7 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 
 캐릭터는 입력에 따라 반응하는 각 어빌리티를 가집니다. 키·패드 입력은 캐릭터 어빌리티가 매 프레임 읽습니다. 이동·점프·대시·스킬·상호작용을 Early/Process/Late로 나누고, 전투 준비(BattleReady)와 입력 게이트를 분리했습니다. 몬스터는 AI가 같은 캐릭터 API에 위임합니다.
 
-노트: [타격·데미지 1 — 캐릭터]({{ "/notes/dragon-combat-character/" | relative_url }}) · [스킬이 어떻게 시전되는가]({{ "/notes/dragon-skill-cast/" | relative_url }})
+노트: [타격·데미지 1 — 캐릭터]({{ "/notes/dragon-combat-character/" | relative_url }}) · [스킬이 어떻게 시전되는가]({{ "/notes/dragon-skill-cast/" | relative_url }}) · [적 AI 3 — 어떻게 움직이는가]({{ "/notes/dragon-monster-move/" | relative_url }})
 
 #### 스킬 (기획: 디아블로 4 액션바·스킬 트리 참고)
 
@@ -85,7 +85,10 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 
 #### 적 AI·스테이지
 
-- FSM 기반 적 AI(Brain / State / Action / Decision) — 이동·공격 의도는 Character API에 위임
+FSM 기반 적 AI(Brain / State / Action / Decision). 이동·공격 의도는 Character API에 위임합니다.
+
+노트: [1 — 언제 깨어나는가]({{ "/notes/dragon-monster-brain-wake/" | relative_url }}) · [2 — 언제 명령하는가]({{ "/notes/dragon-monster-brain-command/" | relative_url }}) · [3 — 어떻게 움직이는가]({{ "/notes/dragon-monster-move/" | relative_url }})
+
 - 지역 · 스테이지: 도전 시작 시 지역 전투 스테이지 일괄 스폰 · [지역 안 이동은 활성/비활성]({{ "/notes/stage-spawn-area-preload/" | relative_url }})
 - 웨이브 스폰, 상호작용·드랍·퀘스트 연동
 

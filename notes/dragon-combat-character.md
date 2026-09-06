@@ -95,4 +95,4 @@ flowchart TD
 
 ## 정리
 
-캐릭터 층은 **스폰·초기화·전투 준비·사망 Clear·매니저 등록**의 기준입니다. 능력치·공격·스킬·버프·패시브는 같은 Owner 위에서 돌아가며, 다음 [2편]({{ "/notes/dragon-combat-stat/" | relative_url }})에서 숫자가 어디서 쓰이고 읽히는지 이어집니다. 웨이브·스테이지 스폰 스케줄과 AI 의사결정은 스튜디오 내부에 두고, 네 층 Why·출시 요지는 [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})에 둡니다.
+캐릭터 층은 **스폰·초기화·전투 준비·사망 Clear·매니저 등록**의 기준입니다. 능력치·공격·스킬·버프·패시브는 같은 Owner 위에서 돌아가며, 다음 [2편]({{ "/notes/dragon-combat-stat/" | relative_url }})에서 숫자가 어디서 쓰이고 읽히는지 이어집니다. 몬스터 뇌 on/off·틱·의도 위임은 [적 AI]({{ "/notes/dragon-monster-brain-wake/" | relative_url }}) 시리즈에, 웨이브·스테이지 스폰 스케줄은 스테이지 쪽에, 네 층 Why·출시 요지는 [읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})에 둡니다.

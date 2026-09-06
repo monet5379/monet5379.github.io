@@ -14,7 +14,7 @@ mermaid: true
 
 드래곤 이즈 데드 전투가 어떤 역할 분담과 어떤 줄기로 짜였는지, 시리즈로 들어가기 전에 한 장으로 정리합니다.
 
-[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 로직 **들어가며**입니다. 아래 두 시리즈([타격·데미지]({{ "/notes/dragon-combat-character/" | relative_url }}) · [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}))의 입구로 쓰면 됩니다. 플레이어 스킬 **성장·시전** 체감은 [스킬]({{ "/notes/dragon-skill-growth/" | relative_url }}) 시리즈가, 고정 데이터는 [Excel-Json 고정 데이터]({{ "/notes/excel-json-fixed-data/" | relative_url }})가 담당합니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 전투 로직 **들어가며**입니다. 아래 두 시리즈([타격·데미지]({{ "/notes/dragon-combat-character/" | relative_url }}) · [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}))의 입구로 쓰면 됩니다. 몬스터 의사결정은 [적 AI]({{ "/notes/dragon-monster-brain-wake/" | relative_url }}) 시리즈가, 플레이어 스킬 **성장·시전** 체감은 [스킬]({{ "/notes/dragon-skill-growth/" | relative_url }}) 시리즈가, 고정 데이터는 [Excel-Json 고정 데이터]({{ "/notes/excel-json-fixed-data/" | relative_url }})가 담당합니다.
 
 ## 맥락
 
@@ -22,12 +22,13 @@ mermaid: true
 
 역할 분담 문제의식은 [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})에서 먼저 출시까지 돌렸고, 이 글·시리즈는 드래곤 쪽 손잡이입니다.
 
-그래서 먼저 **구조(역할 분담)** 와 **흐름(두 줄기)** 을 고정합니다.
+그래서 먼저 **구조(역할 분담)** 와 **흐름(두 줄기)** 을 고정합니다. 몬스터가 **무엇을 하려 하는가**는 선택으로 [적 AI]({{ "/notes/dragon-monster-brain-wake/" | relative_url }}) 시리즈를 보면 됩니다.
 
 | 줄기 | 질문 (코드를 몰라도 물을 수 있는 형태) | 시리즈 |
 |------|----------------------------------------|--------|
 | **1 — 캐릭터·수치·피격** | 필드에 누가 있고, 숫자는 어디서 오며, 맞으면 HP·가드에 어떻게 닿나 | [타격·데미지]({{ "/notes/dragon-combat-character/" | relative_url }}) 4편 |
 | **2 — 트리거·연쇄** | 스킬·버프·패시브가 한 타격으로 어떻게 모이고, 맞은 뒤 또 무엇이 연쇄되나 | [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) 4편 |
+| **(선택) 적 의사결정** | 뇌는 언제 켜지고, 언제 명령하며, 의도는 어디에 넘기나 | [적 AI]({{ "/notes/dragon-monster-brain-wake/" | relative_url }}) 3편 |
 
 ## 이 시리즈에서 쓰는 말
 
@@ -72,8 +73,9 @@ flowchart LR
 2. **[타격·데미지]({{ "/notes/dragon-combat-character/" | relative_url }})** — 캐릭터 → 능력치 → [맞으면 무엇이 일어나는가]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) → [투사체]({{ "/notes/dragon-combat-projectile/" | relative_url }})
 3. (선택) 히트마크/버프/패시브 SO·능력치 Json — [Excel-Json 고정 데이터]({{ "/notes/excel-json-fixed-data/" | relative_url }})
 4. **[트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})** — 적용 → 버프 → 패시브 → [한 타격으로 모이기]({{ "/notes/dragon-combat-one-hit/" | relative_url }})
+5. (선택) **[적 AI]({{ "/notes/dragon-monster-brain-wake/" | relative_url }})** — 깨움 → 명령 → 의도 위임
 
-구조와 흐름만 잡으면 1~4까지로 시리즈를 이어갈 수 있습니다. Json·Scriptable 필드는 필요할 때만 fixed-data를 엽니다.
+구조와 흐름만 잡으면 1~4까지로 시리즈를 이어갈 수 있습니다. Json·Scriptable 필드는 필요할 때만 fixed-data를 엽니다. 몬스터 의사결정은 5번을 선택하면 됩니다.
 
 ## 출시에서 남긴 것 (요지)
 
@@ -95,4 +97,4 @@ STR/INT ↔ 물리/마법 공격력 **설계 계약**과 generic `AttackPower` �
 
 ## 정리
 
-전투 로직은 **타격·데미지(시리즈 1)** 와 **트리거·연쇄(시리즈 2)** 두 줄기로 짜였고, 스킬·히트마크·버프·패시브 네 층으로 **역할**이 갈라집니다. 레포 없이도 이 들어가며로 구조와 흐름을 잡은 뒤 시리즈로 들어가면 됩니다. Trigger 50+·Handler 22 전수는 Architecture(스튜디오 내부)에, Stage·Wave 스폰 스케줄은 액션·Stage Architecture에, GC·pool hot path는 Optimization·성능 노트에 둡니다.
+전투 로직은 **타격·데미지(시리즈 1)** 와 **트리거·연쇄(시리즈 2)** 두 줄기로 짜였고, 스킬·히트마크·버프·패시브 네 층으로 **역할**이 갈라집니다. 몬스터가 무엇을 하려 하는지는 [적 AI]({{ "/notes/dragon-monster-brain-wake/" | relative_url }})에 둡니다. 레포 없이도 이 들어가며로 구조와 흐름을 잡은 뒤 시리즈로 들어가면 됩니다. Trigger 50+·Handler 22 전수는 Architecture(스튜디오 내부)에, Stage·Wave 스폰 스케줄은 액션·Stage Architecture에, GC·pool hot path는 Optimization·성능 노트에 둡니다.
