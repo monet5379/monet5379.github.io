@@ -65,6 +65,10 @@ flowchart TD
 
 각 상태는 **행동 목록 + 전환 목록**입니다. 첫 상태(목록 0번)는 [1편]({{ "/notes/dragon-monster-brain-wake/" | relative_url }}) Reset에서 들어갑니다. 상태 이름은 유일해야 하고, 전환의 True/False 목적지는 **표시 이름이 아니라 exact 문자열**이어야 합니다. 잘못된 이름이면 로그 후 현재 상태를 다시 enter할 수 있어, 화면과 패턴이 어긋나 보입니다.
 
+![SkeletonWarrior — Hierarchy Action·Decision과 TSAIBrain 상태 목록]({{ "/assets/images/notes/dragon-monster-brain-command/screenshot-ai-brain.png" | relative_url }})
+
+*SkeletonWarrior — Hierarchy의 Action·Decision과 `TSAIBrain` 상태(Patrol 등)의 Actions·Transitions*
+
 대상(타겟)은 뇌와 캐릭터의 타겟을 **같이** 맞춥니다. 한쪽만 바꾸면 추적·공격 방향이 갈라집니다.
 
 ## Pause · 컬링에서 자주 깨지는 것
