@@ -23,7 +23,7 @@ mermaid: true
 - 역할: 설계·구현·문서
 - 배포: `Assets/TmpFontPipeline` 폴더 복사 (UPM 아님)
 - Demo: `Assets/Demo` — SampleScene, Extract/적용 샘플 (놀이터, 출시 템플릿 아님)
-- 연관: [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) · [TMP 정적 아틀라스로 동적 히치 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) · [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
+- 연관: [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) · [TMP 정적 아틀라스로 동적 히치 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }}) · [스플래시·옵션 구간으로 TMP 워밍업 옮기기]({{ "/notes/tmp-font-warmup/" | relative_url }})
 
 ## 문제
 
@@ -115,6 +115,6 @@ Unity, TextMesh Pro, C#
 ### 내부
 
 - [TMP 정적 아틀라스로 동적 히치 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})
-- [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})
+- [스플래시·옵션 구간으로 TMP 워밍업 옮기기]({{ "/notes/tmp-font-warmup/" | relative_url }})
 - [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})
 - [홈 · 경력]({{ "/#경력" | relative_url }})

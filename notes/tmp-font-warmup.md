@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 스플래시·옵션으로 옮긴 TMP 폰트 워밍업
+title: 스플래시·옵션 구간으로 TMP 워밍업 옮기기
 permalink: /notes/tmp-font-warmup/
 date: 2026-07-23
 excerpt: "부팅·언어 전환 시 TMP 폰트·스프라이트 최초 사용 스파이크를 스플래시·옵션 대기 구간으로 옮기는 FontWarmup 설계를 정리합니다."

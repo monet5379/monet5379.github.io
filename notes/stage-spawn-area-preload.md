@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 스테이지 스폰 preload로 지역 내 이동 히치 제거
+title: 지역 스테이지 preload로 이동 히치 제거
 permalink: /notes/stage-spawn-area-preload/
 date: 2026-07-23
 excerpt: "지역 소속 스테이지를 미리 일괄 스폰하고, 동일 지역 내 이동은 활성/비활성만 하도록 바꾼 이유를 정리합니다."
@@ -121,4 +121,4 @@ Spread가 꺼진 플랫폼은 동기 일괄 스폰이라 **지역 진입 비용�
 
 동일 지역 탐험의 체감은 **이동 비용 제거**로 맞추고, 그 대가는 **지역 진입 한 번**과 **공존 가드 유지보수**에 모읍니다. 전 월드 preload는 하지 않고, 지역 단위 예산 안에서만 스테이지 수를 늘립니다.
 
-**권장 읽기** — 스테이지 스폰 preload(이 글) · [이동 중 GPU를 Global·Ambient 두 레버로]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }}).
+**권장 읽기** — 스테이지 preload(이 글) · [이동 중 GPU를 Global·Ambient 두 레버로 나눈 이유]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }}).

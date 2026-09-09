@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 이동 중 GPU를 Global·Ambient 두 레버로
+title: 이동 중 GPU를 Global·Ambient 두 레버로 나눈 이유
 permalink: /notes/stage-visual-gpu-optimize/
 date: 2026-07-23
 excerpt: "이동만 할 때 카메라에 따라 커지는 렌더 비용을, Global Light 구조와 Switch Ambient 토글 두 레버로 나눈 설계를 정리합니다."
@@ -127,4 +127,4 @@ Ambient 토글은 **Switch(또는 Switch 런타임 proxy)에서만** 장식 GPU�
 
 Global은 **프리팹 구조**로, Ambient는 **Switch 전용 런타임 토글**로 다룹니다. 장식만 끄고 글로벌 조명·게임플레이 비주얼은 건드리지 않는 경계를 마커 정책으로 고정합니다.
 
-**권장 읽기** — [스테이지 스폰 preload로 지역 내 이동 히치 제거]({{ "/notes/stage-spawn-area-preload/" | relative_url }}) · 이동 중 GPU(이 글). TMP 최초 사용 스파이크는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 따릅니다.
+**권장 읽기** — [지역 스테이지 preload로 이동 히치 제거]({{ "/notes/stage-spawn-area-preload/" | relative_url }}) · 이동 중 GPU(이 글). TMP 최초 사용 스파이크는 [스플래시·옵션 구간으로 TMP 워밍업 옮기기]({{ "/notes/tmp-font-warmup/" | relative_url }})을 따릅니다.

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 공격·차지·스킬 타격은 무기 슬롯에서 고른다
+title: 공격·차지·스킬 타격은 어디서 고르는가
 permalink: /notes/blade-weapon-hitmark/
 date: 2026-09-04
 excerpt: "게이트 통과 후 공격·공중·차지·스킬·대시 타격을 무기 히트마크 슬롯에서 고르고, 피해·Vital은 전투 파이프라인으로 넘기는 경로를 정리합니다."

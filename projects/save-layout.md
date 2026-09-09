@@ -21,7 +21,7 @@ mermaid: true
 - 역할: 설계·구현·문서
 - 초점: 슬롯당 메인 1, 선택적 사이드, 메타, AtomicWrite, 슬롯 단위 백업·진단
 - 배포: `Assets/SaveLayout` 폴더 복사 (UPM 아님) — Runtime / Editor 분리
-- 연관: [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) · [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) · [드래곤 이즈 데드 출시 세이브]({{ "/notes/dragon-save-shipped/" | relative_url }}) · [메인·사이드·메타로 나눈 이유]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [슬롯 백업 대신 사이드 레인을 둔 이유]({{ "/notes/save-layout-side-lane/" | relative_url }})
+- 연관: [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) · [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) · [출시본에서 슬롯·복구·마이그레이션을 맞춘 이유]({{ "/notes/dragon-save-shipped/" | relative_url }}) · [메인·사이드·메타로 나눈 이유]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [슬롯 백업 대신 사이드 레인을 둔 이유]({{ "/notes/save-layout-side-lane/" | relative_url }})
 
 ## 문제
 
@@ -112,7 +112,7 @@ Unity, C#, Newtonsoft.Json
 
 ### 내부
 
-- [드래곤 이즈 데드 출시 세이브]({{ "/notes/dragon-save-shipped/" | relative_url }})
+- [출시본에서 슬롯·복구·마이그레이션을 맞춘 이유]({{ "/notes/dragon-save-shipped/" | relative_url }})
 - [메인·사이드·메타로 나눈 이유]({{ "/notes/save-layout-boundaries/" | relative_url }})
 - [슬롯 백업 대신 사이드 레인을 둔 이유]({{ "/notes/save-layout-side-lane/" | relative_url }})
 - [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }})

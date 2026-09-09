@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 전투 로직은 어떤 구조로 짜였는가
+title: 전투는 어디서부터 읽는가
 permalink: /notes/dragon-combat-cluster-read/
 date: 2026-09-02
 excerpt: "드래곤 이즈 데드 전투가 어떤 역할 분담과 어떤 줄기로 짜였는지, 시리즈로 들어가기 전에 한 장으로 정리합니다."

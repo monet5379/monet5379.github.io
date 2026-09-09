@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 드래곤 이즈 데드 출시 세이브 슬롯·복구·마이그레이션
+title: 출시본에서 슬롯·복구·마이그레이션을 맞춘 이유
 permalink: /notes/dragon-save-shipped/
 date: 2026-09-01
 excerpt: "크래시·패치·Steam Cloud 환경에서 플레이어 진행 유실을 막기 위해, 슬롯 로테이션·복구 체인·스키마 마이그레이션을 출시본에서 어떻게 맞췄는지 정리합니다."

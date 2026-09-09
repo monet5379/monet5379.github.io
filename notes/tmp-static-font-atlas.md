@@ -32,7 +32,7 @@ TMP 폰트 시리즈 1편입니다. [드래곤 이즈 데드]({{ "/projects/drag
 
 ## 맥락
 
-이 문서의 책임은 **어떤 글자가 아틀라스에 있는가**입니다. **언제 처음 그리는가**는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})이 담당합니다.
+이 문서의 책임은 **어떤 글자가 아틀라스에 있는가**입니다. **언제 처음 그리는가**는 [스플래시·옵션 구간으로 TMP 워밍업 옮기기]({{ "/notes/tmp-font-warmup/" | relative_url }})이 담당합니다.
 
 CJK·다국어 출시에서 동적 아틀라스 성장이 첫 표시·언어 전환 히치와 메모리 상한 불가를 만들어, 배포 기본을 정적으로 고정했습니다.
 
@@ -104,7 +104,7 @@ UI·시스템 문자열과 대화를 나눈 이유는, 대화 전용 대량 CJK�
 
 배포 아틀라스는 정적 TMP Font Asset이고, Localized text UI는 현재 언어에 맞는 Font Asset만 고릅니다. [Font warmup]({{ "/notes/tmp-font-warmup/" | relative_url }})은 언어별 font·sprite preload이며 동적 아틀라스 대체재가 아닙니다.
 
-워밍업은 전환 시 입력 블록·프리로드 경로를 안정화하는 역할이고, “이 sample이면 CJK 전 glyph가 보장된다”는 계약으로 쓰지 않습니다. glyph SSOT는 정적 추출입니다. 최초 사용 스파이크를 스플래시·옵션으로 옮기는 설계는 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }})을 참고합니다.
+워밍업은 전환 시 입력 블록·프리로드 경로를 안정화하는 역할이고, “이 sample이면 CJK 전 glyph가 보장된다”는 계약으로 쓰지 않습니다. glyph SSOT는 정적 추출입니다. 최초 사용 스파이크를 스플래시·옵션으로 옮기는 설계는 [스플래시·옵션 구간으로 TMP 워밍업 옮기기]({{ "/notes/tmp-font-warmup/" | relative_url }})을 참고합니다.
 
 ## 기각·보류
 
@@ -138,7 +138,7 @@ Editor Window **Extract**는 `String*.json` → `unique_chars_*.txt`(sanitize), 
 ## 확인 포인트
 
 - 주요 언어 UI·Dialogue: tofu·□ 없음, 런타임 동적 아틀라스 성장 없음
-- 첫 표시·언어 전환: glyph 누락으로 인한 히치 없음 (머티리얼·mesh warmup은 [스플래시·옵션으로 옮긴 TMP 폰트 워밍업]({{ "/notes/tmp-font-warmup/" | relative_url }}))
+- 첫 표시·언어 전환: glyph 누락으로 인한 히치 없음 (머티리얼·mesh warmup은 [스플래시·옵션 구간으로 TMP 워밍업 옮기기]({{ "/notes/tmp-font-warmup/" | relative_url }}))
 - Extract → 적용 후 Character Table이 생성 txt와 일치
 - UI·Dialogue 버킷 분리 유지 — 대화 전용 CJK가 UI atlas를 불필요하게 키우지 않음
 - 문자열 갱신 후 charset diff에 의도치 않은 폭증·누락 없음
