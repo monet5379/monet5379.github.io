@@ -1,6 +1,6 @@
 # 글쓰기 가이드
 
-notes · projects · reviews **본문** 작성(Craft). **검토**는 [`content-review.md`](content-review.md). Jekyll front matter·공개·이미지는 [`site-content-rules.md`](site-content-rules.md). notes는 **§notes 작성 — 규칙 3층**. FM·샘플은 [`templates/`](templates/).
+notes · projects · reviews **본문** 작성(Craft). **검토**는 [`content-review.md`](content-review.md). Jekyll front matter·공개·이미지는 [`site-content-rules.md`](site-content-rules.md). notes는 **§notes 작성 — 규칙 3층** · projects는 **§projects 작성 — 규칙 2층**. FM·샘플은 [`templates/`](templates/).
 
 토스 [테크니컬 라이팅](https://technical-writing.dev/overview.html)의 유형·정보 구조·문장을 개인 포트폴리오에 맞게 축약했다. 토스 가이드는 **권장**이지 전부 따를 필요는 없다.
 
@@ -209,6 +209,82 @@ lead → (맥락·용어) → 본론 (h2 주제별) → (기각·출시에서 �
 
 **혼합** — 증상이 lead에 있어도 본론이 설계 선택이면 Why·How 골격을 우선합니다 (예: [`stage-visual-gpu-optimize.md`](../notes/stage-visual-gpu-optimize.md)). `## 문제`/`## 해결` h2는 **증상→해결**이 본문 중심일 때만 씁니다.
 
+## projects 작성 — 규칙 2층
+
+projects 규칙은 **배선 → Craft** 두 층입니다. notes처럼 시리즈·유형 힌트 3층은 두지 않습니다.
+
+| 층 | 강도 | 내용 |
+|----|------|------|
+| **1. 배선** | Must (검토) | [`site-content-rules.md`](site-content-rules.md) §projects · Gate: [`content-review.md`](content-review.md) |
+| **2. Craft** | Should (검토) | [역할 슬롯](#projects-역할-슬롯) · [다듬기 권장](#projects-다듬기-권장) — Quality: [`content-review.md`](content-review.md) · [`templates/project-company.md`](templates/project-company.md) / [`project-personal.md`](templates/project-personal.md) §체크 |
+
+**역할:** [§페이지 역할](#페이지-역할) — **케이스 스터디(projects)** 와 **설계 회고(notes)** 가 겹치지 않게. 깊이·경계·Why/How는 notes, projects는 출시·역할·담당 범위·노트 **입구**.
+
+### projects 역할 슬롯
+
+토스 [예측 가능하게 하기](https://technical-writing.dev/information-architecture/predictability.html)와 같습니다. **정보 역할**은 유지하고 `##` **제목 문자열**은 주제에 맞게.
+
+| 역할 | 필수 | 예시 `##` · 위치 |
+|------|------|------------------|
+| **가치·요약** | ● | lead (= `excerpt`) |
+| **메타** | ● (company) | `개요` — 기간·플랫폼·팀·역할·성과 불릿 |
+| **전제·배경** | ○ | `맥락` — 장르 전환·팀·출시 경로 prose |
+| **기여** | ● | `기여` — 역할·범위·(선택) 라이브 이슈 축 |
+| **본론** | ● | `담당 시스템` — 도메인별 범위 + notes 링크 |
+| **운영·출시** | ○ | `출시 · 운영` · `성능` 등 — company 출시 후 |
+| **마무리** | ● | `스택` · `링크` |
+
+● = 빠지면 포트폴리오 성격이 흐려짐 · ○ = 해당할 때.
+
+**company** 기본 골격:
+
+```text
+lead → 개요(메타) → (맥락) → 기여 → 담당 시스템 → (출시·운영) → 스택 → 링크
+```
+
+**personal** — `문제` · `설계` · `이 프로젝트가 아닌 것` 등은 [`templates/project-personal.md`](templates/project-personal.md) 골격. Craft 공통은 아래 [다듬기 권장](#projects-다듬기-권장)을 따릅니다.
+
+**담당 시스템** — [`templates/project-company.md`](templates/project-company.md) **A(시스템 요약)** 또는 **B(노트 허브)** 중 하나. 둘을 섞어도 되나 **같은 notes 링크를 두 번** 걸지 않습니다.
+
+정본 예: [`dragon-is-dead.md`](../projects/dragon-is-dead.md) (A) · [`blade-assault.md`](../projects/blade-assault.md) (A+B 혼합).
+
+### projects 다듬기 권장
+
+Craft **Should**. 게시 전 Quality·윤문 때 참고. FM·이미지·Gate는 [§규칙 2층](#projects-작성--규칙-2층) 1층.
+
+**lead · 개요 · 기여**
+
+- `excerpt` = lead **첫 문단**. lead 2번째 문장은 출시 후 체감·이슈 축 등 **가치 보강** (excerpt와 같으면 1문장만).
+- lead와 **`## 기여` 첫 불릿**이 같은 문장이면 한쪽을 **담당 범위·구체 기여**로 바꿉니다.
+- **`## 개요` 성과**와 **`## 맥락` 꼬리**("출시까지" 등) **중복**을 줄입니다. 성과 일자·마일스톤은 개요 불릿에 두는 편이 낫습니다.
+
+**맥락**
+
+- **prose** — 한 덩어리 장문(8문장+)보다 **전환·팀·출시 경로**별 문단. (`context-with-media` 옆 컬럼도 동일.)
+- 같은 사실(BIC·개명·오디션 등)을 문단마다 반복하지 않습니다.
+
+**담당 시스템**
+
+- 도메인별 **한 줄 요약 + `노트:` 링크**. 설계 깊이·표·Mermaid는 notes.
+- 상위 `###`에서 이미 말한 **축 설명**(예: "두 줄기")을 하위 `####`에서 **되풀이하지 않습니다**.
+- **입구 노트**(`시스템은 어디에 붙는가`, `전투 코드 읽기 지도` 등)는 **한 곳**만 — 스테이지 끝 등에 같은 지도를 다시 링크하지 않습니다.
+- 불릿 한 줄에 `·`로만 이어진 **과밀 나열**(세이브·데이터 등)은 **문장**으로 풉니다.
+
+**외부 독자**
+
+- [§외부 독자 · 용어](#외부-독자-사이트-전역) — 코드 식별자만 던지지 않습니다. 필요하면 **역할 + (`식별자`)** 또는 notes로.
+- `Player`/`AI` 대신 **플레이어와 AI**처럼 prose 주어를 씁니다 (타입·API는 영문 유지).
+
+**한계 · 기각**
+
+- **한계** · 텔레메트리가 밸런스 패치로 이어지지 않았던 것처럼 **솔직한 범위**는 유지합니다. 과장·수사만 제거 ([§humanize와 충돌](#humanize와-충돌할-때)).
+
+**문장**
+
+- 화살표 체인(`→`)이 **한 문장에 세 축 이상**이면 쉼표 나열·문장 분리를 검토합니다.
+- h4 **괄호 부제**(`(기획: …)`)는 본문 첫 문장에 **흡수**해도 됩니다.
+- humanize는 Craft·목차·`노트:` 줄·스캔용 **볼드**를 prose로 풀지 않습니다.
+
 ## 유형별 채우기 (샘플·체크리스트)
 
 템플릿은 **복사용 mandatory 골격**이 아니라 **FM 예시 + 역할 체크리스트 + 샘플 목차**입니다. 새 글은 [유형별 최소 골격](#유형별-최소-골격)을 채운 뒤, h2는 주제에 맞게 이름을 붙입니다. FM·공개·이미지는 [`site-content-rules.md`](site-content-rules.md).
@@ -230,9 +306,11 @@ lead → (맥락·용어) → 본론 (h2 주제별) → (기각·출시에서 �
 
 ### projects
 
+Craft·역할 슬롯·다듬기: [§projects 작성 — 규칙 2층](#projects-작성--규칙-2층).
+
 | `project_kind` | 독자가 얻는 것 | 템플릿 |
 |----------------|----------------|--------|
 | **company** | 출시·역할·담당 범위 (깊이는 notes) | [`templates/project-company.md`](templates/project-company.md) |
 | **personal** | 문제·설계·비범위·계보 (설치는 README) | [`templates/project-personal.md`](templates/project-personal.md) |
 
-공통: lead(= `excerpt`) → 개요 → … → 스택 · 링크. **검토:** [`content-review.md`](content-review.md) · project 템플릿 `## 체크`.
+**검토:** [`content-review.md`](content-review.md) §projects · project 템플릿 `## 체크`.

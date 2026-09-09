@@ -13,7 +13,7 @@ mermaid: true
 
 슬롯당 메인·선택적 사이드와 공유 메타로, 세이브 손상·복구·스키마 경계를 타이틀에서 분리한 Unity 케이스 스터디입니다.
 
-블레이드 어썰트·드래곤 이즈 데드의 프로필·슬롯·백업 경험을 반영해, 게임이 없어도 메타 + Profile 레이아웃만으로 검증할 수 있는 최소 런타임을 목표로 합니다.
+블레이드 어썰트·드래곤 이즈 데드의 프로필·슬롯·백업 경험을 바탕으로, 게임 없이 메타 + Profile 레이아웃만으로 검증할 수 있는 최소 런타임을 목표로 합니다.
 
 ## 개요
 
@@ -21,7 +21,7 @@ mermaid: true
 - 역할: 설계·구현·문서
 - 초점: 슬롯당 메인 1, 선택적 사이드, 메타, AtomicWrite, 슬롯 단위 백업·진단
 - 배포: `Assets/SaveLayout` 폴더 복사 (UPM 아님) — Runtime / Editor 분리
-- 연관: [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) · [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) · [드래곤 이즈 데드 출시 세이브]({{ "/notes/dragon-save-shipped/" | relative_url }}) · [메인·사이드·메타]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [사이드 레인]({{ "/notes/save-layout-side-lane/" | relative_url }})
+- 연관: [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) · [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) · [드래곤 이즈 데드 출시 세이브]({{ "/notes/dragon-save-shipped/" | relative_url }}) · [메인·사이드·메타로 나눈 이유]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [슬롯 백업 대신 사이드 레인을 둔 이유]({{ "/notes/save-layout-side-lane/" | relative_url }})
 
 ## 문제
 
@@ -98,7 +98,7 @@ flowchart TD
 | [블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) | 실서비스 이중 파일·암호화 경험 → 복구·시퀀스·레이아웃으로 재정리 |
 | [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) | 타이틀 결합 프로필·슬롯·백업 → 계약 추출 |
 
-드래곤 이즈 데드 프로젝트 페이지의 [세이브·데이터]({{ "/projects/dragon-is-dead/" | relative_url }}) 절과 같은 문제 의식을, 여기서는 레이아웃 단위로만 펼칩니다. Why는 [세이브 레이아웃 시리즈]({{ "/notes/dragon-save-shipped/" | relative_url }}) — [드래곤 이즈 데드 출시 세이브 슬롯·복구·마이그레이션 (1/3)]({{ "/notes/dragon-save-shipped/" | relative_url }}) · [메인·사이드·메타로 나눈 이유 (2/3)]({{ "/notes/save-layout-boundaries/" | relative_url }}) · [사이드 레인 (3/3)]({{ "/notes/save-layout-side-lane/" | relative_url }}) — 에 둡니다.
+드래곤·블레이드 출시 세이브 경험과 같은 문제 의식을, 여기서는 **슬롯 레이아웃**만 펼칩니다. Why는 개요 **연관** 노트 시리즈에 둡니다.
 
 ## 스택
 

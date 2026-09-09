@@ -14,7 +14,7 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 
 {% include screenshot-carousel.html slug="conditional-log" %}
 
-[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 필터 off = 비용 없음이 깨졌습니다. 그 경험을 반영해, 게임이 없어도 복사해 쓸 수 있는 최소 로그 레이어를 목표로 합니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 성능 작업에서 필터를 꺼도 Player Profiler에 비용이 남던 경험을 반영해, 게임 없이 복사해 쓸 수 있는 최소 로그 레이어를 목표로 합니다.
 
 ## 개요
 
@@ -31,7 +31,7 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 - 메서드 안 early return이나 `#if`만으로는 플레이어 빌드에 호출문이 남습니다.
 - 에디터 UX와 릴리스 경로를 한 API에 섞으면, 빌드에 남는지를 호출부마다 짐작해야 합니다.
 
-타이틀 코드 안에만 두면 전투·스테이지와 섞여, “필터 vs 조건부”만 재현·설명하기 어렵습니다. 불변조건이 드러나는 별도 프로젝트로 정리했습니다.
+타이틀 코드에만 두면 전투·스테이지와 섞여, 필터와 조건부만 따로 재현·설명하기 어렵습니다. 불변조건이 드러나는 별도 프로젝트로 정리했습니다.
 
 ## 설계
 
@@ -48,7 +48,7 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 
 ## 한계
 
-`[Conditional]`은 `UNITY_EDITOR`에만 걸려 있습니다. 에디터(Play 포함)에서 레벨·태그를 꺼도 호출부 인자 평가는 남습니다. 필터는 가시성만 바꿉니다. 에디터 핫 패스 비용을 필터로 없애지 않는 것이 이 패키지의 현재 한계입니다 — 상세는 [조건부로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})·[README](https://github.com/monet5379/unity-conditional-log).
+`[Conditional]`은 `UNITY_EDITOR`에만 걸려 있습니다. 에디터(Play 포함)에서 레벨·태그를 꺼도 호출부 인자 평가는 남고, 필터는 가시성만 바꿉니다. 에디터 핫 패스 비용을 필터로 없애지 않는 것이 현재 한계입니다 — 상세는 [조건부로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})와 [README](https://github.com/monet5379/unity-conditional-log).
 
 ## 이 프로젝트가 아닌 것
 
@@ -64,7 +64,7 @@ excerpt: "에디터 가시성 필터와 플레이어 빌드 호출 제거는 다
 |----------|---------------------------|
 | [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) | Player Profiler에 남은 로그 경로 → 조건부·필터 분리의 계기 |
 
-개념·실무 체크는 [조건부로 플레이어 빌드 로그 비용 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})에 두고, 여기서는 복사 단위와 에디터 UX를 담습니다.
+개념·실무 체크는 개요 **연관** 노트에, 복사 단위·에디터 UX는 이 페이지와 README에 둡니다.
 
 ## 스택
 

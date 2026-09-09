@@ -114,7 +114,7 @@ Install·API·조작 절차는 README가 정본이면 여기서 반복하지 않
 
 ## 체크 (Quality)
 
-게시 전 Gate: [`../content-review.md`](../content-review.md) §Gate — projects. 아래는 **personal** Quality:
+게시 전 Gate: [`../content-review.md`](../content-review.md) §Gate — projects. Craft·다듬기: [`../writing-guide.md`](../writing-guide.md#projects-작성--규칙-2층). 아래는 **personal** Quality:
 
 - [ ] `excerpt` = lead
 - [ ] `project_kind: personal`

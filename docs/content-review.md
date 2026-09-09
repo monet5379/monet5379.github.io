@@ -90,6 +90,7 @@
 
 ### projects
 
+- [ ] Craft·다듬기: [`writing-guide §projects 작성`](writing-guide.md#projects-작성--규칙-2층)
 - [ ] `excerpt` = lead
 - [ ] **company:** [`templates/project-company.md §체크`](templates/project-company.md#체크) 항목
 - [ ] **personal:** [`templates/project-personal.md §체크`](templates/project-personal.md#체크) 항목

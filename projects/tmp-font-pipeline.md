@@ -15,7 +15,7 @@ mermaid: true
 
 {% include screenshot-carousel.html slug="tmp-font-pipeline" %}
 
-[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 다국어 TMP 작업에서 어떤 글자가 아틀라스에 있는가와 언제 처음 그리는가를 나눈 경험을, `Assets/TmpFontPipeline` 통째 복사로 재현·검증할 수 있게 정리했습니다.
+[드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) 다국어 TMP에서 **아틀라스에 어떤 글자가 있는가**와 **언제 처음 그리는가**를 나눈 경험을, 게임 밖에서 재현·검증할 수 있게 정리했습니다.
 
 ## 개요
 
@@ -83,7 +83,7 @@ Install·Window 조작·API 시그니처는 [GitHub README](https://github.com/m
 | Warmup sample | 언어군 공통 짧은 문장 | 역할별 — Ui `Confirm`, Dialogue `dlg_intro` 등 |
 | 로컬라이즈 | StringGetter · 게임 UI 전체 | Demo만 — `DemoStringTable` · label refresh |
 
-원칙(정적 SSOT, warmup ≠ glyph 보장, Dialogue 버킷 분리, input block)은 [노트 2편]({{ "/notes/tmp-static-font-atlas/" | relative_url }})과 같습니다.
+원칙(정적 SSOT, warmup ≠ glyph 보장, Dialogue 버킷 분리, input block)은 [TMP 정적 아틀라스로 동적 히치 피하기]({{ "/notes/tmp-static-font-atlas/" | relative_url }})와 같습니다.
 
 ## 이 프로젝트가 아닌 것
 
@@ -100,7 +100,7 @@ Install·Window 조작·API 시그니처는 [GitHub README](https://github.com/m
 | [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }}) | 정적 extract · Dialogue 버킷 · Splash/옵션 warmup · supersede |
 | 이 repo | Editor 적용 Window · `FontRoleCatalog` · `FontWarmupService` · Demo |
 
-개념·기각은 노트, 복사 단위·Demo는 여기와 GitHub README에 둡니다.
+개념·기각은 개요 **연관** 노트에, 복사 단위·Demo는 이 페이지와 [README](https://github.com/monet5379/unity-tmp-font)에 둡니다.
 
 ## 스택
 

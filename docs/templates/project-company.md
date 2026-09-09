@@ -109,7 +109,7 @@ lead (excerpt와 동일)
 
 ## 체크 (Quality)
 
-게시 전 Gate: [`../content-review.md`](../content-review.md) §Gate — projects. 아래는 **company** Quality:
+게시 전 Gate: [`../content-review.md`](../content-review.md) §Gate — projects. Craft·다듬기: [`../writing-guide.md`](../writing-guide.md#projects-작성--규칙-2층). 아래는 **company** Quality:
 
 - [ ] `excerpt` = lead
 - [ ] `project_kind: company`
