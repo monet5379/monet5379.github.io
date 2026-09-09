@@ -56,31 +56,12 @@
   var pagerEl = document.querySelector("[data-notes-pager]");
   var pageSize = parseInt(list.getAttribute("data-page-size") || "0", 10) || 0;
   var currentPage = 1;
-  var projectRoot = document.querySelector("[data-project-filter]");
-  var projectNone = "__none__";
-  var activeProject = "";
-  var tagRoots = Array.prototype.slice.call(
-    document.querySelectorAll("[data-tag-filter]")
+  var seriesRoot = document.querySelector("[data-series-filter]");
+  var seriesNone = "__none__";
+  var activeSeries = "";
+  var privateSeriesButtons = Array.prototype.slice.call(
+    document.querySelectorAll("[data-series-filter] [data-private-tag]")
   );
-  var privateTagButtons = Array.prototype.slice.call(
-    document.querySelectorAll("[data-private-tag]")
-  );
-  var activeByGroup = {};
-
-  tagRoots.forEach(function (_root, i) {
-    activeByGroup[i] = "";
-  });
-
-  function itemTags(item) {
-    var raw = item.getAttribute("data-tags");
-    if (!raw) return [];
-    try {
-      var parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (e) {
-      return [];
-    }
-  }
 
   function itemDate(item) {
     return item.getAttribute("data-date") || "";
@@ -113,35 +94,6 @@
     return 0;
   }
 
-  function itemProjects(item) {
-    var raw = item.getAttribute("data-projects");
-    if (!raw) {
-      var one = item.getAttribute("data-project") || "";
-      return one ? [one] : [];
-    }
-    try {
-      var parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (e) {
-      return [];
-    }
-  }
-
-  function selectedTags() {
-    return tagRoots
-      .map(function (_root, i) {
-        return activeByGroup[i] || "";
-      })
-      .filter(Boolean);
-  }
-
-  function hasAllTags(itemTagsList, required) {
-    for (var i = 0; i < required.length; i += 1) {
-      if (itemTagsList.indexOf(required[i]) === -1) return false;
-    }
-    return true;
-  }
-
   /** Newest first; same date → series_order. */
   function applySort() {
     var sorted = items.slice().sort(function (a, b) {
@@ -160,14 +112,12 @@
   }
 
   function matchingItems() {
-    var required = selectedTags();
     return items.filter(function (item) {
-      var tags = itemTags(item);
-      var show = required.length === 0 || hasAllTags(tags, required);
-      var projects = itemProjects(item);
-      if (activeProject === projectNone) {
-        if (projects.length > 0) show = false;
-      } else if (activeProject && projects.indexOf(activeProject) === -1) {
+      var series = itemSeries(item);
+      var show = true;
+      if (activeSeries === seriesNone) {
+        if (series) show = false;
+      } else if (activeSeries && series !== activeSeries) {
         show = false;
       }
       if (!showPrivate && item.hasAttribute("data-private")) show = false;
@@ -301,52 +251,37 @@
   }
 
   function syncButtons() {
-    tagRoots.forEach(function (root, i) {
-      var active = activeByGroup[i] || "";
-      Array.prototype.slice
-        .call(root.querySelectorAll(".tag-filter__btn"))
-        .forEach(function (btn) {
-          var tag = btn.getAttribute("data-tag") || "";
-          var selected = tag === active;
-          btn.classList.toggle("is-active", selected);
-          btn.setAttribute("aria-pressed", selected ? "true" : "false");
-        });
-    });
-
     syncPrivateButtons();
 
-    if (projectRoot) {
+    if (seriesRoot) {
       Array.prototype.slice
-        .call(projectRoot.querySelectorAll(".tag-filter__btn"))
+        .call(seriesRoot.querySelectorAll(".tag-filter__btn"))
         .forEach(function (btn) {
           var selected =
-            (btn.getAttribute("data-project") || "") === activeProject;
+            (btn.getAttribute("data-series") || "") === activeSeries;
           btn.classList.toggle("is-active", selected);
           btn.setAttribute("aria-pressed", selected ? "true" : "false");
         });
     }
 
-    privateTagButtons.forEach(function (btn) {
+    privateSeriesButtons.forEach(function (btn) {
       btn.hidden = !showPrivate;
     });
   }
 
-  function clearPrivateCategorySelection() {
-    if (showPrivate) return;
-    tagRoots.forEach(function (root, i) {
-      var active = activeByGroup[i] || "";
-      if (!active) return;
-      var buttons = root.querySelectorAll(".tag-filter__btn");
-      for (var j = 0; j < buttons.length; j += 1) {
-        if (
-          (buttons[j].getAttribute("data-tag") || "") === active &&
-          buttons[j].hasAttribute("data-private-tag")
-        ) {
-          activeByGroup[i] = "";
-          break;
-        }
+  function clearPrivateSeriesSelection() {
+    if (showPrivate || !activeSeries) return;
+    if (!seriesRoot) return;
+    var buttons = seriesRoot.querySelectorAll(".tag-filter__btn");
+    for (var j = 0; j < buttons.length; j += 1) {
+      if (
+        (buttons[j].getAttribute("data-series") || "") === activeSeries &&
+        buttons[j].hasAttribute("data-private-tag")
+      ) {
+        activeSeries = "";
+        break;
       }
-    });
+    }
   }
 
   function apply(resetPage) {
@@ -356,24 +291,15 @@
   }
 
   applyFn = function () {
-    clearPrivateCategorySelection();
+    clearPrivateSeriesSelection();
     apply(true);
   };
 
-  tagRoots.forEach(function (root, i) {
-    root.addEventListener("click", function (event) {
+  if (seriesRoot) {
+    seriesRoot.addEventListener("click", function (event) {
       var btn = event.target.closest(".tag-filter__btn");
-      if (!btn || !root.contains(btn)) return;
-      activeByGroup[i] = btn.getAttribute("data-tag") || "";
-      apply(true);
-    });
-  });
-
-  if (projectRoot) {
-    projectRoot.addEventListener("click", function (event) {
-      var btn = event.target.closest(".tag-filter__btn");
-      if (!btn || !projectRoot.contains(btn)) return;
-      activeProject = btn.getAttribute("data-project") || "";
+      if (!btn || !seriesRoot.contains(btn)) return;
+      activeSeries = btn.getAttribute("data-series") || "";
       apply(true);
     });
   }

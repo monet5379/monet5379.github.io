@@ -1,0 +1,104 @@
+{% comment %}
+  link-preview.json — optional visual field per page.
+  Priority: content image → folder image → mermaid (raw ```mermaid```).
+  Param: p (site.page)
+{% endcomment %}
+{%- assign page_ref = include.p -%}
+{%- if page_ref.content contains "<p>" or page_ref.content contains "<pre>" or page_ref.content contains "<h" -%}
+  {%- assign body_html = page_ref.content -%}
+{%- else -%}
+  {%- assign body_html = page_ref.content | markdownify -%}
+{%- endif -%}
+{%- assign preview_img = "" -%}
+{%- if body_html contains "<img" -%}
+  {%- assign img_parts = body_html | split: "<img" -%}
+  {%- if img_parts.size > 1 -%}
+    {%- assign img_chunk = img_parts[1] | split: ">" | first -%}
+    {%- if img_chunk contains "src=\"" -%}
+      {%- assign preview_img = img_chunk | split: "src=\"" | last | split: "\"" | first -%}
+    {%- elsif img_chunk contains "src='" -%}
+      {%- assign preview_img = img_chunk | split: "src='" | last | split: "'" | first -%}
+    {%- endif -%}
+    {%- if preview_img contains "://" or preview_img contains "{{" or preview_img contains "}}" -%}
+      {%- assign preview_img = "" -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if preview_img == "" and page_ref.content contains '"/assets/images/' -%}
+  {%- assign path_parts = page_ref.content | split: '"/assets/images/' -%}
+  {%- if path_parts.size > 1 -%}
+    {%- assign path_tail = path_parts[1] | split: '"' | first -%}
+    {%- assign preview_img = "/assets/images/" | append: path_tail -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if preview_img == "" -%}
+  {%- assign item_slug = page_ref.path | split: "/" | last | remove: ".md" -%}
+  {%- assign thumb_dir = "" -%}
+  {%- if page_ref.path contains "notes/" -%}
+    {%- assign thumb_dir = "assets/images/notes/" | append: item_slug | append: "/" -%}
+  {%- elsif page_ref.path contains "projects/" -%}
+    {%- assign thumb_dir = "assets/images/projects/" | append: item_slug | append: "/" -%}
+  {%- elsif page_ref.path contains "reviews/" -%}
+    {%- assign thumb_dir = "assets/images/reviews/" | append: item_slug | append: "/" -%}
+  {%- endif -%}
+  {%- if thumb_dir != "" -%}
+    {%- assign covers = site.static_files
+      | where_exp: "f", "f.path contains thumb_dir"
+      | where_exp: "f", "f.name contains 'cover.'"
+      | sort: "name" -%}
+    {%- if covers.size > 0 -%}
+      {%- assign cover_file = covers | first -%}
+      {%- assign preview_img = cover_file.path -%}
+    {%- else -%}
+      {%- assign folder_files = site.static_files
+        | where_exp: "f", "f.path contains thumb_dir"
+        | sort: "name" -%}
+      {%- assign thumb_pick = nil -%}
+      {%- if page_ref.path contains "notes/" -%}
+        {%- for f in folder_files -%}
+          {%- if f.name contains "screenshot" -%}
+            {%- if f.name contains ".png" or f.name contains ".jpg" or f.name contains ".jpeg" or f.name contains ".webp" or f.name contains ".gif" -%}
+              {%- assign thumb_pick = f -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- assign ss_shots = folder_files | where_exp: "f", "f.name contains 'ss-'" -%}
+        {%- if ss_shots.size > 0 -%}
+          {%- assign thumb_pick = ss_shots | first -%}
+        {%- endif -%}
+      {%- endif -%}
+      {%- if thumb_pick == nil -%}
+        {%- for f in folder_files -%}
+          {%- if f.name contains ".png" or f.name contains ".jpg" or f.name contains ".jpeg" or f.name contains ".webp" or f.name contains ".gif" -%}
+            {%- assign thumb_pick = f -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {%- if thumb_pick -%}
+        {%- assign preview_img = thumb_pick.path -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign preview_mermaid = "" -%}
+{%- if preview_img == "" -%}
+  {%- if page_ref.content contains "```mermaid" -%}
+    {%- assign raw_mermaid_parts = page_ref.content | split: "```mermaid" -%}
+    {%- if raw_mermaid_parts.size > 1 -%}
+      {%- assign preview_mermaid = raw_mermaid_parts[1] | split: "```" | first | strip -%}
+    {%- endif -%}
+  {%- elsif page_ref.content contains "language-mermaid" -%}
+    {%- assign html_mermaid_parts = page_ref.content | split: 'language-mermaid">' -%}
+    {%- if html_mermaid_parts.size > 1 -%}
+      {%- assign preview_mermaid = html_mermaid_parts[1] | split: "</code>" | first | strip -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if preview_img != "" -%}
+,"visual":{"type":"image","src":{{ preview_img | relative_url | jsonify }}}
+{%- elsif preview_mermaid != "" -%}
+,"visual":{"type":"mermaid","source":{{ preview_mermaid | jsonify }}}
+{%- endif -%}

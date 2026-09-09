@@ -1,0 +1,41 @@
+---
+layout: null
+permalink: /assets/link-preview.json
+sitemap: false
+---
+{%- assign first = true -%}
+{
+{%- for p in site.pages -%}
+  {%- assign include_page = false -%}
+  {%- assign kind = "" -%}
+  {%- if p.path contains "notes/" and p.name != "index.md" and p.name != "zz-link-preview.json" -%}
+    {%- assign kind = "note" -%}
+    {%- assign include_page = true -%}
+    {%- if jekyll.environment == "production" and site.notes_production_visible_tags.size > 0 -%}
+      {%- assign include_page = false -%}
+      {%- for t in p.tags -%}
+        {%- if site.notes_production_visible_tags contains t -%}
+          {%- assign include_page = true -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- elsif p.path contains "projects/" and p.name != "index.md" -%}
+    {%- assign kind = "project" -%}
+    {%- assign include_page = true -%}
+    {%- if jekyll.environment == "production" and p.private == true -%}
+      {%- assign include_page = false -%}
+    {%- endif -%}
+  {%- elsif p.path contains "reviews/" and p.name != "index.md" -%}
+    {%- assign kind = "review" -%}
+    {%- assign include_page = true -%}
+  {%- endif -%}
+  {%- if include_page and p.title -%}
+    {%- assign excerpt_text = p.excerpt | default: "" | strip_html | strip -%}
+    {%- if excerpt_text != "" -%}
+      {%- unless first -%},{%- endunless -%}
+      {%- assign first = false -%}
+      {{ p.url | relative_url | jsonify }}:{"title":{{ p.title | jsonify }},"excerpt":{{ excerpt_text | jsonify }},"kind":{{ kind | jsonify }}{%- include link-preview-visual.html p=p -%}}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+}

@@ -60,7 +60,7 @@ description: >-
 
 - `index.md`를 타일/대ashboard형 홈으로 변경
 - projects/notes/reviews 목록을 Pinterest형 카드 wall로 변경
-- notes **2단 browse + sticky sidebar + tag filter** 레이아웃을 제거하거나 제품 UI로 교체 (미세 조정만)
+- notes **2단 browse + sticky sidebar + series filter** 레이아웃을 제거하거나 제품 UI로 교체 (미세 조정만)
 - Intem Studio 사이트 톤 · 레이아웃 복제
 - `docs/`(Jekyll exclude)를 nav에 노출하는 변경
 - front matter · permalink · `_config.yml` 대규모 변경
@@ -70,7 +70,7 @@ description: >-
 | 섹션 | 패턴 | 손대도 되는 것 |
 |------|------|----------------|
 | **projects** | 썸네일 그리드 (`post-list--thumbs`) | thumb 비율 · gap · caption 리듬 |
-| **notes** | 2단 browse · sticky sidebar · tag filter · (선택) 페이지네이션 | 필터 버튼 · sidebar · 목록 카드 padding |
+| **notes** | 2단 browse · sticky sidebar · series filter · (선택) 페이지네이션 | 필터 버튼 · sidebar · 목록 카드 padding |
 | **reviews** | 날짜순 리스트 · 썸네일 (`post-list--thumbs`) · FM `subtitle` 선택 | thumb · subtitle · excerpt 간격 |
 
 공통 include: `_includes/section-index-list.html` — production/development · 비공개 notes 동작을 깨지 말 것.
@@ -85,6 +85,7 @@ description: >-
 | 푸터 · 비공개 토글 | `_includes/footer.html`, `_includes/private-notes-toggle.html` |
 | 목록 · 필터 | `_includes/section-index-list.html`, `_sass/section-index-list.scss` (`.notes-browse`, `.tag-filter`, `.post-list--*`) |
 | notes 필터 JS | `assets/js/notes-tag-filter.js` |
+| 내부 링크 미리보기 | `_sass/link-preview.scss`, `assets/js/link-preview.js`, `notes/zz-link-preview.json`, `_includes/link-preview-visual.html`. `.post-content` hover · visual: img → mermaid |
 | 페이지 shell | `_layouts/page.html` (title · `post-subtitle` · notes `post-series` · `post-project`) · `_includes/note-series-kicker.html` · `_includes/note-series-nav.html` |
 | 경력(홈) | `_sass/career-entry.scss`, `_includes/career-media.html`, `_sass/youtube-embed.scss` |
 | 캐러셀 | `_sass/screenshot-carousel.scss`, `_includes/screenshot-carousel.html`, `assets/js/screenshot-carousel.js` |
@@ -101,7 +102,7 @@ description: >-
    - `/` (경력 포함) · `/projects/` · `/notes/` · `/reviews/`
    - `/career/` — 홈 `#경력` 리다이렉트만 확인 (nav 없음)
    - 긴 note 1개 (`mermaid: true` 있으면 포함) · reviews 1편 · 다크/라이트 토글
-   - `/notes/` — tag filter · sticky sidebar · palm(375px) 1단 전환
+   - `/notes/` — series filter · sticky sidebar · palm(375px) 1단 전환
    - footer **비공개: 숨김/표시** 토글 on/off
    - (선택) `JEKYLL_ENV=production` serve — production 목록과 동일
 5. 사용자에게 `serve.bat`로 확인하라고 안내.
