@@ -54,6 +54,10 @@ excerpt: "기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프�
 
 ## 담당 시스템
 
+![블레이드 어썰트 담당 시스템 구조]({{ "/assets/images/projects/blade-assault/diagram-overview-dark.png" | relative_url }})
+
+*런 · 액션 · 스테이지 축과 메타·세이브 분리. 읽기 순서는 [시스템은 어디에 붙는가]({{ "/notes/blade-systems-read/" | relative_url }}).*
+
 ### 런 · 액션 · 스테이지
 
 한 런 동안 들고 가는 장착(런 빌드), 이 프레임에 무엇을 시도·적용하는가(액션 파이프라인), 방·보상을 언제 닫는가(스테이지 루프)를 한 축으로 묶었습니다.

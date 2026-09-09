@@ -10,7 +10,6 @@ series_title: 세이브 레이아웃
 series_order: 2
 series_total: 3
 series_nav: true
-mermaid: true
 project:
   - save-layout
   - dragon-is-dead
@@ -67,25 +66,9 @@ project:
 
 **메인 · 사이드 · 메타**
 
-```mermaid
-flowchart TD
-  E["persistentDataPath"] --> M
+![메인 · 사이드 · 메타 레인]({{ "/assets/images/notes/save-layout-boundaries/diagram-lanes-dark.png" | relative_url }})
 
-  subgraph META["메타"]
-    M["선택 슬롯 · 시퀀스"]
-  end
-
-  subgraph MAIN["메인 — 영구"]
-    P["Profile N"]
-  end
-
-  subgraph SIDE["사이드 — 선택"]
-    S["세션 · 오토 스냅샷"]
-  end
-
-  M --> P
-  P -.-> S
-```
+*점선은 Profile에서 사이드로의 선택적 참조.*
 
 허브 디스크 정본은 **메타 + Profile 메인**입니다. 사이드만으로는 세이브 있음이 아니고, 손상·빈 파일은 그 파일만 `Backup/`으로 치운 뒤 null로 둡니다. `Backup/`과 사이드의 차이는 [2편]({{ "/notes/save-layout-side-lane/" | relative_url }})입니다.
 

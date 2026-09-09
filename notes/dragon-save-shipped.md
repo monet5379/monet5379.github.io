@@ -13,7 +13,6 @@ series_title: 세이브 레이아웃
 series_order: 1
 series_total: 3
 series_nav: true
-mermaid: true
 ---
 
 
@@ -60,17 +59,9 @@ mermaid: true
 
 **복구 로드 순서**
 
-```mermaid
-flowchart TD
-  START["복구 로드"] --> MAIN["① 메인 슬롯 ×3<br/>시퀀스·시각 비교"]
-  MAIN -->|성공| ONLOAD["진행 데이터 연결"]
-  MAIN -->|실패| ESS["② 필수 세이브 ×3"]
-  ESS -->|성공| ONLOAD
-  ESS -->|실패| BAK["③ 타임스탬프 실패 백업"]
-  BAK -->|성공| ONLOAD
-  BAK -->|실패| NEW["④ 기본 데이터 생성<br/>(기존 슬롯 전부 백업 후)"]
-  NEW --> ONLOAD
-```
+![복구 로드 순서]({{ "/assets/images/notes/dragon-save-shipped/diagram-recovery-dark.png" | relative_url }})
+
+*성공하면 진행 데이터 연결로 모이고, 실패하면 다음 단계로 내려갑니다.*
 
 메인·필수 세이브 각각 3슬롯에서 **가장 최신**을 고릅니다. 파일 복원 실패·빈 읽기는 해당 파일만 타임스탬프 백업으로 치우고 없음으로 둡니다. ③ 실패 백업은 Continue UI 정본이 아니라 관측·수동 복구용입니다.
 

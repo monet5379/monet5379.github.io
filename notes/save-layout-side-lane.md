@@ -10,7 +10,6 @@ series_title: 세이브 레이아웃
 series_order: 3
 series_total: 3
 series_nav: true
-mermaid: true
 project:
   - save-layout
 ---
@@ -40,19 +39,9 @@ project:
 
 **Backup/ ≠ 사이드**
 
-```mermaid
-flowchart TD
-  E["손상 · 빈 파일"] --> B
-  T["타이틀 안전 지점"] --> S
+![Backup/과 사이드 레인]({{ "/assets/images/notes/save-layout-side-lane/diagram-backup-vs-side-dark.png" | relative_url }})
 
-  subgraph BACKUP["BACKUP/ — 로컬 실패"]
-    B["타임스탬프 복사 → 없음 처리"]
-  end
-
-  subgraph SIDE["사이드 — 의도적 레인"]
-    S["SaveSide · valid 힌트"]
-  end
-```
+*점선은 실패 경로, 실선은 의도적 사이드 레인.*
 
 `Backup/`은 손상·빈 파일을 치울 때 생기는 실패 산출물입니다. 사이드는 세션·오토 등 의도한 옆 진행이고, Continue 흉내에 쓰지 않습니다.
 

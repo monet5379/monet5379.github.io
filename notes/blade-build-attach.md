@@ -12,7 +12,6 @@ series_title: 세션·게이트
 series_order: 2
 series_total: 2
 series_nav: true
-mermaid: true
 ---
 
 
@@ -39,15 +38,9 @@ mermaid: true
 
 **세션 ≠ 버프 표면**
 
-```mermaid
-flowchart TD
-  C["코어 · 기어 · 개조"] --> RUN["런 세션"]
-  R["리스크"] --> STAGE["스테이지 · 런 위험"]
-  T["특성 · 부활"] --> META["캐릭터 메타"]
-  RUN --> BP["버프 · 패시브 반영"]
-  STAGE --> BP
-  META --> BP
-```
+![세션과 버프 표면]({{ "/assets/images/notes/blade-build-attach/diagram-session-dark.png" | relative_url }})
+
+*세 세션이 버프·패시브 반영으로만 모입니다. 세션 계약은 표면이 아닙니다.*
 
 코어는 피해 식·무기 히트마크를 두지 않습니다. 기어 일부는 코어 레벨만 올리고 코어 내부를 복제하지 않습니다. 개조는 반영을 무기 버프/패시브로 모으고, 타격 슬롯 정의의 소유자를 가로채지 않습니다 — [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }}).
 

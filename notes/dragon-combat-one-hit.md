@@ -13,7 +13,6 @@ series_title: 트리거·연쇄
 series_order: 4
 series_total: 4
 series_nav: true
-mermaid: true
 ---
 
 
@@ -31,30 +30,9 @@ mermaid: true
 
 **입력 또는 이벤트 → (스킬/버프/패시브) → 전투 적용 → Vital → (패시브 연쇄)**
 
-```mermaid
-flowchart TD
-  subgraph S2["시리즈 2 — 트리거"]
-    SK["스킬<br/>TryCast · 애니 이벤트"]
-    BF["버프<br/>Add · OnTrigger"]
-    PS["패시브<br/>queue · Effect"]
-  end
-  subgraph S1["시리즈 1 — 적용"]
-    ACT["Activate<br/>타격 시작"]
-    FORM["Target · Area · Projectile"]
-    APP["적용 · DamageCalculator"]
-    VIT["Vital<br/>HP · 가드"]
-  end
-  SK --> ACT
-  BF --> ACT
-  BF --> APP
-  PS --> ACT
-  PS --> BF
-  ACT --> FORM
-  FORM --> APP
-  APP --> VIT
-  VIT --> PS
-  PJ["Projectile transport<br/>(4편)"] --> FORM
-```
+![한 타격 end-to-end]({{ "/assets/images/notes/dragon-combat-one-hit/diagram-one-hit-dark.png" | relative_url }})
+
+*점선은 패시브 연쇄와 Projectile transport.*
 
 | 구간 | 시리즈 | 노트 |
 |------|--------|------|

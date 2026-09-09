@@ -7,7 +7,6 @@ excerpt: "런 빌드·액션 파이프라인·스테이지·메타가 어떻게 
 tags: [전투]
 project:
   - blade-assault
-mermaid: true
 ---
 
 
@@ -34,19 +33,11 @@ mermaid: true
 
 ## 권장 읽기 순서
 
-```mermaid
-flowchart LR
-  P["들어가며<br/>이 글"]
-  A["명령 · 게이트<br/>Why"]
-  W["무기 히트마크<br/>How"]
-  B["코어 · 기어 · 리스크 · 특성<br/>Why"]
-  P --> A
-  A --> W
-  P --> B
-  D["드래곤 전투 · 세이브 · Excel<br/>겹침 층"]
-  W -.-> D
-  B -.-> D
-```
+**읽기 순서 · 겹침 층**
+
+![권장 읽기 순서]({{ "/assets/images/notes/blade-systems-read/diagram-read-map-dark.png" | relative_url }})
+
+*점선은 드래곤·세이브·Excel 겹침 층.*
 
 1. **이 글** — 네 칸·읽기 순서
 2. **[명령·게이트]({{ "/notes/blade-command-gate/" | relative_url }})** — 의도 vs 가능 여부

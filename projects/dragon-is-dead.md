@@ -36,6 +36,10 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 
 ## 담당 시스템
 
+![드래곤 이즈 데드 담당 시스템 구조]({{ "/assets/images/projects/dragon-is-dead/diagram-overview-dark.png" | relative_url }})
+
+*게임플레이·전투를 중심에 두고 성장·월드·출시·성능 축으로 나눔. 전투 읽기 순서는 [전투 코드 읽기 지도]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}).*
+
 ### 게임플레이 · 전투
 
 전투는 **피격·수치**와 **트리거·연쇄** 두 줄기로 나뉩니다.

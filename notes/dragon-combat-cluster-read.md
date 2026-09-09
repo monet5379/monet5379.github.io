@@ -8,7 +8,6 @@ tags: [전투]
 project:
   - dragon-is-dead
   - blade-assault
-mermaid: true
 ---
 
 
@@ -42,16 +41,9 @@ mermaid: true
 
 **두 줄기 흐름**
 
-```mermaid
-flowchart LR
-  P["들어가며<br/>(이 글)"]
-  S1["타격·데미지<br/>캐릭터 → 능력치 → 공격 → 투사체"]
-  S2["트리거·연쇄<br/>적용 → 버프 → 패시브 → 한 타격"]
-  P --> S1
-  S1 --> S2
-  FD["fixed-data<br/>(필요할 때)"]
-  P -.-> FD
-```
+![두 줄기 읽기 순서]({{ "/assets/images/notes/dragon-combat-cluster-read/diagram-read-map-dark.png" | relative_url }})
+
+*점선은 fixed-data 참조.*
 
 ## 네 층 역할 분담
 

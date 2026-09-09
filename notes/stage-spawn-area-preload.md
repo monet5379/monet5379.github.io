@@ -5,7 +5,6 @@ permalink: /notes/stage-spawn-area-preload/
 date: 2026-07-23
 excerpt: "지역 소속 스테이지를 미리 일괄 스폰하고, 동일 지역 내 이동은 활성/비활성만 하도록 바꾼 이유를 정리합니다."
 tags: [최적화]
-mermaid: true
 project:
   - dragon-is-dead
 ---
@@ -57,23 +56,9 @@ project:
 
 **Area preload → 게이트는 활성만**
 
-```mermaid
-flowchart TD
-  E["Area 진입"] --> P
+![Area preload → 게이트는 활성만]({{ "/assets/images/notes/stage-spawn-area-preload/diagram-preload-dark.png" | relative_url }})
 
-  subgraph PRELOAD["PRELOAD — 지역 단위"]
-    P["소속 스테이지 일괄 스폰"] --> A["현재만 활성"]
-    A --> I["나머지 inactive root"]
-  end
-
-  subgraph MOVE["동일 Area 게이트"]
-    G["페이드"] --> S["활성 ↔ 비활성만"]
-  end
-
-  I --> G
-```
-
-지역 진입 때 소속 Stage를 일괄 스폰하고, 같은 Area 안 이동은 활성·비활성만 바꿉니다. preload만 넣고 공존 가드를 빼면 안 됩니다.
+*지역 진입 때 소속 Stage를 일괄 스폰하고, 같은 Area 안 이동은 활성·비활성만 바꿉니다. preload만 넣고 공존 가드를 빼면 안 됩니다.*
 
 예산 감각은 지역당 스테이지 수 수준을 전제로 두고, 전 월드 preload는 하지 않습니다.
 
