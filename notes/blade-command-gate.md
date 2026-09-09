@@ -7,8 +7,8 @@ excerpt: "한 프레임 의도와 가능 여부를 갈라, Player와 AI가 같�
 tags: [전투]
 project:
   - blade-assault
-series: blade-attach-why
-series_title: 어디에 붙이는가
+series: blade-session-gate
+series_title: 세션·게이트
 series_order: 1
 series_total: 2
 series_nav: true
@@ -18,7 +18,7 @@ mermaid: true
 
 한 프레임 의도와 가능 여부를 갈라, Player와 AI가 같은 Execute 순서를 타게 하면서도 게이트 본체를 Command에 넣지 않은 이유를 정리합니다.
 
-[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) 액션 파이프라인의 **어디에 붙이는가** 시리즈 1편입니다. 읽기 지도는 [시스템은 어디에 붙는가]({{ "/notes/blade-systems-read/" | relative_url }})입니다. 게이트를 통과한 뒤 타격 정의를 고르는 길은 [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }})가, 적용 이후 숫자·HP는 [드래곤 타격 흐름]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})이 담당합니다.
+[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) **세션·게이트** 시리즈 1편입니다. 읽기 지도는 [시스템은 어디에 붙는가]({{ "/notes/blade-systems-read/" | relative_url }})입니다. 게이트를 통과한 뒤 타격 정의를 고르는 길은 [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }})가, 적용 이후 숫자·HP는 [드래곤 타격 흐름]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})이 담당합니다.
 
 ## 맥락
 

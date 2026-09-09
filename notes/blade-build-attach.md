@@ -7,8 +7,8 @@ excerpt: "효과가 버프·패시브로 같아 보여도, 런 장착·스테이
 tags: [성장]
 project:
   - blade-assault
-series: blade-attach-why
-series_title: 어디에 붙이는가
+series: blade-session-gate
+series_title: 세션·게이트
 series_order: 2
 series_total: 2
 series_nav: true
@@ -18,7 +18,7 @@ mermaid: true
 
 효과가 버프·패시브로 같아 보여도, 런 장착·스테이지 위험·캐릭터 메타를 같은 Add API에 넣지 않고 세션을 가른 이유를 정리합니다.
 
-[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) **어디에 붙이는가** 시리즈 2편입니다. 읽기 지도는 [시스템은 어디에 붙는가]({{ "/notes/blade-systems-read/" | relative_url }})입니다. 한 프레임 행동의 게이트는 1편 쪽이고, 이 글은 **런·스테이지·캐릭터에 무엇을 붙이는가**만 봅니다. 버프·패시브 본체 How는 [드래곤 버프]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }}) · [패시브]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }})로 이어집니다.
+[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) **세션·게이트** 시리즈 2편입니다. 읽기 지도는 [시스템은 어디에 붙는가]({{ "/notes/blade-systems-read/" | relative_url }})입니다. 한 프레임 행동의 게이트는 1편 쪽이고, 이 글은 **런·스테이지·캐릭터에 무엇을 붙이는가**만 봅니다. 버프·패시브 본체 How는 [드래곤 버프]({{ "/notes/dragon-combat-buff-bridge/" | relative_url }}) · [패시브]({{ "/notes/dragon-combat-passive-bridge/" | relative_url }})로 이어집니다.
 
 ## 맥락
 
