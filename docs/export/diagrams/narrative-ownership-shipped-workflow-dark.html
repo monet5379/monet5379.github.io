@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내러티브 작업 흐름과 역할 분담</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 48px 32px; background: #2d3142; color: #f5f5f5; font-family: 'Geist', 'Noto Sans KR', system-ui, sans-serif; }
+    .frame { width: 100%; max-width: 1280px; }
+    .eyebrow { margin-bottom: 8px; color: #bfc0c0; font: 500 8px 'Geist Mono', monospace; letter-spacing: 0.14em; text-transform: uppercase; }
+    h1 { margin-bottom: 24px; font: 400 40px/1.15 'Instrument Serif', serif; }
+    svg { display: block; width: 100%; }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <p class="eyebrow">Process · Narrative · slide-16x9</p>
+    <h1>작업 흐름과 역할 분담</h1>
+    <svg viewBox="0 0 1280 720" role="img" aria-labelledby="nar-title nar-desc" xmlns="http://www.w3.org/2000/svg">
+      <title id="nar-title">팀에서 기획을 거쳐 아트와 프로그래머가 설정을 맞추는 흐름</title>
+      <desc id="nar-desc">팀이 줄기를 정하고 기획이 볼륨·기능을 정한 뒤, 아트와 프로그래머가 비주얼과 설정을 주고받습니다.</desc>
+      <defs>
+        <marker id="nar-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bfc0c0"/></marker>
+        <marker id="nar-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f08a59"/></marker>
+      </defs>
+      <rect width="1280" height="720" fill="#2d3142"/>
+
+      <!-- Step chips -->
+      <text x="180" y="120" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace" letter-spacing="0.14em" text-anchor="middle">01</text>
+      <text x="460" y="120" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace" letter-spacing="0.14em" text-anchor="middle">02</text>
+      <text x="900" y="120" fill="#f08a59" font-size="8" font-family="'Geist Mono',monospace" letter-spacing="0.14em" text-anchor="middle">03</text>
+
+      <!-- Connectors -->
+      <path d="M300,300 H340" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#nar-arrow)"/>
+      <path d="M580,280 H640" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#nar-arrow)"/>
+      <path d="M580,320 H860" fill="none" stroke="#f08a59" stroke-width="1.4" marker-end="url(#nar-arrow-accent)"/>
+      <!-- Art ↔ Programmer bidirectional (two parallel) -->
+      <path d="M860,240 H960" fill="none" stroke="#f08a59" stroke-width="1.4" marker-end="url(#nar-arrow-accent)"/>
+      <path d="M960,360 H860" fill="none" stroke="#f08a59" stroke-width="1.4" marker-end="url(#nar-arrow-accent)"/>
+
+      <!-- 01 Team -->
+      <rect x="60" y="160" width="240" height="280" rx="6" fill="#393e53" stroke="#f5f5f5"/>
+      <text x="180" y="220" fill="#f5f5f5" font-size="18" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">팀</text>
+      <text x="180" y="270" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">큰 줄기</text>
+      <text x="180" y="300" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">개발 지역</text>
+      <text x="180" y="330" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">스펙 합의</text>
+
+      <!-- 02 Planning -->
+      <rect x="340" y="160" width="240" height="280" rx="6" fill="#393e53" stroke="#f5f5f5"/>
+      <text x="460" y="220" fill="#f5f5f5" font-size="18" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">기획</text>
+      <text x="460" y="270" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">볼륨 · 기능</text>
+      <text x="460" y="300" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">NPC · 오브젝트</text>
+      <text x="460" y="330" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">게임플레이 역할</text>
+
+      <!-- 03 Art -->
+      <rect x="640" y="160" width="220" height="200" rx="6" fill="#393e53" stroke="#f5f5f5"/>
+      <text x="750" y="230" fill="#f5f5f5" font-size="18" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">아트</text>
+      <text x="750" y="275" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">비주얼 · 분위기</text>
+      <text x="750" y="305" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">적 컨셉</text>
+
+      <!-- 03 Programmer focal -->
+      <rect x="960" y="160" width="240" height="280" rx="6" fill="rgba(240,138,89,0.12)" stroke="#f08a59"/>
+      <text x="1080" y="220" fill="#f5f5f5" font-size="18" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">프로그래머</text>
+      <text x="1080" y="270" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">컨셉 · 역사</text>
+      <text x="1080" y="300" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">적 후일담 · NPC</text>
+      <text x="1080" y="330" fill="#bfc0c0" font-size="14" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">대사 · 설정</text>
+      <text x="1080" y="390" fill="#f08a59" font-size="12" font-family="'Geist Mono',monospace" text-anchor="middle">FOCAL</text>
+
+      <text x="910" y="310" fill="#bfc0c0" font-size="12" font-family="'Geist Mono',monospace" text-anchor="middle">설정 ↔</text>
+      <text x="910" y="328" fill="#bfc0c0" font-size="12" font-family="'Geist Mono',monospace" text-anchor="middle">컨셉</text>
+
+      <line x1="40" y1="632" x2="1240" y2="632" stroke="rgba(245,245,245,0.10)" stroke-width="0.8"/>
+      <text x="40" y="656" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace" letter-spacing="0.14em">LEGEND</text>
+      <rect x="128" y="644" width="16" height="12" rx="2" fill="rgba(240,138,89,0.12)" stroke="#f08a59"/>
+      <text x="152" y="656" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace">FOCAL PROGRAMMER</text>
+      <line x1="360" y1="650" x2="400" y2="650" stroke="#f08a59" stroke-width="1.4" marker-end="url(#nar-arrow-accent)"/>
+      <text x="416" y="656" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace">ART ↔ WRITER LOOP</text>
+    </svg>
+  </main>
+</body>
+</html>

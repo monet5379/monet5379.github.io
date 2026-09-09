@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Area preload → 게이트는 활성만</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 48px 32px; background: #2d3142; color: #f5f5f5; font-family: 'Geist', 'Noto Sans KR', system-ui, sans-serif; }
+    .frame { width: 100%; max-width: 1280px; }
+    .eyebrow { margin-bottom: 8px; color: #bfc0c0; font: 500 8px 'Geist Mono', monospace; letter-spacing: 0.14em; text-transform: uppercase; }
+    h1 { margin-bottom: 24px; font: 400 40px/1.15 'Instrument Serif', serif; }
+    svg { display: block; width: 100%; }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <p class="eyebrow">Process · Stage Spawn · slide-16x9</p>
+    <h1>Area preload → 게이트는 활성만</h1>
+    <svg viewBox="0 0 1280 720" role="img" aria-labelledby="preload-title preload-desc" xmlns="http://www.w3.org/2000/svg">
+      <title id="preload-title">지역 preload 후 게이트는 활성·비활성만</title>
+      <desc id="preload-desc">지역 진입 시 소속 스테이지를 일괄 스폰한 뒤, 같은 Area 안 이동은 페이드와 활성·비활성 전환만 합니다.</desc>
+      <defs>
+        <marker id="pr-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bfc0c0"/></marker>
+        <marker id="pr-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f08a59"/></marker>
+      </defs>
+      <rect width="1280" height="720" fill="#2d3142"/>
+
+      <!-- Entry -->
+      <rect x="80" y="280" width="160" height="72" rx="6" fill="rgba(240,138,89,0.12)" stroke="#f08a59" stroke-width="1"/>
+      <text x="160" y="312" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">Area 진입</text>
+      <text x="160" y="336" fill="#bfc0c0" font-size="12" font-family="'Geist Mono',monospace" text-anchor="middle">ENTRY</text>
+
+      <path d="M240,316 H300" fill="none" stroke="#f08a59" stroke-width="1.4" marker-end="url(#pr-arrow-accent)"/>
+
+      <!-- PRELOAD zone -->
+      <rect x="300" y="120" width="420" height="400" rx="8" fill="rgba(240,138,89,0.05)" stroke="#f08a59" stroke-width="1"/>
+      <rect x="316" y="112" width="168" height="18" fill="#2d3142"/>
+      <text x="324" y="126" fill="#f08a59" font-size="8" font-family="'Geist Mono',monospace" letter-spacing="0.14em">PRELOAD — 지역 단위</text>
+
+      <rect x="360" y="168" width="300" height="72" rx="6" fill="rgba(240,138,89,0.12)" stroke="#f08a59" stroke-width="1"/>
+      <text x="510" y="200" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">소속 스테이지 일괄 스폰</text>
+      <text x="510" y="224" fill="#bfc0c0" font-size="12" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">지역 진입 한 번</text>
+
+      <path d="M510,240 V280" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#pr-arrow)"/>
+
+      <rect x="360" y="280" width="300" height="64" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="510" y="318" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">현재만 활성</text>
+
+      <path d="M510,344 V384" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#pr-arrow)"/>
+
+      <rect x="360" y="384" width="300" height="72" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="510" y="416" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">나머지 inactive root</text>
+      <text x="510" y="440" fill="#bfc0c0" font-size="12" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">공존 가드 필요</text>
+
+      <path d="M720,420 H780" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#pr-arrow)"/>
+
+      <!-- MOVE zone -->
+      <rect x="780" y="200" width="420" height="280" rx="8" fill="rgba(245,245,245,0.03)" stroke="rgba(245,245,245,0.30)" stroke-width="1"/>
+      <rect x="796" y="192" width="168" height="18" fill="#2d3142"/>
+      <text x="804" y="206" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace" letter-spacing="0.14em">동일 AREA 게이트</text>
+
+      <rect x="840" y="248" width="300" height="64" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="990" y="286" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">페이드</text>
+
+      <path d="M990,312 V352" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#pr-arrow)"/>
+
+      <rect x="840" y="352" width="300" height="80" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="990" y="386" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">활성 ↔ 비활성만</text>
+      <text x="990" y="410" fill="#bfc0c0" font-size="12" font-family="'Noto Sans KR',sans-serif" text-anchor="middle">재 Instantiate 없음</text>
+
+      <line x1="40" y1="632" x2="1240" y2="632" stroke="rgba(245,245,245,0.10)" stroke-width="0.8"/>
+      <text x="40" y="656" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace" letter-spacing="0.14em">LEGEND</text>
+      <rect x="128" y="644" width="16" height="12" rx="2" fill="rgba(240,138,89,0.12)" stroke="#f08a59"/>
+      <text x="152" y="656" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace">FOCAL PRELOAD</text>
+      <line x1="320" y1="650" x2="352" y2="650" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#pr-arrow)"/>
+      <text x="364" y="656" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace">THEN MOVE</text>
+    </svg>
+  </main>
+</body>
+</html>

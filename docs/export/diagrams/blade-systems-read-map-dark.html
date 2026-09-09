@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>블레이드 어썰트 — 시스템 읽기 지도</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px;
+      background: #2d3142;
+      color: #f5f5f5;
+      font-family: 'Geist', 'Noto Sans KR', system-ui, sans-serif;
+    }
+    .frame { width: 100%; max-width: 1280px; }
+    .eyebrow {
+      margin-bottom: 8px;
+      color: #bfc0c0;
+      font: 500 8px 'Geist Mono', monospace;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin-bottom: 24px;
+      font: 400 40px/1.15 'Instrument Serif', 'Noto Serif KR', serif;
+    }
+    svg { display: block; width: 100%; }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <p class="eyebrow">Flowchart · Blade Assault · slide-16x9</p>
+    <h1>시스템 읽기 지도</h1>
+    <svg viewBox="0 0 1280 720" role="img" aria-labelledby="blade-systems-read-map-dark-title blade-systems-read-map-dark-desc" xmlns="http://www.w3.org/2000/svg">
+      <title id="blade-systems-read-map-dark-title">블레이드 어썰트 시스템 읽기 지도</title>
+      <desc id="blade-systems-read-map-dark-desc">들어가며에서 명령·게이트와 무기 히트마크, 코어·기어·리스크·특성으로 읽기 순서가 갈라지고, 점선은 드래곤 전투·세이브·Excel 겹침 층을 가리킵니다.</desc>
+      <defs>
+        <marker id="ba-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bfc0c0"/></marker>
+        <marker id="ba-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f08a59"/></marker>
+      </defs>
+      <rect width="1280" height="720" fill="#2d3142"/>
+
+      <!-- Connectors (behind nodes) -->
+      <path d="M224,340 H252 V244 A8,8 0 0 0 260,236 H280" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#ba-arrow-accent)"/>
+      <path d="M480,236 H560" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#ba-arrow)"/>
+      <path d="M224,340 H252 V436 A8,8 0 0 0 260,444 H280" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#ba-arrow)"/>
+      <path d="M760,236 H804 V328 A8,8 0 0 0 812,336 V344 A8,8 0 0 0 820,352 H880" fill="none" stroke="#bfc0c0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#ba-arrow)"/>
+      <path d="M520,444 H804 V364 A8,8 0 0 1 812,356 V352 A8,8 0 0 1 820,344 H880" fill="none" stroke="#bfc0c0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#ba-arrow)"/>
+
+      <!-- Nodes -->
+      <rect x="48" y="304" width="176" height="72" rx="6" fill="#2d3142"/>
+      <rect x="48" y="304" width="176" height="72" rx="6" fill="rgba(240,138,89,0.12)" stroke="#f08a59" stroke-width="1"/>
+      <text x="136" y="336" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">들어가며</text>
+      <text x="136" y="356" fill="#bfc0c0" font-size="12" font-family="'Geist Mono',monospace" text-anchor="middle">이 글</text>
+
+      <rect x="280" y="200" width="200" height="72" rx="6" fill="#2d3142"/>
+      <rect x="280" y="200" width="200" height="72" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="380" y="232" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">명령 · 게이트</text>
+      <text x="380" y="252" fill="#bfc0c0" font-size="12" font-family="'Geist Mono',monospace" text-anchor="middle">Why</text>
+
+      <rect x="560" y="200" width="200" height="72" rx="6" fill="#2d3142"/>
+      <rect x="560" y="200" width="200" height="72" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="660" y="232" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">무기 히트마크</text>
+      <text x="660" y="252" fill="#bfc0c0" font-size="12" font-family="'Geist Mono',monospace" text-anchor="middle">How</text>
+
+      <rect x="280" y="408" width="240" height="72" rx="6" fill="#2d3142"/>
+      <rect x="280" y="408" width="240" height="72" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="400" y="436" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">코어 · 기어 · 리스크 · 특성</text>
+      <text x="400" y="456" fill="#bfc0c0" font-size="12" font-family="'Geist Mono',monospace" text-anchor="middle">Why</text>
+
+      <rect x="880" y="304" width="200" height="88" rx="6" fill="#2d3142"/>
+      <rect x="880" y="304" width="200" height="88" rx="6" fill="rgba(245,245,245,0.03)" stroke="rgba(245,245,245,0.30)" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="980" y="336" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">드래곤 전투 · 세이브</text>
+      <text x="980" y="356" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist','Noto Sans KR',sans-serif" text-anchor="middle">Excel</text>
+      <text x="980" y="376" fill="#bfc0c0" font-size="12" font-family="'Geist Mono',monospace" text-anchor="middle">겹침 층</text>
+
+      <line x1="40" y1="632" x2="1240" y2="632" stroke="rgba(245,245,245,0.10)" stroke-width="0.8"/>
+      <text x="40" y="656" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace" letter-spacing="0.14em">LEGEND</text>
+      <rect x="128" y="644" width="16" height="12" rx="2" fill="rgba(240,138,89,0.12)" stroke="#f08a59"/>
+      <text x="152" y="656" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace">ENTRY</text>
+      <line x1="248" y1="650" x2="280" y2="650" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#ba-arrow)"/>
+      <text x="292" y="656" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace">READ ORDER</text>
+      <line x1="408" y1="650" x2="440" y2="650" stroke="#bfc0c0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#ba-arrow)"/>
+      <text x="452" y="656" fill="#bfc0c0" font-size="8" font-family="'Geist Mono',monospace">OVERLAP</text>
+    </svg>
+  </main>
+</body>
+</html>
