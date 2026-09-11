@@ -10,3 +10,7 @@ Gemfile.lock
 Thumbs.db
 _site_prod
 *.code-workspace
+
+__pycache__/
+*.pyc
+
