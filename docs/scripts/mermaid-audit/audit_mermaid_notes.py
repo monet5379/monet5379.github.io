@@ -477,32 +477,34 @@ def render_report(tier_a: list[SlugAudit], tier_b: list[dict]) -> str:
         ]
     )
 
-    priority = [
-        ("blade-command-gate", "4단계 우선 1 — BA 액션 시리즈; stadium 없음"),
-        ("blade-weapon-hitmark", "4단계 우선 1 — 4노드 단일 entry"),
-        ("dragon-combat-hit-flow", "combat How; title prose + stadium"),
-        ("dragon-combat-skill-bridge", "시전→적용 경계; 9노드"),
-        ("dragon-combat-buff-bridge", "11노드 — stadium만으로 부족"),
-    ]
-    lines.extend(
-        [
-            "",
-            "## Phase 4 — priority top 5",
-            "",
-            "| # | slug | reason |",
-            "|---|------|--------|",
-        ]
-    )
-    for i, (slug, reason) in enumerate(priority, 1):
-        lines.append(f"| {i} | `{slug}` | {reason} |")
-
     phase4_done = a_counts.get("fix", 0) == 0 and a_counts.get("OK", 0) >= 1
+    fix_slugs = [s.slug for s in tier_a if s.status == "fix"]
     lines.extend(
         [
             "",
-            f"### Phase 4 visual pass — **{'완료' if phase4_done else '진행 중'}** ({date.today().isoformat()})",
+            f"## Phase 4 — visual pass — **{'완료' if phase4_done else '진행 중'}** ({date.today().isoformat()})",
             "",
             f"- Tier A OK: {a_counts.get('OK', 0)} · fix: {a_counts.get('fix', 0)} · manual: {a_counts.get('manual', 0)}",
+        ]
+    )
+    if phase4_done:
+        lines.append("- entry stadium · 블록 위 `**제목**` · init/hex 없음 — 위 Tier A 표 기준")
+    else:
+        lines.extend(
+            [
+                "",
+                "### 우선 수정 (fix slug)",
+                "",
+                "| slug | 이슈 |",
+                "|------|------|",
+            ]
+        )
+        for s in fix_slugs[:10]:
+            lines.append(f"| `{s.slug}` | {s.status_reason} |")
+        if len(fix_slugs) > 10:
+            lines.append(f"| … | 외 {len(fix_slugs) - 10} slug |")
+    lines.extend(
+        [
             "",
             "## Phase 5 — personal·Tier B spot check",
             "",

@@ -107,19 +107,10 @@ ledger ↔ HTML ↔ PNG ↔ note 본문 (3단계 검증 포함).
 
 **완료** (2026-09-11).
 
-## Phase 4 — priority top 5
-
-| # | slug | reason |
-|---|------|--------|
-| 1 | `blade-command-gate` | 4단계 우선 1 — BA 액션 시리즈; stadium 없음 |
-| 2 | `blade-weapon-hitmark` | 4단계 우선 1 — 4노드 단일 entry |
-| 3 | `dragon-combat-hit-flow` | combat How; title prose + stadium |
-| 4 | `dragon-combat-skill-bridge` | 시전→적용 경계; 9노드 |
-| 5 | `dragon-combat-buff-bridge` | 11노드 — stadium만으로 부족 |
-
-### Phase 4 visual pass — **완료** (2026-09-11)
+## Phase 4 — visual pass — **완료** (2026-09-11)
 
 - Tier A OK: 25 · fix: 0 · manual: 1
+- entry stadium · 블록 위 `**제목**` · init/hex 없음 — 위 Tier A 표 기준
 
 ## Phase 5 — personal·Tier B spot check
 
