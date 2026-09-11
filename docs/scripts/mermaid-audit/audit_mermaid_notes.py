@@ -84,9 +84,9 @@ TIER_B_ENTRIES: list[dict[str, str]] = [
     },
 ]
 
-MANUAL_SLUGS = {"blade-animator-state-event"}
+MANUAL_SLUGS = {"blade-animator-overlay-layer"}
 MANUAL_SKIP_BLOCKS: dict[str, set[int]] = {
-    "blade-animator-state-event": {2},  # Layer subgraph comparison — keep Mermaid
+    "blade-animator-overlay-layer": {2},  # Layer subgraph comparison — keep Mermaid
 }
 
 STADIUM_RE = re.compile(r"\b([A-Za-z0-9_]+)\s*\(\[")
@@ -531,7 +531,7 @@ def render_report(tier_a: list[SlugAudit], tier_b: list[dict]) -> str:
             "",
             "## Manual exceptions",
             "",
-            "- `blade-animator-state-event` block 2 (Layer subgraph) — keep Mermaid, no PNG/table",
+            "- `blade-animator-overlay-layer` block 2 (Layer subgraph) — keep Mermaid, no PNG/table",
             "- company `diagram-overview-dark.png` — do not downgrade to Tier A",
             "",
         ]

@@ -23,7 +23,7 @@ Cursor·에이전트가 note 본문에 직접 작성한다. sibling mermaid-kit�
 | 정본 | `notes/<슬러그>.md` 본문 블록 | `docs/export/diagrams/<이름>-dark.html` + `.ledger.md` |
 | 테마 | 사이트 light/dark (`mermaid-theme.js`) | dark 고정 PNG |
 | 수정 비용 | md만 고침 | HTML 수정 → 재export → ledger 갱신 |
-| 예 | `blade-animator-state-event` · `blade-command-gate` · `dragon-combat-hit-flow` | `blade-systems-read`(지도) · `dragon-combat-one-hit`(종합) · `save-layout-boundaries`(레인) · projects 개요 2편 |
+| 예 | `blade-animator-overlay-layer` · `blade-command-gate` · `dragon-combat-hit-flow` | `blade-systems-read`(지도) · `dragon-combat-one-hit`(종합) · `save-layout-boundaries`(레인) · projects 개요 2편 |
 
 **기본은 Tier A.** 2026-09-04 이후 신규 도식은 모두 Tier A다.
 
