@@ -45,14 +45,14 @@ SkillEntity.Buff · Passive AddBuff Effect · Item 등이 `BuffSystem.Add`로 �
 
 ```mermaid
 flowchart TD
-  P["스킬 · 패시브 · Item · 히트마크"] --> AD["BuffSystem.Add"]
+  P(["스킬 · 패시브 · Item · 히트마크"])
+  P --> AD["BuffSystem.Add"]
   AD --> SP["SpawnBuffEntity · Setup"]
   SP --> OV["Overlap · stack++"]
   OV --> ACT["Activate · UI"]
-  DUR["Duration · Interval · RestTime"] --> TRG["OnTrigger"]
-  TRG --> H["TriggerTypes → Handler"]
-  H --> ST["RefreshStats → 능력치"]
-  H --> CM["HitmarkAttack → 전투 적용"]
+  DUR["Duration · Interval · RestTime"] --> TRG["OnTrigger · Handler"]
+  TRG --> ST["RefreshStats → 능력치"]
+  TRG --> CM["HitmarkAttack → 전투 적용"]
   RM["Remove · Despawn"] --> ST
 ```
 

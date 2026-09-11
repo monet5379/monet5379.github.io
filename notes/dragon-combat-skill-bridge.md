@@ -41,13 +41,14 @@ mermaid: true
 
 ```mermaid
 flowchart TD
-  IN["할당 슬롯 입력"] --> AUTH["IsAuthorized · 어빌리티 Rest"]
+  IN(["할당 슬롯 입력"])
+  IN --> AUTH["IsAuthorized · 어빌리티 Rest"]
   AUTH --> CAST["TryCast · Cast Rest · 쿨"]
   CAST --> ANIM["SkillAnimation"]
   ANIM --> EV["애니 이벤트"]
   EV --> AT["AttackEntity.Activate"]
-  EV --> BF["BuffSystem.Add"]
-  EV --> PS["패시브 (부여)"]
+  EV -.-> BF["BuffSystem.Add"]
+  EV -.-> PS["패시브 (부여)"]
   AT --> CUT["적용 ← 전투(데미지) 시작"]
 ```
 

@@ -35,7 +35,8 @@ mermaid: true
 
 ```mermaid
 flowchart TD
-  EV["전투 이벤트<br/>명중 · 피격 · …"] --> RC["PassiveTriggerReceiver"]
+  EV(["전투 이벤트<br/>명중 · 피격 · …"])
+  EV --> RC["PassiveTriggerReceiver"]
   RC --> CD["Condition"]
   CD --> Q["PassiveManager queue"]
   Q --> EF["Effect"]

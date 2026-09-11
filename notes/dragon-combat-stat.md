@@ -54,7 +54,8 @@ Json StatData 정본·clone 경로는 [`excel-json-fixed-data`]({{ "/notes/excel
 
 ```mermaid
 flowchart TD
-  P["버프 · 스킬 · Equip · Relic · Grow"] --> A["AddWithModifier"]
+  P(["버프 · 스킬 · Equip · Relic · Grow"])
+  P --> A["AddWithModifier"]
   A --> M["CharacterStat + StatModifier"]
   M --> C["OnStatChanged"]
   C --> R["RefreshLife · Speed · Skill level …"]

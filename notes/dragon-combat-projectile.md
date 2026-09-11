@@ -39,7 +39,8 @@ QA에서 “화살이 맞았는데 0”이면 transport가 아니라 [3편]({{ "
 
 ```mermaid
 flowchart TD
-  SP["Spawn / Setup<br/>등록 · child Attack 배선"] --> TK["Tick / Collision<br/>이동 · 충돌 검사"]
+  SP(["Spawn / Setup<br/>등록 · child Attack 배선"])
+  SP --> TK["Tick / Collision<br/>이동 · 충돌 검사"]
   TK --> HT["Hit → child Attack Activate"]
   HT --> AP["적용 → Vital<br/>(3편 combat)"]
   HT --> DS["Despawn · pool"]

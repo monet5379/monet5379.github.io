@@ -44,17 +44,20 @@ mermaid: true
 
 **경로 A — 트리거 진입** (얕게): 스킬·버프·패시브·애니 타이밍 → `Activate`. **타격을 시작**만 하고, 숫자·HP는 아직. 상세는 [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}).
 
-**경로 B — 적용 → Vital** (이 글의 중심): 정의 로드 → 능력치 읽기 → HP·가드 반영.
+**경로 B — 적용 → Vital**
 
 ```mermaid
 flowchart TD
-  ACT["Activate<br/>타격 시작 (히트마크 ID)"] --> FORM["Target · Area · Projectile<br/>대상 확정"]
+  ACT(["Activate<br/>타격 시작 (히트마크 ID)"])
+  ACT --> FORM["Target · Area · Projectile<br/>대상 확정"]
   FORM --> APP["적용<br/>정의 로드 · 계산"]
   APP --> DEF["히트마크 정의 clone"]
   DEF --> CALC["DamageCalculator<br/>능력치 읽기"]
   CALC --> VIT["Vital.TakeDamage<br/>HP · 가드"]
-  VIT --> EVT["공격 성공/실패 이벤트<br/>→ 패시브 등"]
+  VIT -.-> EVT["공격 성공/실패 이벤트<br/>→ 패시브 등"]
 ```
+
+정의 로드 → 능력치 읽기 → HP·가드 반영이 이 글의 중심입니다.
 
 1. **Activate** — 히트마크 ID로 Attack 활성화.
 2. **형태별 대상 확정** — Target: 지정/근접, Area: 범위 검색, Projectile: transport 후 child Attack([4편]({{ "/notes/dragon-combat-projectile/" | relative_url }})).

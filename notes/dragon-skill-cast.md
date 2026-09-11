@@ -57,9 +57,11 @@ mermaid: true
 
 ```mermaid
 flowchart TD
-  IN["할당 슬롯 입력"] --> AUTH["시전 가능 검사<br/>조건 · 이동 · 어빌리티 Rest"]
-  AUTH --> BUF["입력 버퍼 (선택)"]
-  BUF --> CAST["TryCast<br/>쿨 · Cast Rest"]
+  IN(["할당 슬롯 입력"])
+  IN --> AUTH["시전 가능 검사<br/>조건 · 이동 · 어빌리티 Rest"]
+  AUTH --> CAST["TryCast<br/>쿨 · Cast Rest"]
+  AUTH -.-> BUF["입력 버퍼 (선택)"]
+  BUF --> CAST
   CAST --> ANIM["SkillAnimation 재생"]
   ANIM --> EV["애니 이벤트"]
   EV --> OUT["히트마크 / 버프 / 패시브 호출"]
@@ -121,4 +123,4 @@ BattleReady 전에 Cast가 되면 “슬롯은 있는데 입력이 안 먹는다
 
 ## 정리
 
-드래곤 이즈 데드 스킬 시전은 **할당 슬롯 입력 → 권한·버퍼·쿨·Rest → TryCast → SkillAnimation → 애니 이벤트에서 전투 층으로 넘기기**입니다. 한 방의 의미와 숫자는 히트마크·**적용 이후**, 지속 상태·사건 규칙은 버프·패시브에 맡깁니다. 적용 경계·애니→전투는 [적용 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에, 히트마크→피해 계산→Vital은 [타격·데미지 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})에, 버프 스택·패시브 큐·연쇄 상한은 [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에 둡니다. 클립명·이벤트 키·Animator 내부는 범위 밖입니다.
+드래곤 이즈 데드 스킬 시전은 **할당 슬롯 입력 → 권한·버퍼·쿨·Rest → TryCast → SkillAnimation → 애니 이벤트에서 전투 층으로 넘기기**입니다. 한 방의 의미와 숫자는 히트마크·**적용 이후**, 지속 상태·사건 규칙은 버프·패시브에 맡깁니다. 적용 경계·애니→전투는 [적용 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에, 히트마크→피해 계산→Vital은 [타격·데미지 3편]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})에, 버프 스택·패시브 큐·연쇄 상한은 [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에 둡니다. 연출 그래프·Exit·레이어는 [이동 그래프와 Exit 액션을 나눈 이유]({{ "/notes/dragon-animator-move-exit/" | relative_url }})에 둡니다.

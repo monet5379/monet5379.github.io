@@ -46,7 +46,8 @@ mermaid: true
 
 ```mermaid
 flowchart TD
-  SP["스폰<br/>씬에 등장"] --> IN["초기화<br/>능력치 · 능력 · Attack"]
+  SP(["스폰<br/>씬에 등장"])
+  SP --> IN["초기화<br/>능력치 · 능력 · Attack"]
   IN --> RD["다음 프레임<br/>전투 준비"]
   RD --> PL["플레이어 전투 준비<br/>스킬 · 버프 · HUD"]
   PL --> EV["전투 준비 완료<br/>구독 측에 신호"]
