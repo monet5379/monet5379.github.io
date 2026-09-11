@@ -142,6 +142,7 @@ FSM 기반 적 AI(Brain / State / Action / Decision). 이동·공격 의도는 C
 
 얼리 액세스 이후, 닌텐도처럼 낮은 프레임을 허용하는 기기용 외부 업체 포팅에 맞춰 성능을 측정하고 프레임 비용을 줄였습니다.
 
+- [Win64 풀빌드 소요를 파일로 남기는 계측]({{ "/notes/dragon-win64-build-metrics/" | relative_url }})
 - [플레이어 빌드 로그 호출·인자 평가 제거]({{ "/notes/conditional-log-build-cost/" | relative_url }})
 - [지역 내 이동 히치 완화(선스폰)]({{ "/notes/stage-spawn-area-preload/" | relative_url }})
 - [카메라 이동 GPU를 Global·Ambient 레버로 분리]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }})
