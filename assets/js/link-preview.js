@@ -57,6 +57,15 @@
     return indexPromise;
   }
 
+  var themePromise = null;
+
+  function loadMermaidTheme() {
+    if (!themePromise) {
+      themePromise = import("./mermaid-theme.js");
+    }
+    return themePromise;
+  }
+
   function loadMermaid() {
     if (!mermaidPromise) {
       mermaidPromise = import(MERMAID_CDN).then(function (mod) {
@@ -64,12 +73,6 @@
       });
     }
     return mermaidPromise;
-  }
-
-  function pageTheme() {
-    return document.documentElement.getAttribute("data-theme") === "dark"
-      ? "dark"
-      : "default";
   }
 
   function stripInit(text) {
@@ -215,15 +218,12 @@
     div.textContent = graph;
     visualEl.appendChild(div);
 
-    loadMermaid()
-      .then(function (mermaid) {
+    Promise.all([loadMermaid(), loadMermaidTheme()])
+      .then(function (parts) {
         if (activeLink !== link) return;
-        mermaid.initialize({
-          startOnLoad: false,
-          theme: pageTheme(),
-          securityLevel: "strict",
-          flowchart: { htmlLabels: true }
-        });
+        var mermaid = parts[0];
+        var theme = parts[1];
+        mermaid.initialize(theme.mermaidInitializeOptions());
         return mermaid.run({ nodes: [div] });
       })
       .then(function () {

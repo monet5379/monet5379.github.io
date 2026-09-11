@@ -1,14 +1,10 @@
+import { mermaidInitializeOptions } from "./mermaid-theme.js";
+
 (function () {
   var graphs = [];
   var mermaidPromise = null;
   var MERMAID_CDN =
     "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-
-  function pageTheme() {
-    return document.documentElement.getAttribute("data-theme") === "dark"
-      ? "dark"
-      : "default";
-  }
 
   function stripInit(text) {
     return String(text || "")
@@ -41,12 +37,7 @@
   async function renderAll() {
     if (!graphs.length) return;
     var mermaid = await loadMermaid();
-    mermaid.initialize({
-      startOnLoad: false,
-      theme: pageTheme(),
-      securityLevel: "strict",
-      flowchart: { htmlLabels: true },
-    });
+    mermaid.initialize(mermaidInitializeOptions());
 
     document.querySelectorAll(".mermaid-wrap").forEach(function (wrap) {
       var idx = +wrap.getAttribute("data-mermaid-index");
