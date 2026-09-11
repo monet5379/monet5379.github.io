@@ -117,28 +117,32 @@ ledger ↔ HTML ↔ PNG ↔ note 본문 (3단계 검증 포함).
 | 4 | `dragon-combat-skill-bridge` | 시전→적용 경계; 9노드 |
 | 5 | `dragon-combat-buff-bridge` | 11노드 — stadium만으로 부족 |
 
+### Phase 4 visual pass — **완료** (2026-09-11)
+
+- Tier A OK: 25 · fix: 0 · manual: 1
+
 ## Phase 5 — personal·Tier B spot check
 
-| 대상 | Tier | Mermaid | PNG | 결과 |
-|------|------|---------|-----|------|
-| `save-layout-boundaries` | B | 없음 | `diagram-lanes-dark.png` | OK — Mermaid 추가 금지 유지 |
-| `save-layout-side-lane` | B | 없음 | `diagram-backup-vs-side-dark.png` | OK |
-| `projects/conditional-log` | personal | 없음 | 캐러셀 only | OK — company overview 혼동 없음 |
-| `notes/conditional-log-build-cost` | A | live Mermaid | 없음 | OK — Batch D에서 visual contract 적용 |
+| 대상 | Tier | 결과 |
+|------|------|------|
+| `save-layout-boundaries` · `save-layout-side-lane` | B | PNG only, Mermaid 없음 |
+| `projects/conditional-log` | personal | overview PNG 없음, note Tier A 분리 |
 
 **완료** (2026-09-11).
 
 ## Phase 6 — content-review Gate spot check
 
-| Gate 항목 | 결과 |
-|-----------|------|
-| Tier 혼용 (mermaid FM + `diagram-*-dark.png` 동시) | **0건** — Tier A 26 slug ∩ Tier B PNG 10 slug = ∅ |
-| Tier A: FM ↔ block · init/hex | 26/26 일치 · grep 0 |
-| Tier A: entry stadium (manual B2 제외) | 27/28 block stadium ≥1 (B2 skip) |
-| Tier B: PNG + 캡션 · no mermaid | 12/12 |
-| company overview PNG → Mermaid 없음 | `blade-assault` · `dragon-is-dead` OK |
+| Gate | 결과 |
+|------|------|
+| Tier 혼용 | 0건 |
+| Tier A FM · init/hex | pass |
+| Tier B PNG · ledger · no mermaid | 12/12 |
 
 **완료** (2026-09-11).
+
+## Phase 7 — commits
+
+docs · js · notes(시리즈별) 분리 커밋 완료. push는 요청 시.
 
 ## Manual exceptions
 
