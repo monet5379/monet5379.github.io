@@ -73,7 +73,7 @@ excerpt: "기획 1 · 아트 2 · 프로그래머 1 규모 팀에서 전체 프�
 
 한 프레임의 의도 → 가능 여부 → 타격 순서를 플레이어와 AI가 똑같이 지나가게 했습니다. 대시·스킬·차지·탄약은 Command 밖 게이트에 두고, 타격 정의는 무기 히트마크 슬롯에 모았습니다. 보스는 전용 피해 트리 대신 기존 명령을 밀게 둬, 보스를 늘릴 때 전투를 다시 그리지 않게 했습니다. [드래곤 이즈 데드]({{ "/projects/dragon-is-dead/" | relative_url }})의 어빌리티·전투 층과 문제의식은 통합니다. 손잡이(변신 무기·탄약·차지)가 달라 파이프라인 모양이 다릅니다.
 
-노트: [명령·게이트]({{ "/notes/blade-command-gate/" | relative_url }}) · [연출 오버레이 레이어]({{ "/notes/blade-animator-state-event/" | relative_url }}) · [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }})
+노트: [명령·게이트]({{ "/notes/blade-command-gate/" | relative_url }}) · [연출 오버레이 레이어]({{ "/notes/blade-animator-overlay-layer/" | relative_url }}) · [Shadow 레이어]({{ "/notes/blade-animator-shadow-layer/" | relative_url }}) · [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }})
 
 #### 적 AI
 

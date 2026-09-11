@@ -75,4 +75,4 @@ flowchart TD
 
 명령은 **프레임 의도와 Execute 순서**만 소유하고, 대시·스킬·차지·탄약의 **지금 가능한가**는 게이트에 둡니다. Player와 AI가 같은 버스를 타게 하면서도 피해 식과 횟수 본체를 Command에 넣지 않은 이유입니다.
 
-게이트 통과 뒤 연출 레이어는 [연출 오버레이 레이어를 둔 이유]({{ "/notes/blade-animator-state-event/" | relative_url }})에, 타격 정의는 [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }})에, 시전·적용 이후 숫자·HP·버프·패시브는 [드래곤 스킬 시전]({{ "/notes/dragon-skill-cast/" | relative_url }}) · [타격 흐름]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) · [전투 들어가며]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})에 둡니다. 읽기 지도는 [시스템은 어디에 붙는가]({{ "/notes/blade-systems-read/" | relative_url }})입니다.
+게이트 통과 뒤 연출 레이어는 [연출 오버레이 레이어를 둔 이유]({{ "/notes/blade-animator-overlay-layer/" | relative_url }})에, 타격 정의는 [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }})에, 시전·적용 이후 숫자·HP·버프·패시브는 [드래곤 스킬 시전]({{ "/notes/dragon-skill-cast/" | relative_url }}) · [타격 흐름]({{ "/notes/dragon-combat-hit-flow/" | relative_url }}) · [전투 들어가며]({{ "/notes/dragon-combat-cluster-read/" | relative_url }})에 둡니다. 읽기 지도는 [시스템은 어디에 붙는가]({{ "/notes/blade-systems-read/" | relative_url }})입니다.

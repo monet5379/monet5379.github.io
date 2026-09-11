@@ -12,7 +12,7 @@ project:
 
 런 빌드·액션 파이프라인·스테이지·메타가 어떻게 갈라지는지, 시리즈로 들어가기 전에 한 장으로 정리합니다.
 
-[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) 시스템 **들어가며**입니다. 아래 BA 노트([명령·게이트]({{ "/notes/blade-command-gate/" | relative_url }}) · [연출 레이어]({{ "/notes/blade-animator-state-event/" | relative_url }}) · [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }}) · [코어·기어·리스크와 특성]({{ "/notes/blade-build-attach/" | relative_url }}))의 입구로 쓰면 됩니다. 능력치·버프·패시브·타격 적용·세이브·고정 데이터처럼 드래곤과 겹치는 층은 드래곤·개인 노트가 정본이고, 이 글은 **BA 손잡이**만 지도로 둡니다.
+[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) 시스템 **들어가며**입니다. 아래 BA 노트([명령·게이트]({{ "/notes/blade-command-gate/" | relative_url }}) · [연출 레이어]({{ "/notes/blade-animator-overlay-layer/" | relative_url }}) · [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }}) · [코어·기어·리스크와 특성]({{ "/notes/blade-build-attach/" | relative_url }}))의 입구로 쓰면 됩니다. 능력치·버프·패시브·타격 적용·세이브·고정 데이터처럼 드래곤과 겹치는 층은 드래곤·개인 노트가 정본이고, 이 글은 **BA 손잡이**만 지도로 둡니다.
 
 ## 맥락
 
@@ -25,7 +25,7 @@ project:
 | 칸 | 질문 | 이 칸이 결정하는 것 | 넘기지 않음 | 노트 |
 |----|------|---------------------|-------------|------|
 | **런 빌드** | 한 런 동안 들고 가는 장착 | 코어 · 기어 · 개조 · 리스크 | 피해 식 · 명령 본체 | [세션·게이트 2편]({{ "/notes/blade-build-attach/" | relative_url }}) |
-| **액션 파이프라인** | 이 프레임에 무엇을 시도·적용하는가 | 의도 · 게이트 · 연출 · 무기 히트마크 | 스테이지 열림/닫힘 | [게이트]({{ "/notes/blade-command-gate/" | relative_url }}) · [연출 레이어]({{ "/notes/blade-animator-state-event/" | relative_url }}) · [히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }}) |
+| **액션 파이프라인** | 이 프레임에 무엇을 시도·적용하는가 | 의도 · 게이트 · 연출 · 무기 히트마크 | 스테이지 열림/닫힘 | [게이트]({{ "/notes/blade-command-gate/" | relative_url }}) · [연출 레이어]({{ "/notes/blade-animator-overlay-layer/" | relative_url }}) · [히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }}) |
 | **스테이지 루프** | 방·보상을 언제 닫는가 | 스테이지 · 방/웨이브 · 미션 · 진행 | 한 프레임 타격 식 | (이 지도만 — 전용 노트 없음) |
 | **메타** | 캐릭터에 무엇이 남는가 | 특성 · 부활 | 리스크 덱과 같은 Add | [2편]({{ "/notes/blade-build-attach/" | relative_url }}) |
 
@@ -41,7 +41,7 @@ project:
 
 1. **이 글** — 네 칸·읽기 순서
 2. **[명령·게이트]({{ "/notes/blade-command-gate/" | relative_url }})** — 의도 vs 가능 여부
-3. **[연출 오버레이 레이어]({{ "/notes/blade-animator-state-event/" | relative_url }})** — Base vs 오버레이 · 차지·강공 겹침
+3. **[연출 오버레이 레이어]({{ "/notes/blade-animator-overlay-layer/" | relative_url }})** — Base vs 오버레이 · 차지 강화·범위 FX
 4. **[무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }})** — 슬롯 → 전투로 넘기기
 5. **[코어·기어·리스크와 특성]({{ "/notes/blade-build-attach/" | relative_url }})** — 런·위험·메타 세션
 6. (겹침) [타격·버프·패시브]({{ "/notes/dragon-combat-cluster-read/" | relative_url }}) · [Excel→JSON]({{ "/notes/excel-json-fixed-data/" | relative_url }}) · [세이브 경계]({{ "/notes/save-layout-boundaries/" | relative_url }})

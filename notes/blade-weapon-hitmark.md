@@ -13,7 +13,7 @@ mermaid: true
 
 게이트 통과 후 공격·공중·차지·스킬·대시 타격을 무기 히트마크 슬롯에서 고르고, 피해·Vital은 전투 파이프라인으로 넘기는 경로를 정리합니다.
 
-[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) 액션 파이프라인의 **무기 쪽 How**입니다. 게이트·Execute는 [Command 밖에 둔 이유]({{ "/notes/blade-command-gate/" | relative_url }})가, 그 사이 연출 레이어는 [연출 오버레이 레이어를 둔 이유]({{ "/notes/blade-animator-state-event/" | relative_url }})가, 읽기 지도는 [시스템은 어디에 붙는가]({{ "/notes/blade-systems-read/" | relative_url }})가 담당합니다. 이 글은 슬롯 선택까지이고, 맞힌 뒤 숫자·HP는 [드래곤 타격 흐름]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})으로 이어집니다.
+[블레이드 어썰트]({{ "/projects/blade-assault/" | relative_url }}) 액션 파이프라인의 **무기 쪽 How**입니다. 게이트·Execute는 [Command 밖에 둔 이유]({{ "/notes/blade-command-gate/" | relative_url }})가, 그 사이 연출 레이어는 [연출 오버레이 레이어를 둔 이유]({{ "/notes/blade-animator-overlay-layer/" | relative_url }})가, 읽기 지도는 [시스템은 어디에 붙는가]({{ "/notes/blade-systems-read/" | relative_url }})가 담당합니다. 이 글은 슬롯 선택까지이고, 맞힌 뒤 숫자·HP는 [드래곤 타격 흐름]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})으로 이어집니다.
 
 ## 이 글에서 쓰는 말
 
