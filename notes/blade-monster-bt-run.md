@@ -45,7 +45,8 @@ mermaid: true
 
 ```mermaid
 flowchart TD
-  SP["몬스터 · 보스 스폰"] --> BT["행동 트리<br/>OnStart · FixedUpdate"]
+  SP(["몬스터 · 보스 스폰"])
+  SP --> BT["행동 트리<br/>OnStart · FixedUpdate"]
   BT --> TK["조건 · 행동 태스크"]
   TK --> API["명령 · 대시 · 패턴 시작 등"]
 ```

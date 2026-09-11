@@ -45,7 +45,8 @@ mermaid: true
 
 ```mermaid
 flowchart TD
-  C["조건<br/>애니 · 쿨 · 타겟 · 플래그"] --> A["행동<br/>Execute · 대시 · 패턴"]
+  C(["조건<br/>애니 · 쿨 · 타겟 · 플래그"])
+  C --> A["행동<br/>Execute · 대시 · 패턴"]
   A --> CMD["명령 실행"]
   A --> PAT["패턴 시작"]
   CMD --> AT["공격 · 무기 경로"]
