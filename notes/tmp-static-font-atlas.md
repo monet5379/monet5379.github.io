@@ -59,7 +59,8 @@ TextMesh Pro의 동적 Font Asset은 처음 보는 glyph가 요청될 때 런타
 ```mermaid
 flowchart TD
   subgraph EDITOR["EDITOR — 빌드 타임"]
-    A["String*.json"] --> B["Sanitize"]
+    A(["String*.json"])
+    A --> B["Sanitize"]
     B --> C["Extract"]
     C --> D["UI 버킷"]
     C --> E["Dialogue 버킷"]

@@ -64,7 +64,8 @@ Static은 어떤 글자가 아틀라스에 있는가, Warmup은 언제 처음 �
 
 ```mermaid
 flowchart TD
-  T["콜드 부팅 / 언어 변경"] --> B
+  T(["콜드 부팅 / 언어 변경"])
+  T --> B
   T -.-> N
 
   subgraph WAIT["의도된 대기"]

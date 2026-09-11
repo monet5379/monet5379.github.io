@@ -47,7 +47,8 @@ Log.Info("Combat", $"dmg={CalcDamage()}");
 
 ```mermaid
 flowchart TD
-  G["게임 코드"] --> L["Log.Info(tag, message)"]
+  G(["게임 코드"])
+  G --> L["Log.Info(tag, message)"]
 
   subgraph EDITOR["UNITY_EDITOR"]
     F["레벨 · 태그 필터"] --> A{"허용?"}

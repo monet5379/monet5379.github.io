@@ -52,7 +52,8 @@ Profiler 기준은 전투·이벤트 없이 이동·점프·대시만 하고, �
 
 ```mermaid
 flowchart TD
-  M["이동 중 렌더 비용"] --> G
+  M(["이동 중 렌더 비용"])
+  M --> G
   M --> A
 
   subgraph GLOBAL["A. Global Light"]

@@ -52,11 +52,7 @@ project:
 
 ![에디터에서 굳히고, 런타임은 JSON만]({{ "/assets/images/notes/excel-json-fixed-data/diagram-pipeline-dark.png" | relative_url }})
 
-<div class="callout" markdown="1">
-
-- Scriptable 파이프라인(버프 / 패시브 / 히트마크)은 이 도식 밖에 둡니다.
-
-</div>
+*Scriptable 파이프라인(버프 / 패시브 / 히트마크)은 이 도식 밖에 둡니다.*
 
 ## 변환 계약
 
