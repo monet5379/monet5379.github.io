@@ -22,7 +22,7 @@ Target type: Data flow
 
 - Mermaid subgraph → editorial zone cards
 - JSON + Find*Clone = focal
-- Scriptable remains callout-only (out of diagram)
+- Scriptable remains italic caption (out of diagram)
 
 ## Dropped
 

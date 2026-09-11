@@ -48,7 +48,9 @@
 - [ ] `project` 0개 이상(YAML 목록) · 각 슬러그에 `projects/<슬러그>.md` 존재
 - [ ] `series` 있으면 `series_title`, `series_order`, `series_total` · 시리즈 편은 `series_nav: true` ([§시리즈](site-content-rules.md#시리즈))
 - [ ] `series_nav: true`이면 본문에 수동 `**권장 읽기**`·`**시리즈:**` 줄 없음 · **범위 밖 prose**(보통 `## 정리` 마지막)에 **같은 series 형제** 링크 없음
-- [ ] Mermaid: `mermaid: true` ↔ 본문 ` ```mermaid ` 블록 일치 · `%%{init:…}%%` 없음 ([§Mermaid](site-content-rules.md#mermaid))
+- [ ] 도식 Tier: 같은 글에 `mermaid: true`/` ```mermaid ` 와 `diagram-*-dark.png`를 **동시에 두지 않음** ([§Mermaid](site-content-rules.md#mermaid) · [`mermaid-diagram.md`](templates/mermaid-diagram.md) §Tier)
+- [ ] Tier A: `mermaid: true` ↔ 본문 ` ```mermaid ` 블록 일치 · `%%{init:…}%%`·글 속 hex 없음
+- [ ] Tier B: `diagram-*-dark.png` + 캡션 · `mermaid: true` 없음 · ledger/HTML 정본 있음 ([`export/diagrams/`](export/diagrams/README.md))
 - [ ] 공개 `tags`는 `notes_production_visible_tags`에 포함 (배포 목록 의도)
 
 ---
@@ -58,6 +60,7 @@
 - [ ] `project_kind`: `company` | `personal`
 - [ ] `title` 한글 · `(English)` 병기 없음
 - [ ] 이미지 경로·`cover`/`ss-*` 규칙 ([§projects 이미지](site-content-rules.md#이미지))
+- [ ] **company** 개요: `diagram-overview-dark.png`(Tier B) · **personal** 절 How: live Mermaid(Tier A) 혼동 없음
 
 ---
 
@@ -87,6 +90,7 @@
 - [ ] 설계·출시 회고면 **기각·범위·출시에서 남긴 것** 중 해당 슬롯 고려
 - [ ] 문제 해결 힌트면 **확인 포인트** 또는 동등한 검증 절 검토
 - [ ] [**표와 prose**](writing-guide.md#notes--표와-prose): Why·회고·문제 해결 — lead·`## 맥락`까지 표 없이 읽히는지 · 기각 ~4항목이 표가 아닌 prose인지 · 범위 밖이 `## 정리` prose(별도 h2·표 없음)인지
+- [ ] **Tier A Mermaid:** 블록 위 `**제목**` · visual contract ([`mermaid-diagram.md`](templates/mermaid-diagram.md) §Visual contract) · light/dark에서 site 토큰 톤
 
 ### projects
 

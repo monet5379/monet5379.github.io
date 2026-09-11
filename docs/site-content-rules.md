@@ -173,10 +173,12 @@ project:
 
 ### Mermaid
 
-- **정본:** `notes/<슬러그>.md` 본문 ` ```mermaid ` 블록. Cursor·에이전트가 여기에 직접 작성한다.
-- **렌더:** `mermaid: true`인 note만 `assets/js/mermaid-notes.js` (Mermaid 11, `securityLevel: strict`).
-- **init:** `%%{init:…}%%`는 사이트에서 strip — 테마·스타일은 사이트 light/dark에 맡긴다. init에 의존하지 않는다.
-- **캡션:** 블록 **위** 짧은 제목(`**한 이야기**`), **아래** 1–2문장 또는 callout. lead·인접 문단과 제목 중복 금지. 경계·`≠`는 **아래 prose가 기본** — 도식 안 `NOTE`는 강제하지 않음 ([`mermaid-diagram.md`](templates/mermaid-diagram.md)).
+- **Tier:** 본문 도식은 **역할**로 Tier A(live Mermaid) vs Tier B(editorial PNG)를 고른다. 기본은 Tier A. 승격·역할·예: [`mermaid-diagram.md`](templates/mermaid-diagram.md) §Tier.
+- **정본 (Tier A):** `notes/<슬러그>.md` 본문 ` ```mermaid ` 블록. Cursor·에이전트가 여기에 직접 작성한다.
+- **렌더:** `mermaid: true`인 note만 `assets/js/mermaid-notes.js` (Mermaid 11, `securityLevel: strict`). 색 토큰 정본: `assets/js/mermaid-theme.js`.
+- **init:** `%%{init:…}%%`는 사이트에서 strip — 테마·스타일은 `mermaid-theme.js` light/dark에 맡긴다. init·글 속 hex에 의존하지 않는다.
+- **Tier B (notes):** 입구 지도·end-to-end 종합·레인·존 경계는 본문 Mermaid를 **두지 않는다**. `assets/images/notes/<슬러그>/diagram-<역할>-dark.png`(dark 고정) + `![alt](…)` · 바로 아래 이탤릭 캡션. export 정본: [`export/diagrams/`](export/diagrams/README.md). 올릴 때 `mermaid: true`와 ` ```mermaid ` 블록을 제거한다.
+- **캡션:** **Tier A** — 블록 **위** `**한 이야기**`, **아래** 1–2문장 또는 callout. **Tier B** — PNG **위** 짧은 제목(선택) · **아래** 이탤릭 1줄(`*…*`)만 — callout 대신. lead·인접 문단과 제목 중복 금지. 경계·`≠`는 **아래 prose가 기본** — 도식 안 `NOTE`는 강제하지 않음 ([`mermaid-diagram.md`](templates/mermaid-diagram.md)).
 - **위치:** lead 직후 고정 아님 — 설명하는 절 옆. 작성·Cursor 요청: [`templates/mermaid-diagram.md`](templates/mermaid-diagram.md).
 - **긴 코드 접기:** 노트 개별 글에서 8줄 이상 fenced 블록은 `assets/js/code-collapse.js`가 기본 접힘. Mermaid·짧은 스니펫은 제외.
 
@@ -224,7 +226,9 @@ excerpt: "본문 lead와 동일"
 - 소문자 · kebab-case · ASCII만
 - Steam 해시·해상도 접미사(`.1920x1080` 등) 금지
 - 대표: `cover.jpg` (또는 `cover.webp`) — projects 목록 썸네일
-- **개념도:** 본문 live Mermaid (`mermaid: true`). 목록·캐러셀용 PNG는 **두지 않음** — `cover`/`ss-*`가 없으면 목록은 텍스트만 (`section-index-list`).
+- **개념도 (절 How):** Tier A — 본문 live Mermaid (`mermaid: true`). personal project·notes와 동일 계약.
+- **개요 한 장 (Tier B):** company `## 담당 시스템` 상단 `diagram-overview-dark.png` (`blade-assault` · `dragon-is-dead`). export 정본: [`export/diagrams/`](export/diagrams/README.md). live Mermaid로 대체하지 않는다.
+- **목록·캐러셀용 PNG:** `cover`/`ss-*` 외 개념 PNG는 **두지 않음** — `cover`/`ss-*`가 없으면 목록은 텍스트만 (`section-index-list`).
 - **기본 (실기 UI·Demo):** `ss-01.jpg`, `ss-02.jpg`, … (두 자리 번호, 표시 순서)
 - **선택 — 캐러셀용 개념 PNG:** 실기 캡처와 **같이** 둘 때만 notes와 **같은** Mermaid를 dark 테마로 export → `ss-01-dark.png`. 정본이 아니며 Mermaid 수정 시 재export. `.mmd` 단독 정본은 두지 않는다. **Mermaid만 있는 글은 export하지 않음.**
 - 개념 PNG + 실기 캡처를 같이 두면 개념 PNG를 `ss-01-dark.png`, 캡처를 `ss-02.jpg`… (캐러셀은 `ss-*` 이름순)

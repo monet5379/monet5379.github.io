@@ -20,7 +20,7 @@ Intem Studio(`intemstudio.github.io`)와 **별개**. 스튜디오 글 전문 복
 | 글쓰기(Craft) | [`docs/writing-guide.md`](docs/writing-guide.md) |
 | 콘텐츠 검토 | [`docs/content-review.md`](docs/content-review.md) |
 | FM·공개·이미지·커밋 | [`docs/site-content-rules.md`](docs/site-content-rules.md) |
-| notes Mermaid | [`docs/templates/mermaid-diagram.md`](docs/templates/mermaid-diagram.md) — 정본은 note `.md` |
+| notes Mermaid | [`docs/templates/mermaid-diagram.md`](docs/templates/mermaid-diagram.md) · [`.cursor/skills/monet5379-mermaid/SKILL.md`](.cursor/skills/monet5379-mermaid/SKILL.md) — 정본은 note `.md` |
 | projects · notes · reviews 채우기 | writing-guide §notes 작성 · §projects 작성 · templates |
 | docs 목차 | [`docs/README.md`](docs/README.md) |
 | 에이전트 효율 | [`docs/agent-efficiency.md`](docs/agent-efficiency.md) — 탐색·컨텍스트·스코프 |

@@ -12,6 +12,8 @@ alwaysApply: false
 
 - 정본: 본문 ` ```mermaid ` + front matter `mermaid: true`
 - sibling mermaid-kit·`.mmd` 단독 정본 사용하지 않음
-- `%%{init:…}%%` 없음 — 테마는 사이트 light/dark
+- `%%{init:…}%%` 없음 — 색은 [`assets/js/mermaid-theme.js`](../../assets/js/mermaid-theme.js)만; 글에 hex·init 금지
+- Visual: [`docs/templates/mermaid-diagram.md`](../../docs/templates/mermaid-diagram.md) §Visual contract — entry `([…])` stadium 하나; optional `-.->`
 - 도식 안 `≠`/`NOTE` **강제 금지** — 아래 prose·callout에 경계가 있으면 넣지 않음; 오해 방지용일 때만 짧게 하나
+- 스킬: [`.cursor/skills/monet5379-mermaid/SKILL.md`](../../.cursor/skills/monet5379-mermaid/SKILL.md)
 - 작성 후 `bundle exec jekyll serve`로 light/dark 확인
