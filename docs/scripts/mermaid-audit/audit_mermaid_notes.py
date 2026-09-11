@@ -527,7 +527,7 @@ def render_report(tier_a: list[SlugAudit], tier_b: list[dict]) -> str:
             "",
             "## Phase 7 — commits",
             "",
-            "docs · js · notes(시리즈별) 분리 커밋 완료. push는 요청 시.",
+            "docs · js · notes(시리즈별) 분리 커밋 완료. origin 동기화: `git push --force-with-lease`.",
             "",
             "## Manual exceptions",
             "",

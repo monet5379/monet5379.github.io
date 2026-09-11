@@ -133,7 +133,7 @@ ledger ↔ HTML ↔ PNG ↔ note 본문 (3단계 검증 포함).
 
 ## Phase 7 — commits
 
-docs · js · notes(시리즈별) 분리 커밋 완료. push는 요청 시.
+docs · js · notes(시리즈별) 분리 커밋 완료. origin 동기화: `git push --force-with-lease`.
 
 ## Manual exceptions
 
