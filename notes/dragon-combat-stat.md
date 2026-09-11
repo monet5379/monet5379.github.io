@@ -4,7 +4,7 @@ title: 능력치는 어디서 쓰이고 어디서 읽히는가
 permalink: /notes/dragon-combat-stat/
 date: 2026-09-02
 excerpt: "장비·버프·레벨이 섞여 공격력·체력이 바뀔 때, 어디서 숫자를 넣고 빼며, 타격·UI는 어디서만 읽는지를 정리합니다."
-tags: [전투]
+tags: [피해]
 project:
   - dragon-is-dead
   - blade-assault

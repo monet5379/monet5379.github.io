@@ -4,7 +4,7 @@ title: 적은 어떻게 움직이는가
 permalink: /notes/dragon-monster-move/
 date: 2026-09-06
 excerpt: "적은 이동·공격·스킬을 뇌 안에서 계산하지 않습니다. “하라”는 의도만 캐릭터와 같은 손잡이에 넘기고, 실제 타격·쿨은 그다음 층이 처리합니다."
-tags: [전투]
+tags: [적 AI]
 project:
   - dragon-is-dead
   - blade-assault

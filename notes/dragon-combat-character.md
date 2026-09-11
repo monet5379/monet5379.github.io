@@ -4,7 +4,7 @@ title: 캐릭터는 필드에 어떻게 서는가
 permalink: /notes/dragon-combat-character/
 date: 2026-09-02
 excerpt: "스테이지에 전투 주체가 서는 순서, 전투 준비 전후에 스킬·AI·숫자가 켜지는 시점, 사망 시 하위 시스템을 비우는 생명주기를 정리합니다."
-tags: [전투]
+tags: [피해]
 project:
   - dragon-is-dead
   - blade-assault

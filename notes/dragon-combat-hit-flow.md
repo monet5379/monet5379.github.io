@@ -4,7 +4,7 @@ title: 맞으면 무엇이 일어나는가
 permalink: /notes/dragon-combat-hit-flow/
 date: 2026-09-02
 excerpt: "한 번 맞았을 때 타격 정의가 로드되고, 능력치를 읽어 계산한 뒤 HP·가드에 닿는 경로와, 근접·범위·투사체가 대상만 다르게 잡는 방식을 정리합니다."
-tags: [전투]
+tags: [피해]
 project:
   - dragon-is-dead
   - blade-assault

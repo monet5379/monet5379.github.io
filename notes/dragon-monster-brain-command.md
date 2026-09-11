@@ -4,7 +4,7 @@ title: 적의 뇌는 언제 명령하는가
 permalink: /notes/dragon-monster-brain-command/
 date: 2026-09-06
 excerpt: "깨어난 뒤에도 뇌는 매 순간 명령하지 않습니다. 다른 간격으로 행동을 돌리고 조건을 본 뒤, 맞으면 다음 상태로 넘기는 시점만 정리합니다."
-tags: [전투]
+tags: [적 AI]
 project:
   - dragon-is-dead
   - blade-assault

@@ -65,7 +65,7 @@ title: 짧은 제목
 permalink: /notes/슬러그/
 date: YYYY-MM-DD
 excerpt: "본문 lead와 동일"
-tags: [전투]
+tags: [피해]
 project:
   - dragon-is-dead
 ---

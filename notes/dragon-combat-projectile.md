@@ -4,7 +4,7 @@ title: 투사체는 무엇만 운반하는가
 permalink: /notes/dragon-combat-projectile/
 date: 2026-09-02
 excerpt: "투사체는 날아가서 맞히는 것만 담당하고, 데미지 계산·HP 감소는 맞힌 뒤 기존 타격 파이프라인에 넘깁니다. Spawn부터 pool 반환까지 transport 경계만 정리합니다."
-tags: [전투]
+tags: [피해]
 project:
   - dragon-is-dead
   - blade-assault

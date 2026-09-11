@@ -61,6 +61,7 @@ project:
 
 ```yaml
 title: 캐릭터는 필드에 어떻게 서는가
+tags: [피해]
 project:
   - dragon-is-dead
 series: combat-presence
@@ -71,6 +72,7 @@ series_total: 4
 
 ```yaml
 title: 스킬은 어디서 전투로 넘기는가
+tags: [전투]
 project:
   - dragon-is-dead
 series: combat-reaction
@@ -96,9 +98,11 @@ project:
 
 | 분류 | 질문 | 예 |
 |------|------|-----|
-| **전투** | 맞힌 뒤 무엇이 일어나는가 | 히트마크·버프·패시브·Apply |
+| **피해** | 맞으면·데미지·스탯·투사체는 어떻게 흐르는가 | 타격·데미지 시리즈 · 무기 히트마크 |
+| **전투** | 스킬·버프·패시브·게이트는 전투에 어떻게 붙는가 | 트리거·연쇄 · Command 게이트 |
+| **적 AI** | 적은 언제 깨고·명령하고·이동·BT 도는가 | monster-ai · 행동 트리 |
+| **지도** | 이 덩어리는 어디서부터 읽는가 | cluster-read · systems-read |
 | **애니메이터** | 연출 그래프를 어디·어떻게 자르는가 | Layer·Transition·Exit · Base vs 오버레이 · Shadow |
-| **액션** | 이 프레임의 의도는 누가 실행하는가 | 명령·게이트·Room·Wave·보스 |
 | **스킬** | 스킬을 어떻게 얻고·슬롯에 두고·시전하는가 | 학습·할당·TryCast·SkillAnimation |
 | **인벤** | 아이템을 어떻게 쌓고·배치하고·착용해 능력치·스킬에 반영하는가 | VItem·획득·Equip·Apply |
 | **성장** | 이번 세션이 무엇을 들고 전투에 붙는가 | Core·Gear·Risk·Trait |
@@ -110,8 +114,8 @@ project:
 | **내러티브** | 세계관·대사·설정 소유와 직군 경계 | 프로그래머가 내러티브를 작성할 수 있었던 회고 |
 
 - 애매하면 **시리즈 소속**을 따릅니다. 시리즈를 분류 축으로 쪼개지 않습니다.
-- `/notes/` 목록 UI는 **왼쪽 사이드바 시리즈 필터**입니다. 목록에 등장한 `series` 슬러그를 `series_title` 가나다순으로 나열하고, `series`가 비어 있는 노트가 있으면 **시리즈 없음**을 둡니다. 같은 `series_title`이 둘 이상이면 첫 `project` 제목으로 구분합니다(`적 AI · 드래곤 이즈 데드`). 페이지당 글 수는 `notes_page_size`(기본 5)이며 `<< < 1 2 … > >>` 페이지네이션을 씁니다.
-- 노트 본문 하단 **이전 글 / 다음 글**은 **공개 노트 전체**에서 `/notes/` 기본 목록과 같은 정렬(date 최신순 · `series`·`series_order` tie-break)입니다. 이전 = 목록에서 위, 다음 = 아래. 라벨 분류는 **상대 글**의 `tags`. 시리즈 형제는 `series_nav`(`note-series-nav`)와 별개입니다. `/notes/` 시리즈 필터와 무관합니다.
+- `/notes/` 목록 UI는 **왼쪽 사이드바 분류(태그) 필터**입니다. 목록에 등장한 `tags` 값을 가나다순으로 나열합니다. 페이지당 글 수는 `notes_page_size`(기본 5)이며 `<< < 1 2 … > >>` 페이지네이션을 씁니다.
+- 노트 본문 하단 **이전 글 / 다음 글**은 **공개 노트 전체**에서 `/notes/` 기본 목록과 같은 정렬(date 최신순 · `series`·`series_order` tie-break)입니다. 이전 = 목록에서 위, 다음 = 아래. 라벨 분류는 **상대 글**의 `tags`. 시리즈 형제는 `series_nav`(`note-series-nav`)와 별개입니다. `/notes/` 분류 필터와 무관합니다.
 
 ### 주 프로젝트 (`project`)
 

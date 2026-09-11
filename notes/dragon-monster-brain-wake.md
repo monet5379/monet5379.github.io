@@ -4,7 +4,7 @@ title: 적의 뇌는 언제 깨어나는가
 permalink: /notes/dragon-monster-brain-wake/
 date: 2026-09-06
 excerpt: "스폰 직후 적의 뇌는 꺼져 있습니다. 전투 준비가 된 뒤에야 켜지고, Pause와 사망에서 어떻게 멈추는지만 이 글에서 봅니다."
-tags: [전투]
+tags: [적 AI]
 project:
   - dragon-is-dead
   - blade-assault

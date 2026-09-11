@@ -4,7 +4,7 @@ title: 적의 행동 트리는 무엇을 부르는가
 permalink: /notes/blade-monster-bt-call/
 date: 2026-09-06
 excerpt: "트리가 돈 뒤에도 태스크는 피해를 계산하지 않습니다. Chase·Attack·Pattern·Dash 가족이 조회하고 호출하는 표면만 정리합니다."
-tags: [전투]
+tags: [적 AI]
 project:
   - blade-assault
 series: blade-monster-ai-how

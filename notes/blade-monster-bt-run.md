@@ -4,7 +4,7 @@ title: 적의 행동 트리는 언제 도는가
 permalink: /notes/blade-monster-bt-run/
 date: 2026-09-06
 excerpt: "몬스터·보스의 뇌는 비어 있는 AIBrain이 아니라 행동 트리입니다. 스폰 뒤 트리가 언제 도는지, 플레이어 입력과 어디가 갈리는지만 이 글에서 봅니다."
-tags: [전투]
+tags: [적 AI]
 project:
   - blade-assault
 series: blade-monster-ai-how

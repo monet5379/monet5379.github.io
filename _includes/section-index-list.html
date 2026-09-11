@@ -2,7 +2,7 @@
   section_dir: 경로 접두 (예: 'projects/', 'notes/')
   section_sort: 'order' (기본) 또는 'date' (최신순)
   section_filter_kind: projects 전용 — project_kind front matter로 목록 분할 (company | personal)
-  show_series_filter: true면 시리즈 필터 UI (notes)
+  show_tag_filter: true면 분류(태그) 필터 UI (notes)
   notes_page_size: notes 목록 페이지당 글 수 (있으면 페이지네이션)
   notes_production_visible_tags: 공개 분류 (_config.yml). production 목록은 이 태그만.
   로컬(development)은 전 글을 넣고, 비공개는 footer 전역 토글(localStorage)로 가린다.
@@ -33,80 +33,34 @@
   {% assign show_thumbs = true %}
 {% endif %}
 
-{% assign show_series_filter_ui = false %}
-{% if show_series_filter and section_dir == "notes/" %}
-  {% assign show_series_filter_ui = true %}
+{% assign show_tag_filter_ui = false %}
+{% if show_tag_filter and section_dir == "notes/" %}
+  {% assign show_tag_filter_ui = true %}
 {% endif %}
 
 {% assign show_list_controls = false %}
-{% if show_series_filter_ui %}
+{% if show_tag_filter_ui %}
   {% assign show_list_controls = true %}
 {% endif %}
 
-{% if show_series_filter_ui %}
+{% if show_tag_filter_ui %}
 <div class="notes-browse">
   <aside class="notes-browse__sidebar">
-    {% assign note_series_csv = "" %}
+    {% assign note_tags_csv = "" %}
     {% for item in section_articles %}
-      {% if item.series and item.series != "" %}
-        {% assign note_series_csv = note_series_csv | append: item.series | append: "," %}
-      {% endif %}
+      {% for tag in item.tags %}
+        {% assign note_tags_csv = note_tags_csv | append: tag | append: "," %}
+      {% endfor %}
     {% endfor %}
-    {% assign note_series_slugs = note_series_csv | split: "," | uniq %}
-    {% assign series_sort_keys = "" %}
-    {% for slug in note_series_slugs %}
-      {% if slug == "" %}{% continue %}{% endif %}
-      {% assign series_sample = section_articles | where: "series", slug | first %}
-      {% assign series_sort_keys = series_sort_keys | append: series_sample.series_title | append: "|||" | append: slug | append: "," %}
-    {% endfor %}
-    {% assign series_sort_keys = series_sort_keys | split: "," | sort %}
-    {% assign notes_without_series = 0 %}
-    {% for item in section_articles %}
-      {% unless item.series and item.series != "" %}
-        {% assign notes_without_series = notes_without_series | plus: 1 %}
-      {% endunless %}
-    {% endfor %}
-    {% assign all_project_pages = site.pages | where_exp: "p", "p.path contains 'projects/'" | where_exp: "p", "p.name != 'index.md'" %}
-    {% if jekyll.environment == "production" %}
-      {% assign all_project_pages = all_project_pages | where_exp: "p", "p.private != true" %}
-    {% endif %}
-    <nav class="tag-filter tag-filter--stack" data-series-filter aria-label="시리즈 필터">
-      <span class="tag-filter__label">시리즈</span>
-      <button type="button" class="tag-filter__btn is-active" data-series="" aria-pressed="true">전체</button>
-      {% if notes_without_series > 0 %}
-      <button type="button" class="tag-filter__btn" data-series="__none__" aria-pressed="false">시리즈 없음</button>
-      {% endif %}
-      {% for key in series_sort_keys %}
-        {% if key == "" %}{% continue %}{% endif %}
-        {% assign key_parts = key | split: "|||" %}
-        {% assign series_label = key_parts[0] %}
-        {% assign series_slug = key_parts[1] %}
-        {% assign series_sample = section_articles | where: "series", series_slug | first %}
-        {% assign title_dup = 0 %}
-        {% for other_key in series_sort_keys %}
-          {% if other_key == "" %}{% continue %}{% endif %}
-          {% assign other_parts = other_key | split: "|||" %}
-          {% if other_parts[0] == series_label %}
-            {% assign title_dup = title_dup | plus: 1 %}
-          {% endif %}
-        {% endfor %}
-        {% if title_dup > 1 and series_sample.project and series_sample.project.size > 0 %}
-          {% assign disambig_slug = series_sample.project | first %}
-          {% assign disambig_page = false %}
-          {% for proj in all_project_pages %}
-            {% assign proj_slug = proj.path | split: "/" | last | remove: ".md" %}
-            {% if proj_slug == disambig_slug %}
-              {% assign disambig_page = proj %}
-            {% endif %}
-          {% endfor %}
-          {% if disambig_page %}
-            {% capture disambig_label %}{% include list-subtitle.html text=disambig_page.title %}{% endcapture %}
-            {% assign series_label = series_label | append: " · " | append: disambig_label | strip %}
-          {% endif %}
-        {% endif %}
-        {% assign series_private = "yes" %}
-        {% assign series_notes = section_articles | where: "series", series_slug %}
-        {% for sn in series_notes %}
+    {% assign note_tag_list = note_tags_csv | split: "," | uniq | sort %}
+    <nav class="tag-filter tag-filter--stack" data-notes-tag-filter aria-label="분류 필터">
+      <span class="tag-filter__label">분류</span>
+      <button type="button" class="tag-filter__btn is-active" data-tag="" aria-pressed="true">전체</button>
+      {% for tag in note_tag_list %}
+        {% if tag == "" %}{% continue %}{% endif %}
+        {% assign tag_private = "yes" %}
+        {% assign tag_notes = section_articles | where_exp: "p", "p.tags contains tag" %}
+        {% for sn in tag_notes %}
           {% assign sn_public = false %}
           {% if site.notes_production_visible_tags.size == 0 %}
             {% assign sn_public = true %}
@@ -118,10 +72,10 @@
             {% endfor %}
           {% endif %}
           {% if sn_public %}
-            {% assign series_private = "no" %}
+            {% assign tag_private = "no" %}
           {% endif %}
         {% endfor %}
-      <button type="button" class="tag-filter__btn" data-series="{{ series_slug | escape }}" aria-pressed="false"{% if series_private == "yes" %} data-private-tag{% endif %}>{{ series_label | escape }}</button>
+      <button type="button" class="tag-filter__btn" data-tag="{{ tag | escape }}" aria-pressed="false"{% if tag_private == "yes" %} data-private-tag{% endif %}>{{ tag | escape }}</button>
       {% endfor %}
     </nav>
   </aside>
@@ -230,7 +184,7 @@
 {% endif %}
 {% endunless %}
 
-{% if show_series_filter_ui %}
+{% if show_tag_filter_ui %}
   </div>
 </div>
 {% endif %}

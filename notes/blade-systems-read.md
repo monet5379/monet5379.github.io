@@ -4,7 +4,7 @@ title: 시스템은 어디에 붙는가
 permalink: /notes/blade-systems-read/
 date: 2026-09-04
 excerpt: "런 빌드·액션 파이프라인·스테이지·메타가 어떻게 갈라지는지, 시리즈로 들어가기 전에 한 장으로 정리합니다."
-tags: [전투]
+tags: [지도]
 project:
   - blade-assault
 ---

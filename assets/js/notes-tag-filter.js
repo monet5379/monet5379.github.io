@@ -56,11 +56,10 @@
   var pagerEl = document.querySelector("[data-notes-pager]");
   var pageSize = parseInt(list.getAttribute("data-page-size") || "0", 10) || 0;
   var currentPage = 1;
-  var seriesRoot = document.querySelector("[data-series-filter]");
-  var seriesNone = "__none__";
-  var activeSeries = "";
-  var privateSeriesButtons = Array.prototype.slice.call(
-    document.querySelectorAll("[data-series-filter] [data-private-tag]")
+  var tagFilterRoot = document.querySelector("[data-notes-tag-filter]");
+  var activeTag = "";
+  var privateTagButtons = Array.prototype.slice.call(
+    document.querySelectorAll("[data-notes-tag-filter] [data-private-tag]")
   );
 
   function itemDate(item) {
@@ -74,6 +73,17 @@
   function itemSeriesOrder(item) {
     var n = parseInt(item.getAttribute("data-series-order") || "", 10);
     return isNaN(n) ? null : n;
+  }
+
+  function itemTags(item) {
+    var raw = item.getAttribute("data-tags");
+    if (!raw) return [];
+    try {
+      var parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
   }
 
   /** Same date: group by series, then series_order (1→N). Non-series after series ties. */
@@ -113,12 +123,9 @@
 
   function matchingItems() {
     return items.filter(function (item) {
-      var series = itemSeries(item);
       var show = true;
-      if (activeSeries === seriesNone) {
-        if (series) show = false;
-      } else if (activeSeries && series !== activeSeries) {
-        show = false;
+      if (activeTag) {
+        show = itemTags(item).indexOf(activeTag) !== -1;
       }
       if (!showPrivate && item.hasAttribute("data-private")) show = false;
       return show;
@@ -253,32 +260,31 @@
   function syncButtons() {
     syncPrivateButtons();
 
-    if (seriesRoot) {
+    if (tagFilterRoot) {
       Array.prototype.slice
-        .call(seriesRoot.querySelectorAll(".tag-filter__btn"))
+        .call(tagFilterRoot.querySelectorAll(".tag-filter__btn"))
         .forEach(function (btn) {
-          var selected =
-            (btn.getAttribute("data-series") || "") === activeSeries;
+          var selected = (btn.getAttribute("data-tag") || "") === activeTag;
           btn.classList.toggle("is-active", selected);
           btn.setAttribute("aria-pressed", selected ? "true" : "false");
         });
     }
 
-    privateSeriesButtons.forEach(function (btn) {
+    privateTagButtons.forEach(function (btn) {
       btn.hidden = !showPrivate;
     });
   }
 
-  function clearPrivateSeriesSelection() {
-    if (showPrivate || !activeSeries) return;
-    if (!seriesRoot) return;
-    var buttons = seriesRoot.querySelectorAll(".tag-filter__btn");
+  function clearPrivateTagSelection() {
+    if (showPrivate || !activeTag) return;
+    if (!tagFilterRoot) return;
+    var buttons = tagFilterRoot.querySelectorAll(".tag-filter__btn");
     for (var j = 0; j < buttons.length; j += 1) {
       if (
-        (buttons[j].getAttribute("data-series") || "") === activeSeries &&
+        (buttons[j].getAttribute("data-tag") || "") === activeTag &&
         buttons[j].hasAttribute("data-private-tag")
       ) {
-        activeSeries = "";
+        activeTag = "";
         break;
       }
     }
@@ -291,15 +297,15 @@
   }
 
   applyFn = function () {
-    clearPrivateSeriesSelection();
+    clearPrivateTagSelection();
     apply(true);
   };
 
-  if (seriesRoot) {
-    seriesRoot.addEventListener("click", function (event) {
+  if (tagFilterRoot) {
+    tagFilterRoot.addEventListener("click", function (event) {
       var btn = event.target.closest(".tag-filter__btn");
-      if (!btn || !seriesRoot.contains(btn)) return;
-      activeSeries = btn.getAttribute("data-series") || "";
+      if (!btn || !tagFilterRoot.contains(btn)) return;
+      activeTag = btn.getAttribute("data-tag") || "";
       apply(true);
     });
   }
