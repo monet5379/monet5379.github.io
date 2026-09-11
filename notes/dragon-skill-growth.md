@@ -56,7 +56,8 @@ QA에서 자주 갈라지는 체감:
 
 ```mermaid
 flowchart TD
-  SRC["UI · 레벨업 · 아이템 · 유물"] --> PROFILE["프로필 세이브<br/>학습 · 할당 · 레벨"]
+  SRC(["UI · 레벨업 · 아이템 · 유물"])
+  SRC --> PROFILE["프로필 세이브<br/>학습 · 할당 · 레벨"]
   PROFILE --> EVT["플레이어 전용 이벤트"]
   EVT --> RUN["스킬 런타임<br/>Entity · 레벨 · HUD"]
 ```

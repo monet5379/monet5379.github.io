@@ -62,7 +62,8 @@ Json 정본은 `RelicData` · `RelicSynergyData` · `DropRelicData`입니다. �
 
 ```mermaid
 flowchart TD
-  S["보상상자 · 몬스터 · PickRelicItems"] --> R["RegisterAllCandidates"]
+  S(["보상상자 · 몬스터 · PickRelicItems"])
+  S --> R["RegisterAllCandidates"]
   R --> E["ExcludeRelics<br/>소지 · 판매 · Statistics"]
   E --> P["PickDroppable(grade)"]
   P --> D["SpawnDropRelic · DropRelic.Setup"]
@@ -84,7 +85,8 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-  O["DropRelic.Operate"] --> T["TryTakeRelic"]
+  O(["DropRelic.Operate"])
+  O --> T["TryTakeRelic"]
   T -->|빈 슬롯| A["RegisterRelic + 적용"]
   T -->|Full| C["ChangePopup → SwapRelic"]
   TH["ThrowGroundRelic"] --> U["Unregister · SpawnDrop"]

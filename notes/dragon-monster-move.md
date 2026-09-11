@@ -47,7 +47,8 @@ QA에서 자주 보이는 혼동:
 
 ```mermaid
 flowchart TD
-  ACT["행동<br/>enter · perform · exit"] --> API["캐릭터 API"]
+  ACT(["행동<br/>enter · perform · exit"])
+  ACT --> API["캐릭터 API"]
   API --> MV["이동 · 점프 · 대시"]
   API --> AT["공격 Activate"]
   API --> SK["스킬 시전"]

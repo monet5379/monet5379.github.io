@@ -73,7 +73,8 @@ UI 팝업·드래그·Compare 위젯, 월드 `SpawnDrop*`, `RelicCollectionManag
 
 ```mermaid
 flowchart TD
-  W["DropObject · InteractableItem · 보상"] --> G["VItemGenerator.CreateItem*"]
+  W(["DropObject · InteractableItem · 보상"])
+  W --> G["VItemGenerator.CreateItem*"]
   G --> T["UIInventoryHandler.TryTakeItem"]
   T --> TK["TakeItem<br/>Type · ToggleSlot 분기"]
   TK --> AD["VInventory.AddItem"]

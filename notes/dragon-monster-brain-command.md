@@ -47,7 +47,8 @@ mermaid: true
 
 ```mermaid
 flowchart TD
-  G["게이트<br/>시간 · 거리 · 활성 상태"] --> A["행동 수행<br/>action frequency"]
+  G(["게이트<br/>시간 · 거리 · 활성 상태"])
+  G --> A["행동 수행<br/>action frequency"]
   A --> D["조건 평가<br/>decision frequency"]
   D --> T["첫 유효 전환"]
   T --> X["현재 exit"]

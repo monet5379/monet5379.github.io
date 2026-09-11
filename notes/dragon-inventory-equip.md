@@ -47,7 +47,8 @@ QA에서 자주 보는 증상:
 
 ```mermaid
 flowchart TD
-  U["UIEquipSlotTile · TakeEquipment"] --> C["CheckEquippable"]
+  U(["UIEquipSlotTile · TakeEquipment"])
+  U --> C["CheckEquippable"]
   C --> S["AssingedSlot = EquipmentSlot<br/>Owner · EquipedSlotType"]
   S --> A["ApplyItemDataToCharacter"]
   A --> ST["AddItemStats → Player.Stat"]

@@ -50,7 +50,8 @@ QA에서 자주 보는 증상:
 
 ```mermaid
 flowchart TD
-  R["RegisterRelic"] --> A["ApplyRelicDataToCharacter"]
+  R(["RegisterRelic"])
+  R --> A["ApplyRelicDataToCharacter"]
   A --> ST["AddRelicStats → Player.Stat"]
   A --> SK["AddRelicSkill → VCharacterSkill"]
   SK --> SY["RefreshSynergySkills"]

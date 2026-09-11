@@ -46,7 +46,8 @@ mermaid: true
 
 ```mermaid
 flowchart TD
-  SP["스폰"] --> IN["초기화<br/>뇌 deactivate"]
+  SP(["스폰"])
+  SP --> IN["초기화<br/>뇌 deactivate"]
   IN --> RD["전투 준비<br/>Reset · 첫 상태 진입"]
   RD --> TK["tick 가능"]
   TK --> PA["Pause<br/>컴포넌트 off"]

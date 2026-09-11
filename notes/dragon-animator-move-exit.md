@@ -39,7 +39,8 @@ mermaid: true
 
 ```mermaid
 flowchart TD
-  P["이동 · 물리<br/>Bool · Float"] --> MOVE["이동 그래프<br/>Idle ↔ Run ↔ Jump ↔ Landing"]
+  P(["이동 · 물리<br/>Bool · Float"])
+  P --> MOVE["이동 그래프<br/>Idle ↔ Run ↔ Jump ↔ Landing"]
   EV["사건<br/>Trigger"] --> ACT["Damage · Potion · Teleport"]
   CAST["시전 결정<br/>이름으로 재생"] --> SK["스킬 상태<br/>지상 · 공중 짝"]
   ACT --> X["Exit"]
