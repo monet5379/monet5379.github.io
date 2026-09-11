@@ -3,19 +3,139 @@
 // (same visual footprint as wide diagrams like save-layout-boundaries).
 .mermaid-wrap {
   margin: 1.25rem 0 1.75rem;
-  overflow-x: auto;
+  position: relative;
   text-align: center;
   width: 100%;
 
-  .mermaid {
-    display: block;
+  &__canvas {
+    overflow-x: auto;
     width: 100%;
+
+    .mermaid {
+      display: block;
+      width: 100%;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
   }
 
-  svg {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+  &__expand {
+    appearance: none;
+    border: 1px solid var(--grey-color-light);
+    background: var(--background-color);
+    color: var(--text-color);
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 2px;
+    position: absolute;
+    top: 0.35rem;
+    right: 0.35rem;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--grey-color);
+      outline: none;
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--brand-color);
+    }
+  }
+
+  &:hover &__expand,
+  &:focus-within &__expand {
+    opacity: 1;
+  }
+}
+
+@media (hover: none) {
+  .mermaid-wrap__expand {
+    opacity: 1;
+  }
+}
+
+.mermaid-dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--grey-color-light);
+  border-radius: 4px;
+  padding: 0;
+  width: min(96vw, 1280px);
+  max-width: min(96vw, 1280px);
+  height: 92vh;
+  max-height: 92vh;
+  background: var(--background-color);
+  color: var(--text-color);
+  overflow: hidden;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  &__close {
+    appearance: none;
+    border: 1px solid var(--grey-color-light);
+    background: var(--background-color);
+    color: var(--text-color);
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 2px;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--grey-color);
+      outline: none;
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--brand-color);
+    }
+  }
+
+  &__viewport {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 3rem 1.5rem 1.5rem;
+    box-sizing: border-box;
+    display: grid;
+    place-items: safe center;
+
+    .mermaid {
+      display: inline-block;
+      width: auto;
+    }
+
+    svg {
+      display: block;
+      width: auto;
+      max-width: none !important;
+      height: auto;
+      margin: 0 auto;
+    }
   }
 }
