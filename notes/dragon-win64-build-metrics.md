@@ -20,7 +20,7 @@ File → Build Settings 수동 빌드·CI·게임 **플레이 중** Profiler 세
 
 ## 문제
 
-`BuildPipeline.BuildPlayer`가 돌려주는 `BuildReport`에는 총 소요와 단계 트리가 같이 있습니다. 파일로 고정해 두지 않으면 비교가 막히는 지점은 다음과 같습니다.
+`BuildPipeline.BuildPlayer`가 돌려주는 `BuildReport`에는 총 소요와 단계 트리가 같이 있습니다. 콘솔에만 두면 아래처럼 비교가 어려워집니다.
 
 | 증상 | 원인 |
 |------|------|
@@ -40,13 +40,12 @@ File → Build Settings 수동 빌드·CI·게임 **플레이 중** Profiler 세
 ```mermaid
 flowchart TD
   E(["에디터 빌드 모드 또는 executeMethod"])
-  E --> B["Win64 빌더\ndefine backup → apply"]
-  B --> P["BuildPlayer\n+ DetailedBuildReport"]
-  P --> W["메트릭 Write\n성공·실패 모두"]
+  E --> B["Win64 빌더<br/>define backup → apply"]
+  B --> P["BuildPlayer<br/>+ DetailedBuildReport"]
+  P --> W["메트릭 Write<br/>성공·실패 모두"]
   W --> J["*.json 메타"]
   W --> T["*.tsv 단계 초"]
-  P --> R{"result?"}
-  R -->|finally| D["define restore"]
+  W --> D["define restore<br/>finally"]
 ```
 
 <div class="callout" markdown="1">
@@ -121,10 +120,10 @@ Unity build step은 **겹쳐 보이는** 트리입니다. `depth`는 포함 관�
 - Win64 빌드 후 `Builds/Win64/BuildMetrics/{bundleVersion}/`에 `.json`·`.tsv` **쌍**이 생김
 - 풀빌드 비교 시 JSON `hasBuildingScenes == true`인지
 - 개발자 창 **메트릭 폴더 열기**로 현재 버전 폴더를 탐색기에서 열 수 있음
-- **플레이 중** Journey/Spike/Memory 성능 로그는 `persistentDataPath/performance/{bundleVersion}/` — 빌드 시간과 **다른 경로**입니다
+- **플레이 중** 여정·스파이크·메모리 로그는 `persistentDataPath/performance/{bundleVersion}/` — [런타임 세션 계측]({{ "/notes/dragon-runtime-performance-session/" | relative_url }}) · 빌드 시간과 **다른 경로**입니다
 
 ## 정리
 
 Win64 빌더는 `BuildPlayer` 직후 버전 폴더에 메타 JSON과 step TSV를 남깁니다. JSON으로 “같은 종류 빌드끼리” 거른 뒤, TSV에서 형제 step 초로 병목을 봅니다. 수동 빌드·CI·플레이 중 성능 로그는 이 계측과 겹치지 않습니다.
 
-**권장 읽기** — [Win64 빌드 계측]({{ "/notes/dragon-win64-build-metrics/" | relative_url }}) · [조건부 로그]({{ "/notes/conditional-log-build-cost/" | relative_url }}) · [스테이지 preload]({{ "/notes/stage-spawn-area-preload/" | relative_url }}) · [GPU Global·Ambient]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }})
+**권장 읽기** — [Win64 빌드 계측]({{ "/notes/dragon-win64-build-metrics/" | relative_url }}) · [Dev 플레이 세션 계측]({{ "/notes/dragon-runtime-performance-session/" | relative_url }}) · [조건부 로그]({{ "/notes/conditional-log-build-cost/" | relative_url }}) · [스테이지 preload]({{ "/notes/stage-spawn-area-preload/" | relative_url }}) · [GPU Global·Ambient]({{ "/notes/stage-visual-gpu-optimize/" | relative_url }})
