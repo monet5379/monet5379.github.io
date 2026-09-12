@@ -23,7 +23,13 @@ alwaysApply: false
 
 1. [`content-review.md`](../../docs/content-review.md) **Gate** — 실패 항목 나열 · 수정 제안
 2. **Quality** — Should 미충족 코멘트
-3. humanize는 사용자가 **윤문**을 요청했을 때만
+3. **수정(diff)** — 사용자가 「수정까지」「적용」을 요청했을 때만. 기본은 발견·제안
+4. humanize는 사용자가 **윤문**을 요청했을 때만
+
+상세: [`content-review.md` §검토 출력·선택 절차](../../docs/content-review.md#검토-출력선택-절차)
+
+- `@` 코드·Architecture가 **함께** 오면 해당 경로만 사실 대조 — 없으면 생략 ([`agent-efficiency.md`](../../docs/agent-efficiency.md))
+- `mermaid: true`: 노드 `<br/>` · 본문 표 ~4개 초과 시 prose 후보
 
 ## Gate 요약 (Must)
 

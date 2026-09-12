@@ -118,3 +118,39 @@
 | **윤문** | humanize · 충돌 시 writing-guide 우선 |
 
 진입: [`AGENTS.md`](../AGENTS.md).
+
+### 검토 출력·선택 절차
+
+「검토해줘」「체크해줘」 등 **검토** 요청 시 아래 순서·형식을 따른다. Gate·Quality 상세는 위 본문.
+
+1. **Gate** — 항목별 통과/실패. 실패는 수정 제안.
+2. **Quality** — Should 미충족만 bullet. 유형·h2 표준화는 검사하지 않음(§검사하지 않는 것).
+3. **수정** — 사용자가 「수정까지」「적용」을 요청했을 때만 패치. **기본은 발견·제안만.**
+
+#### 요청에서 정하는 것 (`@` · 한 줄)
+
+| 항목 | 기본 | 명시 시 |
+|------|------|---------|
+| 대상 | `@`로 연 md | 그 파일(들)만 |
+| 산출 | 발견·제안 | 「수정까지」「적용」→ diff |
+| 구현 대조 | **하지 않음** | `@`로 코드·Architecture 경로가 **함께** 오면 해당 파일만 Read로 사실 확인 |
+
+형제 Unity repo·프로젝트 코드 **전체** 스캔은 하지 않는다 — [`agent-efficiency.md`](agent-efficiency.md). `@` 없이 멀티 루트를 열지 않음.
+
+#### notes 검토 시 추가 (Quality)
+
+- **`mermaid: true`:** 노드 줄바꿈은 `<br/>` ([`mermaid-diagram.md`](templates/mermaid-diagram.md)). fenced 블록 안 `\n`은 Quality 이슈.
+- **표 밀도:** How·참조·문제 해결형 — 본문 표가 ~4개를 넘으면 prose로 줄일 후보 ([`writing-guide` §표와 prose](writing-guide.md#notes--표와-prose)). lead·맥락·기각은 표 없이.
+- **용어표:** 본문 prose에서 실제로 부르는 역할만. 코드 타입만 있고 본문에 없으면 Quality.
+
+#### 한 줄 요청 예
+
+```text
+문서 검토: content-review Gate→Quality. 발견만.
+@notes/dragon-runtime-performance-session.md
+```
+
+```text
+문서 검토: Gate→Quality. 수정까지.
+@notes/foo.md @dragon-is-dead/Project/.../PerformanceProbe.cs
+```

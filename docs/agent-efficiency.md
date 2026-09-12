@@ -65,6 +65,7 @@ AI가 **덜 읽고 · 덜 헤매고 · 덜 다시 하게** 하기 위한 내부 
 에이전트만으로 부족할 때, 요청에 범위를 붙이면 같다.
 
 - 예: `@notes/dragon-combat-hit-flow.md` 기준으로 `series: combat-presence` 형제만 비교해줘.
+- 예: `문서 검토: content-review Gate→Quality. 발견만.` + `@notes/…` — 수정·구현 대조는 한 줄에 명시 ([`content-review.md` §검토 출력·선택 절차](content-review.md#검토-출력선택-절차))
 
 ## 체크 (에이전트 자가)
 
