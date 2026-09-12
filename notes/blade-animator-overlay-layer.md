@@ -3,15 +3,17 @@ layout: page
 title: 연출 오버레이 레이어를 둔 이유
 permalink: /notes/blade-animator-overlay-layer/
 date: 2026-09-11
-excerpt: "차지 행동은 Base Layer, 범위·강화 FX는 ChargeAttack · ChargeLarge 오버레이로 분리했습니다. 업그레이드 단계를 Base Transition에 넣지 않은 이유를 정리합니다."
+excerpt: "제니 충전 공격으로, Base Layer 본체와 사슬 FX 오버레이를 나눈 이유를 알아봅니다."
 tags: [애니메이터]
 project:
   - blade-assault
 mermaid: true
 ---
+제니(Jenny)는 사슬낫을 자유롭게 사용하는 캐릭터입니다. 제니의 충전 공격을 예시로 애니메이터의 다중 레이어를 알아보려합니다. 제니의 차지(충전) 공격은 공격 키를 누르고 있으면 사용합니다. 몸의 움직임을 재생하는 Base Layer, 사슬을 표현하는 FX는 ChargeAttack · ChargeLarge 오버레이로 분리했습니다. 이 노트에서는 분리의 이유를 정리합니다.
 
+![Jenny — 차지 공격 FX 오버레이]({{ "/assets/images/notes/blade-animator-overlay-layer/9d9697766b07398a4e94893992eb8ce5312f2d28.gif" | relative_url }})
 
-차지 행동은 Base Layer, 범위·강화 FX는 ChargeAttack · ChargeLarge 오버레이로 분리했습니다. 업그레이드 단계를 Base Transition에 넣지 않은 이유를 정리합니다.
+*Jenny — 차지(충전) 공격. 몸의 움직임은 Base Layer, 사슬 FX는 ChargeAttack · ChargeLarge 오버레이.*
 
 ## 맥락
 
