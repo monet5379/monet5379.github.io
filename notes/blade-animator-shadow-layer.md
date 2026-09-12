@@ -96,4 +96,4 @@ Jenny(체인식) 컨트롤러는 Layers에 Base · Shadow · ChargeAttack · Cha
 
 발밑 그림자는 본체 자세의 변형이 아니라 **접지 phase** 문제입니다. Shadow 레이어로 빼 두면 Base 이동·행동 그물과 그림자 클립이 서로 엮이지 않습니다.
 
-[연출 오버레이 레이어]({{ "/notes/blade-animator-overlay-layer/" | relative_url }}) · [Command 밖에 둔 이유]({{ "/notes/blade-command-gate/" | relative_url }}) · [드래곤 — 이동 그래프와 Exit]({{ "/notes/dragon-animator-move-exit/" | relative_url }}). 차지 강화·범위 FX · 무기 히트마크 · Blend Tree 내부는 이 글에서 다루지 않습니다.
+[연출 오버레이 레이어]({{ "/notes/blade-animator-overlay-layer/" | relative_url }}) · [Command 밖에 둔 이유]({{ "/notes/blade-command-gate/" | relative_url }}) · [드래곤 — 이동 그래프와 Exit]({{ "/notes/dragon-animator-move-exit/" | relative_url }}) · [드래곤 — 몸과 무기 레이어]({{ "/notes/dragon-animator-weapon-layer/" | relative_url }}). 차지 강화·범위 FX · 무기 히트마크 · Blend Tree 내부는 이 글에서 다루지 않습니다.

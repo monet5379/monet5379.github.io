@@ -102,4 +102,4 @@ flowchart TB
 
 **차지 본체(Base)** 와 **범위·강화 FX(오버레이)** 는 Animator에서 소유가 다릅니다. 업그레이드 단계별 FX를 ChargeAttack · ChargeLarge 레이어로 빼 두면 Base 이동·행동 그물과 Enhance 콘텐츠 추가 비용이 서로 간섭하지 않습니다.
 
-[Command 밖에 둔 이유]({{ "/notes/blade-command-gate/" | relative_url }}) · [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }}) · [코어·기어·리스크와 특성]({{ "/notes/blade-build-attach/" | relative_url }}) · [드래곤 — 이동 그래프와 Exit]({{ "/notes/dragon-animator-move-exit/" | relative_url }}). [그림자를 Shadow 레이어로 둔 이유]({{ "/notes/blade-animator-shadow-layer/" | relative_url }}) · 무기별 컨트롤러 분기 · Blend Tree 내부·레이어 마스크·클립 제작 세부는 이 글에서 다루지 않습니다.
+[Command 밖에 둔 이유]({{ "/notes/blade-command-gate/" | relative_url }}) · [무기 히트마크]({{ "/notes/blade-weapon-hitmark/" | relative_url }}) · [코어·기어·리스크와 특성]({{ "/notes/blade-build-attach/" | relative_url }}) · [드래곤 — 이동 그래프와 Exit]({{ "/notes/dragon-animator-move-exit/" | relative_url }}) · [드래곤 — 몸과 무기 레이어]({{ "/notes/dragon-animator-weapon-layer/" | relative_url }}). [그림자를 Shadow 레이어로 둔 이유]({{ "/notes/blade-animator-shadow-layer/" | relative_url }}) · 무기별 컨트롤러 분기 · Blend Tree 내부·레이어 마스크·클립 제작 세부는 이 글에서 다루지 않습니다.

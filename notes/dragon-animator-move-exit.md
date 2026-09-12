@@ -27,7 +27,7 @@ mermaid: true
 
 | 말 | 역할 | 코드에서는 (참고) |
 |----|------|-------------------|
-| **연출 레이어** | 전신 연출을 담는 채널 | `Body` (무기 채널이 필요한 캐릭터만 `Weapon1` 추가) |
+| **연출 레이어** | 전신 연출을 담는 채널 | `Body` ([무기 채널]({{ "/notes/dragon-animator-weapon-layer/" | relative_url }})이 필요한 캐릭터만 `Weapon1` 추가) |
 | **이동 그래프** | 서로 잇는 연속 상태 묶음 | Idle · RunStart · Run · JumpApex · Landing · Crouch |
 | **Exit 액션** | 끝나면 Exit로 빠져 Idle로 돌아오는 이산 상태 | 스킬 · Damage · Potion · Teleport · Spawn |
 | **파라미터** | 코드가 그래프에 넘기는 손잡이 | Bool · Float(상태) · Trigger(사건) |
@@ -90,7 +90,7 @@ flowchart TD
 - **이동 = 상태 그물 · 공격·유틸 = Exit 액션** — 한 레이어 안의 두 구역
 - **스킬은 Transition 대신 이름 재생** — 콘텐츠 추가 비용이 그래프에 붙지 않음
 - **지상·공중은 짝으로** 두고 어느 쪽을 재생할지는 코드가 고름
-- **레이어는 필요할 때만** — 기본은 전신 채널 하나, 무기 채널이 필요한 캐릭터만 추가. 재생은 활성 레이어 수만큼 같은 이름으로
+- **레이어는 필요할 때만** — 기본은 전신 채널 하나, [무기 채널]({{ "/notes/dragon-animator-weapon-layer/" | relative_url }})이 필요한 캐릭터만 추가. 재생은 활성 레이어 수만큼 같은 이름으로
 
 ## 기각한 대안
 
@@ -104,4 +104,4 @@ flowchart TD
 
 한 레이어 안에서도 **연속 맥락**과 **일회 연출**은 소유가 다릅니다. 이동은 파라미터로 잇는 그래프에 두고, 스킬·피격·소모품은 이름이나 Trigger로 진입해 Exit로 돌아오는 액션에 두면, 이동 규칙과 콘텐츠가 서로를 흔들지 않습니다.
 
-시전 결정·쿨·입력 버퍼는 [스킬 시전]({{ "/notes/dragon-skill-cast/" | relative_url }})에, 애니메이션 이벤트에서 넘어가는 피해·버프는 [적용 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) · [타격·데미지]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})에 있습니다. 적 쪽 상태 전환은 연출 그래프가 아니라 뇌 FSM이며 [적의 뇌는 언제 명령하는가]({{ "/notes/dragon-monster-brain-command/" | relative_url }})에 두었습니다. 클립 제작·Blend Tree 내부와 레이어 가중치 상세는 이 글에서 다루지 않습니다.
+시전 결정·쿨·입력 버퍼는 [스킬 시전]({{ "/notes/dragon-skill-cast/" | relative_url }})에, 애니메이션 이벤트에서 넘어가는 피해·버프는 [적용 시점]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }}) · [타격·데미지]({{ "/notes/dragon-combat-hit-flow/" | relative_url }})에 있습니다. 적 쪽 상태 전환은 연출 그래프가 아니라 뇌 FSM이며 [적의 뇌는 언제 명령하는가]({{ "/notes/dragon-monster-brain-command/" | relative_url }})에 두었습니다. Body와 무기 overlay·장착별 Blend 분기는 [몸과 무기를 레이어로 나눈 이유]({{ "/notes/dragon-animator-weapon-layer/" | relative_url }})에, Armor/Head weight·Blend Tree 내부 세부는 이 글에서 다루지 않습니다.

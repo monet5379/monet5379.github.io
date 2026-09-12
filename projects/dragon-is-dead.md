@@ -71,9 +71,9 @@ excerpt: "프로그래머 1~2명 규모 개발 리드. Steam EA·정식 출시. 
 
 #### 연출 레이어
 
-시전 판정(TryCast)을 통과한 뒤 **무엇을 재생할지**는 플레이어 Body 레이어가 담당합니다. 이동은 Bool·Float로 잇는 그래프로, 스킬·피격·소모품은 끝나면 Exit로 Idle에 돌아오는 액션으로 나눴습니다. 시전·쿨·입력 버퍼는 [스킬이 어떻게 시전되는가]({{ "/notes/dragon-skill-cast/" | relative_url }})에, 애니 이벤트에서 타격·버프로 넘기는 경계는 [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에 둡니다.
+시전 판정(TryCast)을 통과한 뒤 **무엇을 재생할지**는 플레이어 Body 레이어가 담당합니다. 이동은 Bool·Float로 잇는 그래프로, 스킬·피격·소모품은 끝나면 Exit로 Idle에 돌아오는 액션으로 나눴습니다. 공격·스킬 때 몸 동작과 무기 궤적을 쪼개야 하는 캐릭터는 **Weapon** overlay 레이어를 추가하고, 장착 무기 종류는 Blend Tree로 갈랐습니다. 시전·쿨·입력 버퍼는 [스킬이 어떻게 시전되는가]({{ "/notes/dragon-skill-cast/" | relative_url }})에, 애니 이벤트에서 타격·버프로 넘기는 경계는 [트리거·연쇄]({{ "/notes/dragon-combat-skill-bridge/" | relative_url }})에 둡니다.
 
-노트: [이동 그래프와 Exit 액션을 나눈 이유]({{ "/notes/dragon-animator-move-exit/" | relative_url }})
+노트: [이동 그래프와 Exit 액션을 나눈 이유]({{ "/notes/dragon-animator-move-exit/" | relative_url }}) · [몸과 무기를 레이어로 나눈 이유]({{ "/notes/dragon-animator-weapon-layer/" | relative_url }})
 
 ### 성장 · 빌드
 
